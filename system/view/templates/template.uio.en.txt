@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="en">
+<HEAD>
+<TITLE>##TITLE##</TITLE>
+<LINK href="http://purl.org/dc/elements/1.1/" title="The Dublin Core Metadata Element Set" rel="schema.DC">
+<META content="##TITLE##" name="DC.Title">
+<LINK rel="stylesheet" href="/visuell-profil/css/uio.css">
+<LINK rel="shortcut icon" href="/visuell-profil/grafikk/uio.ico" type="image/x-icon">
+<LINK rel="icon" href="/visuell-profil/grafikk/uio.ico" type="image/x-icon">
+<META content="Center for Information Technology" name="enhet.fulltnavn">
+<META content="USIT" name="enhet.kortnavn">
+<META content="houston@usit.uio.no" name="enhet.epost">
+<META content="http://www.usit.uio.no/" name="enhet.vev">
+<META content="uio.sadm.usit" name="enhet.org">
+<!-- 
+    <META content="9999-99-99" name="dato.endret">
+    <META content="8888-88-88" name="dato.opprettet">
+    <META content="8888-88-88" name="DC.Date.Created" scheme="W3CDTF">
+-->
+<META content="##KEYWORDS##" name="emneord">
+<META content="hf" name="enhet.id">
+<META content="##EDITOR.NAME##" name="redaksjon.navn">
+<META content="##EDITOR@EMAIL##" name="redaksjon.epost">
+<META content="en" name="spraak">
+<META content="en" name="DC.Language" scheme="rfc1766">
+<META content="en" name="DC.Language" scheme="ISO639-1">
+<META content="eng" name="DC.Language" scheme="ISO639-2">
+<META content="it" name="tema">
+<META content="##KEYWORDS##, it" name="keywords">
+<META content="##KEYWORDS##, it" name="DC.Subject">
+<META scheme="vCard" content="FN=Center for Information Technology; EMAIL=webredaksjon@usit.uio.no; URL=http://www.usit.uio.no/;" name="DC.Publisher">
+<META scheme="vCard" content="FN=##EDITOR.NAME##; EMAIL=##EDITOR@EMAIL##;" name="DC.Publisher">
+<META scheme="vCard" content="FN=##EDITOR.NAME##; EMAIL=##EDITOR@EMAIL##;" name="DC.Creator">
+<META scheme="DCMIPeriod" content="scheme=W3CDTF; start=8888-88-88;" name="DC.Date.Valid">
+</HEAD>
+
+<BODY>
+ 
+    <!-- Her starter toppnavigasjonen --> 
+    <FORM ACTION="http://sok.uio.no/perl/velgsok.pl" accept-charset="ISO-8859-1"> 
+      <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%"> 
+	<TBODY> 
+	  <TR> 
+	    <TD CLASS="tdwidth70bgblue" VALIGN="bottom"> 
+	      <A HREF="http://www.uio.no/english/"><IMG ALT="University of Oslo" HEIGHT="31" SRC="/visuell-profil/grafikk/english/logotopp_blaa3.gif" WIDTH="267" BORDER="0"></A><A HREF="#snarvei"><IMG WIDTH="1" HEIGHT="1" BORDER="0" ALT="Skip primary navigation" LONGDESC="By following this link you may skip the standard navigation links and go straight to the start of the document" SRC="/visuell-profil/grafikk/hvit.gif"></A></TD> 
+	    <TD ALIGN="right" CLASS="topbgblue" VALIGN="bottom"> 
+	      <INPUT NAME="text" TYPE="text" SIZE="19">
+<!--Her settes valgmulighetene for søk-->
+<SELECT CLASS="Topsoek" NAME="engine" SIZE="1">
+<OPTION VALUE="inktomiuio_en" SELECTED="SELECTED">UiO - web pages</OPTION>
+<OPTION VALUE="people_en">UiO - persons</OPTION>
+
+<OPTION VALUE="google">WWW - Google</OPTION>
+</SELECT>
+<!--Søk valg avsluttet -->
+&nbsp;
+<input type="hidden" name="_charset_">
+<!--Her finner du søkeknapp -->
+<INPUT ALT="Search" NAME="soek" TYPE="submit" VALUE="Search" CLASS="ImgSoekBorderNull" ALIGN="BOTTOM"> 
+	    </TD> 
+	  </TR> 
+	  <TR VALIGN="top"> 
+	    <TD ALIGN="left" COLSPAN="2"> 
+	      <A HREF="http://www.uio.no/english/"><IMG ALT="University of Oslo" HEIGHT="19" SRC="/visuell-profil/grafikk/studier/logobunn_hvit3.gif" WIDTH="49" BORDER="0"></A> 
+	      <SPAN CLASS="topMenu"><A href="http://www.uio.no/english/about_uio/">About The University</A> &nbsp;&nbsp; <A href="http://www.uio.no/english/academics/">Academics</A> &nbsp;&nbsp; <A href="http://www.uio.no/english/student_life/">Student Life</A> &nbsp;&nbsp; <A href="http://www.uio.no/english/research/">Research</A> &nbsp;&nbsp; <A href="http://www.ub.uio.no/english/">University Library</A> &nbsp;&nbsp; </SPAN> 
+	    </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD ALIGN="left" CLASS="topbgblue" COLSPAN="2"><IMG ALT="IT services - banner" HEIGHT="24" SRC="/visuell-profil/grafikk/it_tjenester/it.gif" WIDTH="454"></TD> 
+	  </TR> 
+	  <TR> 
+	    <TD ALIGN="left" CLASS="topbggraa" COLSPAN="2"> 
+	      <P CLASS="tdmargin70"> 
+		IT SERVICES  
+	      </P> 
+	    </TD> 
+	  </TR> 
+	</TBODY> 
+      </TABLE> 
+    </FORM> 
+    <!-- Her slutter toppnavigasjonen --> 
+    <!-- Her starter br&oslash;dtekstseksjonen --> 
+    <DIV CLASS="navmarginbrod" ID="brodtekst"><A NAME="snarvei"></A> 
+      
+
+##BODY##
+<BR clear="all"> 
+<HR SIZE="1" NOSHADE> 
+<SPAN CLASS="signatur">
+Editors: ##EDITOR.NAME##, <A HREF="mailto:##EDITOR@EMAIL##">##EDITOR@EMAIL##</A><BR>
+</SPAN> 
+    </DIV> 
+    <!-- Her slutter br&oslash;dtekstseksjonen --> 
+    <!-- Her starter bunnnavigasjonen --> 
+    <P CLASS="navmarginline" ID="bunnnav"> 
+      <A HREF="http://www.uio.no/english/contact.html">Get in touch with the University of Oslo</A> 
+    </P> 
+    <!-- Her slutter bunnnavigasjonen --> 
+    <P>&nbsp;</P> 
+  
+
+</BODY>
+</HTML>

@@ -1,0 +1,11 @@
+
+body form, #bunnnav {
+    display: none;
+}
+#brodtekst, .tdwidth70bgblue img { /* gjer det på denne måten pga MSIE */
+    display: inherit;
+}
+#headtitle, #statusbox, #motd, #mainmenu, #submenu, #footer {
+    display: none;
+}
+/* TODO: should #motd be shown? */

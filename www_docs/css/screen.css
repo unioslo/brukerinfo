@@ -1,0 +1,438 @@
+.navmarginbrod {
+    margin-right: 1em;
+}
+
+
+#statusbox {
+    float: right;
+    font-weight: bold;
+    text-align: center;
+    font-size: small;
+    background-color: #dde;
+    padding: .3em 1.5em;
+    margin: 0 1.3em 0 0;
+    border: solid gray 1px;
+}
+#statusbox span {
+    display: block;
+}
+
+#messages {
+    padding: .5em 0;
+    margin: 0 0 1em 0;
+    border: solid gray 1px;
+    background-color: #dde;
+}
+#messages li {
+    margin: .5em 1em;
+    padding: 0;
+    list-style: none;
+    color: red;
+}
+#messages li.notice {
+    color: blue;
+}
+#messages li.warning {
+}
+#messages li.error {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#mainmenu {
+    margin: 0 0 0 1em;
+    padding: 0;
+    height: 1.6em;
+}
+#mainmenu li {
+    font-weight: bold;
+    list-style: none;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#mainmenu li a {
+    text-decoration: none;
+    display: block;
+    border: solid gray 1px;
+    margin: 0;
+    padding: .2em .5em;
+    background-color: white;
+}
+#mainmenu li a:link {
+    color: black;
+}
+#mainmenu li a:visited {
+    color: #333;
+}
+#mainmenu li a:hover {
+    color: black;
+    background-color: #dde;
+}
+#mainmenu li a:active {
+    color: black;
+    background-color: #dde;
+}
+#mainmenu li a.active {
+    background-color: #eef;
+    color: black;
+}
+
+#submenu {
+    padding: 0 0 1em 0;
+    margin: 0;
+}
+#submenu li {
+    margin: 0;
+    padding: 0;
+    display: inline;
+    list-style: none;
+}
+#submenu a {
+    text-decoration: none;
+    border: solid gray 1px;
+    margin: 0;
+    padding: .2em .5em;
+    background-color: white;
+}
+#submenu a:link {
+    color: black;
+}
+#submenu a:visited {
+    color: #333;
+}
+#submenu a:hover {
+    color: black;
+}
+#submenu a:active, #submenu a.active {
+    text-decoration: none;
+    background-color: #eef;
+    color: black;
+    border-color: black;
+}
+
+
+#headtitle {
+    font-weight: bold;
+    margin: 0 0 1em 0;
+    text-align: center;
+    clear: both;
+}
+#headtitle a {
+    color: black;
+    text-decoration: none;
+}
+#headtitle a:hover {
+    text-decoration: underline;
+}
+#motd {
+    margin: 0 0 1em 0;
+    padding: .5em 1em;
+    border: dotted gray 2px;
+    background-color: #dde;
+    list-style: none;
+}
+#motd li {
+    margin: .5em 0;
+
+}
+
+
+#content {
+    background-color: #eef;
+    min-height: 5em;
+    padding: 1em 1em;
+    margin: 0;
+    border: solid gray 1px;
+}
+
+/** Forms */
+
+#content form {
+    margin: 0;
+    padding: 0;
+}
+#content form div {
+    margin: 1.5em 0;
+}
+#content form .header {
+    font-weight: bold;
+    float: left;
+    clear: left;
+    width: 10.5em;
+}
+#content form .element {
+    margin-left: 11em;
+}
+
+/* Small one lined forms */
+#content form.inline {
+    margin: 1em 0 2em 0;
+}
+#content form.inline .header {
+    float: none;
+    width: auto;
+    margin: .5em 1em 2em 0;
+}
+#content form.inline .element {
+    width: auto;
+    margin: .5em 1em 2em 0;
+
+}
+#content table form input.submit, 
+#content table form input.submit_warn, 
+#content table form input.cancel,
+#content form table input.submit, 
+#content form table input.submit_warn, 
+#content form table input.cancel,
+#content form.inline input.submit, 
+#content form.inline input.submit_warn, 
+#content form.inline input.cancel {
+    padding: .1em .5em;
+}
+
+/* Small forms with only a submit-button */
+#content form.submitonly {}
+#content form.submitonly .element {
+    margin: 0;
+}
+
+
+#content form input.text {
+    border: solid gray 1px;
+    background-color: #fbfbfb;
+    padding: .1em .2em;
+}
+#content form textarea {
+    width: 50%;
+}
+#content form input.submit, #content form input.submit_warn, #content form input.cancel {
+    background-color: #fff;
+    border: solid gray 1px;
+    font-weight: bold;
+    padding: .3em .5em;
+    margin: 0 .5em 0 0;
+}   
+#content form input.submit_warn {
+    background-color: #fbb;
+}
+
+
+#content form .required {
+    color: #c00;
+}
+#content form .error {
+    color: #c00;
+    display: block;
+    margin-left: 10em;
+    font-size: large;
+}
+#content form .requirednote {
+    color: gray;
+}
+#content form .explain {
+    color: gray;
+    padding-left: .5em;
+}
+#content form p.explain {
+    padding: 0 0 .5em 10em;
+}
+
+
+#content table {
+    border-collapse: collapse;
+    margin: .5em 0;
+    width: 100%;
+    max-width: 100%;
+}
+/* Making the whole table smaller */
+#content table.mini {
+    width: auto;
+}
+#content table.mini td {
+    border: none;
+}
+/* Making a tr smaller */
+#content table .mini {
+    width: 1em;
+}
+#content table tr, #content table td, #content table th {
+    margin: 0;
+    padding: .3em .4em;
+}
+#content table ul, #content table li {
+    margin: 0 .5em;
+    padding: 0 .3em;
+}
+
+#content table thead {
+    border-bottom: solid #aab 1px;
+}
+#content table tbody {
+}
+
+#content table tbody td {
+    border: solid gray 1px;
+}
+
+#content table .ans, #content table .num_ans {
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
+    font-weight: bold;
+}
+#content table .num {
+    text-align: right;
+}
+#content table .num_ans {
+    text-align: right;
+}
+
+#content table .odd {
+    background-color: #fff
+}
+#content table .negative {
+    color: red;
+    width: 3em;
+}
+#content table .positive {
+    color: black;
+    width: 3em;
+}
+
+#content table .disabled {
+    color: gray;
+}
+#content table .actions {
+    width: .1em;
+}
+
+/* Unsorted */
+.actionlinks {
+    float: right;
+    width: 9em;
+}
+.primary {
+    border: solid #ccd 1px;
+    background-color: #fff;
+    margin: 0;
+    padding: .5em;
+}
+.secondary {
+    font-size: small;
+    border: solid #ccd 1px;
+    margin: 0;
+    padding: .5em;
+}
+.pagenav {
+    text-align: center;
+}
+.pagenav li {
+    display: inline;
+    padding: 0 .3em;
+}
+.smallinfo {
+    color: gray;
+    font-style: italic;
+}
+
+.ekstrainfo {
+    color: gray;
+}
+
+
+
+/* Text */
+
+h1 {
+    margin: 0 0 .2em 0;
+}
+h2 {
+    margin: 1em 0 .1em .5em;
+}
+h3 {
+    margin: 1em 0 .1em .8em;
+}
+
+ul, ol {
+    margin: .5em 1em;
+    padding: .3em 1em;
+}
+ul li {
+    margin: 0;
+    padding: 0;
+}
+ul ul {
+    margin: 0 1.5em;
+    padding: 0;
+}
+
+/* TODO: temporary */ 
+
+dl {
+}
+dl dt {
+    font-weight: bold;
+    float: left;
+    width: 10em;
+}
+dl dd {
+    margin: 0 0 .5em 11em;
+}
+dl dd ul {
+    margin: 0;
+    padding: 0 0 0 1em;
+}
+dl dd li {
+    margin: 0;
+}
+
+dl#keywords dt {
+    float: none;
+    width: auto;
+    font-size: large;
+    display: block;
+    margin-top: 2em;
+}
+dl#keywords dd {
+    margin: 1em 0;
+    padding: 0;
+}
+
+/* For complicated lists, with long-sized terms (dt) */
+dl.complicated dt {
+    float: none;
+    width: auto;
+    margin: 1em 0 .5em 0;
+}
+dl.complicated dd {
+    margin-left: .5em;
+}
+
+.footnotes {
+}
+span.footnote {
+    font-size: small;
+    vertical-align: top;
+    position: relative;
+    bottom: .5em;
+}
+span.footnote a {
+}
+
+/** Definition terms */
+dfn {
+    border-bottom: dotted gray 1px;
+    font: inherit;
+}
+acronym a {
+    text-decoration: none;
+}
+
+
+.footer {
+    margin: .5em .5em 0 0;
+    text-align: right;
+    color: #333;
+    font-size: small;
+}
+

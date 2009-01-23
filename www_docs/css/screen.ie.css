@@ -1,0 +1,11 @@
+/**
+ * IE-specific design...
+ */
+#content table {
+    /*width: auto !important;*/
+    width: 90% !important;
+}
+dfn {
+    font-style: normal;
+    font-weight: normal;
+}
