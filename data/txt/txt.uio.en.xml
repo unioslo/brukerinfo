@@ -220,6 +220,8 @@
     <EMAIL_FILTER_GREYLIST>Greylisting</EMAIL_FILTER_GREYLIST>
     <EMAIL_FILTER_GREYLIST_DESC>Please see &lt;a href="http://www.usit.uio.no/it/epost/graalisting.html"&gt;USIT's page about greylist&lt;/a&gt; 
         for more information.</EMAIL_FILTER_GREYLIST_DESC>
+    <EMAIL_FILTER_UIOONLY>UiOonly</EMAIL_FILTER_UIOONLY>
+    <EMAIL_FILTER_UIOONLY_DESC>Only accept the use of an UiO address as sender address on the UiO network, or when using authenticated SMTP.</EMAIL_FILTER_UIOONLY_DESC>
 
     <EMAIL_FILTER_ON>%s on</EMAIL_FILTER_ON>
     <EMAIL_FILTER_OFF>%s off</EMAIL_FILTER_OFF>

@@ -95,12 +95,14 @@ function availableFilters() {
     //this array is for renaming the filters to more understandable names
     //if the name is not in this array, the code_str will be used as name
     $names = array(
-        'greylist' => txt('email_filter_greylist')
+        'greylist' => txt('email_filter_greylist'),
+        'uioonly'  => txt('email_filter_uioonly')
     );
     //this array is for adding more description to each filter, e.g. links
     //the filters description is also used
     $desc = array(
-        'greylist' => txt('email_filter_greylist_desc')
+        'greylist' => txt('email_filter_greylist_desc'),
+        'uioonly'  => txt('email_filter_uioonly_desc')
     );
 
 
