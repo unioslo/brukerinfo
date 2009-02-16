@@ -48,7 +48,13 @@ class Init {
             define('LOCKED', false);
         } // the locking is done by User and View
 
-        if($session) session_start();
+        if($session) {
+            // sets the session cookie to only work in subpages of brukerinfo (and not all *.uio.no/*)
+            // TODO: this can be removed when apaches config is updated with the same
+            session_set_cookie_params(0, HTML_PRE, $_SERVER['SERVER_NAME'], TRUE, TRUE);
+            session_name('brkrnfid');
+            session_start();
+        }
 
     }
 

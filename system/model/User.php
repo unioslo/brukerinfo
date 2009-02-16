@@ -192,6 +192,9 @@ class User {
 
             if($res) {
 
+                //renames the session cookie 
+                session_regenerate_id(true);
+
                 $this->_loggedin = true;
                 $this->_session['username'] = htmlspecialchars($usrn);
 
