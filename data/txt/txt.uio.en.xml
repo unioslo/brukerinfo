@@ -221,7 +221,7 @@
     <EMAIL_FILTER_GREYLIST_DESC>Please see &lt;a href="http://www.usit.uio.no/it/epost/graalisting.html"&gt;USIT's page about greylist&lt;/a&gt; 
         for more information.</EMAIL_FILTER_GREYLIST_DESC>
     <EMAIL_FILTER_UIOONLY>UiOonly</EMAIL_FILTER_UIOONLY>
-    <EMAIL_FILTER_UIOONLY_DESC>>Please see &lt;a href="http://www.usit.uio.no/it/epost/uioonly.html"&gt;USIT's page about UiOonly&lt;/a&gt; 
+    <EMAIL_FILTER_UIOONLY_DESC>Please see &lt;a href="http://www.usit.uio.no/it/epost/uioonly.html"&gt;USIT's page about UiOonly&lt;/a&gt; 
         for more information.</EMAIL_FILTER_UIOONLY_DESC>
 
     <EMAIL_FILTER_ON>%s on</EMAIL_FILTER_ON>
