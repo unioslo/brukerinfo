@@ -37,7 +37,8 @@
     <LOGON_TITLE>Log on</LOGON_TITLE>
     <LOGON_INTRO>&lt;p&gt;This is a web based user interface for Cerebrum you can use to view and
         modify some of the information concerning your web identity and account at the 
-        University of Oslo.&lt;/p&gt;
+        University of Oslo. For more information and help, please see &lt;a
+        href="http://www.usit.uio.no/it/brukeradministrasjon/"&gt;the help pages&lt;/a&gt;.&lt;/p&gt;
         &lt;p&gt;If you have more than one username, please log on with the 
         username and password for the account you want to view or modify.&lt;/p&gt;
         &lt;p&gt;For security reasons, the username and password entered on this
@@ -95,6 +96,7 @@
 
     <!-- Account text -->
     <ACCOUNT_TITLE>Your account</ACCOUNT_TITLE>
+    <ACCOUNT_AFFS_EMPTY>No affiliation(s) set</ACCOUNT_AFFS_EMPTY>
 
     <ACCOUNT_OTHER_TITLE>Your other accounts</ACCOUNT_OTHER_TITLE>
     <ACCOUNT_OTHER_INFO>For information about your other accounts, please log on with the appropiate username and password.</ACCOUNT_OTHER_INFO>
@@ -223,7 +225,6 @@
     <EMAIL_FILTER_UIOONLY>UiOonly</EMAIL_FILTER_UIOONLY>
     <EMAIL_FILTER_UIOONLY_DESC>Please see &lt;a href="http://www.usit.uio.no/it/epost/uioonly.html"&gt;USIT's page about UiOonly&lt;/a&gt; 
         for more information.</EMAIL_FILTER_UIOONLY_DESC>
-
     <EMAIL_FILTER_ON>%s on</EMAIL_FILTER_ON>
     <EMAIL_FILTER_OFF>%s off</EMAIL_FILTER_OFF>
     <EMAIL_FILTER_RULE_REQUIRED>Please select a choise for %s</EMAIL_FILTER_RULE_REQUIRED>
@@ -323,13 +324,11 @@
     <GROUPS_MEMBERS_LIST_EMPTY>This group has currently no members</GROUPS_MEMBERS_LIST_EMPTY>
     <GROUPS_MEMBERS_TOO_MANY>This group has too many members to be shown here. Please user jbofh or contact your local IT-service.</GROUPS_MEMBERS_TOO_MANY>
     <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces or commas.</GROUPS_MEMBERS_MORE>
-    <GROUPS_MEMBERS_DIFFERENCE>There is a difference between person and account. Use accounts if you don't know this difference.</GROUPS_MEMBERS_DIFFERENCE>
 
 
     <!-- Help pages -->
     <HELP_TITLE>Help</HELP_TITLE>
-    <!-- For now, the help is somewhere else... -->
-    <HELP_GO>Go to the &lt;a href="http://www.usit.uio.no/it/brukeradministrasjon/"&gt;help pages&lt;/a&gt; for more information.</HELP_GO>
+    <HELP_LINK>http://www.usit.uio.no/it/brukeradministrasjon/</HELP_LINK>
 
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.

@@ -25,7 +25,11 @@ $list[0] = View::createElement('dl', null, 'class="complicated"');
 $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
 unset($userinfo['spread']);
 
-$list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations(explode(',', $userinfo['affiliations'])));
+if (isset($userinfo['affiliations'])) {
+    $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations(explode(',', $userinfo['affiliations'])));
+} else {
+    $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), txt('account_affs_empty'));
+}
 unset($userinfo['affiliations']);
 
 if(isset($userinfo['expire'])) {

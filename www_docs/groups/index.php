@@ -40,8 +40,7 @@ if(!empty($_GET['group'])) {
         $newMember->addElement('text', 'acc', txt('groups_members_form_account'));
         $newMember->addElement('text', 'grp', txt('groups_members_form_group'));
         $newMember->addElement('text', 'per', txt('groups_members_form_person'));
-        $newMember->addElement('html', View::createElement('ul', 
-            array(txt('groups_members_more'), txt('groups_members_difference')), 'class="explain"'));
+        $newMember->addElement('html', View::createElement('p', txt('groups_members_more'), 'class="explain"'));
         $newMember->addElement('submit', null, txt('groups_members_form_submit'));
 
         // adding new members

@@ -110,12 +110,7 @@ class View_uio extends View {
         );
        
         //help
-        $menu['help']['link']       = 'help/';
-        //$menu['help']['sub']        = array(
-        //    'help' =>       '',
-        //    'faq' =>        'faq.php',
-        //    'keywords' =>   'keywords.php'
-        //);
+        //$menu['help']['link']       = 'help/';
 
         //returning main menu
         if(!$sub) {
@@ -294,7 +289,8 @@ class View_uio extends View {
         if($this->ended) return;
 
         echo "\n\n</div>\n";
-        echo '<div class="footer">'.txt('footer').'</div>';
+        echo '<div class="footer">'.txt('footer').' - <a href="'.txt('help_link').'">'.
+            txt('help_title').'</a></div>';
         echo $this->getTemplate(false);
 
         $this->ended = true;

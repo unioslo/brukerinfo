@@ -38,7 +38,7 @@ if($form->validate()) {
                 if(changePassword($form->exportValue('new_pass'), $form->exportValue('cur_pass'))) {
                     View::addMessage(txt('account_password_success'));
                     View::addMessage(txt('action_delay', ACTION_DELAY));
-                    View::forward('account/password.php');
+                    View::forward('account/');
                 } //if false here, bofh sends messages to the user
 
             } else {
