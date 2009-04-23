@@ -87,7 +87,7 @@ if(!$history) {
         case 'print':
 
             if($details) $line['printer'] = $h['printer_queue'];
-            $line['info'] = '<strong>Print:</strong> ' . wordwrap($h['job_name'], $maxlength, "<br>\n", true);
+            $line['info'] = '<strong>Print:</strong> ' . wordwrap($h['job_name'], $maxlength, "\n", true);
             $line['in'] = null;
             $line['out'] = View::createElement('td', '<span class="negative">'.$h['pageunits_total'].'</span>', 'class="num"');
 
@@ -159,8 +159,12 @@ if(!$history) {
 
     $View->addElement($table);
 
-
 }
+
+$View->addElement('ul', array(txt('printing_moreinfo_printing')), 'class="ekstrainfo"');
+
+
+
 
 function getHistory($length) {
 
@@ -170,6 +174,5 @@ function getHistory($length) {
     return array_reverse($Bofh->getData('pquota_history', $User->getUsername(), intval($length)));
 
 }
-
 
 ?>

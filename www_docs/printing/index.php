@@ -46,7 +46,7 @@ if($printerinfo['has_quota'] == 'F' || $printerinfo['has_blocked_quota'] != 'F')
 
 }
 
-//$printlist[] = txt('printing_moreinfo_printing');
+$printlist[] = txt('printing_moreinfo_printing');
 if(!empty($printlist)) $View->addElement('ul', $printlist, 'class="ekstrainfo"');
 
 ?>

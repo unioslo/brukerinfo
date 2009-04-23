@@ -105,7 +105,8 @@
     <ACCOUNT_OTHER_EXPIRE_NOT_SET>(not set)</ACCOUNT_OTHER_EXPIRE_NOT_SET>
 
     <ACCOUNT_PASSWORD_TITLE>Change password</ACCOUNT_PASSWORD_TITLE>
-    <ACCOUNT_PASSWORD_INTRO>&lt;p&gt;Change the password of the account you are logged on to.&lt;/p&gt;
+    <ACCOUNT_PASSWORD_INTRO>&lt;p&gt;Change the password of the account you are logged on to. Please note that your password is &lt;em&gt;personal&lt;/em&gt; and must &lt;em&gt;never&lt;/em&gt;
+        be shared with anyone else, not even the IT staff at UiO.&lt;/p&gt;
         &lt;p&gt;This is a summary of the requirements, see &lt;a href="http://www.usit.uio.no/it/passord/ansattpassord.html#krav"&gt;all password requirements&lt;/a&gt; 
         when in doubt.&lt;/p&gt;
         &lt;p&gt;A password &lt;strong&gt;must&lt;/strong&gt;:
@@ -167,8 +168,8 @@
         &lt;a href="http://studweb.uio.no"&gt;StudentWeb at UiO&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
     <PRINTING_MOREINFO_PRICES>For more information about the printout prices, see 
         &lt;a href="http://www.uio.no/studier/studentweb/kopiavgift.html"&gt;kopiavgiften at UiO&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
-    <PRINTING_MOREINFO_PRINTING>For more information about printing, please visit the page for 
-        &lt;a href="http://www.usit.uio.no/it/utskrift/"&gt;printing services at UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
+    <PRINTING_MOREINFO_PRINTING>For more information about printing and printers, please visit the page for 
+        &lt;a href="http://usit.uio.no/it/student/utskrift.html"&gt;printing services at UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
 
 
     <PRINTING_HISTORY_TITLE>Print quota history</PRINTING_HISTORY_TITLE>
@@ -254,6 +255,7 @@
     <EMAIL_FORWARD_TITLE>Forwarding</EMAIL_FORWARD_TITLE>
     <EMAIL_FORWARD_INTRO>You can forward all your incoming e-mails to another e-mail address. Please note that for security reasons this is not recommended.
         For more information please see &lt;a href="http://www.usit.uio.no/it/epost/ferie.html"&gt;USIT's page about forwarding&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
+    <EMAIL_FORWARD_LOCAL>Keep a copy</EMAIL_FORWARD_LOCAL>
     <EMAIL_FORWARD_NEW_TITLE>Create forwarding rule</EMAIL_FORWARD_NEW_TITLE>
     <EMAIL_FORWARD_NEW_OK>A new forwarding has been made. It normally takes up to 2 hours before changes are applied.</EMAIL_FORWARD_NEW_OK>
     <EMAIL_FORWARD_DELAY>It normally takes up to %d minutes before changes are applied.</EMAIL_FORWARD_DELAY>
@@ -262,6 +264,11 @@
         &lt;strong&gt;%s&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
     <EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>Delete</EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>
     <EMAIL_FORWARD_DELETE_UNKNOWN>Unknown forwarding address</EMAIL_FORWARD_DELETE_UNKNOWN>
+
+    <EMAIL_FORWARD_ADDLOCAL_TITLE>Keep a copy</EMAIL_FORWARD_ADDLOCAL_TITLE>
+    <EMAIL_FORWARD_ADDLOCAL>Your account is now forwarding all your emails to another email address. Do you want to keep a copy of these
+        emails in this UiO email account?</EMAIL_FORWARD_ADDLOCAL>
+    <EMAIL_FORWARD_ADDLOCAL_SUBMIT>Keep a copy</EMAIL_FORWARD_ADDLOCAL_SUBMIT>
 
     <EMAIL_FORWARD_FORM_ADDRESS>Forward all e-mails to this address:</EMAIL_FORWARD_FORM_ADDRESS>
     <EMAIL_FORWARD_FORM_KEEP>Keep a copy of all e-mails in your UiO mailbox</EMAIL_FORWARD_FORM_KEEP>

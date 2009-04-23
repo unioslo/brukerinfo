@@ -7,7 +7,6 @@ $Bofh = new Bofhcom();
 
 $forwards = getForwards();
 $keeplocal = (isset($forwards['local']) ? true : false);
-unset($forwards['local']); //easier code if local is only in $keeplocal
 
 //make new forward-form
 $newForm = new BofhForm('addForwarding');
@@ -16,8 +15,9 @@ $newForm->addElement('checkbox', 'keep', null, txt('email_forward_form_keep'));
 $newForm->addElement('submit', null, txt('email_forward_form_submit'));
 
 // Define filters and validation rules
-//$newForm->addRule('address', 'Please enter the email address to set forwarding to', 'required');
+$newForm->addRule('address', 'Please enter the email address to forward to.', 'required');
 $newForm->setDefaults(array('keep'=>$keeplocal));
+
 
 // Try to validate the form 
 if($newForm->validate()) {
@@ -53,6 +53,20 @@ if($newForm->validate()) {
         }
     }
 
+    View::forward('email/forward.php');
+
+}
+
+// Form for making local copy
+$addLocal = new BofhForm('addLocal');
+$addLocal->addElement('html', View::createElement('p', txt('email_forward_addlocal')));
+$addLocal->addElement('submit', null, txt('email_forward_addlocal_submit'));
+
+if($addLocal->validate()) {
+
+    $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
+    View::addMessage($res);
+    View::addMessage(txt('action_delay', ACTION_DELAY_EMAIL));
     View::forward('email/forward.php');
 
 }
@@ -119,7 +133,12 @@ if($forwards) {
 
     $trs = array();
     foreach($forwards as $k=>$v) {
-        $trs[] = View::createElement('tr', array("$k $v", '<input type="submit" class="submit_warn" name="del['.$k.']" value="Delete">'));
+        if ($k == 'local') {
+            $name = txt('email_forward_local') . " $v";
+        } else {
+            $name = "$k $v";
+        }
+        $trs[] = View::createElement('tr', array($name, '<input type="submit" class="submit_warn" name="del['.$k.']" value="Delete">'));
     }
 
     $table = View::createElement('table', $trs);
@@ -132,6 +151,13 @@ if($forwards) {
 
 $View->addElement('h2', txt('email_forward_new_title'));
 $View->addElement($newForm);
+
+
+if(!$keeplocal && $forwards) {
+    $View->addElement('h2', txt('email_forward_addlocal_title'));
+
+    $View->addElement($addLocal);
+}
 
 $View->addElement('p', txt('ACTION_DELAY', ACTION_DELAY_EMAIL), 'class="ekstrainfo"');
 

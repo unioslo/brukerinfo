@@ -161,8 +161,11 @@
     clear: left;
     width: 10.5em;
 }
-#content form .element {
+#content form .element, #content form .element-error {
     margin-left: 11em;
+}
+#content form .element-error input {
+    border: solid #c00 2px;
 }
 
 /* Small one lined forms */
@@ -177,7 +180,6 @@
 #content form.inline .element {
     width: auto;
     margin: .5em 1em 2em 0;
-
 }
 #content table form input.submit, 
 #content table form input.submit_warn, 
@@ -247,7 +249,7 @@
 }
 /* Making the whole table smaller */
 #content table.mini {
-    width: auto;
+    min-width: auto;
 }
 #content table.mini td {
     border: none;
@@ -259,6 +261,9 @@
 #content table tr, #content table td, #content table th {
     margin: 0;
     padding: .3em .4em;
+}
+#content table td.less {
+    width: 1em;
 }
 #content table ul, #content table li {
     margin: 0 .5em;

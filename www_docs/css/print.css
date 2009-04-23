@@ -1,11 +1,61 @@
-
+body {
+    font-size: 10pt;
+}
 body form, #bunnnav {
     display: none;
 }
 #brodtekst, .tdwidth70bgblue img { /* gjer det på denne måten pga MSIE */
     display: inherit;
 }
-#headtitle, #statusbox, #motd, #mainmenu, #submenu, #footer {
+#headtitle, #statusbox, #motd, #mainmenu, #submenu, .footer {
     display: none;
 }
 /* TODO: should #motd be shown? */
+
+/** TABLES **/
+
+/* Making a tr smaller */
+#content table * {
+    vertical-align: top;
+}
+#content table .mini {
+    width: 1em;
+}
+#content table td.less {
+    width: 1em;
+}
+#content table thead {
+    border-bottom: solid #aab 1px;
+}
+#content table .ans, #content table .num_ans {
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
+    font-weight: bold;
+}
+#content table .num {
+    text-align: right;
+}
+#content table .num_ans {
+    text-align: right;
+}
+#content table .odd {
+    background-color: #fff
+}
+#content table .negative {
+    color: red;
+    width: 3em;
+}
+#content table .positive {
+    color: black;
+    width: 3em;
+}
+
+#content table .disabled {
+    color: gray;
+}
+#content table .actions {
+    width: .1em;
+}
+
+
+

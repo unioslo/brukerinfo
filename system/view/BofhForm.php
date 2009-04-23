@@ -160,7 +160,7 @@ class BofhForm extends HTML_QuickForm {
 
         <div>
             <label class="header">{label}</label>
-            <div class="element">
+            <div class="element<!-- BEGIN error -->-error<!-- END error -->">
                 {element}
             </div>
             <!-- BEGIN error --><span class="error">{error}</span><!-- END error -->
