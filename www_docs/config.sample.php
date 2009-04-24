@@ -8,6 +8,10 @@
 // +------------------------------------------------------------------------+
 
 
+// An adapted version of this file must be placed at config.php (in
+// this directory) in order for the application to find this
+// configuration.
+
 /// SYSTEM
 
 /** If debugging output should be shown */
