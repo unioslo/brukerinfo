@@ -38,7 +38,7 @@
     <LOGON_INTRO>&lt;p&gt;This is a web based user interface for Cerebrum you can use to view and
         modify some of the information concerning your web identity and account at the 
         University of Oslo. For more information and help, please see &lt;a
-        href="http://www.usit.uio.no/it/brukeradministrasjon/"&gt;the help pages&lt;/a&gt;.&lt;/p&gt;
+        href="http://www.usit.uio.no/it/brukeradministrasjon/brukerinfo/"&gt;the help pages&lt;/a&gt;.&lt;/p&gt;
         &lt;p&gt;If you have more than one username, please log on with the 
         username and password for the account you want to view or modify.&lt;/p&gt;
         &lt;p&gt;For security reasons, the username and password entered on this
