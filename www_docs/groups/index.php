@@ -21,6 +21,7 @@ $View->addTitle(txt('GROUPS_TITLE'));
 
 if(!empty($_GET['group'])) {
 
+    //checking if the group exists
     if(!isset($normal_groups[$_GET['group']]) && !isset($adm_groups[$_GET['group']])) {
         View::forward('groups/', txt('groups_group_unknown'), View::MSG_WARNING);
     }
@@ -90,7 +91,7 @@ if(!empty($_GET['group'])) {
             // )
 
             $delConfirm = new BofhForm('confirmDelMembers', null, 'groups/?group='.$groupname);
-            $delConfirm->addElement('html', View::createElement('p', txt('groups_members_del_confirm', $groupname)));
+            $delConfirm->addElement('html', View::createElement('p', txt('groups_members_del_confirm', array('groupname'=>$groupname))));
 
             $delList = array();
             foreach($_POST['del'] as $v => $delt) {
@@ -155,7 +156,7 @@ if(!empty($_GET['group'])) {
 
 
     $View->start();
-    $View->addElement('h1', txt('group_title', $groupname));
+    $View->addElement('h1', txt('group_title', array('groupname'=>$groupname)));
     $primary = View::createElement('div', null, 'class="primary"');
 
     $dl = View::createElement('dl');
@@ -178,9 +179,9 @@ if(!empty($_GET['group'])) {
     unset($group['opset']);
 
     $dl->addData(txt('group_members'), array(
-        txt('group_members_groups',   (isset($group['c_group']) ? $group['c_group'] : 0)),
-        txt('group_members_accounts', (isset($group['c_account']) ? $group['c_account'] : 0)),
-        txt('group_members_persons',  (isset($group['c_person']) ? $group['c_person'] : 0))
+        txt('group_members_groups',  array('number'=>(isset($group['c_group']) ? $group['c_group'] : 0))),
+        txt('group_members_accounts', array('number'=>(isset($group['c_account']) ? $group['c_account'] : 0))),
+        txt('group_members_persons',  array('number'=>(isset($group['c_person']) ? $group['c_person'] : 0)))
     ));
 
     //getting the number of members (to avoid long listing)
@@ -274,11 +275,11 @@ if(!empty($_GET['group'])) {
 
 
                 for($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
-                    $table->addData(View::createElement('tr', array(
-                        '<input type="checkbox" name="del['.$members[$i]['type'].']['.$members[$i]['id'].']" value="'.$members[$i]['name'].'" id="mem'.$members[$i]['id'].'">',
+                    $table->addData(array(
+                        View::createElement('td', '<input type="checkbox" name="del['.$members[$i]['type'].']['.$members[$i]['id'].']" value="'.$members[$i]['name'].'" id="mem'.$members[$i]['id'].'">', 'class="less"'),
                         '<label for="mem'.$members[$i]['id'].'">' . $members[$i]['name'] . '</label>', 
                         $members[$i]['type']
-                    )));
+                    ));
                 };
 
                 $View->addElement($table);
@@ -310,20 +311,18 @@ if($adm_groups == -1) {
 
 } elseif($adm_groups) {
 
-    $admtr = array(); 
+    $table = View::createElement('table', null);
+
     foreach($adm_groups as $n => $g) {
 
-        $tr = View::createElement('tr');
-        $tr->addData(
+        $table->addData(array(
             View::createElement('a', $n, "groups/?group=$n", 'title="Click for more info about this group"'),
             $g
             //View::createElement('a', 'Manage members', "groups/members.php?group=$n", 'title="Click for managing the members of this group"')
-        );
+        ));
 
-        $admtr[] = $tr;
     }
 
-    $table = View::createElement('table', $admtr);
     $table->setHead(
         txt('groups_table_groupname'),
         txt('groups_table_description')

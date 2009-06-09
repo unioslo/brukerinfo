@@ -3,6 +3,7 @@ require_once '../init.php';
 $Init = new Init();
 $User = new User();
 $Bofh = new Bofhcom();
+$View = View::create();
 
 $form = new BofhFormInline('changeHistory');
 
@@ -12,7 +13,7 @@ $def_length = 14;
 $maxlength = 50; //the max length of print-names before newlines (to prevent too wide tables)
 
 foreach($lengths as $l) {
-    $length[$l] = txt('printing_history_form_days', $l) . ($l == $def_length ? ' '.txt('printing_history_form_default') : '');
+    $length[$l] = txt('printing_history_form_days', array('length'=>$l)) . ($l == $def_length ? ' '.txt('printing_history_form_default') : '');
 }
 $length[2147483647] = txt('printing_history_form_unlimited');
 
@@ -32,7 +33,6 @@ if($form->validate()) {
 }
 
 
-$View = View::create();
 $View->addTitle(txt('PRINTING_HISTORY_TITLE'));
 $View->start();
 $View->addElement('h1', txt('PRINTING_HISTORY_TITLE'));
@@ -51,21 +51,21 @@ if(!$history) {
         // TODO: add more details later
         //       e.g. could differ between free and paid quotas, which is interesting to some
         $table->setHead(
-            'JobId',
-            'Time', 
-            'Printer', 
-            'Info',
-            'In',
-            'Out'
+            txt('printing_history_list_jobid'),
+            txt('printing_history_list_time'),
+            txt('printing_history_list_printer'),
+            txt('printing_history_list_info'),
+            txt('printing_history_list_in'),
+            txt('printing_history_list_out')
         );
 
     } else {
 
         $table->setHead(
-            'Time',
-            'Info',
-            'In',
-            'Out'
+            txt('printing_history_list_time'),
+            txt('printing_history_list_info'),
+            txt('printing_history_list_in'),
+            txt('printing_history_list_out')
         );
 
     }
@@ -122,14 +122,14 @@ if(!$history) {
             break;
         case 'pay':
 
-            if($details) $line['printer'] = null;
+            if($details) $line['printer'] = '&nbsp;';
             $line['info'] = View::createElement('ul', array(
                 '<strong>Payment:</strong> ' . $h['description'],
                 'Bank-id: ' . $h['bank_id']),
                 'Time paid: '. date('Y.m.d H:i', $h['payment_tstamp']->timestamp)
             );
-            $line['in'] = View::createElement('td', 'kr '.number_format($h['kroner'], 2), 'class="num" colspan="2"');
-            $line['out'] = null;
+            $line['in'] = View::createElement('td', 'kr '.number_format($h['kroner'], 2, txt('dec_format'), ' '), 'class="num" colspan="2"');
+            unset($line['out']);
 
 
             break;
@@ -171,7 +171,8 @@ function getHistory($length) {
     global $User;
     global $Bofh;
 
-    return array_reverse($Bofh->getData('pquota_history', $User->getUsername(), intval($length)));
+    $ret = $Bofh->getData('pquota_history', $User->getUsername(), intval($length));
+    if($ret) return array_reverse($ret);
 
 }
 

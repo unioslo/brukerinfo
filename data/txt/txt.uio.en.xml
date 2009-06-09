@@ -5,6 +5,11 @@
 </meta>
 <data>
 
+    <!-- The format for dates -->
+    <DATE_FORMAT>Y-m-d</DATE_FORMAT>
+    <!-- The format of the decimal point (normally ',' or '.') -->
+    <DEC_FORMAT>.</DEC_FORMAT>
+
     <!-- The browsers window title -->
     <PAGETITLE>Brukerinfo - University of Oslo</PAGETITLE>
     <HEADER>Brukerinfo - a web interface to Cerebrum</HEADER>
@@ -15,21 +20,40 @@
     <LOCKED_TITLE>Down for maintenance</LOCKED_TITLE>
 
     <!-- All pages with action-commands with system delay ends with this text -->
-    <ACTION_DELAY>Changes will be applied within %d minutes.</ACTION_DELAY>
+    <ACTION_DELAY_MIN>Changes will be applied within {{delay_min}} minutes.</ACTION_DELAY_MIN>
+    <ACTION_DELAY_HOUR>Changes will be applied within {{delay_hour}} hours.</ACTION_DELAY_HOUR>
+    <ACTION_DELAY_EMAIL>Changes will be applied within {{delay_email}} minutes.</ACTION_DELAY_EMAIL>
 
     <!-- Errors -->
     <ERROR_BOFH_CONNECTION>Could not connect to the database, please try again later.</ERROR_BOFH_CONNECTION>
     <ERROR_BOFH_ERROR>Error in the communication with the database, please try again later.</ERROR_BOFH_ERROR>
     <ERROR_BOFH_RESTARTED>The database has been restarted, please update the page or log on again.</ERROR_BOFH_RESTARTED>
 
+    <!-- The top menu -->
+    <LOGOUT>Log out</LOGOUT>
+
     <!-- The main menu -->
     <MENU_HOME>Home</MENU_HOME>
+
     <MENU_PERSON>Person</MENU_PERSON>
+
     <MENU_ACCOUNT>Account</MENU_ACCOUNT>
+    <MENU_ACCOUNT_>Your account</MENU_ACCOUNT_>
+    <MENU_ACCOUNT_PASSWORD>Change password</MENU_ACCOUNT_PASSWORD>
+    <MENU_ACCOUNT_PRIMARY>Primary account</MENU_ACCOUNT_PRIMARY>
+
     <MENU_PRINTING>Printing</MENU_PRINTING>
+    <MENU_PRINTING_>Printing overview</MENU_PRINTING_>
+    <MENU_PRINTING_HISTORY>Print quota history</MENU_PRINTING_HISTORY>
+
     <MENU_EMAIL>E-mail</MENU_EMAIL>
+    <MENU_EMAIL_>E-mail overview</MENU_EMAIL_>
+    <MENU_EMAIL_SPAM>Spam settings</MENU_EMAIL_SPAM>
+    <MENU_EMAIL_FILTERS>Additional spam settings</MENU_EMAIL_FILTERS>
+    <MENU_EMAIL_TRIPNOTE>Out of office messages</MENU_EMAIL_TRIPNOTE>
+    <MENU_EMAIL_FORWARD>Forwarding</MENU_EMAIL_FORWARD>
+
     <MENU_GROUPS>Groups</MENU_GROUPS>
-    <MENU_HELP>Help</MENU_HELP>
 
 
     <!-- Logon and logout -->
@@ -52,7 +76,7 @@
     <LOGON_FORM_PASSWORD>Password:</LOGON_FORM_PASSWORD>
     <LOGON_FORM_SUBMIT>Log on</LOGON_FORM_SUBMIT>
 
-    <LOGON_SUCCESS>Welcome %s</LOGON_SUCCESS>
+    <LOGON_SUCCESS>Welcome {{username}}</LOGON_SUCCESS>
     <LOGON_BAD_NAME_OR_PASSWORD>Wrong username or password</LOGON_BAD_NAME_OR_PASSWORD>
     <LOGON_LOGGED_OUT>You are now logged out</LOGON_LOGGED_OUT>
 
@@ -70,7 +94,7 @@
     <HOME_TITLE>Welcome</HOME_TITLE> <!-- wofh -->
     <HOME_INTRO></HOME_INTRO>
     <HOME_SPECIFIC_ACCOUNT>
-        Please note that you can only make changes to the account '%s'.
+        Please note that you can only make changes to the account &lt;em&gt;{{username}}&lt;/em&gt;.
         If you need to make changes to another account, please log on with the appropriate username and password.
     </HOME_SPECIFIC_ACCOUNT>
 
@@ -82,7 +106,7 @@
     <HOME_SHORTCUTS_TRIPNOTE>Set Out of office messages</HOME_SHORTCUTS_TRIPNOTE>
     <HOME_SHORTCUTS_MEMBERS>Add or remove members from your group(s)</HOME_SHORTCUTS_MEMBERS>
 
-    <HOME_ABOUT_TITLE>About web bofh</HOME_ABOUT_TITLE>
+    <HOME_ABOUT_TITLE>About Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>This is a web based user interface
         you can use to view and modify some of the information concerning your electronic identity at the 
         University of Oslo. For more information and help about data systems at UiO, please see
@@ -97,6 +121,11 @@
     <!-- Account text -->
     <ACCOUNT_TITLE>Your account</ACCOUNT_TITLE>
     <ACCOUNT_AFFS_EMPTY>No affiliation(s) set</ACCOUNT_AFFS_EMPTY>
+
+    <ACCOUNT_NAME_PRIMARY>{{username}} (primary)</ACCOUNT_NAME_PRIMARY>
+    <ACCOUNT_NAME_NORMAL>{{username}}</ACCOUNT_NAME_NORMAL>
+    <ACCOUNT_NAME_DELETED>{{username}} (deleted)</ACCOUNT_NAME_DELETED>
+
 
     <ACCOUNT_OTHER_TITLE>Your other accounts</ACCOUNT_OTHER_TITLE>
     <ACCOUNT_OTHER_INFO>For information about your other accounts, please log on with the appropiate username and password.</ACCOUNT_OTHER_INFO>
@@ -150,10 +179,10 @@
         &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; (blyant.uio.no) accepts only your primary account&lt;/li&gt;
         &lt;/ul&gt;
     </ACCOUNT_PRIMARY_INTRO>
-    <ACCOUNT_PRIMARY_ALREADY>The active account (%s) is already your primary account.&lt;br&gt;
+    <ACCOUNT_PRIMARY_ALREADY>The active account ({{username}}) is already your primary account.&lt;br&gt;
         To make another account the primary, please log on with that account.</ACCOUNT_PRIMARY_ALREADY>
-    <ACCOUNT_PRIMARY_FORM_SUBMIT>Make %s my primary account</ACCOUNT_PRIMARY_FORM_SUBMIT>
-    <ACCOUNT_PRIMARY_SUCCESS>Your account %s is now your primary account. It normally takes up to up to 2 hours 
+    <ACCOUNT_PRIMARY_FORM_SUBMIT>Make {{username}} my primary account</ACCOUNT_PRIMARY_FORM_SUBMIT>
+    <ACCOUNT_PRIMARY_SUCCESS>Your account {{username}} is now your primary account. It normally takes up to up to 2 hours 
         before changes are applied.</ACCOUNT_PRIMARY_SUCCESS>
     <ACCOUNT_PRIMARY_FAILED>The system could not change your primary account, please contact your 
         local IT support service or Houston</ACCOUNT_PRIMARY_FAILED>
@@ -162,6 +191,7 @@
     <PRINTING_TITLE>Printing overview</PRINTING_TITLE>
     <PRINTING_TABLE_FREE>Free prints:</PRINTING_TABLE_FREE>
     <PRINTING_TABLE_PAID>Paid prints:</PRINTING_TABLE_PAID>
+    <PRINTING_TABLE_PAID_VALUE>({{kroner}} NOK)</PRINTING_TABLE_PAID_VALUE>
     <PRINTING_TABLE_TOTAL>Total prints available:</PRINTING_TABLE_TOTAL>
 
     <PRINTING_MOREINFO_PAY>To pay for more prints, please log on to 
@@ -173,7 +203,7 @@
 
 
     <PRINTING_HISTORY_TITLE>Print quota history</PRINTING_HISTORY_TITLE>
-    <PRINTING_HISTORY_FORM_DAYS>last %d days</PRINTING_HISTORY_FORM_DAYS>
+    <PRINTING_HISTORY_FORM_DAYS>last {{length}} days</PRINTING_HISTORY_FORM_DAYS>
     <PRINTING_HISTORY_FORM_UNLIMITED>unlimited</PRINTING_HISTORY_FORM_UNLIMITED>
     <PRINTING_HISTORY_FORM_DEFAULT>(default)</PRINTING_HISTORY_FORM_DEFAULT>
     <PRINTING_HISTORY_FORM_WHEN>Show:</PRINTING_HISTORY_FORM_WHEN>
@@ -181,6 +211,13 @@
     <PRINTING_HISTORY_FORM_DETAILS></PRINTING_HISTORY_FORM_DETAILS>
     <PRINTING_HISTORY_FORM_DETAILS_BUTTON>details</PRINTING_HISTORY_FORM_DETAILS_BUTTON>
     <PRINTING_HISTORY_FORM_SUBMIT>Update</PRINTING_HISTORY_FORM_SUBMIT>
+
+    <PRINTING_HISTORY_LIST_JOBID>JobId</PRINTING_HISTORY_LIST_JOBID>
+    <PRINTING_HISTORY_LIST_TIME>Time</PRINTING_HISTORY_LIST_TIME>
+    <PRINTING_HISTORY_LIST_PRINTER>Printer</PRINTING_HISTORY_LIST_PRINTER>
+    <PRINTING_HISTORY_LIST_INFO>Info</PRINTING_HISTORY_LIST_INFO>
+    <PRINTING_HISTORY_LIST_IN>In</PRINTING_HISTORY_LIST_IN>
+    <PRINTING_HISTORY_LIST_OUT>Out</PRINTING_HISTORY_LIST_OUT>
 
     <PRINTING_HISTORY_EMPTY>Found no quota history for given period. You may need to extend the range.</PRINTING_HISTORY_EMPTY>
 
@@ -190,7 +227,7 @@
     <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
     <EMAIL_INFO_VALID_ADDR>Valid addresses:</EMAIL_INFO_VALID_ADDR>
     <EMAIL_INFO_QUOTA>Quota:</EMAIL_INFO_QUOTA>
-    <EMAIL_INFO_QUOTA_INFO>%dMB of %dMiB used (warning at %d%%)</EMAIL_INFO_QUOTA_INFO>
+    <EMAIL_INFO_QUOTA_INFO>{{quota_used}}MiB of {{quota_max}}MiB used (warning at {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO>
     <EMAIL_INFO_SPAM_LEVEL>Spam level:</EMAIL_INFO_SPAM_LEVEL>
     <EMAIL_INFO_SPAM_ACTION>Spam action:</EMAIL_INFO_SPAM_ACTION>
     <EMAIL_INFO_FORWARD>Forwarding:</EMAIL_INFO_FORWARD>
@@ -208,6 +245,19 @@
         For more information please see &lt;a href="http://www.usit.uio.no/it/epost/spamfiltrering.html"&gt;USIT's
         page about spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
 
+    <!--
+    These texts aren't used in english, as we prefer the descriptions from bofhd.
+
+    <EMAIL_SPAM_ACTION_DROPSPAM></EMAIL_SPAM_ACTION_DROPSPAM>
+    <EMAIL_SPAM_ACTION_SPAMFOLDER></EMAIL_SPAM_ACTION_SPAMFOLDER>
+    <EMAIL_SPAM_ACTION_NOACTION></EMAIL_SPAM_ACTION_SPAMFOLDER>
+
+    <EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM></EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>
+    <EMAIL_SPAM_LEVEL_MOST_SPAM></EMAIL_SPAM_LEVEL_MOST_SPAM>
+    <EMAIL_SPAM_LEVEL_STANDARD_SPAM></EMAIL_SPAM_LEVEL_STANDARD_SPAM>
+    <EMAIL_SPAM_LEVEL_NO_FILTER></EMAIL_SPAM_LEVEL_NO_FILTER>
+    -->
+
     <EMAIL_SPAM_FORM_LEVEL>Spam level:</EMAIL_SPAM_FORM_LEVEL>
     <EMAIL_SPAM_FORM_ACTION>Spam action:</EMAIL_SPAM_FORM_ACTION>
     <EMAIL_SPAM_FORM_SUBMIT>Update spam settings</EMAIL_SPAM_FORM_SUBMIT>
@@ -221,14 +271,16 @@
         &lt;a href="http://www.usit.uio.no/it/epost/spamfiltrering.html"&gt;USIT's page about spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
     <EMAIL_FILTER_UPDATE_SUCCESS>Your additional spam settings have been updated</EMAIL_FILTER_UPDATE_SUCCESS>
     <EMAIL_FILTER_GREYLIST>Greylisting</EMAIL_FILTER_GREYLIST>
-    <EMAIL_FILTER_GREYLIST_DESC>Please see &lt;a href="http://www.usit.uio.no/it/epost/graalisting.html"&gt;USIT's page about greylist&lt;/a&gt; 
-        for more information.</EMAIL_FILTER_GREYLIST_DESC>
+    <EMAIL_FILTER_GREYLIST_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
+        Please see &lt;a href="http://www.usit.uio.no/it/epost/graalisting.html"&gt;USIT's page about 
+        greylist&lt;/a&gt; for more information.</EMAIL_FILTER_GREYLIST_DESC>
     <EMAIL_FILTER_UIOONLY>UiOonly</EMAIL_FILTER_UIOONLY>
-    <EMAIL_FILTER_UIOONLY_DESC>Please see &lt;a href="http://www.usit.uio.no/it/epost/uioonly.html"&gt;USIT's page about UiOonly&lt;/a&gt; 
-        for more information.</EMAIL_FILTER_UIOONLY_DESC>
-    <EMAIL_FILTER_ON>%s on</EMAIL_FILTER_ON>
-    <EMAIL_FILTER_OFF>%s off</EMAIL_FILTER_OFF>
-    <EMAIL_FILTER_RULE_REQUIRED>Please select a choise for %s</EMAIL_FILTER_RULE_REQUIRED>
+    <EMAIL_FILTER_UIOONLY_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
+        Please see &lt;a href="http://www.usit.uio.no/it/epost/uioonly.html"&gt;USIT's page about 
+        UiOonly&lt;/a&gt; for more information.</EMAIL_FILTER_UIOONLY_DESC>
+    <EMAIL_FILTER_ON>{{filter}} on</EMAIL_FILTER_ON>
+    <EMAIL_FILTER_OFF>{{filter}} off</EMAIL_FILTER_OFF>
+    <EMAIL_FILTER_RULE_REQUIRED>Please select a choice for {{filter}}</EMAIL_FILTER_RULE_REQUIRED>
     <EMAIL_FILTER_SUBMIT>Update</EMAIL_FILTER_SUBMIT>
 
     <EMAIL_TRIPNOTE_TITLE>Out of office messages</EMAIL_TRIPNOTE_TITLE>
@@ -238,6 +290,7 @@
     <EMAIL_TRIPNOTE_NEW_SUCCESS>New Out of office message added</EMAIL_TRIPNOTE_NEW_SUCCESS>
 
     <EMAIL_TRIPNOTE_ACTIVE_TITLE>Active Out of office messages</EMAIL_TRIPNOTE_ACTIVE_TITLE>
+    <EMAIL_TRIPNOTE_LIST_DELETE>Delete</EMAIL_TRIPNOTE_LIST_DELETE>
 
     <EMAIL_TRIPNOTE_FORM_TITLE>New Out of office message</EMAIL_TRIPNOTE_FORM_TITLE>
     <EMAIL_TRIPNOTE_FORM_START>Starting:</EMAIL_TRIPNOTE_FORM_START>
@@ -248,9 +301,9 @@
     <EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>Please enter your message</EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>
 
     <EMAIL_TRIPNOTE_OLD_TITLE>Old Out of office messages</EMAIL_TRIPNOTE_OLD_TITLE>
-    <EMAIL_TRIPNOTE_DELETE_TITLE>Confirm deleting Out of office message</EMAIL_TRIPNOTE_DELETE_TITLE>
+    <EMAIL_TRIPNOTE_DELETE_TITLE>Confirm deleting</EMAIL_TRIPNOTE_DELETE_TITLE>
     <EMAIL_TRIPNOTE_DELETE_CONFIRM>Are you sure you want to delete the following Out of office message?</EMAIL_TRIPNOTE_DELETE_CONFIRM>
-    <EMAIL_TRIPNOTE_DELETE_SUBMIT>Confirm deletion</EMAIL_TRIPNOTE_DELETE_SUBMIT>
+    <EMAIL_TRIPNOTE_DELETE_SUBMIT>Confirm deleting</EMAIL_TRIPNOTE_DELETE_SUBMIT>
 
     <EMAIL_FORWARD_TITLE>Forwarding</EMAIL_FORWARD_TITLE>
     <EMAIL_FORWARD_INTRO>You can forward all your incoming e-mails to another e-mail address. Please note that for security reasons this is not recommended.
@@ -258,10 +311,12 @@
     <EMAIL_FORWARD_LOCAL>Keep a copy</EMAIL_FORWARD_LOCAL>
     <EMAIL_FORWARD_NEW_TITLE>Create forwarding rule</EMAIL_FORWARD_NEW_TITLE>
     <EMAIL_FORWARD_NEW_OK>A new forwarding has been made. It normally takes up to 2 hours before changes are applied.</EMAIL_FORWARD_NEW_OK>
-    <EMAIL_FORWARD_DELAY>It normally takes up to %d minutes before changes are applied.</EMAIL_FORWARD_DELAY>
+
+    <EMAIL_FORWARD_DELETE_SUBMIT>Delete</EMAIL_FORWARD_DELETE_SUBMIT>
+
     <EMAIL_FORWARD_DELETE_CONFIRM_TITLE>Confirm deletion of forwarding rule</EMAIL_FORWARD_DELETE_CONFIRM_TITLE>
     <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Are you sure you want to delete your forwarding to 
-        &lt;strong&gt;%s&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
+        &lt;strong&gt;{{target}}&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
     <EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>Delete</EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>
     <EMAIL_FORWARD_DELETE_UNKNOWN>Unknown forwarding address</EMAIL_FORWARD_DELETE_UNKNOWN>
 
@@ -272,6 +327,8 @@
 
     <EMAIL_FORWARD_FORM_ADDRESS>Forward all e-mails to this address:</EMAIL_FORWARD_FORM_ADDRESS>
     <EMAIL_FORWARD_FORM_KEEP>Keep a copy of all e-mails in your UiO mailbox</EMAIL_FORWARD_FORM_KEEP>
+    <EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>Please enter the email address to forward to.</EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>
+
     <EMAIL_FORWARD_FORM_SUBMIT>Create rule</EMAIL_FORWARD_FORM_SUBMIT>
 
 
@@ -291,28 +348,28 @@
 
     <GROUPS_PERSONAL_TITLE>Create personal group</GROUPS_PERSONAL_TITLE>
     <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user 
-        account (in this case %s). You are the administrator of the group and decide who should 
+        account (in this case {{username}}). You are the administrator of the group and decide who should 
         be members with access to e.g. shared documents or allow execution of scripts.
     </GROUPS_PERSONAL_INFO>
     <GROUPS_PERSONAL_ALREADY>It looks like you already have a personal group</GROUPS_PERSONAL_ALREADY>
     <GROUPS_PERSONAL_SUCCESS>Created your personal group. It normally takes up to 2 hours before changes are applied.</GROUPS_PERSONAL_SUCCESS>
 
-    <GROUP_TITLE>Group: %s</GROUP_TITLE>
+    <GROUP_TITLE>Group: {{groupname}}</GROUP_TITLE>
     <GROUP_DESCRIPTION>Description:</GROUP_DESCRIPTION>
     <GROUP_DESCRIPTION_SUBMIT>Change description</GROUP_DESCRIPTION_SUBMIT>
     <GROUP_CREATE_DATE>Created:</GROUP_CREATE_DATE>
     <GROUP_SPREAD>Access:</GROUP_SPREAD>
     <GROUP_OWNER>Owner:</GROUP_OWNER>
     <GROUP_MEMBERS>Members:</GROUP_MEMBERS>
-    <GROUP_MEMBERS_GROUPS>%d groups</GROUP_MEMBERS_GROUPS>
-    <GROUP_MEMBERS_ACCOUNTS>%d accounts</GROUP_MEMBERS_ACCOUNTS>
-    <GROUP_MEMBERS_PERSONS>%d persons</GROUP_MEMBERS_PERSONS>
+    <GROUP_MEMBERS_GROUPS>{{number}} groups</GROUP_MEMBERS_GROUPS>
+    <GROUP_MEMBERS_ACCOUNTS>{{number}} accounts</GROUP_MEMBERS_ACCOUNTS>
+    <GROUP_MEMBERS_PERSONS>{{number}} persons</GROUP_MEMBERS_PERSONS>
 
     <GROUP_MEMBERS_TABLE_NAME>Name:</GROUP_MEMBERS_TABLE_NAME>
     <GROUP_MEMBERS_TABLE_TYPE>Type:</GROUP_MEMBERS_TABLE_TYPE>
 
     <GROUPS_MEMBERS_DEL_TITLE>Confirm removal of members</GROUPS_MEMBERS_DEL_TITLE>
-    <GROUPS_MEMBERS_DEL_CONFIRM>Are you sure you want to remove the following members from the group &lt;strong&gt;%s&lt;/strong&gt;?</GROUPS_MEMBERS_DEL_CONFIRM>
+    <GROUPS_MEMBERS_DEL_CONFIRM>Are you sure you want to remove the following members from the group &lt;strong&gt;{{groupname}}&lt;/strong&gt;?</GROUPS_MEMBERS_DEL_CONFIRM>
     <GROUPS_MEMBERS_DEL_GROUPS>Groups:</GROUPS_MEMBERS_DEL_GROUPS>
     <GROUPS_MEMBERS_DEL_PERSONS>Persons:</GROUPS_MEMBERS_DEL_PERSONS>
     <GROUPS_MEMBERS_DEL_ACCOUNTS>Accounts:</GROUPS_MEMBERS_DEL_ACCOUNTS>
@@ -330,7 +387,7 @@
     <GROUPS_MEMBERS_LIST_TITLE>Members</GROUPS_MEMBERS_LIST_TITLE>
     <GROUPS_MEMBERS_LIST_EMPTY>This group has currently no members</GROUPS_MEMBERS_LIST_EMPTY>
     <GROUPS_MEMBERS_TOO_MANY>This group has too many members to be shown here. Please user jbofh or contact your local IT-service.</GROUPS_MEMBERS_TOO_MANY>
-    <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces or commas.</GROUPS_MEMBERS_MORE>
+    <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces and/or commas.</GROUPS_MEMBERS_MORE>
 
 
     <!-- Help pages -->
@@ -352,16 +409,27 @@
     <NAVIGATION_LAST>last &gt;&gt;</NAVIGATION_LAST>
 
     <!-- Bofh text - standard names on different bofh terms -->
-    <BOFH_INFO_NAME>display name</BOFH_INFO_NAME>
-    <BOFH_INFO_NAMES>names</BOFH_INFO_NAMES>
-    <BOFH_INFO_BIRTH>birth</BOFH_INFO_BIRTH>
+    <BOFH_INFO_NAME>Display name:</BOFH_INFO_NAME>
+    <BOFH_INFO_BIRTH>Birth:</BOFH_INFO_BIRTH>
     <BOFH_INFO_AFFILIATIONS>Your account has the following affiliation(s):</BOFH_INFO_AFFILIATIONS>
+    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
+        at &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>
     <BOFH_INFO_PERSON_AFFILIATIONS>Your person has the following affiliation(s):</BOFH_INFO_PERSON_AFFILIATIONS>
-    <BOFH_INFO_FNR>National ID number</BOFH_INFO_FNR>
+    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Affiliation in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: 
+        &lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
+        (&lt;dfn title="{{aff_sub_desc}}"&gt;{{aff_sub}}&lt;/dfn&gt;)
+        at &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_PERSON_AFFILIATION_VALUE>
+    <BOFH_INFO_NAMES>Names:</BOFH_INFO_NAMES>
+    <BOFH_INFO_NAME_VALUE>Name registered in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        {{name}}</BOFH_INFO_NAME_VALUE>
+    <BOFH_INFO_FNR>National ID number:</BOFH_INFO_FNR>
+    <BOFH_INFO_FNR_VALUE>Number registered in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        {{fnr}}</BOFH_INFO_FNR_VALUE>
     <BOFH_INFO_SPREADS>Your account is active in the following system(s):</BOFH_INFO_SPREADS>
     <BOFH_INFO_EXPIRE>expires</BOFH_INFO_EXPIRE>
 
     <BOFH_INFO_HOME>home</BOFH_INFO_HOME>
+    <BOFH_INFO_SHELL>Shell</BOFH_INFO_SHELL>
     <BOFH_INFO_DFG_NAME>default group</BOFH_INFO_DFG_NAME>
     <BOFH_INFO_DFG_POSIX_GID>default group id</BOFH_INFO_DFG_POSIX_GID>
     <BOFH_INFO_OWNER_DESC>description</BOFH_INFO_OWNER_DESC>
@@ -369,9 +437,6 @@
     <BOFH_INFO_UID>User id</BOFH_INFO_UID>
 
     <BOFH_INFO_STEDKODE>stedkode</BOFH_INFO_STEDKODE>
-
-    <!-- The general [from FS/SAP]-ending to data from bofh -->
-    <BOFH_FROM>[from %s]</BOFH_FROM>
 
     <!-- General terms -->
     <TERM_FS>Felles Studentsystem</TERM_FS>

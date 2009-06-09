@@ -56,7 +56,7 @@ class Html_Tr extends Html_Element {
             $f = func_get_arg(0);
 
             foreach($f as $g) {
-                if(is_object($g) && is_a($g, 'Html_Td')) {
+                if(is_object($g) && (is_a($g, 'Html_Td') || is_a($g, 'Html_Th'))) {
                     $this->content[] = $g;
                 } else {
                     $this->content[] = View::createElement('td', $g);
@@ -66,7 +66,7 @@ class Html_Tr extends Html_Element {
         } else {
 
             foreach(func_get_args() as $f) {
-                if(is_object($f) && is_a($f, 'Html_Td')) {
+                if(is_object($f) && (is_a($f, 'Html_Td') || is_a($f, 'Html_Th'))) {
                     $this->content[] = $f;
                 } else {
                     $this->content[] = View::createElement('td', $f);

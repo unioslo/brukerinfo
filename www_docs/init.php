@@ -41,6 +41,11 @@ class Init {
         // Headerdata (may be overriden by View.inc, but is nice for viewing errors)
         header('Content-Type: text/html; charset=' . strtolower(CHARSET) );
 
+        // Security tag, preventing the site from popping up in iframes
+        // Does for now only work in IE8 and Firefox with NoScript. 
+        // http://hackademix.net/2009/01/29/x-frame-options-in-firefox/
+        header('X-FRAME-OPTIONS: DENY');
+
         // Checking if the site has been locked
         if(file_exists(LOCK_FILE) && trim(file_get_contents(LOCK_FILE))) {
             define('LOCKED', true);
@@ -56,6 +61,82 @@ class Init {
             session_start();
         }
 
+        $this->language();
+
+    }
+
+    /* 
+     * Language
+     *
+     * This method is getting and setting the chosen
+     * language for the session. Needs to be called
+     * _after_ session_start().
+     *
+     * The language is gotten in this order:
+     *  1. The session language - $_SESSION['chosenLang']
+     *  2. The cookie language -  $_COOKIE['chosenLang']
+     *  3. Bofhds chosen language for the person (not supported yet)
+     *  4. The chosen languages by the browser (accept_language)
+     *  5. The default DEFAULT_LANG if none of the above is present
+     *
+     * The language can be chosen by the user by sending $_GET[chooseLang],
+     * which stores this in $_SESSION['chosenLang'] and $_COOKIE['chosenLang'].
+     * If neither of those is set, the language is gotten from the http-parameter
+     * ACCEPT_LANGUAGE. This includes a comma-separated list of the languages
+     * that the browser wants. An example:
+     *
+     *      no,en-us;q=0.7,en-gb;q=0.3
+     *
+     * The q value stands for the priority of the language, 1 is max priority.
+     *
+     */
+    private function language() {
+
+        $langs = Text::getLangs();
+
+        if(!empty($_GET['chooseLang'])) {
+
+            $chosen = trim($_GET['chooseLang']);
+
+            if(in_array($chosen, $langs)) {
+                $_SESSION['chosenLang'] = $chosen;
+                setcookie('chosenLang', $chosen, time()+60*60*24*30, HTML_PRE);
+            }
+
+            //todo: check if this works... or if it is necessary at all
+            //View::forward($_SERVER['HTTP_REFERER']); //todo: create internal history-array instead?
+            return true;
+        }
+
+        if(!empty($_SESSION['chosenLang'])) return true;
+
+        //the cookie can not be trusted
+        if(!empty($_COOKIE['chosenLang']) && in_array($_COOKIE['chosenLang'], $langs)) {
+            $_SESSION['chosenLang'] = $_COOKIE['chosenLang'];
+
+            //todo: forward here? or is the session value stored now?
+            return true;
+        }
+
+        //if neither the session nor the cookie has some logic value
+        if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+
+            $preferred = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            foreach($preferred as $p) {
+                //this is not documented, but presumes that the first language has
+                //the highest priority, and following that order
+                list($lang, $pri) = explode(';', $p);
+
+                if(in_array($lang, $langs)) {
+                    $_SESSION['chosenLang'] = $lang;
+                    //setcookie('chosenLang', $lang, time()+60*60*24*30, HTML_PRE);
+                    return true;
+                }
+            }
+        }
+
+        // at last, when nothing else is possible
+        $_SESSION['chosenLang'] = DEFAULT_LANG;
     }
 
 
@@ -129,5 +210,9 @@ function txt($key) {
     return $v->txt($key, $args);
 
 }
+
+
+
+
 
 ?>

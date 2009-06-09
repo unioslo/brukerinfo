@@ -3,13 +3,14 @@ require_once '../init.php';
 $Init = new Init();
 $User = new User();
 $Bofh = new Bofhcom();
+$View = View::create();
 
 
-//actions is sorted ok, for now
 $sp_actions = $Bofh->getData('get_constant_description', 'EmailSpamAction');
+//actions is sorted ok now, but be aware for a change in the future
 
-//try to sort the levels at behaviour, as this is not done by bofh
 $sp_lvl_raw = $Bofh->getData('get_constant_description', 'EmailSpamLevel');
+//try to sort the levels at behaviour, as this is not done by bofh
 $sp_levels[] = $sp_lvl_raw[0];
 $sp_levels[] = $sp_lvl_raw[1];
 $sp_levels[] = $sp_lvl_raw[3];
@@ -28,7 +29,14 @@ $form = new BofhForm('setSpam');
 $levels = array();
 foreach($sp_levels as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
-    $r = $form->createElement('radio', 'level', null, "{$v['description']} <span class=\"explain\">($title)</span>", $v['code_str']);
+    $txt_name = 'email_spam_level_'.$v['code_str'];
+
+    if(Text::exists($txt_name, true)) {
+        $v['description'] = txt($txt_name);
+    }
+
+    $r = $form->createElement('radio', 'level', null, 
+        "{$v['description']} <span class=\"explain\">($title)</span>", $v['code_str']);
     $levels[] = $r;
 }
 $form->addGroup($levels, 'spam_level', txt('email_spam_form_level'), "<br>\n", false);
@@ -38,7 +46,14 @@ $form->addGroup($levels, 'spam_level', txt('email_spam_form_level'), "<br>\n", f
 $actions = array();
 foreach($sp_actions as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
-    $r = $form->createElement('radio', 'action', null, "{$v['description']} <span class=\"explain\">($title)</span>", $v['code_str']);
+    $txt_name = 'email_spam_action_'.$v['code_str'];
+
+    if(Text::exists($txt_name, true)) {
+        $v['description'] = txt($txt_name);
+    }
+
+    $r = $form->createElement('radio', 'action', null, 
+        "{$v['description']} <span class=\"explain\">($title)</span>", $v['code_str']);
     $actions[] = $r;
 }
 $form->addGroup($actions, 'spam_action', txt('email_spam_form_action'), "<br>\n", false);
@@ -84,7 +99,6 @@ if($form->validate()) {
 
 
 
-$View = View::create();
 //TODO: want the email title as well?
 $View->addTitle('Email');
 $View->addTitle(txt('EMAIL_SPAM_TITLE'));
@@ -97,7 +111,7 @@ $View->addElement('p', txt('EMAIL_SPAM_INTRO'));
 
 $View->addElement($form);
 
-$View->addElement('p', txt('action_delay', ACTION_DELAY_EMAIL), 'class="ekstrainfo"');
+$View->addElement('p', txt('action_delay_email'), 'class="ekstrainfo"');
 
 
 /**

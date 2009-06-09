@@ -13,7 +13,7 @@ $View->addTitle(txt('ACCOUNT_TITLE'));
 $View->start();
 
 $View->addElement('h1', txt('ACCOUNT_TITLE'));
-$View->addElement('h2', $User->getUsername(). ($Bofh->getPrimary() == $User->getUsername() ? ' (primary)' : ''));
+$View->addElement('h2', ($Bofh->getPrimary() == $User->getUsername() ? txt('account_name_primary') : txt('account_name_normal')));
 
 
 
@@ -22,16 +22,19 @@ $list[0] = View::createElement('dl', null, 'class="complicated"');
 
 //standard info
 
+//spreads
 $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
 unset($userinfo['spread']);
 
+//afiliations
 if (isset($userinfo['affiliations'])) {
     $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations(explode(',', $userinfo['affiliations'])));
+    unset($userinfo['affiliations']);
 } else {
     $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), txt('account_affs_empty'));
 }
-unset($userinfo['affiliations']);
 
+//expire
 if(isset($userinfo['expire'])) {
     $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']);
     unset($userinfo['expire']);
@@ -63,9 +66,6 @@ $View->addElement('div', $list, 'class="primary"');
 
 //other accounts
 $accounts = $Bofh->getAccounts();
-echo '<!-- ';
-print_r($accounts);
-echo '-->';
 if($accounts) {
 
     $View->addElement('h2', txt('account_other_title'));
@@ -78,9 +78,8 @@ if($accounts) {
         //checks for expired accounts:
         if($acc['expire']) {
             //older than today:
-            if($acc['expire']->timestamp < time()) $aname .= ' (deleted)';
-            $expire = date('Y-m-d', $acc['expire']->timestamp);
-
+            if($acc['expire']->timestamp < time()) $aname = txt('account_name_deleted', array('username'=>$aname));
+            $expire = date(txt('date_format'), $acc['expire']->timestamp);
         } else {
             $expire = txt('account_other_expire_not_set');
         }
@@ -172,23 +171,19 @@ function addHelpAffiliations($string) {
     global $Bofh;
     $affs = $Bofh->getAffiliations();
 
-    $string = trim($string);
-
     // example of a line:
     // ANSATT@150500 (Informatikk)
     // STUDENT@150000 (Mat.nat. fakultet)
 
-    $aff = substr($string, 0, strpos($string, '@'));
+    list($aff, $sted) = explode('@', trim($string), 2);
+    list($stedkode, $stedkode_desc) = explode(' ', $sted, 2);
 
-    //todo: is stedkode always 6 digits?
-    $stedkode   = substr($string, strlen($aff)+1, 6);
-
-    $place = substr($string, strlen($aff)+strlen($stedkode)+3, -1);
-
-    //todo: this could be done better with some ereg
-
-    return "<dfn title=\"{$affs[$aff][0]}\">$aff</dfn> at <dfn title=\"".ucfirst(txt('bofh_info_stedkode')).": $stedkode\">$place</dfn>";
-    //return "<dfn title=\"{$affs[$aff][0]}\">$aff</dfn>: <dfn title=\"{$affs[$aff][1][$type]}\">$type</dfn>,  (<dfn title=\"Stedkode: $stedkode\">$place</dfn>)";
+    return txt('bofh_info_account_affiliation_value', array(
+        'aff'           => $aff,
+        'aff_desc'      => $affs[strtoupper($aff)],
+        'stedkode'      => $stedkode,
+        'stedkode_desc' => $stedkode_desc
+    ));
 
 }
 

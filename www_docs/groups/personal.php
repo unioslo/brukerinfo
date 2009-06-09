@@ -42,7 +42,7 @@ $View->addElement('p', txt('GROUPS_PERSONAL_INFO', $User->getUsername()));
 
 $View->addElement($form);
 
-$View->addElement('p', txt('action_delay', ACTION_DELAY), 'class="ekstrainfo"');
+$View->addElement('p', txt('action_delay_hour'), 'class="ekstrainfo"');
 
 
 

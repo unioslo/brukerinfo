@@ -18,18 +18,21 @@ class View_uio extends View {
     /** The email to the editor of the site */
     private $editor_email = 'houston@usit.uio.no';
 
+    /** The keywords to use as meta-data (comma separated) */
+    private $meta_keywords = 'Brukerinfo, USIT, Cerebrum, brukeradministrering, egenadministrering';
+
     /** The template stored as a string in here */
     private $raw_template;
 
-    /** The link to the template */
-    //todo: this is not working...
-    private $template_link = 'http://www.usit.uio.no/it/ureg2000/.template_%s.html';
-
     /** 
-     * The backup template to use if the original is not found.
-     * The link is relativ according to LINK_SYSTEM.
+     * The directory where the template files are.
+     * The original template was found at 
+     * http://www.usit.uio.no/it/ureg2000/.template_en.html
+     *
+     * The link is relative according to LINK_SYSTEM and %s
+     * is replaced with the active language.
      */
-    private $template_link_backup = '/view/templates/template.uio.en.txt';
+    private $template_file = '/view/templates/template.uio.%s.txt';
 
     /**
      * CSS-files to include
@@ -66,11 +69,6 @@ class View_uio extends View {
 
         if(!$this->logged_in) return;
 
-
-        //TODO: change this, now the name has to be equal of the link
-        //try to name basic keys ($menu['these']) to be the link, and 
-        //add a $menu[link]['name'] in stead
-
         //start
         $menu['home']['link']       = '';
 
@@ -82,26 +80,26 @@ class View_uio extends View {
         //accounts
         $menu['account']['link']   = 'account/';
         $menu['account']['sub']    = array(
-            'your account' =>   '',
-            'change password' =>   'password.php',
-            'make account primary' =>    'primary.php'
+            '',
+            'password.php',
+            'primary.php'
         );
 
         //printer
         $menu['printing']['link']    = 'printing/';
         $menu['printing']['sub']     = array(
-            'printing overview' =>       '',
-            'print quota history' =>    'history.php'
+            '',
+            'history.php'
         );
 
         //email
         $menu['email']['link']      = 'email/';
         $menu['email']['sub']       = array(
-            'e-mail overview' =>   '',
-            'spam settings' =>       'spam.php',
-            'additional spam settings' =>    'filters.php',
-            'Out of office messages' =>   'tripnote.php',
-            'forwarding' =>    'forward.php'
+            '',
+            'spam.php',
+            'filters.php',
+            'tripnote.php',
+            'forward.php'
         );
 
         //groups
@@ -109,8 +107,6 @@ class View_uio extends View {
         $menu['groups']['sub']      = array(
         );
        
-        //help
-        //$menu['help']['link']       = 'help/';
 
         //returning main menu
         if(!$sub) {
@@ -136,41 +132,51 @@ class View_uio extends View {
      */
     protected function getTemplate($beginning) {
 
-        if(!$this->raw_template) {
+        if(empty($this->raw_template)) {
 
-            $templlink = sprintf($this->template_link, $this->language);
+            $templlink = sprintf($this->template_file, $this->language);
 
-            if(is_readable($templlink)) {
-                //todo: this will never work as long fopen is blocked from http-content
-                $this->raw_template = file_get_contents($templlink);
-            } else {
-                $this->raw_template = file_get_contents(LINK_SYSTEM . $this->template_link_backup);
+            if(!is_readable(LINK_SYSTEM . $templlink)) {
+
+                $templlink = sprintf($this->template_file, DEFAULT_LANG);
+
+                if(!is_readable(LINK_SYSTEM . $templlink)) {
+                    trigger_error('No template file for the HTML found - pages will be empty', 
+                        E_USER_WARNING);
+                }
             }
-
+            $this->raw_template = file_get_contents(LINK_SYSTEM . $templlink);
         }
 
         $ret = null;
 
         if($beginning) {
-
+            // getting the first part of the template
             $ret = substr($this->raw_template, 0, strpos($this->raw_template, '##BODY##'));
-
-            $ret = str_replace('<HTML lang="en">', '<HTML lang="'.$this->getLang().'">', $ret);
-            $ret = str_replace('##TITLE##', implode(' - ', array_reverse($this->titles)), $ret);
-            $ret = str_replace('<A NAME="snarvei"></A>', '', $ret);
-            //TODO: more edits here
-
         } else {
-
+            // getting the rest of the template
             $ret = substr($this->raw_template, strpos($this->raw_template, '##BODY##') + 8);
-
-            //TODO: more edits here
-
         }
 
-        //edits for both start and end:
+        $ret = str_replace('##TITLE##', implode(' - ', array_reverse($this->titles)), $ret);
+
+        $extrahead = '<base href="https://'.$_SERVER['SERVER_NAME'] . HTML_PRE."/\" />\n";
+        $extrahead .= $this->htmlCss() . "\n";
+        $extrahead .= '    <!--[if lt IE 8]><link rel="stylesheet" style="text/css" href="css/screen.ie.css"><![endif]-->'."\n";
+        $extrahead .= '    <!-- Framebusting
+        Avoiding that the page is in a frame, preventing clickjacking. 
+        http://en.wikipedia.org/wiki/Framekiller -->
+    <script type="text/javascript">
+        if(top.location != location) { top.location.href = document.location.href; }
+    </script>'."\n";
+        $extrahead .= $this->htmlFocus() . "\n";
+        $ret = str_replace('##HEADERS##', $extrahead, $ret);
+
         $ret = str_replace('##EDITOR.NAME##', $this->editor_name, $ret);
         $ret = str_replace('##EDITOR@EMAIL##', $this->editor_email, $ret);
+        $ret = str_replace('##KEYWORDS##', $this->meta_keywords, $ret);
+
+        //more edits above this line
 
         return $ret;
 
@@ -184,29 +190,16 @@ class View_uio extends View {
 
         if($this->started) return;
 
+        // http-headers (not text)
         $this->sendHeaders();
 
-
-        //adding ekstra header-data to the template
-
-        $base = '<base href="' . (isset($_SERVER['HTTPS']) ? 'https://' : 'http://')  . $_SERVER['SERVER_NAME'] . HTML_PRE."/\">\n";
-
-        $head = str_replace('</HEAD>', $base . $this->htmlCss() . "\n" . $this->htmlFocus() . "\n</HEAD>", $this->getTemplate(true));
-
-
-        //adding ie-specific css
-        //a bit dirty, this could be placed somewhere more logic (the best would be to remove it - blame IE)
-        $head = str_replace('</HEAD>', '<!--[if IE]><link rel="stylesheet" style="text/css" href="css/screen.ie.css"><![endif]-->', $head);
-
-        //Temporary hack before putting pages on uio.no:
-        $head = str_replace('/visuell-profil', 'https://www.uio.no/visuell-profil', $head);
-
-        //TODO: more edits here!
-
-        echo $head;
-
+        echo $this->getTemplate(true);
 
         echo '<div id="headtitle"><a href="">'.txt('header')."</a></div>\n";
+
+        echo '<ul id="languages">';
+        foreach(Text::getLangs() as $l) echo "<li><a href=\"{$_SERVER['PHP_SELF']}?chooseLang=$l\">$l</a></li>\n";
+        echo "</ul>\n";
 
         $motd = self::getMotd();
 
@@ -222,7 +215,7 @@ class View_uio extends View {
         }
 
         if($this->logged_in) echo '<div id="statusbox"><span>'.$this->user->getUsername().'</span>' .
-            '<span><a href="logon.php">Log out</a></span></div>';
+            '<span><a href="logon.php">'.txt('LOGOUT').'</a></span></div>';
 
 
         $baselink = basename(dirname($_SERVER['PHP_SELF']));
@@ -244,21 +237,25 @@ class View_uio extends View {
         echo "\n\n<div id=\"content\"><a name=\"snarvei\"></a>\n";
 
         if($this->logged_in) {
+
             //Sub menu
-            $submenu = $this->getMenu($baselink);
-            //TODO: clean this up and make more elegant
-            $basename = basename($_SERVER['PHP_SELF']);
-            if($basename == 'index.php') $basename = '';
-            $sublink = $baselink . $basename;
-            if($submenu) {
-                echo "<ul id=\"submenu\">\n";
-                foreach($submenu as $k=>$v) {
-                    $active = ($v == $basename ? ' class="active"' : '');
-                    if($v == '' && basename($_SERVER['PHP_SELF']) == 'index.php') $active = ' class="active"';
-                    $subname = ucfirst($k);
-                    echo "    <li><a href=\"$baselink/$v\"$active>$subname</a></li>\n";
+            $subentries = $this->getMenu($baselink);
+
+            if($subentries) {
+
+                $filename = basename($_SERVER['PHP_SELF']);
+                if($filename == 'index.php') $filename = '';
+                $name = basename($filename, '.php');
+
+
+                $submenu = View::createElement('ul', null, 'id="submenu"');
+                foreach($subentries as $e) {
+                    $txtname = "MENU_{$baselink}_" . basename($e, '.php');
+                    $submenu->addData(View::createElement('a', txt($txtname), "$baselink/$e", 
+                        ($e == $filename ? 'class="active"' : '')));
                 }
-                echo "</ul>\n";
+
+                echo $submenu;
             }
         }
 

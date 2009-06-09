@@ -409,19 +409,18 @@ class Bofhcom {
         }
 
         //gets the list of affiliations to use in help-texts
-        $aktivaff = null;
         $affs = $this->getData('misc_affiliations');
+        $aktivaff = null;
 
         foreach($affs as $aff) {
             if(!empty($aff['aff'])) {
                 $aktivaff = $aff['aff'];
-                $this->cache['affiliations'][$aktivaff][0] = $aff['desc'];
+                $this->cache['affiliations'][$aktivaff] = $aff['desc'];
             }
 
             if(!empty($aff['status'])) {
-                $this->cache['affiliations'][$aktivaff][1][$aff['status']] = $aff['desc'];
+                $this->cache['affiliations'][$aktivaff.'/'.$aff['status']] = $aff['desc'];
             }
-
         }
 
 

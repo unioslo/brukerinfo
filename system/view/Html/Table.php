@@ -72,7 +72,8 @@ class Html_Table extends Html_Element {
     /**
      * For setting the <thead> with <th> values.
      * 
-     * @param mixed     $data   If array, overwrites, if string it adds each arg as a new th in the thead
+     * @param mixed     $data   If array, overwrites, if string it adds each arg as a new 
+     *                          th in the thead
      */
     public function setHead($data) {
 
@@ -85,33 +86,29 @@ class Html_Table extends Html_Element {
     }
 
     /**
-     * Adding more data to the table.
-     * Each adding (or each element in arrays) becomes a tr in the table.
-     * To send attributes to the tr, create it yourself
-     * 
-     * @param   mixed           Each argument makes a tr, and each element in arrays makes a tr
+     * Adding data to the table.
+     *
+     * Each parameter is interpreted as a Tr-element.
+     * If a parameter is an array it is handled as one Tr, and Tr takes care
+     * of making Td of the array elements.
+     *
+     * Object can override this behaviour. Td- and Th-elements is wrapped inside
+     * Tr-elements.
+     *
+     * @param   mixed           Each argument makes a Tr, and each element in arrays makes a Tr.
+     *                          For adding Td, you need to send 2d-arrays.
      */
     public function addData() {
 
         $data = func_get_args();
         foreach($data as $d) {
-            if(is_object($d) && is_a($d, 'Html_Tr')) {
+            if (is_object($d) && is_a($d, 'Html_Tr')) {
                 $this->content[] = $d;
-            } elseif(is_array($d)) {
-                foreach($d as $e) {
-                    if(is_object($e) && is_a($e, 'Html_Tr')) {
-                        $this->content[] = $e;
-                    } else {
-                        $this->content[] = View::createElement('tr', $e);
-                    }
-                }
-            } else {
-                $this->content[] = View::createElement('tr', $d); 
+            } elseif (is_array($d)) {
+                $this->content[] = View::createElement('tr', $d);
             }
         }
 
     }
-
-    
 
 }

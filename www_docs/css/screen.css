@@ -1,6 +1,64 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+a img {
+    border: none;
+}
 .navmarginbrod {
     margin-right: 1em;
 }
+
+/** Toppnavigasjonen **/
+
+.skipnav {
+    display: none;
+}
+#uio_logo_topp {
+    width: 100%;
+    background-color: #0099cc;
+    height: 31px;
+}
+#uio_logo_botn {
+    width: 100%;
+    background-color: #ffffff;
+}
+#uio_sok {
+    position: absolute;
+    top: 5px;
+    right: 3px;
+}
+#uio_toppmeny {
+    position: absolute;
+    top: 37px;
+    left: 48px;
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8em;
+    margin: 0;
+    padding: 0;
+}
+#uio_toppmeny li {
+    display: inline;
+    margin: 0 .5em;
+}
+#uio_it_banner {
+    width: 100%;
+    background-color: #0099cc;
+    line-height: .5em;
+    height: 24px;
+    margin: 0; padding: 0;
+}
+#uio_it_margin {
+    width: 100%;
+    background-color: #cccccc;
+    font-weight: bold;
+    font-size: 0.8em;
+    margin: 0;
+    padding: .2em .5em .2em 50px;
+    text-transform: uppercase;
+}
+
 
 
 #statusbox {
@@ -125,6 +183,15 @@
 #headtitle a:hover {
     text-decoration: underline;
 }
+#languages {
+    list-style: none;
+    float: right;
+    position: relative;
+    bottom: 3em;
+}
+#languages li {
+    display: inline;
+}
 #motd {
     margin: 0 0 1em 0;
     padding: .5em 1em;
@@ -164,7 +231,7 @@
 #content form .element, #content form .element-error {
     margin-left: 11em;
 }
-#content form .element-error input {
+#content form .element-error input, #content form .element-error textarea {
     border: solid #c00 2px;
 }
 
@@ -249,8 +316,9 @@
 }
 /* Making the whole table smaller */
 #content table.mini {
-    min-width: auto;
+    width: auto !important;
 }
+
 #content table.mini td {
     border: none;
 }
@@ -441,3 +509,8 @@ acronym a {
     font-size: small;
 }
 
+.signatur {
+    border-top: solid gray 1px;
+    padding-top: 1em;
+    margin-top: 2em;
+}

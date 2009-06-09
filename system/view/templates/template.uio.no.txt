@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="no" lang="no">
 <head>
     <title>##TITLE##</title>
     <link rel="stylesheet" href="/visuell-profil/css/uio.css" />
     <link rel="shortcut icon" href="/visuell-profil/grafikk/uio.ico" type="image/x-icon" />
     <link rel="icon" href="/visuell-profil/grafikk/uio.ico" type="image/x-icon" />
-    <meta content="center for information technology" name="enhet.fulltnavn" />
-    <meta content="usit" name="enhet.kortnavn" />
+    <meta content="Center for Information Technology" name="enhet.fulltnavn" />
+    <meta content="USIT" name="enhet.kortnavn" />
     <meta content="houston@usit.uio.no" name="enhet.epost" />
     <meta content="http://www.usit.uio.no/" name="enhet.vev" />
     <meta content="uio.sadm.usit" name="enhet.org" />
@@ -19,23 +19,24 @@
 
 </head>
 <body>
- 
+
     <!-- her starter toppnavigasjonen --> 
-    <p class="skipnav"><a href="#snarvei">Skip navigation and go to the start of the document</a></p>
+    <p class="skipnav"><a href="#snarvei">Hopp over navigasjonen og gå direkte til innholdet</a></p>
     <div id="uio_logo_topp">
-        <a href="http://www.uio.no/english/"><img alt="University of Oslo" height="31" src="/visuell-profil/grafikk/english/logotopp_blaa3.gif" width="267" /></a>
+        <a href="http://www.uio.no/"><img alt="Universitetet i Oslo" height="31" src="/visuell-profil/grafikk/studier/logotopp_blaa3.gif" width="267" /></a>
     </div>
     <div id="uio_logo_botn">
-        <a href="http://www.uio.no/english/"><img alt="University of Oslo" height="19" src="/visuell-profil/grafikk/studier/logobunn_hvit3.gif" width="49" /></a>
+        <a href="http://www.uio.no/"><img alt="Universitetet i Oslo" height="19" src="/visuell-profil/grafikk/studier/logobunn_hvit3.gif" width="49" /></a>
     </div>
     <ul id="uio_toppmeny">
-        <li><a href="http://www.uio.no/english/about_uio/">About The University</a></li>
-        <li><a href="http://www.uio.no/english/academics/">Academics</a></li>
-        <li><a href="http://www.uio.no/english/student_life/">Student Life</a></li>
-        <li><a href="http://www.uio.no/english/research/">Research</a></li>
-        <li><a href="http://www.uio.no/for_ansatte/english/">For employees</a></li>
-        <li><a href="http://usit.uio.no/it/">IT services</a></li>
-        <li><a href="http://www.ub.uio.no/english/">University Library</a></li>
+        <li><a href="http://www.uio.no/om_uio/">Om UiO</a></li>
+        <li><a href="http://www.uio.no/studier/">Studier</a></li>
+        <li><a href="http://www.uio.no/studentliv/">Studentliv</a></li>
+        <li><a href="http://www.uio.no/forskning/">Forskning</a></li>
+        <li><a href="http://www.uio.no/for_ansatte/">For ansatte</a></li>
+        <li><a href="http://usit.uio.no/it/">IT-tjenester</a></li>
+        <li><a href="http://www.uio.no/tavle/">Oppslagstavle</a></li>
+        <li><a href="http://www.ub.uio.no/">Bibliotek</a></li>
     </ul>
 
     <form id="uio_sok" action="http://sok.uio.no/perl/velgsok.pl" method="get">
@@ -43,24 +44,24 @@
             <input name="text" type="text" size="19" />
             <!--her settes valgmulighetene for søk-->
             <select class="topsoek" name="engine" size="1">
-              <option value="inktomiuio_en" selected="selected">UiO - web pages</option>
-              <option value="people_en">UiO - persons</option>
-              <option value="bibsys_forfatter">BIBSYS - author</option>
-              <option value="bibsys_tittel">BIBSYS - title</option>
+              <option value="inktomiuio" selected="selected">UiO - nettsider</option>
+              <option value="people">UiO - personer</option>
+              <option value="bibsys_forfatter">BIBSYS - forfatter</option>
+              <option value="bibsys_tittel">BIBSYS - tittel</option>
               <option value="google">WWW - google</option>
             </select>
             <!--Søk valg avsluttet -->
             &nbsp;
             <input type="hidden" name="_charset_" />
             <!--her finner du søkeknapp -->
-            <input alt="search" name="soek" type="submit" value="Search" class="imgsoekbordernull" />
+            <input alt="search" name="soek" type="submit" value="S&oslash;k" class="imgsoekbordernull" />
         </div>
     </form> 
 
     <div id="uio_it_banner">
         <img alt="It Services - Banner" height="24" src="/visuell-profil/grafikk/it_tjenester/it.gif" width="454" />
     </div>
-    <div id="uio_it_margin"><a href="http://usit.uio.no/it/">It Services</a></div>
+    <div id="uio_it_margin"><a href="http://usit.uio.no/it/">IT-tjenester</a></div>
 
 
     <!-- her slutter toppnavigasjonen --> 
@@ -71,14 +72,15 @@
 ##BODY##
 
 
-        <div class="signatur">Editors: ##EDITOR.NAME##, <a href="mailto:##EDITOR@EMAIL##">##EDITOR@EMAIL##</a></div> 
+        <div class="signatur">Redaksjon: ##EDITOR.NAME##, <a href="mailto:##EDITOR@EMAIL##">##EDITOR@EMAIL##</a></div> 
     </div> 
     <!-- her slutter br&oslash;dtekstseksjonen --> 
     <!-- her starter bunnnavigasjonen --> 
     <p class="navmarginline" id="bunnnav"> 
-      <a href="http://www.uio.no/english/contact.html">Get in touch with the University of Oslo</a> 
+      <a href="http://www.uio.no/hjelp/kontakt.html">Kontakt UiO</a> 
     </p> 
     <!-- her slutter bunnnavigasjonen --> 
+  
 
 </body>
 </html>

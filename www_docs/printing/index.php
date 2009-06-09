@@ -20,30 +20,30 @@ if($printerinfo['has_quota'] == 'F' || $printerinfo['has_blocked_quota'] != 'F')
 
 } else {
 
-    $kroner = number_format($printerinfo['kroner'], 2);
+    $kroner = number_format($printerinfo['kroner'], 2, txt('dec_format'), ' ');
 
     //Todo: make this from addElement instead? If got time...
-    $View->addElement('raw', '<table class="mini"> <tr>');
+    $tabl = $View->createElement('table', null, 'class="mini"');
+    $tabl->addData(array(View::createElement('th', txt('printing_table_free')),
+        null,
+        View::createElement('td', $printerinfo['free_quota'], 'class="num"'),
+        null));
 
-    $View->addElement('raw', '<th>' . txt('printing_table_free') . '</th>'); 
-    $View->addElement('raw', '<td></td>');
-    $View->addElement('raw', "<td class=\"num\">{$printerinfo['free_quota']}</td>");
-    $View->addElement('raw', '<td></td>');
-    $View->addElement('raw', '</tr><tr>');
-    $View->addElement('raw', '<th>' . txt('printing_table_paid') . '</th>');
-    $View->addElement('raw', '<td>+</td>');
-    $View->addElement('raw', "<td class=\"num\">{$printerinfo['paid_quota']}</td>");
-    $View->addElement('raw', "<td class=\"num\">(kr {$kroner})</td>");
-    $View->addElement('raw', '</tr><tr>');
-    $View->addElement('raw', '<th>' . txt('printing_table_total') . '</th>');
-    $View->addElement('raw', '<td class="num_ans">=</td>');
-    $View->addElement('raw', "<td class=\"num_ans\">{$printerinfo['tot_available']}</td>");
-    $View->addElement('raw', '<td></td>');
-    $View->addElement('raw', '</tr> </table>');
+    $tabl->addData(array(View::createElement('th', txt('printing_table_paid')),
+        '+',
+        View::createElement('td', $printerinfo['paid_quota'], 'class="num"'),
+        View::createElement('td', txt('printing_table_paid_value', array('kroner'=>$kroner)),
+            'class="num"')));
+
+    $tabl->addData(array(View::createElement('th', txt('printing_table_total')),
+        View::createElement('td', '=', 'class="num_ans"'),
+        View::createElement('td', $printerinfo['tot_available'], 'class="num_ans"'),
+        null));
 
     $printlist[] = txt('printing_moreinfo_pay');
     $printlist[] = txt('printing_moreinfo_prices');
 
+    $View->addElement($tabl);
 }
 
 $printlist[] = txt('printing_moreinfo_printing');

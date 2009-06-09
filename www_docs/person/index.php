@@ -6,53 +6,55 @@ $Bofh = new Bofhcom();
 $View = View::create();
 
 $personinfo = getPersonInfo();
+$aff_descs = $Bofh->getAffiliations();
 
 $View->addTitle(txt('PERSON_TITLE'));
 $View->addElement('h1', txt('PERSON_TITLE'));
 
 $dl = View::createElement('dl', null, 'class="complicated"');
-$dl->addData(ucfirst(txt('bofh_info_name')).':', $personinfo['name']);
-$dl->addData(ucfirst(txt('bofh_info_birth')).':', $personinfo['birth']);
+$dl->addData(txt('bofh_info_name'), $personinfo['name']);
+$dl->addData(txt('bofh_info_birth'), $personinfo['birth']);
 
 
+//affiliations
 if(!empty($personinfo['affiliation'])) {
-    if(is_array($personinfo['affiliation'])) {
-        foreach($personinfo['affiliation'] as $k=>$a) {
-            $affdef = '<dfn title="'.txt('TERM_'.$personinfo['source_system'][$k])."\">{$personinfo['source_system'][$k]}</dfn>";
-            $affs[] = "Affiliation in $affdef: " . addHelpAffiliations($a);
-        }
-    } else {
-        $affdef = '<dfn title="'.txt('TERM_'.$personinfo['source_system'])."\">{$personinfo['source_system']}</dfn>";
-        $affs[] = "Affiliation in $affdef: " . addHelpAffiliations($p['affiliation']);
+    foreach($personinfo['affiliation'] as $k=>$a) {
+        $data = splitAffiliation($a);
+
+        $data['source_system'] = $personinfo['source_system'][$k];
+        $data['source_system_desc'] = txt('TERM_' . $personinfo['source_system'][$k]);
+        $data['aff_desc'] = $aff_descs[$data['aff']];
+        $data['aff_sub_desc'] = $aff_descs[substr($a,0,strpos($a,'@'))];
+
+        $affs[] = txt('bofh_info_person_affiliation_value', $data);
     }
 }
+$dl->addData(txt('bofh_info_person_affiliations'), View::createElement('ul', $affs));
+
+
+//names
 if(!empty($personinfo['names'])) {
-    if(is_array($personinfo['names'])) {
-        foreach($personinfo['names'] as $k=>$n) {
-            $namdef = '<dfn title="'.txt('TERM_'.$personinfo['name_src'][$k])."\">{$personinfo['name_src'][$k]}</dfn>";
-            $names[] = "Name registered in {$namdef}: $n";
-        }
-    } else {
-        $namdef = '<dfn title="'.txt('TERM_'.$personinfo['name_src'])."\">{$personinfo['name_src']}</dfn>";
-        $names[] = "Name registered in {$namdef}: {$personinfo['names']}";
+    foreach($personinfo['names'] as $k=>$n) {
+        $names[] = txt('bofh_info_name_value', array(
+            'name'                  => $n,
+            'source_system'         => $personinfo['name_src'][$k],
+            'source_system_desc'    => txt('TERM_' . $personinfo['name_src'][$k])
+        ));
     }
 }
+if(!empty($names)) $dl->addData(txt('bofh_info_names'), View::createElement('ul', $names));
+
+
+//fnr
 if(!empty($personinfo['fnr'])) {
-    if(is_array($personinfo['fnr'])) {
-        foreach($personinfo['fnr'] as $k=>$f) {
-            $fdef = '<dfn title="'.txt('TERM_'.$personinfo['fnr_src'][$k])."\">{$personinfo['fnr_src'][$k]}</dfn>";
-            $fnr[] = "Number registered in {$fdef}: $f";
-        }
-    } else {
-        $fdef = '<dfn title="'.txt('TERM_'.$personinfo['fnr_src'])."\">{$personinfo['fnr_src']}</dfn>";
-        $fnr[] = "Number registered in {$fdef}: {$personinfo['fnr']}";
+    foreach($personinfo['fnr'] as $k=>$f) {
+        $fnr[] = txt('bofh_info_fnr_value', array('fnr'=> $f,
+            'source_system'         => $personinfo['name_src'][$k],
+            'source_system_desc'    => txt('TERM_' . $personinfo['name_src'][$k])
+        ));
     }
 }
-
-
-$dl->addData(ucfirst(txt('bofh_info_person_affiliations')), View::createElement('ul', $affs));
-if(!empty($names)) $dl->addData(ucfirst(txt('bofh_info_names').':'), View::createElement('ul', $names));
-if(!empty($fnr)) $dl->addData(ucfirst(txt('bofh_info_fnr').':'), View::createElement('ul', $fnr));
+if(!empty($fnr)) $dl->addData(txt('bofh_info_fnr'), View::createElement('ul', $fnr));
 
 
 $View->addElement($dl);
@@ -65,59 +67,29 @@ $View->addElement($changeinfo);
 
 
 /**
- * Get a bofh-string with the persons affiliations and modify it
- * into a better presentation-form, and adds aff-definitions on it 
- * (by asking bofhcom for the descriptions).
+ * Inputs a string of preformatted affiliation, e.g:
  *
- * TODO: should this, and all other help-functions, be in the same place somewhere?
+ * STUDENT/aktiv@150000 (Mat.Nat fakultet)
+ *
+ * and outputs an array with the different bits.
  */
-function addHelpAffiliations($string) {
+function splitAffiliation($affstring) {
 
-    global $Bofh;
-    $affs = $Bofh->getAffiliations();
+    $ret = array();
 
-    $lines = explode("\n", $string);
-    $return = array();
-    foreach($lines as $l) {
+    list($affs, $sted) = explode('@', $affstring);
 
-        // example of a line:
-        // ANSATT/vitenskapelig@150500 (Informatikk)
+    list($aff, $subaff) = explode('/', $affs);
+    $ret['aff'] = trim($aff);
+    $ret['aff_sub'] = trim($subaff);
 
-        //todo: this could be done better with some ereg
-        $aff  = substr($l, 0, strpos($l, '/'));
+    list($stedkode, $stedkode_desc) = explode(' ', $sted, 2);
+    $ret['stedkode']        = trim($stedkode);
+    $ret['stedkode_desc']   = substr(trim($stedkode_desc), 1, -1);
 
-        $type = substr($l, strlen($aff)+1);
-        $type = substr($type, 0, strpos($type, '@'));
-
-        $rest = substr($l, strlen($aff)+strlen($type)+2);
-
-        //todo: is stedkode always 6 digits?
-        $stedkode = substr($rest, 0, 6);
-
-        $place = substr($rest, 6+2, -1);
-        //$place = substr($place, 0, strpos($place, ')'));
-
-
-        $return[] = "<dfn title=\"{$affs[$aff][0]}\">$aff</dfn> (<dfn title=\"{$affs[$aff][1][$type]}\">$type</dfn>) at <dfn title=\"".ucfirst(txt('bofh_info_stedkode')).": $stedkode\">$place</dfn>";
-
-    }
-
-    return implode('\n', $return);
+    return $ret;
 
 }
-
-function dfnAffiliation($aff) {
-
-    global $Bofh;
-    $affs = $Bofh->getAffiliations();
-
-    if(!isset($affs[$aff])) return $aff;
-    return "<dfn title=\"{$affs[$aff][0]}\">$aff</dfn>";
-
-}
-function dfnStatus($aff, $status) {
-}
-
 
 /**
  * Getting all the person_info, sorted
@@ -128,25 +100,30 @@ function getPersonInfo() {
     global $Bofh;
     $p = $Bofh->getDataClean('person_info', $User->getUsername());
 
-    //affiliation_1 should come first in affiliation
-    if($p['affiliation']) {
-        if(!is_array($p['affiliation'])) $p['affiliation'] = array($p['affiliation']);
-        array_unshift($p['affiliation'], $p['affiliation_1']);
-        unset($p['affiliation_1']);
-    } else {
-        $p['affiliation'] = array($p['affiliation_1']);
+    //all the values should come in arrays:
+    foreach($p as $k=>$v) {
+        if(!is_array($v)) $p[$k] = array($v);
     }
+
+    //affiliation_1 should come first in affiliation
+    if(!empty($p['affiliation_1'])) {
+        if(!empty($p['affiliation'])) {
+            array_unshift($p['affiliation'], $p['affiliation_1'][0]);
+        } else {
+            $p['affiliation'] = $p['affiliation_1'];
+        }
+    }
+
     //source_system_1 should come first in source_system
-    if($p['source_system']) {
-        if(!is_array($p['source_system'])) $p['source_system'] = array($p['source_system']);
-        array_unshift($p['source_system'], $p['source_system_1']);
-        unset($p['source_system_1']);
-    } else {
-        $p['source_system'] = array($p['source_system_1']);
+    if(!empty($p['source_system_1'])) {
+        if(!empty($p['source_system'])) {
+            array_unshift($p['source_system'], $p['source_system_1'][0]);
+        } else {
+            $p['source_system'] = $p['source_system_1'];
+        }
     }
 
     return $p;
-
 }
 
 

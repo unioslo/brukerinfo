@@ -4,6 +4,8 @@ $Init = new Init();
 $User = new User();
 $Bofh = new Bofhcom();
 
+$View = View::create();
+
 
 $forwards = getForwards();
 $keeplocal = (isset($forwards['local']) ? true : false);
@@ -15,47 +17,17 @@ $newForm->addElement('checkbox', 'keep', null, txt('email_forward_form_keep'));
 $newForm->addElement('submit', null, txt('email_forward_form_submit'));
 
 // Define filters and validation rules
-$newForm->addRule('address', 'Please enter the email address to forward to.', 'required');
+$newForm->addRule('address', txt('email_forward_form_address_required'), 'required');
 $newForm->setDefaults(array('keep'=>$keeplocal));
 
-
-// Try to validate the form 
+// Adding a forward
 if($newForm->validate()) {
 
-    //adding new address
-    if($newForm->exportValue('address')) {
-        try {
-            $res = $Bofh->run_command('email_add_forward', $User->getUsername(), $newForm->exportValue('address'));
-
-            View::addMessage($res);
-            View::addMessage(txt('action_delay', ACTION_DELAY_EMAIL));
-
-        } catch(Exception $e) {
-            Bofhcom::viewError($e);
-        }
-    }
-
-    //setting the local copy on of off
-    if($newForm->exportValue('keep') && !$keeplocal) {
-        try {
-            $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
-            View::addMessage($res);
-        } catch(Exception $e) {
-            Bofhcom::viewError($e);
-        }
-
-    } elseif(!$newForm->exportValue('keep') && $keeplocal) {
-        try {
-            $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), 'local');
-            View::addMessage($res);
-        } catch(Exception $e) {
-            Bofhcom::viewError($e);
-        }
-    }
-
+    $newForm->freeze();
+    $newForm->process('addForward');
     View::forward('email/forward.php');
-
 }
+
 
 // Form for making local copy
 $addLocal = new BofhForm('addLocal');
@@ -66,7 +38,7 @@ if($addLocal->validate()) {
 
     $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
     View::addMessage($res);
-    View::addMessage(txt('action_delay', ACTION_DELAY_EMAIL));
+    View::addMessage(txt('action_delay_email'));
     View::forward('email/forward.php');
 
 }
@@ -74,8 +46,6 @@ if($addLocal->validate()) {
 
 
 
-
-$View = View::create();
 $View->addTitle('Email');
 $View->addTitle(txt('EMAIL_FORWARD_TITLE'));
 
@@ -115,7 +85,7 @@ if(!empty($_POST['del'])) {
     $View->start();
     $View->addElement('h1', txt('email_forward_delete_confirm_title'));
 
-    $View->addElement('p', txt('email_forward_delete_confirm_intro', $del));
+    $View->addElement('p', txt('email_forward_delete_confirm_intro', array('target'=>$del)));
     $View->addElement($confirm);
 
     die;
@@ -130,18 +100,18 @@ $View->addElement('p',  txt('EMAIL_FORWARD_INTRO'));
 
 if($forwards) {
     $View->addElement('raw', '<form method="post" class="inline" action="email/forward.php">');
+    $table = View::createElement('table', null);
 
-    $trs = array();
     foreach($forwards as $k=>$v) {
         if ($k == 'local') {
             $name = txt('email_forward_local') . " $v";
         } else {
             $name = "$k $v";
         }
-        $trs[] = View::createElement('tr', array($name, '<input type="submit" class="submit_warn" name="del['.$k.']" value="Delete">'));
+        $table->addData(array( $name, 
+            '<input type="submit" class="submit_warn" name="del['.$k.']" value="'.txt('email_forward_delete_submit').'">'));
     }
 
-    $table = View::createElement('table', $trs);
     $table->setHead('Forwarding address:', null);
     $View->addElement($table);
     $View->addElement('raw', '</form>');
@@ -159,12 +129,12 @@ if(!$keeplocal && $forwards) {
     $View->addElement($addLocal);
 }
 
-$View->addElement('p', txt('ACTION_DELAY', ACTION_DELAY_EMAIL), 'class="ekstrainfo"');
+$View->addElement('p', txt('ACTION_DELAY_email'), 'class="ekstrainfo"');
 
 
 /**
  * Seems like the way to get the list of forwards is
- * throug email_info, in [forward_1] and [forward].
+ * through email_info, in [forward_1] and [forward].
  */
 function getForwards() {
 
@@ -198,6 +168,52 @@ function getForwards() {
 
     return $forwards;
 
+}
+
+/**
+ * Adding a forward address.
+ * This function is called through BofhForm: $newForm->process()
+ * and the values are therefore stored as
+ * $values = array:
+ *   'address'   = the adress to forward to
+ *   ['keep']    = if local copy or not
+ */
+function addForward($values) {
+
+    global $Bofh;
+    global $User;
+
+    if(!empty($values['address'])) {
+        try {
+            $res = $Bofh->run_command('email_add_forward', $User->getUsername(), $values['address']);
+
+            View::addMessage($res);
+            View::addMessage(txt('action_delay_email'));
+
+        } catch(Exception $e) {
+            Bofhcom::viewError($e);
+            return;
+        }
+    }
+
+    global $keeplocal;
+
+    //setting the local copy on of off
+    if(!empty($values['keep']) && !$keeplocal) {
+        try {
+            $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
+            View::addMessage($res);
+        } catch(Exception $e) {
+            Bofhcom::viewError($e);
+        }
+    } elseif(empty($values['keep']) && $keeplocal) {
+        try {
+            $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), 'local');
+            View::addMessage($res);
+        } catch(Exception $e) {
+            Bofhcom::viewError($e);
+        }
+    }
 }
 
 ?>

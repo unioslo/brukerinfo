@@ -3,11 +3,11 @@ require_once '../init.php';
 $Init = new Init();
 $User = new User();
 $Bofh = new Bofhcom();
+$View = View::create();
 
 $actives = getActiveFilters();
 
 
-//TODO: get list of filters from bofh, around... here
 $form = new BofhForm('filters');
 
 foreach(availableFilters() as $k=>$filter) {
@@ -17,11 +17,11 @@ foreach(availableFilters() as $k=>$filter) {
     $form->addElement('html', View::createElement('p', $filter['desc']));
 
     $choose = array();
-    $choose[] = $form->createElement('radio', $k, '', txt('email_filter_on', $filter['name']), 1);
-    $choose[] = $form->createElement('radio', $k, '', txt('email_filter_off', $filter['name']), 0);
+    $choose[] = $form->createElement('radio', $k, '', txt('email_filter_on', array('filter'=>$filter['name'])), 1);
+    $choose[] = $form->createElement('radio', $k, '', txt('email_filter_off', array('filter'=>$filter['name'])), 0);
 
     $form->addGroup($choose, $k.'_group', ucfirst($filter['name']).':', "<br>\n");
-    $form->addGroupRule($k.'_group', txt('email_filter_rule_required', $filter['name']), 'required');
+    $form->addGroupRule($k.'_group', txt('email_filter_rule_required', array('filter'=>$filter['name'])), 'required');
 
     $status = (isset($actives[$k]) ? true : false);
     $form->setDefaults(array($k.'_group'=>array($k=>$status)));
@@ -69,7 +69,6 @@ if($form->validate()) {
 }
 
 
-$View = View::create();
 $View->addTitle('Email');
 $View->addTitle(txt('EMAIL_FILTER_TITLE'));
 $View->start();
@@ -78,7 +77,7 @@ $View->addElement('h1', txt('EMAIL_FILTER_TITLE'));
 $View->addElement('p', txt('EMAIL_FILTER_intro'));
 $View->addElement($form);
 
-$View->addElement('p', txt('action_delay', ACTION_DELAY_EMAIL), 'class="ekstrainfo"');
+$View->addElement('p', txt('action_delay_email'), 'class="ekstrainfo"');
 
 
 
@@ -100,11 +99,10 @@ function availableFilters() {
     );
     //this array is for adding more description to each filter, e.g. links
     //the filters description is also used
-    $desc = array(
-        'greylist' => txt('email_filter_greylist_desc'),
-        'uioonly'  => txt('email_filter_uioonly_desc')
-    );
-
+    //$desc = array(
+    //    'greylist' => txt('email_filter_greylist_desc'),
+    //    'uioonly'  => txt('email_filter_uioonly_desc')
+    //);
 
 
     $filter_desc = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
@@ -113,11 +111,20 @@ function availableFilters() {
     $filters = array();
     foreach($filter_desc as $f) {
         $id = $f['code_str'];
+        $txtkey_name = 'email_filter_'.$id;
+        $txtkey_desc = 'email_filter_'.$id.'_desc';
 
-        $filters[$id] = array(
-            'desc'=>(isset($desc[$id]) ? $f['description'] . "<br>\n" . $desc[$id] : $f['description']),
-            'name'=>(isset($names[$id]) ? $names[$id] : $id)
-        );
+        $filters[$id]['name'] = $id;
+        //looking for a better name
+        if(Text::exists($txtkey_name)) {
+            $filters[$id]['name'] = txt($txtkey_name);
+        }
+
+        $filters[$id]['desc'] = $f['description'];
+        //looking for a description
+        if(Text::exists($txtkey_desc)) {
+            $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
+        }
     }
 
     return $filters;
@@ -134,15 +141,11 @@ function getActiveFilters() {
 
     $all = $Bofh->getDataClean('email_info', $User->getUsername());
 
-    if(empty($all['filters'])) return null;
+    if(empty($all['filters']) || $all['filters'] == 'None') return null;
 
-    //if only one filter, it comes as a string
-    if(!is_array($all['filters'])) return array($all['filters']=>true);
-
-    $filters = array();
-    foreach($all['filters'] as $f) {
-        $filters[$f] = true;
-    }
+    //the filters comes in a comma-separated string
+    $rawf = explode(', ', $all['filters'][0]);
+    foreach($rawf as $v) $filters[$v] = true;
     return $filters;
 
 }

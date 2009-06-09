@@ -3,6 +3,7 @@ require_once '../init.php';
 $Init = new Init();
 $User = new User();
 $Bofh = new Bofhcom();
+$View = View::create();
 
 
 
@@ -11,8 +12,8 @@ $form = new BofhForm('addTripnote');
 $form->addElement('header', null, txt('email_tripnote_form_title'));
 
 //TODO: add today as default on start?
-$form->addElement('date', 'start', txt('email_tripnote_form_start'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2));
-$form->addElement('date', 'end', txt('email_tripnote_form_end'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3));
+$form->addElement('date', 'start', txt('email_tripnote_form_start'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$View->getLang()));
+$form->addElement('date', 'end', txt('email_tripnote_form_end'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$View->getLang()));
 $form->addElement('textarea', 'message', txt('email_tripnote_form_message'), 'rows="7"');
 
 $form->addElement('submit', null, txt('email_tripnote_form_submit'), array('class'=>'submit'));
@@ -118,8 +119,9 @@ if(!empty($_POST['del'])) {
         View::forward('email/tripnote.php', 'Unknown out of office message.', View::MSG_WARNING);
     }
 
-    $View->start();
     $View->addTitle(txt('email_tripnote_delete_title'));
+    $View->start();
+    $View->addElement('h1', txt('email_tripnote_delete_title'));
     $View->addElement('p', txt('email_tripnote_delete_confirm'));
 
     $dl = $View->createElement('dl');
@@ -171,7 +173,7 @@ if($othernotes) {
         $data[] = View::createElement('td', $start);
         $data[] = View::createElement('td', date('Y-m-d', $tnote['end_date']->timestamp));
         $data[] = View::createElement('td', nl2br($tnote['text']));
-        $data[] = View::createElement('td', '<input type="submit" class="submit_warn" name="del['.$start.']" value="Delete">');
+        $data[] = View::createElement('td', '<input type="submit" class="submit_warn" name="del['.$start.']" value="'.txt('email_tripnote_list_delete').'">');
 
         $table->addData($View->createElement('tr', $data));
 

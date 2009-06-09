@@ -204,11 +204,12 @@ class User {
                 $this->_session['loggedon'] = time();
                 $this->_session_temp['attempts'] = 0; 
 
-                $url = (!empty($this->_session_temp['forward_from']) ? $this->_session_temp['forward_from'] : URL_LOGGED_IN);
+                $url = (!empty($this->_session_temp['forward_from']) ? 
+                    $this->_session_temp['forward_from'] : URL_LOGGED_IN);
 
                 $this->_session_temp['forward_from'] = null;
 
-                View::addMessage(sprintf(txt('LOGON_SUCCESS'), $this->_session['username']));
+                View::addMessage(txt('LOGON_SUCCESS', array('username'=>$this->_session['username'])));
 
                 View::forward($url);
                 return true;

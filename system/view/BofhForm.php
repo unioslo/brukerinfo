@@ -16,7 +16,6 @@ class BofhForm extends HTML_QuickForm {
     protected $formRenderer;
 
 
-
     // {{{ construct
     /** 
      * Constructor
@@ -43,6 +42,9 @@ class BofhForm extends HTML_QuickForm {
         if(!$this->getAttribute('autocomplete')) {
             $this->setAttribute('autocomplete', 'off');
         }
+
+        //trim all elements
+        $this->applyFilter('__ALL__', 'trim');
 
     
     }
@@ -77,9 +79,6 @@ class BofhForm extends HTML_QuickForm {
 
         $ele = parent::addElement($type, $name, $message, $ekstra, $ekstra2);
 
-        //trim all elements
-        $this->applyFilter($name, 'trim');
-
         // to make css work with ie, submits need class="submit"
         if($type=='submit' && !$ele->getAttribute('class')) {
             $ele->setAttribute('class', 'submit');
@@ -93,7 +92,7 @@ class BofhForm extends HTML_QuickForm {
 
         //Since data from bofhd has been html-escaped, and HTML_QuickForm does it too,
         //data has to be unescaped here to prevent double-escaping...
-        //
+
         //This might be a problem for data that is not from bofhd, but that doesn't happen here (yet)
         //Todo: add this to textareas as well
         if($type=='text' && $ele->getAttribute('value')) {
@@ -167,19 +166,6 @@ class BofhForm extends HTML_QuickForm {
         </div>
 
 ELEMENT;
-
-        //old:
-        /*return <<<ELEMENT
-
-        <p>
-            <label class="header">{label}<!-- BEGIN required --><span class="required">*</span><!-- END required --></label>
-            <div class="element">
-                {element}
-            </div>
-            <!-- BEGIN error --><span class="error">{error}</span><!-- END error -->
-        </p>
-
-ELEMENT;*/
 
     }
     /**

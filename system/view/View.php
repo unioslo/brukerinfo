@@ -123,11 +123,15 @@ abstract class View {
             $this->logged_in = true;
         }
 
-        //sets the language
-        $this->setLang($lang);
+        // Getting the set language
+        if ($lang !== null) {
+            $this->setLang($lang);
+        } elseif (!empty($_SESSION['chosenLang'])) {
+            $this->setLang($_SESSION['chosenLang']);
+        }
 
-        //gets the Text
-        $this->text = new Text($lang);
+        // Getting the Text
+        $this->text = new Text($this->getLang());
 
         //main title
         $this->addTitle(self::txt('PAGETITLE'));
@@ -147,10 +151,11 @@ abstract class View {
     /// MODIFICATIONS
 
     /**
-     * Sets the language to use at the page
+     * Sets the language to use at the page. The language is used by Text(), so
+     * the real checking is in there.
      *
-     * @param $newLang String The new language to use, defaults to english
-     * @return String       The language which are now being used
+     * @param $newLang  String The new language to use, defaults to DEFAULT_LANG when false
+     * @return          String       The language which are now being used
      */
     public function setLang($newLang = null) {
     
@@ -296,7 +301,7 @@ abstract class View {
         } else {
             $link = HTML_PRE . '/' . $to;
         }
-        
+
         if($msg) self::addMessage($msg, $msgType);
 
         header('Location: '.$protocol.$_SERVER['SERVER_NAME'].$link); 
@@ -341,59 +346,6 @@ abstract class View {
         }
 
         return $this->text->get($key, $args);
-
-    }
-
-
-    /**
-     * Adds data to the help texts.
-     * Here you add more data so addHelp makes more 
-     * replaces.
-     *
-     * @param string    $mode   The type of help you want the data to work on. Can be true (default) or e.g. 'aff' (affiliations)
-     * @param array     $data   The data to add, must be a double array: [0] = term, [1] = definition.
-     */
-    static public function addHelpdata($mode, $data) {
-
-        throw Exception('Bad bad bad');
-        //TODO: stupid stupid stupid!
-        //make a better way of making texts translated with help!
-        //
-        //..or, that is, first you need to get all the available terms 
-        //and definitions out of bofhd...
-
-    }
-
-
-    /**
-     * Adds helptexts to input-text, like adding acronyms on common words, 
-     * like FS becomes <acronym title="Felles Studentsystem"><a href...>FS</...
-     * The mode of help is depending on 
-     *
-     * @param String    $input  The text to add help to
-     *
-     * @return String   An improved text
-     */
-    static public function addHelp($input) {
-
-        //TODO: needs to put this in a list instead (lang.xml?)
-        //and get from bofhd!!!!!
-
-        //system definitions which requires explanations
-        $input = str_replace('Affiliations', '<dfn title="On what systems your person is affiliated (registered)">Affiliations</dfn>', $input);
-        $input = str_replace('FS', '<acronym title="Felles Studentsystem"><a href="help/keywords.php#FS">Students database FS</a></acronym>', $input);
-        $input = str_replace('SAP', '<acronym title="Systems Applications and Products in Data Processing?"><a href="help/keywords.php#SAP">Employees database SAP</a></acronym>', $input);
-        $input = str_replace('NIS_user', '<acronym title="Access to UNIX machines at certain locations"><a href="help/keywords.php#NIS">Linux user</a></acronym>', $input);
-        $input = str_replace('AD_account', '<acronym title="Access to Windows machines"><a href="help/keywords.php#AD">Windows</a></acronym>', $input);
-        $input = str_replace('IMAP', '<acronym title="Access to email system"><a href="help/keywords.php#IMAP">Email</a></acronym>', $input);
-
-        $input = str_replace('UID', '<acronym title="User ID"><a href="help/keywords.php#UID">User ID</a></acronym>', $input);
-        $input = str_replace('Spreads', '<acronym title="Locations where you are allowed to log on"><a href="help/keywords.php#Spreads">Access</a></acronym>', $input);
-
-        //normal acronyms
-        $input = str_replace('ifi', '<acronym title="Institute for informatics">ifi</acronym>', $input);
-        $input = str_replace('uio', '<acronym title="University of Oslo">uio</acronym>', $input);
-        return $input;
 
     }
 
