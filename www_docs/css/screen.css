@@ -57,6 +57,7 @@ a img {
     margin: 0;
     padding: .2em .5em .2em 50px;
     text-transform: uppercase;
+    clear: both;
 }
 
 
@@ -174,7 +175,6 @@ a img {
     font-weight: bold;
     margin: 0 0 1em 0;
     text-align: center;
-    clear: both;
 }
 #headtitle a {
     color: black;
@@ -185,9 +185,10 @@ a img {
 }
 #languages {
     list-style: none;
-    float: right;
-    position: relative;
-    bottom: 3em;
+    position: absolute;
+    top: 6.3em;
+    right: 1.3em;
+    padding: 0;
 }
 #languages li {
     display: inline;
