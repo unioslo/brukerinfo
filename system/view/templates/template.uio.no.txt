@@ -21,7 +21,7 @@
 </head>
 <body>
 
-    <!-- her starter toppnavigasjonen --> 
+    <!-- Toppnavigasjonen --> 
     <p class="skipnav"><a href="#snarvei">Hopp over navigasjonen og gå direkte til innholdet</a></p>
     <div id="uio_logo_topp">
         <a href="http://www.uio.no/"><img alt="Universitetet i Oslo" height="31" src="/visuell-profil/grafikk/studier/logotopp_blaa3.gif" width="267" /></a>
@@ -43,18 +43,14 @@
     <form id="uio_sok" action="http://sok.uio.no/perl/velgsok.pl" method="get">
         <div>
             <input name="text" type="text" size="19" />
-            <!--her settes valgmulighetene for søk-->
             <select class="topsoek" name="engine" size="1">
-              <option value="inktomiuio" selected="selected">UiO - nettsider</option>
-              <option value="people">UiO - personer</option>
-              <option value="bibsys_forfatter">BIBSYS - forfatter</option>
-              <option value="bibsys_tittel">BIBSYS - tittel</option>
-              <option value="google">WWW - google</option>
+                <option value="inktomiuio" selected="selected">UiO - nettsider</option>
+                <option value="people">UiO - personer</option>
+                <option value="bibsys_forfatter">BIBSYS - forfatter</option>
+                <option value="bibsys_tittel">BIBSYS - tittel</option>
+                <option value="google">WWW - google</option>
             </select>
-            <!--Søk valg avsluttet -->
-            &nbsp;
             <input type="hidden" name="_charset_" />
-            <!--her finner du søkeknapp -->
             <input alt="search" name="soek" type="submit" value="S&oslash;k" class="imgsoekbordernull" />
         </div>
     </form> 
@@ -63,10 +59,9 @@
         <img alt="It Services - Banner" height="24" src="/visuell-profil/grafikk/it_tjenester/it.gif" width="454" />
     </div>
     <div id="uio_it_margin"><a href="http://usit.uio.no/it/">IT-tjenester</a></div>
+    <!-- toppnavigasjonen ferdig --> 
 
-
-    <!-- her slutter toppnavigasjonen --> 
-    <!-- her starter br&oslash;dtekstseksjonen --> 
+    <!-- Broedtekstseksjonen --> 
     <div class="navmarginbrod" id="brodtekst"><a name="snarvei"></a> 
       
 
@@ -75,13 +70,11 @@
 
         <div class="signatur">Redaksjon: ##EDITOR.NAME##, <a href="mailto:##EDITOR@EMAIL##">##EDITOR@EMAIL##</a></div> 
     </div> 
-    <!-- her slutter br&oslash;dtekstseksjonen --> 
-    <!-- her starter bunnnavigasjonen --> 
-    <p class="navmarginline" id="bunnnav"> 
-      <a href="http://www.uio.no/hjelp/kontakt.html">Kontakt UiO</a> 
-    </p> 
-    <!-- her slutter bunnnavigasjonen --> 
-  
+    <!-- broedtekstseksjonen ferdig -->
+
+    <!-- Bunnnavigasjonen --> 
+    <p class="navmarginline" id="bunnnav"><a href="http://www.uio.no/hjelp/kontakt.html">Kontakt UiO</a></p> 
+    <!-- bunnnavigasjonen ferdig --> 
 
 </body>
 </html>

@@ -12,9 +12,9 @@ $form = new BofhForm('addTripnote');
 $form->addElement('header', null, txt('email_tripnote_form_title'));
 
 //TODO: add today as default on start?
-$form->addElement('date', 'start', txt('email_tripnote_form_start'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$View->getLang()));
-$form->addElement('date', 'end', txt('email_tripnote_form_end'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$View->getLang()));
-$form->addElement('textarea', 'message', txt('email_tripnote_form_message'), 'rows="7"');
+$form->addElement('date', 'start', txt('email_tripnote_starting'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$View->getLang()));
+$form->addElement('date', 'end', txt('email_tripnote_ending'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$View->getLang()));
+$form->addElement('textarea', 'message', txt('email_tripnote_message'), 'rows="7"');
 
 $form->addElement('submit', null, txt('email_tripnote_form_submit'), array('class'=>'submit'));
 
@@ -125,9 +125,9 @@ if(!empty($_POST['del'])) {
     $View->addElement('p', txt('email_tripnote_delete_confirm'));
 
     $dl = $View->createElement('dl');
-    $dl->addData('Starting:',   date('Y-m-d', $tripnotes[$del]['start_date']->timestamp));
-    $dl->addData('Ending:',     date('Y-m-d', $tripnotes[$del]['end_date']->timestamp));
-    $dl->addData('Message:',    nl2br($tripnotes[$del]['text']));
+    $dl->addData(txt('email_tripnote_starting'),   date('Y-m-d', $tripnotes[$del]['start_date']->timestamp));
+    $dl->addData(txt('email_tripnote_ending'),     date('Y-m-d', $tripnotes[$del]['end_date']->timestamp));
+    $dl->addData(txt('email_tripnote_message'),    nl2br($tripnotes[$del]['text']));
     $View->addElement($dl);
 
     $confirm = new BofhForm('confirm');
@@ -162,7 +162,10 @@ if($othernotes) {
 
     $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline">'); //Todo: depreciated, but out of time
     $table = $View->createElement('table');
-    $table->setHead('Starting', 'Ending', 'Message', null);
+    $table->setHead(txt('email_tripnote_starting'), 
+        txt('email_tripnote_ending'),
+        txt('email_tripnote_message'),
+        null);
 
 
     foreach($othernotes as $tnote) {

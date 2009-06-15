@@ -94,8 +94,9 @@ class BofhForm extends HTML_QuickForm {
         //data has to be unescaped here to prevent double-escaping...
 
         //This might be a problem for data that is not from bofhd, but that doesn't happen here (yet)
-        //Todo: add this to textareas as well
-        if($type=='text' && $ele->getAttribute('value')) {
+        //TODO: add this to textareas as well (a bit more complicated, as textareas get their values
+        //      throug $textarea->setValue().
+        if ($type=='text' && $ele->getAttribute('value')) {
             $ele->setAttribute('value', htmlspecialchars_decode($ele->getAttribute('value')));
         }
 
