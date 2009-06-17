@@ -388,6 +388,7 @@
     <GROUPS_MEMBERS_LIST_EMPTY>This group has currently no members</GROUPS_MEMBERS_LIST_EMPTY>
     <GROUPS_MEMBERS_TOO_MANY>This group has too many members to be shown here. Please user jbofh or contact your local IT-service.</GROUPS_MEMBERS_TOO_MANY>
     <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces and/or commas.</GROUPS_MEMBERS_MORE>
+    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Please note that persons are here only used in special cases.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
 
 
     <!-- Help pages -->
