@@ -209,7 +209,9 @@ class User {
 
                 $this->_session_temp['forward_from'] = null;
 
-                View::addMessage(txt('LOGON_SUCCESS', array('username'=>$this->_session['username'])));
+                View::addMessage(txt('LOGON_SUCCESS', array(
+                    'username' => $this->_session['username'],
+                    'full_name' => $this->bofhd->getCache('full_name'))));
 
                 View::forward($url);
                 return true;

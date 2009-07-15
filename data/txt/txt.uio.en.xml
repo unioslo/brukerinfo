@@ -12,8 +12,8 @@
 
     <!-- The browsers window title -->
     <PAGETITLE>Brukerinfo - University of Oslo</PAGETITLE>
-    <HEADER>Brukerinfo - a web interface to Cerebrum</HEADER>
-    <FOOTER>Brukerinfo - a web interface to Cerebrum</FOOTER>
+    <HEADER>Brukerinfo - simple user administration at UiO</HEADER>
+    <FOOTER>Brukerinfo - simple user administration at UiO</FOOTER>
 
     <!-- The title of the page if it is locked because of a restart 
          of bofhd or the site is being updated -->
@@ -33,7 +33,7 @@
     <LOGOUT>Log out</LOGOUT>
 
     <!-- The main menu -->
-    <MENU_HOME>Home</MENU_HOME>
+    <MENU_HOME>Main</MENU_HOME>
 
     <MENU_PERSON>Person</MENU_PERSON>
 
@@ -59,24 +59,26 @@
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Log on</LOGON_TITLE>
-    <LOGON_INTRO>&lt;p&gt;This is a web based user interface for Cerebrum you can use to view and
+    <LOGON_INTRO>&lt;p&gt;This is a web based user interface you can use to view and
         modify some of the information concerning your web identity and account at the 
         University of Oslo. For more information and help, please see &lt;a
         href="http://www.usit.uio.no/it/brukeradministrasjon/brukerinfo/"&gt;the help pages&lt;/a&gt;.&lt;/p&gt;
         &lt;p&gt;If you have more than one username, please log on with the 
         username and password for the account you want to view or modify.&lt;/p&gt;
+        </LOGON_INTRO>
+    <LOGON_OUTRO>
         &lt;p&gt;For security reasons, the username and password entered on this
         web page will be encrypted when transfered to the server. Normally, you should
         not enter username and password information on a webpage, but you can read
         about why it is OK in this case by going to &lt;a href="https://www.uio.no"&gt;
         this webpage&lt;/a&gt;.&lt;/p&gt;
-        </LOGON_INTRO>
+        </LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Username:</LOGON_FORM_USERNAME>
     <LOGON_FORM_PASSWORD>Password:</LOGON_FORM_PASSWORD>
     <LOGON_FORM_SUBMIT>Log on</LOGON_FORM_SUBMIT>
 
-    <LOGON_SUCCESS>Welcome {{username}}</LOGON_SUCCESS>
+    <LOGON_SUCCESS>Welcome {{full_name}}</LOGON_SUCCESS>
     <LOGON_BAD_NAME_OR_PASSWORD>Wrong username or password</LOGON_BAD_NAME_OR_PASSWORD>
     <LOGON_LOGGED_OUT>You are now logged out</LOGON_LOGGED_OUT>
 
@@ -222,8 +224,9 @@
     <PRINTING_HISTORY_EMPTY>Found no quota history for given period. You may need to extend the range.</PRINTING_HISTORY_EMPTY>
 
     <!-- Email text -->
-    <EMAIL_TITLE>E-mail overview</EMAIL_TITLE>
+    <EMAIL_TITLE>E-mail</EMAIL_TITLE>
     
+    <EMAIL_INFO_TITLE>E-mail overview</EMAIL_INFO_TITLE>
     <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
     <EMAIL_INFO_VALID_ADDR>Valid addresses:</EMAIL_INFO_VALID_ADDR>
     <EMAIL_INFO_QUOTA>Quota:</EMAIL_INFO_QUOTA>
@@ -270,14 +273,17 @@
         Remember to also set your standard spam settings. For more information please see
         &lt;a href="http://www.usit.uio.no/it/epost/spamfiltrering.html"&gt;USIT's page about spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
     <EMAIL_FILTER_UPDATE_SUCCESS>Your additional spam settings have been updated</EMAIL_FILTER_UPDATE_SUCCESS>
-    <EMAIL_FILTER_GREYLIST>Greylisting</EMAIL_FILTER_GREYLIST>
-    <EMAIL_FILTER_GREYLIST_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
+    <EMAIL_FILTER_UNKNOWN>Unknown setting</EMAIL_FILTER_UNKNOWN>
+    <EMAIL_FILTER_DATA_GREYLIST>Greylisting</EMAIL_FILTER_DATA_GREYLIST>
+    <EMAIL_FILTER_DATA_GREYLIST_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
         Please see &lt;a href="http://www.usit.uio.no/it/epost/graalisting.html"&gt;USIT's page about 
-        greylist&lt;/a&gt; for more information.</EMAIL_FILTER_GREYLIST_DESC>
-    <EMAIL_FILTER_UIOONLY>UiOonly</EMAIL_FILTER_UIOONLY>
-    <EMAIL_FILTER_UIOONLY_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
+        greylist&lt;/a&gt; for more information.</EMAIL_FILTER_DATA_GREYLIST_DESC>
+    <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
+    <EMAIL_FILTER_DATA_UIOONLY_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
         Please see &lt;a href="http://www.usit.uio.no/it/epost/uioonly.html"&gt;USIT's page about 
-        UiOonly&lt;/a&gt; for more information.</EMAIL_FILTER_UIOONLY_DESC>
+        UiOonly&lt;/a&gt; for more information.</EMAIL_FILTER_DATA_UIOONLY_DESC>
+    <EMAIL_FILTER_ENABLE>Enable</EMAIL_FILTER_ENABLE>
+    <EMAIL_FILTER_DISABLE>Disable</EMAIL_FILTER_DISABLE>
     <EMAIL_FILTER_ON>{{filter}} on</EMAIL_FILTER_ON>
     <EMAIL_FILTER_OFF>{{filter}} off</EMAIL_FILTER_OFF>
     <EMAIL_FILTER_RULE_REQUIRED>Please select a choice for {{filter}}</EMAIL_FILTER_RULE_REQUIRED>
@@ -291,11 +297,11 @@
 
     <EMAIL_TRIPNOTE_ACTIVE_TITLE>Active Out of office messages</EMAIL_TRIPNOTE_ACTIVE_TITLE>
     <EMAIL_TRIPNOTE_LIST_DELETE>Delete</EMAIL_TRIPNOTE_LIST_DELETE>
+    <EMAIL_TRIPNOTE_STARTING>Starting:</EMAIL_TRIPNOTE_STARTING>
+    <EMAIL_TRIPNOTE_ENDING>Expires:</EMAIL_TRIPNOTE_ENDING>
+    <EMAIL_TRIPNOTE_MESSAGE>Message:</EMAIL_TRIPNOTE_MESSAGE>
 
     <EMAIL_TRIPNOTE_FORM_TITLE>New Out of office message</EMAIL_TRIPNOTE_FORM_TITLE>
-    <EMAIL_TRIPNOTE_FORM_START>Starting:</EMAIL_TRIPNOTE_FORM_START>
-    <EMAIL_TRIPNOTE_FORM_END>Expires:</EMAIL_TRIPNOTE_FORM_END>
-    <EMAIL_TRIPNOTE_FORM_MESSAGE>Message:</EMAIL_TRIPNOTE_FORM_MESSAGE>
     <EMAIL_TRIPNOTE_FORM_SUBMIT>Create Out of office message</EMAIL_TRIPNOTE_FORM_SUBMIT>
 
     <EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>Please enter your message</EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>
@@ -334,9 +340,12 @@
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Your groups</GROUPS_TITLE>
-    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate, but you can make &lt;a href="groups/personal.php"&gt;your own personal group&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
-    <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load. Please use the command line interface
-        &lt;a href="http://www.usit.uio.no/it/lita/cerebrum/JBofh.html"&gt;jbofh&lt;/a&gt; instead.</GROUPS_TOO_MANY>
+    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate, but you can make 
+        &lt;a href="groups/personal.php"&gt;your own personal group&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
+    <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load. 
+        Please use the command line interface
+        &lt;a href="http://www.usit.uio.no/it/brukeradministrasjon/bofh/"&gt;jbofh&lt;/a&gt;
+        instead.</GROUPS_TOO_MANY>
     <GROUPS_GROUP_UNKNOWN>Could not find specified group</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Groups you can moderate</GROUPS_MODERATIVE_TITLE>
     <GROUPS_OTHERS_TITLE>Your group memberships</GROUPS_OTHERS_TITLE>
@@ -438,15 +447,6 @@
     <BOFH_INFO_UID>User id</BOFH_INFO_UID>
 
     <BOFH_INFO_STEDKODE>stedkode</BOFH_INFO_STEDKODE>
-
-    <!-- General terms -->
-    <TERM_FS>Felles Studentsystem</TERM_FS>
-    <TERM_SAP>Employees' database</TERM_SAP>
-
-
-
-
-
 
 </data>
 </txt>

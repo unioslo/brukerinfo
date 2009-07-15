@@ -72,8 +72,8 @@ class Html_Table extends Html_Element {
     /**
      * For setting the <thead> with <th> values.
      * 
-     * @param mixed     $data   If array, overwrites, if string it adds each arg as a new 
-     *                          th in the thead
+     * @param mixed     $data   May be an array or several arguments. Each element or argument
+     *                          becomes one th in the thead.
      */
     public function setHead($data) {
 

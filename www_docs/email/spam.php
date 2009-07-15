@@ -5,22 +5,28 @@ $User = new User();
 $Bofh = new Bofhcom();
 $View = View::create();
 
+// Getting spam settings
 
 $sp_actions = $Bofh->getData('get_constant_description', 'EmailSpamAction');
-//actions is sorted ok now, but be aware for a change in the future
-
+// actions is sorted ok now, but be aware for a change in the future
 $sp_lvl_raw = $Bofh->getData('get_constant_description', 'EmailSpamLevel');
 //try to sort the levels at behaviour, as this is not done by bofh
 $sp_levels[] = $sp_lvl_raw[0];
 $sp_levels[] = $sp_lvl_raw[1];
 $sp_levels[] = $sp_lvl_raw[3];
 $sp_levels[] = $sp_lvl_raw[2];
-
-//adding the rest (if any)
+// adding the rest (if any)
 $i = 4;
 while($i<count($sp_lvl_raw)) $sp_levels[] = $sp_lvl_raw[$i++];
 
+// the set level and action
 list($def_level, $def_action) = getSetLevelAction();
+
+// Getting filter settings
+$available_filters = availableFilters();
+$active_filters = getActiveFilters();
+
+
 
 
 $form = new BofhForm('setSpam');
@@ -35,12 +41,10 @@ foreach($sp_levels as $v) {
         $v['description'] = txt($txt_name);
     }
 
-    $r = $form->createElement('radio', 'level', null, 
+    $levels[] = $form->createElement('radio', 'level', null, 
         "{$v['description']} <span class=\"explain\">($title)</span>", $v['code_str']);
-    $levels[] = $r;
 }
 $form->addGroup($levels, 'spam_level', txt('email_spam_form_level'), "<br>\n", false);
-
 
 //spam action
 $actions = array();
@@ -52,12 +56,10 @@ foreach($sp_actions as $v) {
         $v['description'] = txt($txt_name);
     }
 
-    $r = $form->createElement('radio', 'action', null, 
+    $actions[] = $form->createElement('radio', 'action', null, 
         "{$v['description']} <span class=\"explain\">($title)</span>", $v['code_str']);
-    $actions[] = $r;
 }
 $form->addGroup($actions, 'spam_action', txt('email_spam_form_action'), "<br>\n", false);
-
 
 $form->setDefaults(array(
     'spam_level' =>array('level'=>$def_level),
@@ -94,23 +96,66 @@ if($form->validate()) {
     } catch(Exception $e) {
         Bofhcom::viewError($e);
     }
-
 }
 
 
 
-//TODO: want the email title as well?
-$View->addTitle('Email');
-$View->addTitle(txt('EMAIL_SPAM_TITLE'));
 
+
+
+$View->addTitle(txt('email_title'));
+$View->addTitle(txt('email_spam_title'));
+
+
+
+// making form for the filters (additional spam settings)
+$filterform = new BofhForm('spamfilter');
+
+$flist = View::createElement('table');
+
+foreach($available_filters as $id => $filter) {
+
+    $status     = (isset($active_filters[$id]) ? 
+        txt('email_filter_disable') : txt('email_filter_enable'));
+    $subclass   = (isset($active_filters[$id]) ? 
+        '_warn' : '');
+
+    // TODO: should make a template in BofhForm to handle these tables with forms
+    $flist->addData(array(
+        $filter['name'],
+        $filter['desc'],
+        "<input type=\"submit\" name=\"$id\" class=\"submit$subclass\" value=\"$status\" />"));
+}
+
+
+
+// validates and saves the setting
+if($filterform->validate()) {
+
+    if($filterform->process('setFilters')) {
+        View::addMessage(txt('email_filter_update_success'));
+    }
+    //if false, this should already be handled and sent to the user by the function
+    View::forward('email/spam.php');
+
+}
 
 $View->start();
+
+// spam settings
 $View->addElement('h1', txt('EMAIL_SPAM_TITLE'));
 $View->addElement('p', txt('EMAIL_SPAM_INTRO'));
+$View->addElement('div', $form, 'class="primary"');
+
+// spam filters
+$View->addTitle(txt('email_filter_title'));
+$View->addElement('h2', txt('EMAIL_FILTER_TITLE'));
+$View->addElement('p', txt('EMAIL_FILTER_intro'));
 
 
-$View->addElement($form);
 
+$filterform->addElement('html', $flist);
+$View->addElement($filterform);
 $View->addElement('p', txt('action_delay_email'), 'class="ekstrainfo"');
 
 
@@ -163,5 +208,118 @@ function getSetLevelAction() {
     return array($level, $action);
 
 }
+
+
+/**
+ * This function gets all available filters from the constants EmailTargetFilter.
+ */
+function availableFilters() {
+
+    global $Bofh;
+
+    $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
+
+    //sorting the filters
+    $filters = array();
+    foreach($filters_raw as $f) {
+        $id = $f['code_str'];
+        $txtkey_name = 'email_filter_data_'.$id;
+        $txtkey_desc = 'email_filter_data_'.$id.'_desc';
+
+        $filters[$id]['name'] = $id;
+        //looking for a better name
+        if(Text::exists($txtkey_name)) {
+            $filters[$id]['name'] = txt($txtkey_name);
+        }
+
+        $filters[$id]['desc'] = $f['description'];
+        //looking for a better description
+        if(Text::exists($txtkey_desc)) {
+            $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
+        }
+    }
+
+    return $filters;
+
+}
+
+/**
+ * Gets what filters the user has active.
+ */
+function getActiveFilters() {
+
+    global $User;
+    global $Bofh;
+
+    $all = $Bofh->getDataClean('email_info', $User->getUsername());
+
+    if(empty($all['filters']) || $all['filters'] == 'None') return null;
+
+    //the filters comes in a comma-separated string
+    $rawf = explode(', ', $all['filters'][0]);
+    foreach($rawf as $v) $filters[$v] = true;
+    return $filters;
+
+}
+
+
+
+/**
+ * Sets a filter on or off.
+ */
+function setFilters($data) {
+
+    print_r($data);
+
+    global $Bofh, $User;
+    global $available_filters;
+    global $active_filters;
+
+    $err = false;
+
+    // setting several in one go is supported by the loop
+    foreach ($data as $filter => $value) {
+
+        if(!isset($available_filters[$filter])) {
+            View::addMessage(txt('email_filter_unknown'), View::MSG_WARNING);
+            $err = true;
+            continue;
+        }
+
+        // activating filter
+        // TODO: comparing with text values is not recommended, change this behaviuor
+        // when the template is made.
+        if($value == txt('email_filter_enable')) {
+            // if already active
+            if(isset($active_filters[$filter])) continue;
+
+            try {
+                $res = $Bofh->run_command('email_add_filter', $filter, $User->getUsername());
+                View::addMessage($res);
+            } catch(Exception $e) {
+                Bofhcom::viewError($e);
+                $err = true;
+            }
+
+        // disabling filter
+        } else {
+            // if already disabled
+            if(!isset($active_filters[$filter])) continue;
+
+            try {
+                $res = $Bofh->run_command('email_remove_filter', $filter, $User->getUsername());
+                View::addMessage($res);
+            } catch(Exception $e) {
+                Bofhcom::viewError($e);
+                $err = true;
+            }
+        }
+
+    }
+
+    return $res;
+
+}
+
 
 ?>

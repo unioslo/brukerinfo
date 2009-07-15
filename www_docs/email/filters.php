@@ -91,28 +91,14 @@ function availableFilters() {
 
     global $Bofh;
 
-    //this array is for renaming the filters to more understandable names
-    //if the name is not in this array, the code_str will be used as name
-    $names = array(
-        'greylist' => txt('email_filter_greylist'),
-        'uioonly'  => txt('email_filter_uioonly')
-    );
-    //this array is for adding more description to each filter, e.g. links
-    //the filters description is also used
-    //$desc = array(
-    //    'greylist' => txt('email_filter_greylist_desc'),
-    //    'uioonly'  => txt('email_filter_uioonly_desc')
-    //);
-
-
-    $filter_desc = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
+    $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
 
     //sorting the filters
     $filters = array();
-    foreach($filter_desc as $f) {
+    foreach($filters_raw as $f) {
         $id = $f['code_str'];
-        $txtkey_name = 'email_filter_'.$id;
-        $txtkey_desc = 'email_filter_'.$id.'_desc';
+        $txtkey_name = 'email_filter_data_'.$id;
+        $txtkey_desc = 'email_filter_data_'.$id.'_desc';
 
         $filters[$id]['name'] = $id;
         //looking for a better name
@@ -121,7 +107,7 @@ function availableFilters() {
         }
 
         $filters[$id]['desc'] = $f['description'];
-        //looking for a description
+        //looking for a better description
         if(Text::exists($txtkey_desc)) {
             $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
         }

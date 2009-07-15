@@ -26,7 +26,7 @@ class Text {
     protected static $inst = INST;
 
     /** 
-     * The location to the xml-files with the text, relative to LINK_SYSTEM 
+     * The location to the xml-files with the text, relative to LINK_DATA 
      * Must end with /
      * */
     const location = 'txt/';
@@ -55,6 +55,23 @@ class Text {
      * that is not cached.
      */
     protected $extraValues = array();
+
+
+    /**
+     * An array with every defined language and its name on its own lanugage.
+     * This array is only for giving the available languages names, it is not
+     * defining what language is available.
+     *
+     * TODO: This array has to be expanded with all defined languages.
+     */
+    public static $lang_description = array(
+        'no' => 'norsk',
+        'en' => 'english',
+        'no-nn' => 'nynorsk',
+        'no-nb' => 'bokmål'
+        //TODO!
+    );
+
 
     /** 
      * Constructor
@@ -107,12 +124,12 @@ class Text {
         if(empty(self::$txts[$lang])) self::cache();
 
         if(!isset(self::$txts[$lang][$key])) {
-            trigger_error(sprintf('Unknown text "%s", using standard language. Tried languagefile "%s"', $key, self::getFile()), E_USER_NOTICE);
+            trigger_error(sprintf('Unknown text "%s" in language "%s", languagefile "%s"', $this->lang, $key, self::getFile()), E_USER_NOTICE);
             $lang = DEFAULT_LANG;
             if(empty(self::$txts[$lang])) self::cache($lang);
 
             if(!isset(self::$txts[$lang][$key])) {
-                trigger_error(sprintf('Text undefined in standard language too, returning only key (file: "%s")', self::getFile()), E_USER_WARNING);
+                trigger_error(sprintf('Text "%s" undefined in standard language too, returning only key (file: "%s")', $key, self::getFile()), E_USER_WARNING);
                 return $key;
             }
         }
@@ -132,7 +149,7 @@ class Text {
         }
 
         //replacing text inside {{...}} with values
-        $txt = preg_replace('/([^{]?){{(\w+)}}([^}]?)/e', '"$1".$this->getValue("$2")."$3"', $txt);
+        $txt = preg_replace('/([^{]?){{(\w+)}}([^}]?)/e', '"$1".$this->getValue("$2", '.$key.')."$3"', $txt);
         //escaping is done with {{{text}}} -> {{text}}
         $txt = preg_replace('/{{(\w+)}}/', '{$1}', $txt);
 
@@ -158,11 +175,7 @@ class Text {
         $key = strtoupper($key);
 
         $lang = self::$lang;
-        if(empty(self::$txts[$lang])) {
-            echo "(caching text...";
-            self::cache();
-            echo "done)\n";
-        }
+        if(empty(self::$txts[$lang])) self::cache();
 
         if(isset(self::$txts[$lang][$key])) return true;
 
@@ -183,15 +196,18 @@ class Text {
      * This function gathers together data strings to be used in the display.
      *
      * To see all the values available, see $_SESSION['values']
+     *
+     * @param   String  $valuekey   The key referring to the value
+     * @param   String  $textkey    The key referring to the text (here used for debugging)
      */
-    public function getValue($key) {
+    public function getValue($valuekey, $textkey) {
 
         if(empty(self::$values)) self::cache();
 
-        if(isset($this->extraValues[$key])) return $this->extraValues[$key];
-        if(isset(self::$values[$key])) return self::$values[$key];
+        if(isset($this->extraValues[$valuekey])) return $this->extraValues[$valuekey];
+        if(isset(self::$values[$valuekey])) return self::$values[$valuekey];
 
-        trigger_error("Unknown value {{{$key}}} in text", E_USER_NOTICE);
+        trigger_error("Unknown value {{{$valuekey}}} in the text '$textkey'", E_USER_NOTICE);
         return $key;
 
     }
@@ -348,7 +364,7 @@ class Text {
      * Returns an array with all the available languages.
      * This goes through the directory with the language files.
      */
-    public static function getLangs() {
+    public static function getAvailableLangs() {
 
         $dir = LINK_DATA . '/' . self::location;
 
@@ -360,11 +376,87 @@ class Text {
 
             $match = array();
             if(preg_match("/^txt\.$inst\.([A-Za-z-]+)\.xml$/", $f, $match)) {
-                $langs[] = $match[1];
+
+                $langs[$match[1]] = self::$lang_description[$match[1]];
             }
         }
 
         return $langs;
 
     }
+
+
+    /*
+     * This function parses an AcceptLanguage-string, normally given by the browser, and returns 
+     * the language code for the language which is available and has the highest priority.
+     *
+     * Please note that this function does not set the language, it only returns the best.
+     *
+     * Definition of Accept-Language:
+     *  http://tools.ietf.org/html/rfc2616#section-14.4
+     *
+     * Info about the language code:
+     *  http://tools.ietf.org/html/rfc4646
+     *
+     * Info about the language range:
+     *  http://tools.ietf.org/html/rfc4647
+     * 
+     * Details of the AcceptLanguage-string:
+     * The languages are splitted with ',', the first language has normally the highest priority,
+     * but can the overridden by adding ';q=N', where N can be a number between 1 (highest) and 0.
+     * To simplify, the function is ignoring the quality parameter; what comes first tends
+     * to have the highest priority.
+     *
+     * In addition, a region-specific variant of the language code can be given, by adding '-' in
+     * the language code. E.g. 'en-us' and 'en-gb' is regional variants of 'en'. If the browser
+     * prefers e.g. 'en-us' but only 'en' is available, you have two ways of handling this:
+     *
+     * 1. The primary subtag (e.g. 'en') could have same priority as the region subtag. This gives
+     *    'en' to a browser that prefers 'en-us' if 'en-us' is not available.
+     * 2. The primary subtag in a regional specified code could have lower priority than the other
+     *    codes that matches exactly. How low is not defined, but one way could be to add them after
+     *    the rest of the languages, or you could set the quality down by e.g. 10%.
+     *
+     * This function goes with method 1; if a language code is regionally specified and is not 
+     * available, the primary subtag is then searched for as the next.
+     *  
+     * '*' can be used as a wildcard, but this is ignored in this function, and so is the other
+     * subtag variants used in language codes (script subtags, extension subtags, private use
+     * subtags etc).
+     *
+     * Language codes are defined as case-insensitive.
+     *
+     * @param String    $http_accept_lang       The language string, normally given from 
+     *                                          $_SERVER['HTTP_ACCEPT_LANGUAGE']
+     *
+     * @return String                           Returns the language code for the available language 
+     *                                          which has the highest priority.
+     */
+    public static function parseAcceptLanguage($http_accept_lang) {
+
+        if (empty($http_accept_lang)) return DEFAULT_LANG;
+
+        $availableLangs = array_keys(self::getAvailableLangs());
+
+        $preferred = explode(',', strtolower($http_accept_lang));
+        foreach($preferred as $p) {
+            list($lang, $pri) = explode(';', strtolower($p));
+            //for now, doesn't check the quality ';q=N', where 0 <= N <= 1
+
+            if(in_array($lang, $availableLangs)) return $lang;
+
+            //also check the primary language if it is regionally specified
+            if(strpos($lang, '-')) { // sic: the primary can't be empty, so '-' can't be at pos 0
+                $lang = substr($lang, 0, strpos($lang, '-'));
+                if(in_array($lang, $availableLangs)) return $lang;
+            }
+        }
+
+        // none found
+        return DEFAULT_LANG;
+
+    }
+
+
+
 }

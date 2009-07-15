@@ -39,6 +39,7 @@ if (LOCKED) {
 
     $View->addElement('raw', txt('logon_intro'));
     $View->addElement($logform);
+    $View->addElement('raw', txt('logon_outro'));
 }
 
 ?>

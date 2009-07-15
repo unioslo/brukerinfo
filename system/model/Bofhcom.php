@@ -48,9 +48,12 @@ class Bofhcom {
     
     /** All cached data that is gathered at logon from bofhd */
     protected $cache = array(
-        //'commands',         //all the given commands from bofhd the user can access
-        'spreads',          //descriptions of all the spreads available
-        'affiliations'      //all affiliation descriptions (to use in help-texts)
+        //'commands' => null,         //all the given commands from bofhd the user can access
+        'spreads' => null,          //descriptions of all the spreads available
+        'source_systems' => null,   //description of the source systems (authoritative systems)
+        'affiliations' => null      //all affiliation descriptions (to use in help-texts)
+        // in addition comes:
+        // 'full_name'
     );    
 
 
@@ -113,6 +116,7 @@ class Bofhcom {
             self::$ok = false;
             $this->logOut();
         }
+
 
 
     }
@@ -423,6 +427,16 @@ class Bofhcom {
             }
         }
 
+        //gets the list of source_systems to use in help-texts
+        $sources = $this->getData('get_constant_description', 'AuthoritativeSystem');
+        foreach($sources as $source) {
+            $this->cache['source_systems'][$source['code_str']] = $source['description'];
+        }
+
+        //getting the full name of the person
+        $persinfo = $this->getDataClean('person_info', $this->account);
+        // using the cached name, but that comes in the format "First Last [from Cached]"
+        $this->cache['full_name'] = substr($persinfo['name'], 0, trim(strrpos($persinfo['name'], '[')));
 
     }
 
@@ -566,14 +580,17 @@ class Bofhcom {
     }
 
     /**
-     * Returns the array of affiliation-descritptions
+     * Returns the array of all the cached data, or one part of it if a key is given.
+     *
+     * @param String    $key    If not null, it returns the element of the cache array
+     *                          with the given key.
      */
-    public function getAffiliations() {
+    public function getCache($key = null) {
 
-        return $this->cache['affiliations'];
+        if($key !== null) return $this->cache[$key];
+        return $this->cache;
 
     }
-
 
     /**
      * Returns the Message Of The Day.

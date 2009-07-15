@@ -18,7 +18,7 @@ $View = View::create();
 $View->start();
 
 //output of html
-$View->addElement('h1', txt('HOME_TITLE'));
+//$View->addElement('h1', txt('HOME_TITLE'));
 
 $View->addElement('p', txt('home_intro'));
 

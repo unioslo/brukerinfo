@@ -29,10 +29,10 @@ class View_uio extends View {
      * The original template was found at 
      * http://www.usit.uio.no/it/ureg2000/.template_en.html
      *
-     * The link is relative according to LINK_SYSTEM and %s
+     * The link is relative according to LINK_DATA and %s
      * is replaced with the active language.
      */
-    private $template_file = '/view/templates/template.uio.%s.txt';
+    private $template_file = '/templates/template.uio.%s.txt';
 
     /**
      * CSS-files to include
@@ -64,8 +64,6 @@ class View_uio extends View {
      * @return Array    The menu as a one dimensional array
      */
     protected function getMenu($sub = null) {
-        //TODO: change this to work with different languages
-
 
         if(!$this->logged_in) return;
 
@@ -97,7 +95,6 @@ class View_uio extends View {
         $menu['email']['sub']       = array(
             '',
             'spam.php',
-            'filters.php',
             'tripnote.php',
             'forward.php'
         );
@@ -136,16 +133,16 @@ class View_uio extends View {
 
             $templlink = sprintf($this->template_file, $this->language);
 
-            if(!is_readable(LINK_SYSTEM . $templlink)) {
+            if(!is_readable(LINK_DATA . $templlink)) {
 
                 $templlink = sprintf($this->template_file, DEFAULT_LANG);
 
-                if(!is_readable(LINK_SYSTEM . $templlink)) {
+                if(!is_readable(LINK_DATA . $templlink)) {
                     trigger_error('No template file for the HTML found - pages will be empty', 
                         E_USER_WARNING);
                 }
             }
-            $this->raw_template = file_get_contents(LINK_SYSTEM . $templlink);
+            $this->raw_template = file_get_contents(LINK_DATA . $templlink);
         }
 
         $ret = null;
@@ -198,7 +195,11 @@ class View_uio extends View {
         echo '<div id="headtitle"><a href="">'.txt('header')."</a></div>\n";
 
         echo '<ul id="languages">';
-        foreach(Text::getLangs() as $l) echo "<li><a href=\"{$_SERVER['PHP_SELF']}?chooseLang=$l\">$l</a></li>\n";
+        foreach(Text::getAvailableLangs() as $l=>$desc) {
+            if($l == $this->getLang()) continue;
+            $desc = ucfirst($desc);
+            echo "<li><a href=\"{$_SERVER['PHP_SELF']}?chooseLang=$l\">$desc</a></li>\n";
+        }
         echo "</ul>\n";
 
         $motd = self::getMotd();

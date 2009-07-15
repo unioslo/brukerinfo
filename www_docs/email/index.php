@@ -9,10 +9,10 @@ $primary = emailinfo($User->getUsername());
 unset($primary['account']);
 
 
-$View->addTitle(txt('EMAIL_TITLE'));
+$View->addTitle(txt('EMAIL_INFO_TITLE'));
 $View->start();
 
-$View->addElement('h1', txt('EMAIL_TITLE'));
+$View->addElement('h1', txt('EMAIL_INFO_TITLE'));
 $View->addElement('h2', $User->getUsername());
 
 

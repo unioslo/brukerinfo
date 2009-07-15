@@ -6,7 +6,10 @@ $Bofh = new Bofhcom();
 $View = View::create();
 
 $personinfo = getPersonInfo();
-$aff_descs = $Bofh->getAffiliations();
+
+$cache = $Bofh->getCache();
+$aff_descs = $cache['affiliations'];
+$source_system_descs = $cache['source_systems'];
 
 $View->addTitle(txt('PERSON_TITLE'));
 $View->addElement('h1', txt('PERSON_TITLE'));
@@ -18,39 +21,49 @@ $dl->addData(txt('bofh_info_birth'), $personinfo['birth']);
 
 //affiliations
 if(!empty($personinfo['affiliation'])) {
-    foreach($personinfo['affiliation'] as $k=>$a) {
-        $data = splitAffiliation($a);
+    foreach($personinfo['affiliation'] as $key=>$aff) {
+        $data = splitAffiliation($aff);
+        $s_sys = $personinfo['source_system'][$key];
 
-        $data['source_system'] = $personinfo['source_system'][$k];
-        $data['source_system_desc'] = txt('TERM_' . $personinfo['source_system'][$k]);
-        $data['aff_desc'] = $aff_descs[$data['aff']];
-        $data['aff_sub_desc'] = $aff_descs[substr($a,0,strpos($a,'@'))];
+        $data['source_system'] = $s_sys;
 
-        $affs[] = txt('bofh_info_person_affiliation_value', $data);
+        if(isset($source_system_descs[$s_sys])) {
+            $data['source_system_desc'] = $source_system_descs[$s_sys];
+        } else {
+        trigger_error(printf('Unknown source_system "%s" could not describe', 
+                             $s_sys), E_USER_NOTICE);
+        //TODO: what should be written when description is not found?
+        $data['source_system_desc'] = $s_sys;
     }
+
+    $data['aff_desc'] = $aff_descs[$data['aff']];
+    $data['aff_sub_desc'] = $aff_descs[substr($aff,0,strpos($aff,'@'))];
+
+    $affs[] = txt('bofh_info_person_affiliation_value', $data);
+}
 }
 $dl->addData(txt('bofh_info_person_affiliations'), View::createElement('ul', $affs));
 
 
 //names
 if(!empty($personinfo['names'])) {
-    foreach($personinfo['names'] as $k=>$n) {
-        $names[] = txt('bofh_info_name_value', array(
-            'name'                  => $n,
-            'source_system'         => $personinfo['name_src'][$k],
-            'source_system_desc'    => txt('TERM_' . $personinfo['name_src'][$k])
-        ));
-    }
+foreach($personinfo['names'] as $k=>$n) {
+    $names[] = txt('bofh_info_name_value', array(
+        'name'                  => $n,
+        'source_system'         => $personinfo['name_src'][$k],
+        'source_system_desc'    => $source_system_descs[$personinfo['name_src'][$k]]
+    ));
+}
 }
 if(!empty($names)) $dl->addData(txt('bofh_info_names'), View::createElement('ul', $names));
 
 
 //fnr
 if(!empty($personinfo['fnr'])) {
-    foreach($personinfo['fnr'] as $k=>$f) {
-        $fnr[] = txt('bofh_info_fnr_value', array('fnr'=> $f,
-            'source_system'         => $personinfo['name_src'][$k],
-            'source_system_desc'    => txt('TERM_' . $personinfo['name_src'][$k])
+foreach($personinfo['fnr'] as $k=>$f) {
+    $fnr[] = txt('bofh_info_fnr_value', array('fnr'=> $f,
+        'source_system'         => $personinfo['name_src'][$k],
+            'source_system_desc'    => $source_system_descs[$personinfo['name_src'][$k]]
         ));
     }
 }
@@ -93,6 +106,9 @@ function splitAffiliation($affstring) {
 
 /**
  * Getting all the person_info, sorted
+ *
+ * This function is only returning the info you would
+ * get from person_info in jbofh.
  */
 function getPersonInfo() {
 
@@ -112,6 +128,8 @@ function getPersonInfo() {
         } else {
             $p['affiliation'] = $p['affiliation_1'];
         }
+
+        unset($p['affiliation_1']);
     }
 
     //source_system_1 should come first in source_system
@@ -121,6 +139,8 @@ function getPersonInfo() {
         } else {
             $p['source_system'] = $p['source_system_1'];
         }
+
+        unset($p['source_system_1']);
     }
 
     return $p;

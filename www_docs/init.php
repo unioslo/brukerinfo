@@ -82,17 +82,11 @@ class Init {
      * The language can be chosen by the user by sending $_GET[chooseLang],
      * which stores this in $_SESSION['chosenLang'] and $_COOKIE['chosenLang'].
      * If neither of those is set, the language is gotten from the http-parameter
-     * ACCEPT_LANGUAGE. This includes a comma-separated list of the languages
-     * that the browser wants. An example:
-     *
-     *      no,en-us;q=0.7,en-gb;q=0.3
-     *
-     * The q value stands for the priority of the language, 1 is max priority.
-     *
+     * ACCEPT_LANGUAGE. This is done by Text::parseAcceptLanguage()
      */
     private function language() {
 
-        $langs = Text::getLangs();
+        $langs = array_keys(Text::getAvailableLangs());
 
         if(!empty($_GET['chooseLang'])) {
 
@@ -110,7 +104,7 @@ class Init {
 
         if(!empty($_SESSION['chosenLang'])) return true;
 
-        //the cookie can not be trusted
+        //the cookie can not be trusted as valid
         if(!empty($_COOKIE['chosenLang']) && in_array($_COOKIE['chosenLang'], $langs)) {
             $_SESSION['chosenLang'] = $_COOKIE['chosenLang'];
 
@@ -118,21 +112,11 @@ class Init {
             return true;
         }
 
+
         //if neither the session nor the cookie has some logic value
         if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-
-            $preferred = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-            foreach($preferred as $p) {
-                //this is not documented, but presumes that the first language has
-                //the highest priority, and following that order
-                list($lang, $pri) = explode(';', $p);
-
-                if(in_array($lang, $langs)) {
-                    $_SESSION['chosenLang'] = $lang;
-                    //setcookie('chosenLang', $lang, time()+60*60*24*30, HTML_PRE);
-                    return true;
-                }
-            }
+            $_SESSION['chosenLang'] = Text::parseAcceptLanguage($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            return true;
         }
 
         // at last, when nothing else is possible
