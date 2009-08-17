@@ -92,6 +92,7 @@ a img {
     color: blue;
 }
 #messages li.warning {
+    font-weight: bold;
 }
 #messages li.error {
     font-size: x-large;

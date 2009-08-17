@@ -21,12 +21,14 @@ $form->addElement('submit', null, txt('account_password_form_submit'));
 
 //Rules:
 $form->addRule('new_pass', txt('account_password_rule_new_required'), 'required');
-// no more rules here, wants to validate the password first, before checking rest
 
+// no more rules here, wants to validate the password first, before checking rest
 
 if($form->validate()) {
 
-    if(validatePassword($form->exportValue('new_pass'))) {
+    $pasw_msg = validatePassword($form->exportValue('new_pass'), $errmsg);
+    //$pasw_msg now contains either TRUE or a string explaining what is wrong with the password
+    if($pasw_msg === true) {
 
         //the password is valid, now check the rest
         
@@ -35,19 +37,25 @@ if($form->validate()) {
             //check original password
             if(verifyPassword($form->exportValue('cur_pass'))) {
 
-                if(changePassword($form->exportValue('new_pass'), $form->exportValue('cur_pass'))) {
+                if(changePassword($form->exportValue('new_pass'), $form->exportValue('cur_pass'), $errmsg)) {
                     View::addMessage(txt('account_password_success'));
                     View::addMessage(txt('action_delay_hour'));
                     View::forward('account/');
-                } //if false here, bofh sends messages to the user
+                } else {
+                    //have to send errors manually to the form, (e.g. check for old passwords)
+                    $form->setElementError('new_pass', $errmsg);
+                }
 
             } else {
-                View::addMessage(txt('account_password_error_current'), View::MSG_WARNING);
+                $form->setElementError('cur_pass', txt('account_password_error_current'));
             }
         } else {
-            View::addMessage(txt('account_password_error_match'), View::MSG_WARNING);
+            $form->setElementError('new_pass2', txt('account_password_error_match'));
         }
 
+    } else {
+        // if the new password is wrong
+        $form->setElementError('new_pass', $pasw_msg);
     }
 
 
@@ -90,7 +98,7 @@ $View->addElement('p', txt('account_password_moreinfo'), 'class="ekstrainfo"');
 /**
  * Checks if the given password is secure enough to be used.
  */
-function validatePassword($password) {
+function validatePassword($password, &$returnmsg = null) {
 
     global $Bofh;
 
@@ -101,8 +109,8 @@ function validatePassword($password) {
 
     } catch (Exception $e) {
 
-        Bofhcom::viewError($e);
-        return false;
+        $returnmsg = $e->getMessage();
+        return substr($returnmsg, strrpos($returnmsg, 'CerebrumError: ')+15);
 
     }
 }
@@ -131,7 +139,7 @@ function verifyPassword($password) {
 /**
  * Changes the users password.
  */
-function changePassword($newpas, $curpas) {
+function changePassword($newpas, $curpas, &$errmsg = null) {
 
     global $User;
     global $Bofh;
@@ -142,12 +150,11 @@ function changePassword($newpas, $curpas) {
         if($res) return true;
 
     } catch (Exception $e) {
-
-        Bofhcom::viewError($e);
-        return false;
-
+        $errmsg = $e->getMessage();
+        $errmsg = substr($errmsg, strrpos($errmsg, 'CerebrumError: ')+15);
     }
 
+    return false;
 }
 
 
