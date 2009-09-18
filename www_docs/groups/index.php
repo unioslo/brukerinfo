@@ -8,6 +8,9 @@ $Bofh = new Bofhcom();
 $adm_groups = getAdmGroups();
 $normal_groups = getGroups();
 
+// the group types which are handled here, other types (e.g. hosts) are ignored
+$acceptable_group_types = array('group', 'account', 'person');
+
 
 $View = View::create();
 $View->addTitle(txt('GROUPS_TITLE'));
@@ -474,12 +477,16 @@ function getAdmGroups() {
 function getMembers($group) {
 
     global $Bofh;
+    global $acceptable_group_types;
 
     //using group_list for now, as it separates the type
     //of members. group_list_expanded lists indirect members too, 
     //which is not what we want
-    $ret = $Bofh->getData('group_list', $group);
-    //$ret = $Bofh->getData('group_list_expanded', $group);
+    $raw = $Bofh->getData('group_list', $group);
+    foreach($raw as $member) {
+        if(in_array($member['type'], $acceptable_group_types)) $ret[] = $member;
+    }
+
     return $ret;
 
 }
