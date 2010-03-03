@@ -67,6 +67,13 @@ class View_uio extends View {
 
         if(!$this->logged_in) return;
 
+        global $Bofh;
+        $is_employee = false;
+
+        if(!empty($Bofh) && is_a($Bofh, 'Bofhcom') && $Bofh->loggedon()) {
+            if($Bofh->is_employee()) $is_employee = true;
+        }
+
         //start
         $menu['home']['link']       = '';
 
@@ -102,8 +109,9 @@ class View_uio extends View {
         //groups
         $menu['groups']['link']     = 'groups/';
         $menu['groups']['sub']      = array(
+            ''
         );
-       
+        if($is_employee) $menu['groups']['sub'][] = 'new.php';
 
         //returning main menu
         if(!$sub) {

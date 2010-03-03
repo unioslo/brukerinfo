@@ -196,6 +196,17 @@ function txt($key) {
 }
 
 
+/**
+ * Wraps data into an array if it's not already an array.
+ * Useful when returning data from bofhd, as it sometimes likes to
+ * return a string instead of an array with one element.
+ */
+function to_array($data) {
+
+    if(is_array($data)) return $data;
+    return array($data);
+
+}
 
 
 

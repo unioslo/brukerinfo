@@ -51,7 +51,8 @@ class Bofhcom {
         //'commands' => null,         //all the given commands from bofhd the user can access
         'spreads' => null,          //descriptions of all the spreads available
         'source_systems' => null,   //description of the source systems (authoritative systems)
-        'affiliations' => null      //all affiliation descriptions (to use in help-texts)
+        'affiliation_desc' => null, //all affiliation descriptions (to use in help-texts)
+        'affiliations' => null,     //the persons affiliations
         // in addition comes:
         // 'full_name'
     );    
@@ -412,18 +413,18 @@ class Bofhcom {
             $this->accounts[$a['name']] = $a;
         }
 
-        //gets the list of affiliations to use in help-texts
+        //gets descriptions of affiliations, for use in help-texts
         $affs = $this->getData('misc_affiliations');
         $aktivaff = null;
 
         foreach($affs as $aff) {
             if(!empty($aff['aff'])) {
                 $aktivaff = $aff['aff'];
-                $this->cache['affiliations'][$aktivaff] = $aff['desc'];
+                $this->cache['affiliation_desc'][$aktivaff] = $aff['desc'];
             }
 
             if(!empty($aff['status'])) {
-                $this->cache['affiliations'][$aktivaff.'/'.$aff['status']] = $aff['desc'];
+                $this->cache['affiliation_desc'][$aktivaff.'/'.$aff['status']] = $aff['desc'];
             }
         }
 
@@ -437,6 +438,31 @@ class Bofhcom {
         $persinfo = $this->getDataClean('person_info', $this->account);
         // using the cached name, but that comes in the format "First Last [from Cached]"
         $this->cache['full_name'] = substr($persinfo['name'], 0, trim(strrpos($persinfo['name'], '[')));
+
+        //caching the persons affiliations
+        $affs = array(); 
+        if(!empty($persinfo['affiliation'])) {
+            $affs = to_array($persinfo['affiliation']);
+            $persinfo['source_system'] = to_array($persinfo['source_system']);
+        }
+        if(!empty($persinfo['affiliation_1'])) {
+            //source_system_1 _should_ follow affiliation_1
+            array_unshift($affs, $persinfo['affiliation_1']);
+            array_unshift($persinfo['source_system'], $persinfo['source_system_1']);
+        }
+        foreach($affs as $k=>$f) {
+            list($afs, $ou) = explode('@', $f);
+            $stedkode = substr($ou, 0, 6);
+            $stedkode_desc = substr($ou, 8, -1);
+            list($aff, $status) = explode('/', $afs);
+
+            $this->cache['affiliations'][] = array(
+                'affiliation'=>$aff,
+                'status'=>$status,
+                'stedkode'=>$stedkode,
+                'stedkode_desc'=>$stedkode_desc,
+                'source_system'=>$persinfo['source_system'][$k]);
+        }
 
     }
 
@@ -500,7 +526,10 @@ class Bofhcom {
             }
 
         } else {
-            if ($text == ':None') {
+            if (is_bool($text)) {
+                return (bool) $text;
+            // TODO: add more type checks here, to avoid getting it as strings
+            } elseif ($text === ':None') {
                 return null;
             } elseif (is_object($text)) {
                 return $text;
@@ -514,7 +543,6 @@ class Bofhcom {
         }
 
         return $text;
-
 
     }
 
@@ -622,5 +650,23 @@ class Bofhcom {
         return $this->cache['spreads'][$spread];
 
     }
+
+    /**
+     * If the person is defined as employee or not.
+     *
+     * @return boolean     True if person is registered as an employee
+     */
+    public function is_employee() {
+
+        if(!$this->loggedon()) return;
+
+        foreach($this->cache['affiliations'] as $aff) {
+            // TODO: this is not the correct definition, should have a more 
+            //       generic definition (in config most likely)
+            if($aff['source_system'] == 'SAP') return true;
+        }
+        return false;
+    }
+
       
 }

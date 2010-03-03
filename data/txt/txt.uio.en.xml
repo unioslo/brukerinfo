@@ -29,6 +29,9 @@
     <ERROR_BOFH_ERROR>Error in the communication with the database, please try again later.</ERROR_BOFH_ERROR>
     <ERROR_BOFH_RESTARTED>The database has been restarted, please update the page or log on again.</ERROR_BOFH_RESTARTED>
 
+    <!-- Standard notices -->
+    <EMPLOYEES_ONLY>Only employees at UiO are allowed to do this.</EMPLOYEES_ONLY>
+
     <!-- The top menu -->
     <LOGOUT>Log out</LOGOUT>
 
@@ -54,6 +57,8 @@
     <MENU_EMAIL_FORWARD>Forwarding</MENU_EMAIL_FORWARD>
 
     <MENU_GROUPS>Groups</MENU_GROUPS>
+    <MENU_GROUPS_>Groups</MENU_GROUPS_>
+    <MENU_GROUPS_NEW>New group</MENU_GROUPS_NEW>
 
 
     <!-- Logon and logout -->
@@ -107,6 +112,7 @@
     <HOME_SHORTCUTS_SPAM>Change spam settings</HOME_SHORTCUTS_SPAM>
     <HOME_SHORTCUTS_TRIPNOTE>Set Out of office messages</HOME_SHORTCUTS_TRIPNOTE>
     <HOME_SHORTCUTS_MEMBERS>Add or remove members from your group(s)</HOME_SHORTCUTS_MEMBERS>
+    <HOME_SHORTCUTS_GROUP_REQUEST>Request a new group</HOME_SHORTCUTS_GROUP_REQUEST>
 
     <HOME_ABOUT_TITLE>About Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>This is a web based user interface
@@ -290,8 +296,10 @@
     <EMAIL_FILTER_SUBMIT>Update</EMAIL_FILTER_SUBMIT>
 
     <EMAIL_TRIPNOTE_TITLE>Out of office messages</EMAIL_TRIPNOTE_TITLE>
-    <EMAIL_TRIPNOTE_INTRO>Out of office messages (vacation messages) are automatic replies to all e-mails sent to you in a set
-        period of time. Each sender will receive the message only once. For more information please see
+    <EMAIL_TRIPNOTE_INTRO>Out of office messages (vacation messages) are 
+        automatic replies to all e-mails sent to you in a set period of time,
+        for a maximum number of 7 days.
+        Each sender will receive the message only once. For more information please see
         &lt;a href="http://www.usit.uio.no/it/epost/ferie.html"&gt;USIT's page about this&lt;/a&gt;.</EMAIL_TRIPNOTE_INTRO>
     <EMAIL_TRIPNOTE_NEW_SUCCESS>New Out of office message added</EMAIL_TRIPNOTE_NEW_SUCCESS>
 
@@ -399,6 +407,26 @@
     <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces and/or commas.</GROUPS_MEMBERS_MORE>
     <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Please note that persons are here only used in special cases.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
 
+    <GROUPS_NEW_TITLE>Request new group</GROUPS_NEW_TITLE>
+    <GROUPS_NEW_INTRO>&lt;p&gt;Request a new group for use in IT systems at UiO.
+        The form will be sent to the user administration at UiO,
+        which will decide if the group can be created. You will then be answered 
+        by e-mail.&lt;/p&gt;
+
+        &lt;p&gt;
+        Before filling out this form, please read &lt;a
+        href="http://www.usit.uio.no/it/brukeradministrasjon/grupper/oppretting/"&gt;
+        the guidelines for new groups&lt;/a&gt;.
+        &lt;/p&gt;</GROUPS_NEW_INTRO>
+    <GROUPS_NEW_FORM_NAME>Group name:</GROUPS_NEW_FORM_NAME>
+    <GROUPS_NEW_FORM_DESC>Description:</GROUPS_NEW_FORM_DESC>
+    <GROUPS_NEW_FORM_SPREADS>Spreads:</GROUPS_NEW_FORM_SPREADS>
+    <GROUPS_NEW_FORM_MODERATOR>Moderator group:</GROUPS_NEW_FORM_MODERATOR>
+    <GROUPS_NEW_FORM_SUBMIT>Request new group</GROUPS_NEW_FORM_SUBMIT>
+    <GROUPS_NEW_FORM_NAME_REQUIRED>Group name is required</GROUPS_NEW_FORM_NAME_REQUIRED>
+    <GROUPS_NEW_FORM_DESC_REQUIRED>Need a description of the purpose of the group</GROUPS_NEW_FORM_DESC_REQUIRED>
+    <GROUPS_NEW_FORM_SPREAD_UNKNOWN>Spread {{spread}} is unknown</GROUPS_NEW_FORM_SPREAD_UNKNOWN>
+    <GROUPS_NEW_FORM_MOD_REQUIRED>Need a group which can moderate the group</GROUPS_NEW_FORM_MOD_REQUIRED>
 
     <!-- Help pages -->
     <HELP_TITLE>Help</HELP_TITLE>
@@ -426,8 +454,8 @@
         at &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>
     <BOFH_INFO_PERSON_AFFILIATIONS>Your person has the following affiliation(s):</BOFH_INFO_PERSON_AFFILIATIONS>
     <BOFH_INFO_PERSON_AFFILIATION_VALUE>Affiliation in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: 
-        &lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
-        (&lt;dfn title="{{aff_sub_desc}}"&gt;{{aff_sub}}&lt;/dfn&gt;)
+        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt; 
+        (&lt;dfn title="{{status_desc}}"&gt;{{status}}&lt;/dfn&gt;)
         at &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_PERSON_AFFILIATION_VALUE>
     <BOFH_INFO_NAMES>Names:</BOFH_INFO_NAMES>
     <BOFH_INFO_NAME_VALUE>Name registered in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
@@ -441,10 +469,10 @@
     <BOFH_INFO_HOME>home</BOFH_INFO_HOME>
     <BOFH_INFO_SHELL>Shell</BOFH_INFO_SHELL>
     <BOFH_INFO_DFG_NAME>default group</BOFH_INFO_DFG_NAME>
-    <BOFH_INFO_DFG_POSIX_GID>default group id</BOFH_INFO_DFG_POSIX_GID>
+    <BOFH_INFO_DFG_POSIX_GID>Default Group ID</BOFH_INFO_DFG_POSIX_GID>
     <BOFH_INFO_OWNER_DESC>description</BOFH_INFO_OWNER_DESC>
     <BOFH_INFO_HOME_STATUS>home status</BOFH_INFO_HOME_STATUS>
-    <BOFH_INFO_UID>User id</BOFH_INFO_UID>
+    <BOFH_INFO_UID>User ID</BOFH_INFO_UID>
 
     <BOFH_INFO_STEDKODE>stedkode</BOFH_INFO_STEDKODE>
 

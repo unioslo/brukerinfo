@@ -54,6 +54,8 @@
     <MENU_EMAIL_FORWARD>Videresending</MENU_EMAIL_FORWARD>
 
     <MENU_GROUPS>Grupper</MENU_GROUPS>
+    <MENU_GROUPS_>Grupper</MENU_GROUPS_>
+    <MENU_GROUPS_NEW>Ny gruppe</MENU_GROUPS_NEW>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
@@ -105,6 +107,7 @@
     <HOME_SHORTCUTS_SPAM>Angi spaminnstillinger</HOME_SHORTCUTS_SPAM>
     <HOME_SHORTCUTS_TRIPNOTE>Legge inn fraværsmelding</HOME_SHORTCUTS_TRIPNOTE>
     <HOME_SHORTCUTS_MEMBERS>Legge til eller fjerne medlemmer i en gruppe</HOME_SHORTCUTS_MEMBERS>
+    <HOME_SHORTCUTS_GROUP_REQUEST>Søk om en ny gruppe</HOME_SHORTCUTS_GROUP_REQUEST>
 
     <HOME_ABOUT_TITLE>Om Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
@@ -285,8 +288,9 @@
     <EMAIL_FILTER_SUBMIT>Oppdater</EMAIL_FILTER_SUBMIT>
 
     <EMAIL_TRIPNOTE_TITLE>Fraværsmeldinger</EMAIL_TRIPNOTE_TITLE>
-    <EMAIL_TRIPNOTE_INTRO>Fraværsmeldinger er svar som sendes automatisk til e-postmeldinger brukerkontoen din 
-        mottar innenfor en angitt periode. Hver avsender mottar fraværsmeldingen kun én gang. Du finner 
+    <EMAIL_TRIPNOTE_INTRO>Fraværsmeldinger er svar som sendes automatisk til 
+        e-postmeldinger brukerkontoen din mottar innenfor en angitt periode. 
+        Hver avsender mottar fraværsmeldingen kun én gang. Du finner 
         mer informasjon på &lt;a href="http://www.usit.uio.no/it/epost/ferie.html"&gt;USITs side om 
         dette&lt;/a&gt;.</EMAIL_TRIPNOTE_INTRO>
     <EMAIL_TRIPNOTE_NEW_SUCCESS>Ny fraværsmelding er lagt til</EMAIL_TRIPNOTE_NEW_SUCCESS>
@@ -401,6 +405,28 @@
     <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Legg merke til at personer blir her bare brukt i spesielle tilfeller.
         </GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
 
+    <GROUPS_NEW_TITLE>Søk om ny gruppe</GROUPS_NEW_TITLE>
+    <GROUPS_NEW_INTRO>&lt;p&gt;Søk om en ny gruppe til bruk i IT-systemene ved UiO.
+        Søknaden vil bli behandlet av brukeradministrasjonen ved
+        UiO, som vil svare deg via e-post.&lt;/p&gt;
+
+        &lt;p&gt;
+        Før du sender inn skjemaet bør du lese gjennom &lt;a
+        href="http://www.usit.uio.no/it/brukeradministrasjon/grupper/oppretting/"&gt;
+        retningslinjene for oppretting av grupper&lt;/a&gt;.
+        &lt;/p&gt;
+    </GROUPS_NEW_INTRO>
+    <GROUPS_NEW_FORM_NAME>Gruppenavn:</GROUPS_NEW_FORM_NAME>
+    <GROUPS_NEW_FORM_DESC>Beskrivelse:</GROUPS_NEW_FORM_DESC>
+    <GROUPS_NEW_FORM_SPREADS>System gruppen skal vere kjent i:</GROUPS_NEW_FORM_SPREADS>
+    <GROUPS_NEW_FORM_MODERATOR>Moderatorgruppe:</GROUPS_NEW_FORM_MODERATOR>
+    <GROUPS_NEW_FORM_SUBMIT>Søk om ny gruppe</GROUPS_NEW_FORM_SUBMIT>
+    <GROUPS_NEW_FORM_NAME_REQUIRED>Gruppenavn er påkrevd</GROUPS_NEW_FORM_NAME_REQUIRED>
+    <GROUPS_NEW_FORM_DESC_REQUIRED>Trenger en beskrivelse av hva gruppen skal
+        brukes til</GROUPS_NEW_FORM_DESC_REQUIRED>
+    <GROUPS_NEW_FORM_SPREAD_UNKNOWN>Systemet "{{spread}}" er ukjent</GROUPS_NEW_FORM_SPREAD_UNKNOWN>
+    <GROUPS_NEW_FORM_MOD_REQUIRED>Trenger en gruppe som skal vere moderator for
+        gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
 
     <!-- Help pages -->
     <HELP_TITLE>Hjelp</HELP_TITLE>
@@ -442,11 +468,11 @@
 
     <BOFH_INFO_HOME>Hjemmeområde</BOFH_INFO_HOME>
     <BOFH_INFO_SHELL>Shell</BOFH_INFO_SHELL>
-    <BOFH_INFO_DFG_NAME>standardgruppe</BOFH_INFO_DFG_NAME>
-    <BOFH_INFO_DFG_POSIX_GID>standardgruppe-ID</BOFH_INFO_DFG_POSIX_GID>
+    <BOFH_INFO_DFG_NAME>standard filgruppe</BOFH_INFO_DFG_NAME>
+    <BOFH_INFO_DFG_POSIX_GID>standard filgruppens GID</BOFH_INFO_DFG_POSIX_GID>
     <BOFH_INFO_OWNER_DESC>beskrivelse</BOFH_INFO_OWNER_DESC>
     <BOFH_INFO_HOME_STATUS>Status for hjemmeområdet</BOFH_INFO_HOME_STATUS>
-    <BOFH_INFO_UID>Bruker-ID</BOFH_INFO_UID>
+    <BOFH_INFO_UID>Brukers UID</BOFH_INFO_UID>
 
     <BOFH_INFO_STEDKODE>stedkode</BOFH_INFO_STEDKODE>
 
