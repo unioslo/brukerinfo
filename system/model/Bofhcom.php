@@ -590,19 +590,30 @@ class Bofhcom {
     }
 
     /**
-     * Returns the primary account'
+     * Returns persons primary account.
+     * If owner is not a person, the logged on account is returned.
+     * Returns NULL if the person has no user affiliations.
      */
     public function getPrimary() {
 
         if(!self::$ok) return;
         if(!$this->loggedon) return null;
 
-        $acclist = $this->getData('person_list_user_priorities', $this->account);
-        $primary = $acclist[0];
+        try {
+            $acclist = $this->run_command('person_list_user_priorities', $this->account);
+        } catch(Exception $e) {
+            // if owner isn't a person
+            return $this->account;
+        }
+
+        $primary = null;
         foreach($acclist as $acc) {
+            if(!empty($acc['status']) && $acc['status'] == "Expired") continue;
+            if(!$primary) $primary = $acc;
             if($acc['priority'] < $primary['priority']) $primary = $acc;
         }
 
+        if(!$primary) return null;
         return $primary['uname'];
 
     }
