@@ -441,14 +441,15 @@ class Bofhcom {
 
         //caching the persons affiliations
         $affs = array(); 
+        $srcs = array();
         if(!empty($persinfo['affiliation'])) {
             $affs = to_array($persinfo['affiliation']);
-            $persinfo['source_system'] = to_array($persinfo['source_system']);
+            $srcs = to_array($persinfo['source_system']);
         }
         if(!empty($persinfo['affiliation_1'])) {
             //source_system_1 _should_ follow affiliation_1
             array_unshift($affs, $persinfo['affiliation_1']);
-            array_unshift($persinfo['source_system'], $persinfo['source_system_1']);
+            array_unshift($srcs, $persinfo['source_system_1']);
         }
         foreach($affs as $k=>$f) {
             list($afs, $ou) = explode('@', $f);
@@ -461,7 +462,7 @@ class Bofhcom {
                 'status'=>$status,
                 'stedkode'=>$stedkode,
                 'stedkode_desc'=>$stedkode_desc,
-                'source_system'=>$persinfo['source_system'][$k]);
+                'source_system'=>$srcs[$k]);
         }
 
     }

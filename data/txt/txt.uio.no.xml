@@ -29,6 +29,9 @@
     <ERROR_BOFH_ERROR>Feil i kommunikasjonen med databasen. Prøv igjen senere.</ERROR_BOFH_ERROR>
     <ERROR_BOFH_RESTARTED>Databasen har blitt startet på nytt. Oppdater siden, eller logg inn på nytt.</ERROR_BOFH_RESTARTED>
 
+    <!-- Standard notices -->
+    <EMPLOYEES_ONLY>Det er bare ansatte ved UiO som har tilgang til dette.</EMPLOYEES_ONLY>
+
     <!-- The top menu -->
     <LOGOUT>Logg ut</LOGOUT>
 
