@@ -183,17 +183,22 @@ if(!empty($_GET['group'])) {
     unset($group['owner_type']);
     unset($group['opset']);
 
-    $dl->addData(txt('group_members'), array(
-        txt('group_members_groups',  array('number'=>(isset($group['c_group']) ? $group['c_group'] : 0))),
-        txt('group_members_accounts', array('number'=>(isset($group['c_account']) ? $group['c_account'] : 0))),
-        txt('group_members_persons',  array('number'=>(isset($group['c_person']) ? $group['c_person'] : 0)))
-    ));
+    if(!empty($group['members'])) {
+        $dl->addData(txt('group_members'), $group['members']);
+    }
+        
+    //doesn't work for now
+    //$dl->addData(txt('group_members'), array(
+    //    txt('group_members_groups',  array('number'=>(isset($group['c_group']) ? $group['c_group'] : 0))),
+    //    txt('group_members_accounts', array('number'=>(isset($group['c_account']) ? $group['c_account'] : 0))),
+    //    txt('group_members_persons',  array('number'=>(isset($group['c_person']) ? $group['c_person'] : 0)))
+    //));
 
     //getting the number of members (to avoid long listing)
     $total_members = 0;
-    $total_members += (isset($group['c_group']) ? $group['c_group'] : 0);
-    $total_members += (isset($group['c_account']) ? $group['c_account'] : 0);
-    $total_members += (isset($group['c_person']) ? $group['c_person'] : 0);
+    //$total_members += (isset($group['c_group']) ? $group['c_group'] : 0);
+    //$total_members += (isset($group['c_account']) ? $group['c_account'] : 0);
+    //$total_members += (isset($group['c_person']) ? $group['c_person'] : 0);
 
 
     unset($group['c_group']);
