@@ -114,7 +114,7 @@ class View_uio extends View {
         if($is_employee) $menu['groups']['sub'][] = 'new.php';
 
         //returning main menu
-        if(!$sub) {
+        if($sub === null) {
             $main = array();
             foreach($menu as $k=>$v) $main[$k] = $v['link'];
 
