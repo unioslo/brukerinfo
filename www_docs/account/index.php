@@ -170,7 +170,7 @@ function addHelpAffiliations($string) {
 
     global $Bofh;
     $affs = $Bofh->getCache();
-    $affs = $affs['affiliations'];
+    $affs = $affs['affiliation_desc'];
 
     // example of a line:
     // ANSATT@150500 (Informatikk)

@@ -269,8 +269,8 @@ abstract class View {
         header('Content-Type: text/html; charset=' . strtolower(CHARSET));
         header('Content-Language: ' . strtolower($this->language));
 
-        //TODO: from what and where should this be gotten?
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', getlastmod()));
+        // TODO: don't know what to put here as the correct time
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', time()));
 
         if(!$this->cache) {
             //different http tweaks to avoid caching
@@ -279,10 +279,6 @@ abstract class View {
             header('Cache-Control: post-check=0, pre-check=0', FALSE);
             header('Pragma: no-cache');
         }
-
-        return; 
-        //old version below (something to use from here?)
-        
     }
     
     /**

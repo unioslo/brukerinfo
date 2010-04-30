@@ -15,6 +15,8 @@ class BofhForm extends HTML_QuickForm {
     /** The HTML_QuickForm_Renderer_Default for modifying the html output */
     protected $formRenderer;
 
+    /** The token to be used in the forms **/
+    private $secretToken;
 
     // {{{ construct
     /** 
@@ -37,22 +39,122 @@ class BofhForm extends HTML_QuickForm {
         $this->formRenderer->setHeaderTemplate($this->getHeaderTemplate());
         $this->formRenderer->setRequiredNoteTemplate($this->getRequiredNoteTemplate());
 
-        //todo: add some id-check on the form, to make sure only one form has been sent?
-        
+        // add random token to forms, to prevent CSRF
+        $this->updateToken();
+
+        // remove autocompletion from our forms
         if(!$this->getAttribute('autocomplete')) {
             $this->setAttribute('autocomplete', 'off');
         }
 
         //trim all elements
         $this->applyFilter('__ALL__', 'trim');
-
     
     }
 
     //}}}
 
     /**
+     * Produces a semirandom secret token, to be used in forms to prevent cross-site 
+     * request forgery (CSRF).
+     * http://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29
+     *
+     * This could be replaced by Owasps ESAPI for php when that is done.
+     * http://code.google.com/p/owasp-esapi-php/
+     *
+     * Please note that this method only creates a random token, it's not stored 
+     * anywhere.
+     *
+     * @return string   A string containing a random GUID
+     */
+    protected function createToken() {
+
+        // Function gotten from Owasps ESAPI, defaultRandomizer.php, which 
+        // again was gotten from comments found on http://php.net/uniqid
+        // This is an implementation of GUID, but we use it for tokens 
+        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+                mt_rand(0, 65535), mt_rand(0, 65535), // 32 bits for "time_low"
+                mt_rand(0, 65535), // 16 bits for "time_mid"
+                mt_rand(0, 4095),  // 12 bits before the 0100 of (version) 4 for "time_hi_and_version"
+                bindec(substr_replace(sprintf('%016b', mt_rand(0, 65535)), '01', 6, 2)),
+                // 8 bits, the last two of which (positions 6 and 7) are 01, for "clk_seq_hi_res"
+                // (hence, the 2nd hex digit after the 3rd hyphen can only be 1, 5, 9 or d)
+                // 8 bits for "clk_seq_low"
+                mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535) // 48 bits for "node"
+                );  
+    }
+
+    /**
+     * Updates the secret token if it doesn't exist, and adds it to the form.
+     * Please note that the $User object needs to be created before a form is 
+     * created, otherwise the form will not contain CSRF tokens.
+     */
+    protected function updateToken() {
+
+        if (empty($_SESSION)) return;
+
+        // remove old token if not logged on, so the user gets a new token e.g. 
+        // after logon, to prevent people getting hackers sessions
+        global $User;
+        if (empty($User) || !is_a($User, User) || !$User->loggedIn()) {
+            // TODO: this could create problems if a form is created before the 
+            // $User-object is created
+            $_SESSION['bofhform']['secretToken'] = null;
+            unset($_SESSION['bofhform']['secretToken']);
+            return;
+        } 
+        
+        if (empty($_SESSION['bofhform']['secretToken'])) {
+            $_SESSION['bofhform']['secretToken'] = $this->createToken();
+        }
+        $this->secretToken = $_SESSION['bofhform']['secretToken'];
+
+        // add the secret token to the form
+        $eletoken = $this->addElement('hidden', 'token', $this->secretToken);
+    
+    }
+
+    /**
+     * Checks if a given token is correct and returns true or false.
+     *
+     * @param   string  $given_token  The token which is supposed to be correct
+     * @return  boolean true if given token is correct, otherwise false
+     */
+    protected function checkToken($given_token) {
+        return ($given_token === $this->secretToken);
+    }
+
+    /**
+     * Adds some validations to the form, e.g. checking the secret token, before 
+     * passing it to HTML_QuickForms validate method.
+     *
+     * @return  boolean     true if no error found
+     * @throws  HTML_QuickForm_Error
+     */
+    public function validate() {
+
+        if (!$this->isSubmitted()) return false;
+
+        // checks the csrf token before anything else
+        if ($this->secretToken && !$this->checkToken($this->getSubmitValue('token'))) {
+            trigger_error("Possible CSRF attack, secret form token doesn't match!", 
+                                                               E_USER_WARNING);
+
+            // TODO: should $User be called from this object?
+            global $User;
+            $User->logOut();
+            View::forward(URL_LOGON);
+            return false;
+        }
+
+        return parent::validate();
+
+    }
+
+    /**
      * Returns the html-string to output the form (with the correct rendering)
+     *
+     * @return string   A string with the html representation of the form
      */
     public function __toString() {
 
@@ -139,6 +241,7 @@ class BofhForm extends HTML_QuickForm {
         return $ele;
 
     }
+
 
     /// Template texts
     

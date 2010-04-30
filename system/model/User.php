@@ -5,7 +5,7 @@
 // +------------------------------------------------------------------------+
 // |                                                                        |
 // | Login                                                                  |
-// | Different user values would be located in $_SESSION[$session][XXX]	    |
+// | Different user values would be located in $_SESSION[$session][XXX]     |
 // |                                                                        |
 // +------------------------------------------------------------------------+
 
@@ -38,39 +38,44 @@ class User {
     /** 
      * Constructor
      *
-     * @param bool      $forward_if_not     Forwards the user to the login page if not logged in
+     * @param bool $forward  If true, forwards the user to the login page if not logged in
      */
     public function __construct($forward = true) {
 
-        //gets the session data
-        $this->_session_name      = md5($_SERVER['SERVER_NAME'] . 'UIo#&%&' . $_SERVER['SERVER_SIGNATURE']);
-        $this->_session_name_temp = md5('ab@$' . $_SERVER['SERVER_NAME'] . 'UStI@' . $_SERVER['SERVER_SOFTWARE']);
-        $this->_session           = (isset($_SESSION[$this->_session_name]) ? $_SESSION[$this->_session_name] : array());
-        $this->_session_temp      = (isset($_SESSION[$this->_session_name_temp]) ? $_SESSION[$this->_session_name_temp] : array());
+        // Gets the session data
+        // Note that the tags here are just symbolic, to prevent session data 
+        // being written to from somewhere else but this class.
+        $this->_session_name      = md5($_SERVER['SERVER_NAME'] . 'UIo#&%&' . 
+                                        $_SERVER['SERVER_SIGNATURE']);
+        $this->_session_name_temp = md5('ab@$' . $_SERVER['SERVER_NAME'] . 
+                                        'UStI@' . $_SERVER['SERVER_SOFTWARE']);
+        $this->_session           = (isset($_SESSION[$this->_session_name]) ? 
+                                        $_SESSION[$this->_session_name] : 
+                                        array());
+        $this->_session_temp      = (isset($_SESSION[$this->_session_name_temp]) ? 
+                                        $_SESSION[$this->_session_name_temp] : 
+                                        array());
 
-        //makes the connection
+        // Makes the connection
         global $Bofh;
-        if(isset($Bofh)) {
+        if(isset($Bofh) && is_a($Bofh, Bofhcom)) {
             $this->bofhd = $Bofh;
         } else {
             $this->bofhd = new Bofhcom();
         }
 
-        //if not loggeod onto bofhd you're not logged on
+        //if not logged on through bofhd you're not logged on
         if(!$this->bofhd->loggedon()) $this->logOut();
 
         //checks if the system has been locked
         if (LOCKED) {
             $this->logOut('The system has automatically logged you out');
-
-            if($forward) $this->forwardIfNotLoggedIn();
-
-        } else {
-            //checks if everything is ok
-            $this->_construct_control();
-
             if($forward) $this->forwardIfNotLoggedIn();
         }
+
+        //checks if the session is ok
+        $this->_construct_control();
+        if($forward) $this->forwardIfNotLoggedIn();
 
     }
 
@@ -79,13 +84,13 @@ class User {
      */
     public function __destruct() {
 
-        //om alt er tomt lagast heller ingen session-array
-        //if(!$this->_session_name && !$this->_session_temp && !$_SESSION[$this->_session_name] && !$_SESSION[$this->_session_name_temp]) return;
-
         //sends user data to the session
-        $_SESSION[ $this->_session_name ]      = (isset($this->_session) ? $this->_session : null);
-        $_SESSION[ $this->_session_name_temp ] = (isset($this->_session_temp) ? $this->_session_temp : null);
-
+        $_SESSION[$this->_session_name]      = (isset($this->_session) ?
+                                                $this->_session :
+                                                null);
+        $_SESSION[$this->_session_name_temp] = (isset($this->_session_temp) ?
+                                                $this->_session_temp :
+                                                null);
     }
 
 
@@ -129,11 +134,7 @@ class User {
     }
 
     
-
-
-
-
-    /// KONTROLL:
+    /// CONTROL:
     
     /**
      * Checks if the user is logged in or not
@@ -147,7 +148,7 @@ class User {
     }
 
     /**
-     * Forwards the user to logon if not logged in. If allready logged 
+     * Forwards the user to logon if not logged in. If already logged 
      * in: do nothing.
      *
      * @param   String      $message    The message the user gets (gets default if null)

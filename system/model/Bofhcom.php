@@ -68,30 +68,26 @@ class Bofhcom {
 
         //XML-RPC2:
 
+        $opts = array();
+
         //sets what encoding is used, bofhd decodes utf-8 to its own (iso-8859-1),
         //but it does not encode it to utf-8 when sending data.
-        $opt['encoding'] = strtolower(CHARSET);
+        $opts['encoding'] = strtolower(CHARSET);
 
         //debugging prints out everything sent and received
-        //$opt['debug'] = true;
+        //$opts['debug'] = true;
 
         //TODO: needs to verify the server (bofhd) (have pem-certificate)
-        $opt['sslverify'] = false; //todo: set this to true if the check works...
+        $opts['sslverify'] = false; //todo: set this to true if the check works...
 
-        //TODO: test if the ca-file is checked and works...
+        //TODO: This doesn't work for now, as xmlrpc2 doesn't support these settings
         $default_opts = array(
               'ssl'=>array(
                   'cafile'=>'/www/var/virtual/no.uio.w3utv-ws01_443/htdocs/cerebrum/wofh/system/model/pem/w3cacert.pem'
               )
           );
-        //$c = stream_context_set_default($default_opts);
-        //var_dump($c);
-        //$d = stream_context_get_default();
-        //print_r(stream_context_get_options(reasource...));
-        //stream_context_set_option  ( resource $stream_or_context  , string $wrapper  , string $option  , mixed $value  )
-        //stream_context_set_option ( resource $stream_or_context , array $options )
 
-        $this->xmlrpc = XML_RPC2_Client::create(BOFH_URL, $opt);
+        $this->xmlrpc = XML_RPC2_Client::create(BOFH_URL, $opts);
 
         if(!empty($_SESSION['bofhcom']['secret'])) {
 

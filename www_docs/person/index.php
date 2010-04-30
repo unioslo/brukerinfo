@@ -25,9 +25,8 @@ if(!empty($cache['affiliations'])) {
     foreach($cache['affiliations'] as $key=>$aff) {
         //adding descriptions
         $aff['source_system_desc'] = $source_system_descs[$aff['source_system']];
-        $aff['affiliation_desc'] =   $aff_descs[$aff['affiliation']];
-        $aff['status_desc'] =        $aff_descs[$aff['affiliation'].'/'.$aff['status']];
-
+        $aff['affiliation_desc']   = $aff_descs[$aff['affiliation']];
+        $aff['status_desc']        = $aff_descs[$aff['affiliation'].'/'.$aff['status']];
         $affs[] = txt('bofh_info_person_affiliation_value', $aff);
     }
     $dl->addData(txt('bofh_info_person_affiliations'), View::createElement('ul', $affs));

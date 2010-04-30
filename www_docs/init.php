@@ -54,8 +54,8 @@ class Init {
         } // the locking is done by User and View
 
         if($session) {
-            // sets the session cookie to only work in subpages of brukerinfo (and not all *.uio.no/*)
-            // TODO: this can be removed when apaches config is updated with the same
+            // sets the session cookie to only work in subpages of brukerinfo
+            // (and not all in e.g. *.uio.no/*)
             session_set_cookie_params(0, HTML_PRE, $_SERVER['SERVER_NAME'], TRUE, TRUE);
             session_name('brkrnfid');
             session_start();
@@ -95,23 +95,19 @@ class Init {
             if(in_array($chosen, $langs)) {
                 $_SESSION['chosenLang'] = $chosen;
                 setcookie('chosenLang', $chosen, time()+60*60*24*30, HTML_PRE);
+                return true;
             }
-
-            //todo: check if this works... or if it is necessary at all
-            //View::forward($_SERVER['HTTP_REFERER']); //todo: create internal history-array instead?
-            return true;
         }
 
         if(!empty($_SESSION['chosenLang'])) return true;
 
         //the cookie can not be trusted as valid
         if(!empty($_COOKIE['chosenLang']) && in_array($_COOKIE['chosenLang'], $langs)) {
+
             $_SESSION['chosenLang'] = $_COOKIE['chosenLang'];
-
-            //todo: forward here? or is the session value stored now?
             return true;
-        }
 
+        }
 
         //if neither the session nor the cookie has some logic value
         if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
@@ -122,7 +118,6 @@ class Init {
         // at last, when nothing else is possible
         $_SESSION['chosenLang'] = DEFAULT_LANG;
     }
-
 
 }
 
@@ -140,7 +135,7 @@ class Init {
  * has to be unique (though the model dir has priority). If the 
  * classname has a '_', it is replaced to a subdir '/'.
  *
- * @param string $classname 	The class-name
+ * @param string $classname     The class-name
  */
 function __autoload($class) {
 
