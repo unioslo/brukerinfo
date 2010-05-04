@@ -287,7 +287,18 @@ abstract class View {
      * @param String    $to     The relative url to go to. If starting with /, it skipc the HTML_PRE.
      * @param String    $msg    If the forward also will output a message
      */
-    static function forward($to, $msg=null, $msgType = self::MSG_STANDARD) {
+    static function forward($to, $msg=null, $msgType=self::MSG_STANDARD, $cache=false) {
+
+        // TODO: move these to a static function?
+        header('Content-Type: text/html; charset=' . strtolower(CHARSET));
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', time()));
+        if (!$cache) {
+            header('Expires: ' . gmdate('D, d M Y H:i:s', time()-3600*7) . ' GMT');
+            header('Cache-Control: no-store, no-cache, must-revalidate');
+            header('Cache-Control: post-check=0, pre-check=0', FALSE);
+            header('Pragma: no-cache');
+        }
+
 
         //TODO: make this smarter - settings in config or anything...
         $protocol = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://');
