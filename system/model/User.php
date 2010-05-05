@@ -205,10 +205,17 @@ class User {
                 $this->_session['loggedon'] = time();
                 $this->_session_temp['attempts'] = 0; 
 
-                $url = (!empty($this->_session_temp['forward_from']) ? 
-                    $this->_session_temp['forward_from'] : URL_LOGGED_IN);
-
-                $this->_session_temp['forward_from'] = null;
+                $url = URL_LOGGED_IN;
+                if (!empty($this->_session_temp['forward_from'])) {
+                    // prevent being sent back to logon page
+                    if ($this->_session_temp['forward_from'] == HTML_PRE.'/'.URL_LOGON ||
+                            basename($this->_session_temp['forward_from']) == URL_LOGON) {
+                        trigger_error("forward_from matches logon url");
+                    } else {
+                        $url = $this->_session_temp['forward_from'];
+                    }
+                    $this->_session_temp['forward_from'] = null;
+                }
 
                 View::addMessage(txt('LOGON_SUCCESS', array(
                     'username' => $this->_session['username'],
