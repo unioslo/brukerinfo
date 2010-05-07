@@ -54,10 +54,17 @@ class Init {
         } // the locking is done by User and View
 
         if($session) {
+            // if html_pre is '', session_set_cookie_params considers it to 
+            // false, and defaults the path to be what directory you are in. 
+            // This would create problems if you enter the site in a weird 
+            // directory, e.g. //
+            $html_pre = HTML_PRE;
+            if (!$html_pre) $html_pre = '/';
+
             // sets the session cookie to only work in subpages of brukerinfo
             // (and not all in e.g. *.uio.no/*)
-            session_set_cookie_params(0, HTML_PRE, $_SERVER['SERVER_NAME'], TRUE, TRUE);
-            session_name('brkrnfid');
+            session_set_cookie_params(0, $html_pre, $_SERVER['SERVER_NAME'], TRUE, TRUE);
+            session_name('brukerinfoid');
             session_start();
         }
 
