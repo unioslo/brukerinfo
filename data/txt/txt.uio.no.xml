@@ -66,15 +66,17 @@
     <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen 
         som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
         Hvis du har behov for mer informasjon eller trenger hjelp til å bruke tjenesten, kan du gå til 
-        &lt;a href="http://www.usit.uio.no/it/brukeradministrasjon/"&gt;hjelpesidene&lt;/a&gt;.&lt;/p&gt;
+        &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/"&gt;hjelpesidene&lt;/a&gt;.&lt;/p&gt;
         &lt;p&gt;Hvis du har flere enn ett brukernavn, logger du inn med brukernavnet og passordet
         til den brukerkontoen du vil se eller endre informasjonen for.&lt;/p&gt;
         </LOGON_INTRO>
     <LOGON_OUTRO>
-        &lt;p&gt;Av sikkerhetshensyn blir brukernavn og passord du skriver inn på denne siden, 
-        kryptert når det overføres til tjeneren. Vanligvis bør du ikke skrive inn brukernavn og 
-        passord på en webside, men du kan du lese om hvorfor du faktisk kan gjøre det her, 
-        på &lt;a href="https://www.uio.no"&gt;denne websiden&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;Av sikkerhetshensyn blir brukernavn og passord du skriver inn
+        på denne siden kryptert når det overføres til tjeneren. Vanligvis bør du
+        ikke skrive inn brukernavn og passord på en webside, men du kan du lese
+        om hvorfor du faktisk kan gjøre det her, på &lt;a
+        href="https://uio.no/tjenester/it/sikkerhet/mer-om/trygt-oppgi-passord.html"&gt;denne
+        websiden&lt;/a&gt;.&lt;/p&gt;
         </LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Brukernavn:</LOGON_FORM_USERNAME>
@@ -116,15 +118,19 @@
     <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
         er tilknyttet den elektroniske identiteten din ved Universitetet i Oslo. Hvis du trenger mer 
         informasjon eller hjelp i forbindelse med datasystemene ved UiO, kan du gå til
-        &lt;a href="http://www.usit.uio.no/it/"&gt;webstedet for IT-tjenester ved UiO&lt;/a&gt;.</HOME_ABOUT>
+        &lt;a href="https://uio.no/tjenester/it/"&gt;webstedet for IT-tjenester ved UiO&lt;/a&gt;.</HOME_ABOUT>
 
     <!-- Person page texts -->
     <PERSON_TITLE>Personinformasjon</PERSON_TITLE>
-    <PERSON_HOWTO_CHANGE_FS>Hvis det er feil i informasjon fra FS (Felles Studentsystem), kan du kontakte 
-        &lt;a href="http://www.uio.no/studier/infotjenester/"&gt;studentkontoret for din enhet&lt;/a&gt;.
+    <PERSON_HOWTO_CHANGE_FS>
+        Hvis det er feil i informasjon fra FS (Felles Studentsystem), kan du
+        kontakte &lt;a href="https://uio.no/studier/kontakt/"&gt;studentkontoret
+        for din enhet&lt;/a&gt;.
       </PERSON_HOWTO_CHANGE_FS>
-      <PERSON_HOWTO_CHANGE_SAP>Hvis det er feil i informasjon fra SAP, kan du kontakte &lt;a
-          href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.</PERSON_HOWTO_CHANGE_SAP>
+      <PERSON_HOWTO_CHANGE_SAP>Hvis det er feil i informasjon fra SAP, kan du
+          kontakte &lt;a
+          href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
+      </PERSON_HOWTO_CHANGE_SAP>
 
     <!-- Account text -->
     <ACCOUNT_TITLE>Denne brukerkontoen</ACCOUNT_TITLE>
@@ -142,11 +148,15 @@
     <ACCOUNT_OTHER_EXPIRE_NOT_SET>(ikke angitt)</ACCOUNT_OTHER_EXPIRE_NOT_SET>
 
     <ACCOUNT_PASSWORD_TITLE>Skift passord</ACCOUNT_PASSWORD_TITLE>
-    <ACCOUNT_PASSWORD_INTRO>&lt;p&gt;Skift passordet til brukerkontoen du er logget inn med brukernavnet og 
-        passordet til. Merk deg at passordet er &lt;em&gt;personlig&lt;/em&gt; og at du &lt;em&gt;aldri&lt;/em&gt;
-        skal oppgi det til andre, heller ikke IT-ansatte ved UiO.&lt;/p&gt;
-        &lt;p&gt;Dette er et sammendrag av kravene. Hvis du er i tvil, kan du lese &lt;a 
-        href="http://www.usit.uio.no/it/passord/ansattpassord.html#krav"&gt;alle krav til passord&lt;/a&gt;.&lt;/p&gt;
+    <ACCOUNT_PASSWORD_INTRO>
+        &lt;p&gt;Skift passordet til brukerkontoen du er logget inn med
+        brukernavnet og passordet til. Merk deg at passordet er
+        &lt;em&gt;personlig&lt;/em&gt; og at du &lt;em&gt;aldri&lt;/em&gt; skal
+        oppgi det til andre, heller ikke IT-ansatte ved UiO.&lt;/p&gt;
+        &lt;p&gt;Dette er et sammendrag av kravene. Hvis du er i tvil, kan du
+        lese &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/passord.html"&gt;alle
+        krav til passord&lt;/a&gt;.&lt;/p&gt;
         &lt;p&gt;Et passord &lt;strong&gt;må&lt;/strong&gt;:
         &lt;ul&gt;
             &lt;li&gt;være minst &lt;strong&gt;8 tegn&lt;/strong&gt; langt&lt;/li&gt;
@@ -177,8 +187,9 @@
     <ACCOUNT_PASSWORD_ERROR_MATCH>Det nye passordet og bekreftelsen av det nye passordet er ikke like.</ACCOUNT_PASSWORD_ERROR_MATCH>
     <ACCOUNT_PASSWORD_SUCCESS>Passordet ditt er skiftet.</ACCOUNT_PASSWORD_SUCCESS>
 
-    <ACCOUNT_PASSWORD_MOREINFO>Vis mer informasjon om &lt;a href="http://www.usit.uio.no/it/passord/"&gt;brukernavn
-        og passord ved UiO&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
+    <ACCOUNT_PASSWORD_MOREINFO>Vis mer informasjon om &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/"&gt;brukernavn og
+        passord ved UiO&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
 
     <ACCOUNT_PRIMARY_TITLE>Gjør brukerkontoen til primærkonto</ACCOUNT_PRIMARY_TITLE>
     <ACCOUNT_PRIMARY_INTRO>Hvis du har flere brukerkontoer ved UiO, er én av brukerkontoene primærkontoen din. Merk deg følgende:
@@ -201,11 +212,12 @@
     <PRINTING_TABLE_TOTAL>Totalt antall tilgjengelige utskrifter:</PRINTING_TABLE_TOTAL>
 
     <PRINTING_MOREINFO_PAY>Hvis du skal betale for flere utskrifter, logger du inn på 
-        &lt;a href="http://studweb.uio.no"&gt;StudentWeb ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
+        &lt;a href="https://studweb.uio.no"&gt;StudentWeb ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
     <PRINTING_MOREINFO_PRICES>Hvis du vil vite mer om utskriftspriser, kan du lese om 
-        &lt;a href="http://www.uio.no/studier/studentweb/kopiavgift.html"&gt;kopiavgiften ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
+        &lt;a href="https://uio.no/tjenester/it/utskrift/hjelp/utskriftsbetaling.html"&gt;
+        kopiavgiften ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
     <PRINTING_MOREINFO_PRINTING>Hvis du vil vite mer om utskrift og skrivere, kan du gå til siden for 
-        &lt;a href="http://usit.uio.no/it/student/utskrift.html"&gt;utskriftstjenester ved UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
+        &lt;a href="https://uio.no/tjenester/it/utskrift/"&gt;utskriftstjenester ved UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
 
 
     <PRINTING_HISTORY_TITLE>Logg over utskriftskvote</PRINTING_HISTORY_TITLE>
@@ -245,11 +257,12 @@
     <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>
 
     <EMAIL_INFO_MORE_INFO>Hvis du vil vite mer om e-postsystemet ved UiO, kan du lese 
-        &lt;a href="http://www.usit.uio.no/it/epost/"&gt;hjelpesidene for e-post&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+        &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;hjelpesidene for e-post&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
 
     <EMAIL_SPAM_TITLE>Spaminnstillinger</EMAIL_SPAM_TITLE>
     <EMAIL_SPAM_INTRO>Disse innstillingene brukes på e-posten før den når innboksen din.
-        Hvis du vil vite mer, kan du lese &lt;a href="http://www.usit.uio.no/it/epost/spamfiltrering.html"&gt;USITs
+        Hvis du vil vite mer, kan du lese &lt;a
+        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/spam/"&gt;USITs
         side om spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
 
     <EMAIL_SPAM_ACTION_DROPSPAM>Avvis meldinger merket som spam</EMAIL_SPAM_ACTION_DROPSPAM>
@@ -268,20 +281,24 @@
     <EMAIL_SPAM_RULE_ACTION_REQUIRED>Velg hva du vil gjøre med spam</EMAIL_SPAM_RULE_ACTION_REQUIRED>
 
     <EMAIL_FILTER_TITLE>Flere spaminnstillinger</EMAIL_FILTER_TITLE>
-    <EMAIL_FILTER_INTRO>Dette er verktøy du kan bruke til å redusere mengden spam enda mer.
-        Husk også å angi standardinnstillingene mot spam. Hvis du vil vite mer, kan du lese &lt;a
-        href="http://www.usit.uio.no/it/epost/spamfiltrering.html"&gt;USITs side om spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
+    <EMAIL_FILTER_INTRO>Dette er verktøy du kan bruke til å redusere mengden
+        spam enda mer.  Husk også å angi standardinnstillingene mot spam. Hvis
+        du vil vite mer, kan du lese &lt;a
+        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/spam/"&gt;
+        USITs side om spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
     <EMAIL_FILTER_UNKNOWN>Ukjent innstilling</EMAIL_FILTER_UNKNOWN>
     <EMAIL_FILTER_UPDATE_SUCCESS>De ekstra spaminnstillingene er oppdatert</EMAIL_FILTER_UPDATE_SUCCESS>
     <EMAIL_FILTER_DATA_GREYLIST>Grålisting</EMAIL_FILTER_DATA_GREYLIST>
-    <EMAIL_FILTER_DATA_GREYLIST_DESC>Beskrivelse: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
-        Du finner informasjon om dette på &lt;a 
-        href="http://www.usit.uio.no/it/epost/graalisting.html"&gt;USITs side om grålisting&lt;/a&gt;.
+    <EMAIL_FILTER_DATA_GREYLIST_DESC>Beskrivelse:
+        "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt; Du finner informasjon
+        om dette på &lt;a
+        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/graalisting/"&gt;
+        USITs side om grålisting&lt;/a&gt;.
       </EMAIL_FILTER_DATA_GREYLIST_DESC>
     <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
     <EMAIL_FILTER_DATA_UIOONLY_DESC>Beskrivelse: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
         Du finner informasjon om dette på &lt;a 
-        href="http://www.usit.uio.no/it/epost/uioonly.html"&gt;USITs side om UiOonly&lt;/a&gt;.
+        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/uioonly/"&gt;USITs side om UiOonly&lt;/a&gt;.
       </EMAIL_FILTER_DATA_UIOONLY_DESC>
       <EMAIL_FILTER_ENABLE>Aktiver</EMAIL_FILTER_ENABLE>
       <EMAIL_FILTER_DISABLE>Deaktiver</EMAIL_FILTER_DISABLE>
@@ -291,11 +308,12 @@
     <EMAIL_FILTER_SUBMIT>Oppdater</EMAIL_FILTER_SUBMIT>
 
     <EMAIL_TRIPNOTE_TITLE>Fraværsmeldinger</EMAIL_TRIPNOTE_TITLE>
-    <EMAIL_TRIPNOTE_INTRO>Fraværsmeldinger er svar som sendes automatisk til 
-        e-postmeldinger brukerkontoen din mottar innenfor en angitt periode. 
-        Hver avsender mottar fraværsmeldingen kun én gang. Du finner 
-        mer informasjon på &lt;a href="http://www.usit.uio.no/it/epost/ferie.html"&gt;USITs side om 
-        dette&lt;/a&gt;.</EMAIL_TRIPNOTE_INTRO>
+    <EMAIL_TRIPNOTE_INTRO>Fraværsmeldinger er svar som sendes automatisk til
+        e-postmeldinger brukerkontoen din mottar innenfor en angitt periode.
+        Hver avsender mottar fraværsmeldingen kun én gang. Du finner mer
+        informasjon på &lt;a
+        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/fravarsmelding/"&gt;
+        USITs side om fraværsmeldinger&lt;/a&gt;.</EMAIL_TRIPNOTE_INTRO>
     <EMAIL_TRIPNOTE_NEW_SUCCESS>Ny fraværsmelding er lagt til</EMAIL_TRIPNOTE_NEW_SUCCESS>
 
     <EMAIL_TRIPNOTE_ACTIVE_TITLE>Aktive fraværsmeldinger</EMAIL_TRIPNOTE_ACTIVE_TITLE>
@@ -315,9 +333,11 @@
     <EMAIL_TRIPNOTE_DELETE_SUBMIT>Bekreft sletting</EMAIL_TRIPNOTE_DELETE_SUBMIT>
 
     <EMAIL_FORWARD_TITLE>Videresending</EMAIL_FORWARD_TITLE>
-    <EMAIL_FORWARD_INTRO>Du kan videresende all e-post som kommer til brukerkontoen din, til en eller flere andre adresser. 
-        Merk deg at dette av sikkerhetshensyn ikke anbefales. Du finner mer informasjon på &lt;a
-        href="http://www.usit.uio.no/it/epost/ferie.html"&gt;USITs side om videresending&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
+    <EMAIL_FORWARD_INTRO>Du kan videresende all e-post som kommer til
+        brukerkontoen din, til en eller flere andre adresser.  Merk deg at dette
+        av sikkerhetshensyn ikke anbefales. Du finner mer informasjon på &lt;a
+        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/fravarsmelding/"&gt;
+        USITs side om videresending&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Behold kopi</EMAIL_FORWARD_LOCAL>
     <EMAIL_FORWARD_NEW_TITLE>Opprett regel for videresending</EMAIL_FORWARD_NEW_TITLE>
     <EMAIL_FORWARD_NEW_OK>Du har opprettet en ny regel for videresending. Det tar vanligvis opptil 2 timer 
@@ -349,7 +369,7 @@
         href="groups/personal.php"&gt;personlig gruppe&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
     <GROUPS_TOO_MANY>Du er moderator for svært mange grupper, så visningen vil ta for lang tid. 
         Bruk kommandolinjegrensesnittet &lt;a
-        href="http://www.usit.uio.no/it/brukeradministrasjon/bofh/"&gt;jbofh&lt;/a&gt; i stedet.</GROUPS_TOO_MANY>
+        href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt; i stedet.</GROUPS_TOO_MANY>
     <GROUPS_GROUP_UNKNOWN>Kunne ikke finne angitt gruppe</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Grupper du kan moderere</GROUPS_MODERATIVE_TITLE>
     <GROUPS_OTHERS_TITLE>Dine gruppemedlemskap</GROUPS_OTHERS_TITLE>
@@ -415,7 +435,7 @@
 
         &lt;p&gt;
         Før du sender inn skjemaet bør du lese gjennom &lt;a
-        href="http://www.usit.uio.no/it/brukeradministrasjon/grupper/oppretting/"&gt;
+        href="https://uio.no/tjenester/it/brukernavn-passord/brukeradministrasjon/hjelp/grupper/oppretting/"&gt;
         retningslinjene for oppretting av grupper&lt;/a&gt;.
         &lt;/p&gt;
     </GROUPS_NEW_INTRO>
@@ -433,7 +453,7 @@
 
     <!-- Help pages -->
     <HELP_TITLE>Hjelp</HELP_TITLE>
-    <HELP_LINK>http://www.usit.uio.no/it/brukeradministrasjon/brukerinfo/</HELP_LINK>
+    <HELP_LINK>https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/</HELP_LINK>
 
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
