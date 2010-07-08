@@ -1,4 +1,21 @@
 <?php
+# Copyright 2009, 2010 University of Oslo, Norway
+# 
+# This file is part of Cerebrum.
+# 
+# Cerebrum is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# Cerebrum is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+
 require_once '../init.php';
 $Init = new Init();
 $User = new User();
@@ -52,7 +69,7 @@ if(isset($primary['forward'])) {
 // spam level
 if(isset($primary['spam_level'])) {
     //getting the translated description
-    if(Text::exists('email_spam_level_'.$primary['spam_level'])) {
+    if(Text::exists('email_spam_level_'.$primary['spam_level'], $View->getLang())) {
         $primary['spam_level_desc'] = txt('email_spam_level_'.$primary['spam_level']);
     }
 
@@ -64,7 +81,7 @@ if(isset($primary['spam_level'])) {
 // spam action
 if(isset($primary['spam_action'])) {
     //getting the translated description
-    if(Text::exists('email_spam_action_'.$primary['spam_action'])) {
+    if(Text::exists('email_spam_action_'.$primary['spam_action'], $View->getLang())) {
         $primary['spam_action_desc'] = txt('email_spam_action_'.$primary['spam_action']);
     }
     $prilist->addData(txt('email_info_spam_action'), 

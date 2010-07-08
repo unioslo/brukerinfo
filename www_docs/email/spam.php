@@ -1,4 +1,21 @@
 <?php
+# Copyright 2009, 2010 University of Oslo, Norway
+#
+# This file is part of Cerebrum.
+#
+# Cerebrum is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Cerebrum is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+
 require_once '../init.php';
 $Init = new Init();
 $User = new User();
@@ -37,7 +54,7 @@ foreach($sp_levels as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_level_'.$v['code_str'];
 
-    if(Text::exists($txt_name, true)) {
+    if(Text::exists($txt_name, $View->getLang(), true)) {
         $v['description'] = txt($txt_name);
     }
 
@@ -52,7 +69,7 @@ foreach($sp_actions as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_action_'.$v['code_str'];
 
-    if(Text::exists($txt_name, true)) {
+    if(Text::exists($txt_name, $View->getLang(), true)) {
         $v['description'] = txt($txt_name);
     }
 
@@ -62,8 +79,8 @@ foreach($sp_actions as $v) {
 $form->addGroup($actions, 'spam_action', txt('email_spam_form_action'), "<br>\n", false);
 
 $form->setDefaults(array(
-    'spam_level' =>array('level'=>$def_level),
-    'spam_action'=>array('action'=>$def_action)
+    'level' =>$def_level,
+    'action'=>$def_action
 ));
 //todo: what to do if def_level and def_action is null?
 //      set defaults to no_filter and noaction? (will be hardcoded then...)
@@ -215,7 +232,7 @@ function getSetLevelAction() {
  */
 function availableFilters() {
 
-    global $Bofh;
+    global $Bofh, $View;
 
     $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
 
@@ -228,13 +245,13 @@ function availableFilters() {
 
         $filters[$id]['name'] = $id;
         //looking for a better name
-        if(Text::exists($txtkey_name)) {
+        if(Text::exists($txtkey_name, $View->getLang())) {
             $filters[$id]['name'] = txt($txtkey_name);
         }
 
         $filters[$id]['desc'] = $f['description'];
         //looking for a better description
-        if(Text::exists($txtkey_desc)) {
+        if(Text::exists($txtkey_desc, $View->getLang())) {
             $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
         }
     }

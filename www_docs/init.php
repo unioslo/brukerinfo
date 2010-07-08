@@ -1,46 +1,90 @@
 <?php
-//   Init
-// +------------------------------------------------------------------------+
-// | PHP version 5                                                          |
-// +------------------------------------------------------------------------+
-// |                                                                        |
-// | This file loads the config, defines some basic functions, and gets     |
-// | things going.                                                          |
-// |                                                                        |
-// +------------------------------------------------------------------------+
+# Copyright 2009, 2010 University of Oslo, Norway
+#
+# This file is part of Cerebrum.
+#
+# Cerebrum is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Cerebrum is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-/// Action
-//  Pages should include the following line(s):
-//
-//  $init = new Init();
-//  or 
-//  $init = new Init(false);
-//  which disables the session (for logged out, static pages)
-//
+/**
+ * This is the file for setup, and where things get kick-started.
+ *
+ * It requires use of InitBase from the common library, which has to be 
+ * included by either adding a require_once with an absolute path here, creating 
+ * a symlink from InitBase.php to www_docs/InitBase.php, or update phps 
+ * include_path with our phplib.
+ *
+ * All pages under www_docs should start with the following line:
+ *
+ *  $init = new Init();
+ *
+ * or 
+ *
+ *  $init = new Init(false);
+ *
+ * which disables the session for static pages.
+ *
+ */
+
+# Try to get InitBase
+# Check if the include_path links to the InitBase' directory:
+if (!@include_once('InitBase.php')) {
+    # Check if it's symlinked to from www_docs:
+    if(!@include_once(dirname(__FILE__) . '/InitBase.php')) {
+        # Last solution: Preload the settings and include system directory:
+        include_once(dirname(__FILE__) . '/config.php');
+        require_once(LINK_LIB . '/controller/InitBase.php');
+    }
+}
+
+
+
+# This is especially for Brukerinfo
+
 
 // the page can only work in https!
 // this will hopefully not be seen, as the server is automatic resending users to https
-if($_SERVER['HTTPS'] != 'on') {
+if($_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
     trigger_error('Someone got to an unsecure page, died badly. Wrong setup in apache?', E_USER_WARNING);
     die('This page will only work in https mode, check your url.');
 }
 
-class Init {
+class Init extends InitBase {
 
     /**
-     * __construct
-     * Starts up, gathers config and make some action on the site
+     * Constructor
+     * Starts up, gathers config and make some action on the site.
      *
      * @param   boolean     $session   If session_start() should be called or not
      */
     public function __construct( $session = true ) {
 
-        // Getting the configs (has to in the same dir as this file)
+        // Getting the configs (which has to be in the same dir as this file)
         require_once(dirname(__FILE__) . '/config.php');
+
+        self::$autoload_dirs = array();
+        foreach(array('controller', 'model', 'view') as $d) {
+            self::$autoload_dirs[] = LINK_SYSTEM . "/$d";
+            self::$autoload_dirs[] = LINK_LIB . "/$d";
+        }
+
+        parent::__construct();
+
+        // TODO: move most of the rest to View (and other classes):
+
 
         // Headerdata (may be overriden by View.inc, but is nice for viewing errors)
         header('Content-Type: text/html; charset=' . strtolower(CHARSET) );
-
         // Security tag, preventing the site from popping up in iframes
         // Does for now only work in IE8 and Firefox with NoScript. 
         // http://hackademix.net/2009/01/29/x-frame-options-in-firefox/
@@ -91,80 +135,50 @@ class Init {
      * If neither of those is set, the language is gotten from the http-parameter
      * ACCEPT_LANGUAGE. This is done by Text::parseAcceptLanguage()
      */
-    private function language() {
+    protected function language() {
 
-        $langs = array_keys(Text::getAvailableLangs());
+        Text::setInstitution(INST);
+        Text::setLocation(LINK_DATA . '/txt/');
+        Text::setDefaultLanguage(DEFAULT_LANG);
 
-        if(!empty($_GET['chooseLang'])) {
+        $langs = array_keys(Text::getAvailableLanguages());
 
-            $chosen = trim($_GET['chooseLang']);
-
-            if(in_array($chosen, $langs)) {
-                $_SESSION['chosenLang'] = $chosen;
-                setcookie('chosenLang', $chosen, time()+60*60*24*30, HTML_PRE);
-                return true;
-            }
-        }
-
-        if(!empty($_SESSION['chosenLang'])) return true;
-
-        //the cookie can not be trusted as valid
-        if(!empty($_COOKIE['chosenLang']) && in_array($_COOKIE['chosenLang'], $langs)) {
-
+        if (!empty($_GET['chooseLang']) && in_array($_GET['chooseLang'], $langs)) {
+            $chosen = $_GET['chooseLang'];
+            $_SESSION['chosenLang'] = $chosen;
+            setcookie('chosenLang', $chosen, time()+60*60*24*30, HTML_PRE);
+        } elseif (!empty($_SESSION['chosenLang'])) {
+        } elseif (!empty($_COOKIE['chosenLang']) && 
+                                    in_array($_COOKIE['chosenLang'], $langs)) {
             $_SESSION['chosenLang'] = $_COOKIE['chosenLang'];
-            return true;
-
+        } elseif (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            $accept_langs = Text::parseAcceptLanguage($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            foreach($accept_langs as $l) {
+                if (in_array($l, $langs)) {
+                    $_SESSION['chosenLang'] = $l;
+                    break;
+                }
+            }
+        } else {
+            // at last, when nothing else is possible
+            $_SESSION['chosenLang'] = DEFAULT_LANG;
         }
+    }
 
-        //if neither the session nor the cookie has some logic value
-        if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-            $_SESSION['chosenLang'] = Text::parseAcceptLanguage($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-            return true;
-        }
+    /**
+     * Returns a View object, for the html output. This method is returning the 
+     * object according to the given institution.
+     */
+    public function getView() {
 
-        // at last, when nothing else is possible
-        $_SESSION['chosenLang'] = DEFAULT_LANG;
+        if (!$this->view) $this->view = new View();
+        return $this->view;
+
     }
 
 }
 
 
-
-/**
- * __autoload
- * Autoloads classes, normally with $object = new Classname()
- *
- * First is the include_path tried (with include_once), before
- * a local search.
- *
- * The local classes are located different places. There are two 
- * main directories: /system/view and /system/model, and class names
- * has to be unique (though the model dir has priority). If the 
- * classname has a '_', it is replaced to a subdir '/'.
- *
- * @param string $classname     The class-name
- */
-function __autoload($class) {
-
-    $class = str_replace('_', '/', $class);
-
-    //first, try using include_path (Pear)
-    if(@include_once($class.'.php')) return true;
-
-    //local classes
-    $link = LINK_SYSTEM . '/model/' . $class . '.php';
-    if(!is_file($link)) $link = LINK_SYSTEM . '/view/' . $class . '.php';
-    if(!is_file($link)) return false;
-
-
-    ob_start(); //prevents output
-    require_once($link);
-    if($tmp = ob_get_contents()) trigger_error('The class "'.$link.'"), made unsuspected output: "' . $tmp . '"', E_USER_WARNING);
-    ob_end_clean();
-
-    return true;
-
-}
 
 
 /** 

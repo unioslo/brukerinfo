@@ -1,15 +1,25 @@
 <?php
-//   VIEW.UIO
-// +------------------------------------------------------------------------+
-// | PHP version 5                                                          |
-// +------------------------------------------------------------------------+
-// | Authors: Joakim S. Hovlandsvåg <joakim.hovlandsvag@gmail.com>          |
-// +------------------------------------------------------------------------+
-// |                                                                        |
-// | The UiO-specific design.                                               |
-// |                                                                        |
-// +------------------------------------------------------------------------+
+# Copyright 2009, 2010 University of Oslo, Norway
+# 
+# This file is part of Cerebrum.
+# 
+# Cerebrum is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# Cerebrum is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
+
+/**
+ * The UiO specific design.
+ */
 class View_uio extends View {
 
     /** The name of the editor of the site */
@@ -203,7 +213,7 @@ class View_uio extends View {
         echo '<div id="headtitle"><a href="">'.txt('header')."</a></div>\n";
 
         echo '<ul id="languages">';
-        foreach(Text::getAvailableLangs() as $l=>$desc) {
+        foreach(Text::getAvailableLanguages() as $l=>$desc) {
             if($l == $this->getLang()) continue;
             $desc = ucfirst($desc);
             echo "<li><a href=\"{$_SERVER['PHP_SELF']}?chooseLang=$l\">$desc</a></li>\n";

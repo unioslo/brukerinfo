@@ -1,22 +1,31 @@
 <?php
-//   VIEW
-// +------------------------------------------------------------------------+
-// | PHP version 5                                                          |
-// +------------------------------------------------------------------------+
-// | Authors: Joakim S. Hovlandsvåg <joakim.hovlandsvag@gmail.com>          |
-// +------------------------------------------------------------------------+
-// |                                                                        |
-// | The superclass for making pages in html                                |
-// | You have to make a subclass of this one, so each institution get their |
-// | own design.                                                            |
-// |                                                                        |
-// | View->start() sends out the first html (like <head>), and end() is     |
-// | automatically called by __destruct() and sends the rest of the html.   |
-// |                                                                        |
-// | View is also making html-tags, by calling add- and createElement.      |
-// |                                                                        |
-// +------------------------------------------------------------------------+
+# Copyright 2009, 2010 University of Oslo, Norway
+# 
+# This file is part of Cerebrum.
+# 
+# Cerebrum is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# Cerebrum is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * The superclass for making pages in html
+ * You have to make a subclass of this one, so each institution get their
+ * own design.
+ * 
+ * View->start() sends out the first html (like <head>), and end() is
+ * automatically called by __destruct() and sends the rest of the html.
+ * 
+ * View is also making html-tags, by calling add- and createElement.
+ */
 abstract class View {
 
     /** 
@@ -343,7 +352,6 @@ abstract class View {
 
         $i = 1;
         $args = array();
-
         if(is_array(func_get_arg($i))) {
             $args = func_get_arg($i++);
         } else {
@@ -371,9 +379,11 @@ abstract class View {
         if($file_motd) $motd[] = $file_motd;
 
         //global $Bofh;
-        $bofh = new Bofhcom();
-        $bofh_motd = trim($bofh->getMotd());
-        if($bofh_motd) $motd[] = $bofh_motd;
+        if ($bofh_motd) {
+            $bofh = new Bofhcom();
+            $bofh_motd = trim($bofh->getMotd());
+            $motd[] = $bofh_motd;
+        }
 
         return $motd;
 
