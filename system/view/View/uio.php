@@ -22,6 +22,16 @@
  */
 class View_uio extends View {
 
+    /* USER data */
+
+    /** The user-object (if logged on) */
+    protected $user;
+
+    /** If the user is logged on or not */
+    protected $logged_in = false;
+
+
+
     /** The name of the editor of the site */
     private $editor_name = 'Houston';
 
@@ -56,9 +66,15 @@ class View_uio extends View {
         );
 
 
-    protected function __construct() {
+    public function __construct($language, $base_url) {
 
-        parent::__construct();
+        parent::__construct($language, $base_url);
+
+        $this->user = Init::getUser();
+        if ($this->user->is_logged_on()) $this->logged_in = true;
+
+        //main title
+        $this->addTitle(self::txt('PAGETITLE'));
 
     }
 
@@ -80,7 +96,7 @@ class View_uio extends View {
         global $Bofh;
         $is_employee = false;
 
-        if(!empty($Bofh) && is_a($Bofh, 'Bofhcom') && $Bofh->loggedon()) {
+        if(!empty($Bofh) && is_a($Bofh, 'BofhCom') && $Bofh->is_logged_on()) {
             if($Bofh->is_employee()) $is_employee = true;
         }
 
@@ -204,6 +220,7 @@ class View_uio extends View {
     public function start() {
 
         if($this->started) return;
+        parent::start();
 
         // http-headers (not text)
         $this->sendHeaders();
@@ -214,7 +231,7 @@ class View_uio extends View {
 
         echo '<ul id="languages">';
         foreach(Text::getAvailableLanguages() as $l=>$desc) {
-            if($l == $this->getLang()) continue;
+            if($l == $this->getLanguage()) continue;
             $desc = ucfirst($desc);
             echo "<li><a href=\"{$_SERVER['PHP_SELF']}?chooseLang=$l\">$desc</a></li>\n";
         }
@@ -279,19 +296,10 @@ class View_uio extends View {
         }
 
 
-        //messages
-        if($this->delMessages) echo $this->htmlMessages(true);
-
-        $this->started = true;
+        echo $this->htmlMessages(true);
 
         //content
-        foreach($this->content as $c) {
-            if($this->help) { 
-                echo self::addHelp($c);
-            } else {
-                echo $c;
-            }
-        }
+        foreach($this->content as $c) echo $c;
 
     }
 
@@ -303,6 +311,7 @@ class View_uio extends View {
 
         if(!$this->started) return;
         if($this->ended) return;
+        parent::end();
 
         echo "\n\n</div>\n";
         echo '<div class="footer">'.txt('footer').' - <a href="'.txt('help_link').'">'.
