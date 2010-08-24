@@ -266,18 +266,18 @@
         href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/spam/"&gt;USIT's
         page about spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
 
-    <!--
-    These texts aren't used in english, as we prefer the descriptions from bofhd.
-
-    <EMAIL_SPAM_ACTION_DROPSPAM></EMAIL_SPAM_ACTION_DROPSPAM>
-    <EMAIL_SPAM_ACTION_SPAMFOLDER></EMAIL_SPAM_ACTION_SPAMFOLDER>
-    <EMAIL_SPAM_ACTION_NOACTION></EMAIL_SPAM_ACTION_SPAMFOLDER>
-
-    <EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM></EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>
-    <EMAIL_SPAM_LEVEL_MOST_SPAM></EMAIL_SPAM_LEVEL_MOST_SPAM>
-    <EMAIL_SPAM_LEVEL_STANDARD_SPAM></EMAIL_SPAM_LEVEL_STANDARD_SPAM>
-    <EMAIL_SPAM_LEVEL_NO_FILTER></EMAIL_SPAM_LEVEL_NO_FILTER>
+    <!-- 
+        The following spam descriptions aren't used in English, as we prefer
+        the descriptions from bofhd. 
     -->
+    <EMAIL_SPAM_ACTION_DROPSPAM>Drop spam</EMAIL_SPAM_ACTION_DROPSPAM>
+    <EMAIL_SPAM_ACTION_SPAMFOLDER>Spamfolder</EMAIL_SPAM_ACTION_SPAMFOLDER>
+    <EMAIL_SPAM_ACTION_NOACTION>No action</EMAIL_SPAM_ACTION_NOACTION>
+
+    <EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>Aggressive spam</EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>
+    <EMAIL_SPAM_LEVEL_MOST_SPAM>Most spam</EMAIL_SPAM_LEVEL_MOST_SPAM>
+    <EMAIL_SPAM_LEVEL_STANDARD_SPAM>Standard spam</EMAIL_SPAM_LEVEL_STANDARD_SPAM>
+    <EMAIL_SPAM_LEVEL_NO_FILTER>No filter</EMAIL_SPAM_LEVEL_NO_FILTER>
 
     <EMAIL_SPAM_FORM_LEVEL>Spam level:</EMAIL_SPAM_FORM_LEVEL>
     <EMAIL_SPAM_FORM_ACTION>Spam action:</EMAIL_SPAM_FORM_ACTION>
@@ -314,9 +314,9 @@
 
     <EMAIL_TRIPNOTE_TITLE>Out of office messages</EMAIL_TRIPNOTE_TITLE>
     <EMAIL_TRIPNOTE_INTRO>Out of office messages (vacation messages) are
-        automatic replies to all e-mails sent to you in a set period of time,
-        for a maximum number of 7 days.  Each sender will receive the message
-        only once. For more information please see &lt;a
+        automatic replies to e-mails sent to you in a set period of time.
+        Each sender will receive the message only once within a period of 7
+        days. For more information please see &lt;a
         href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/fravarsmelding/"&gt;
         USIT's page about out of office messages&lt;/a&gt;.</EMAIL_TRIPNOTE_INTRO>
     <EMAIL_TRIPNOTE_NEW_SUCCESS>New Out of office message added</EMAIL_TRIPNOTE_NEW_SUCCESS>
