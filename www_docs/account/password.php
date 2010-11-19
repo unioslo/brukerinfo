@@ -18,10 +18,10 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
 
-$View = View::create();
+$View = Init::get('View');
 $View->addTitle('Account');
 $View->addTitle(txt('ACCOUNT_PASSWORD_TITLE'));
 
@@ -138,12 +138,11 @@ function validatePassword($password, &$returnmsg = null) {
  */
 function verifyPassword($password) {
 
-    global $User;
     global $Bofh;
 
     try {
 
-        $res = $Bofh->run_command('misc_verify_password', $User->getUsername(), $password);
+        $res = $Bofh->run_command('misc_verify_password', Init::get('User')->getUsername(), $password);
         //TODO: the text may change... get smarter way...
         if($res === 'Password is correct') return true;
 
@@ -158,12 +157,11 @@ function verifyPassword($password) {
  */
 function changePassword($newpas, $curpas, &$errmsg = null) {
 
-    global $User;
     global $Bofh;
 
     try {
 
-        $res = $Bofh->run_command('user_password', $User->getUsername(), $newpas);
+        $res = $Bofh->run_command('user_password', Init::get('User')->getUsername(), $newpas);
         if($res) return true;
 
     } catch (Exception $e) {

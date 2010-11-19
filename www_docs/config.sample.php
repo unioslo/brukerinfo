@@ -34,10 +34,13 @@ define('DEBUG',                 false);
 define('INST',                  'uio');
 
 /** The link to where the system files are located */
-define('LINK_SYSTEM',           '/www/var/virtual/no.uio.w3utv-ws01_443/htdocs/cerebrum/wofh/system');
+define('LINK_SYSTEM',           '/www/var/virtual/brukerinfo/system');
+
+/** The link to where the lib files are located */
+define('LINK_LIB',              '/www/var/virtual/brukerinfo/system/phplib');
 
 /** The link to where the system data are located */
-define('LINK_DATA',             '/www/var/virtual/no.uio.w3utv-ws01_443/htdocs/cerebrum/wofh/data');
+define('LINK_DATA',             '/www/var/virtual/brukerinfo/data');
 
 /** 
  * The location to the lock-file.
@@ -53,19 +56,19 @@ define('LOCK_FILE',             LINK_DATA . '/lock');
 define('DEFAULT_LANG',          'en');
 
 
-/// BOFH
-
+/// Cerebrum
 
 /** The url to the bofh-server */
-define('BOFH_URL',              'https://cere-utv01.uio.no:8957/');
+define('BOFH_URL',              'https://cere-test.uio.no:8957/');
 
 /** If bofhd's motd should be received and shown */
 define('BOFH_MOTD',             false);
 
+/** The url to the CI server */
+define('CI_URL',                'https://cere-test.uio.no:8957/');
+
 /** 
- * Bofh is (for now) not working in utf-8, which makes it buggy
- * sending utf8-data to it. Here you say in what encoding data
- * should be sent to bofh in.
+ * The charset for data being sent to bofhd.
  *
  * The charset has to be valid for php function unicode_enocde(),
  * (see http://php.net/unicode_encode)
@@ -94,15 +97,23 @@ define('ATTEMPT_TIME_OUT_MIN',              15);
  */
 define('CHARSET',               'utf-8');
 
+/**
+ * The base url for where the project are located. It should contain the full 
+ * url, including the preferred protocol, domain, and, if necessary, sub 
+ * directories.
+ */
+define('BASE_URL',          'https://uio.example.com/brukerinfo/');
+
 /** 
  * The prefix in the url (if the project is in a subdir of
  * htmlroot), like:
  *  http://example.com/HTML_PRE/index.php
  *
  * Must start with /, but not end with it.
+ *
+ * TODO: this is depreceated and will be removed. User BASE_URL instead.
  */
 define('HTML_PRE',          '/cerebrum/wofh/www_docs'); 
-# which becomes http://example.com/cerebrum/wofh/www_docs/index.php
 
 /** Url to the logon page */
 define('URL_LOGON',         'logon.php');
@@ -118,6 +129,8 @@ define('URL_LOGGED_IN',     '');
  * General delay
  * Number of minutes before changes will be working (for informing the user) 
  * This constant is not doing anything but just informing the end user about the delay.
+ *
+ * All delays are in minutes.
  */
 define('ACTION_DELAY',              4*60); // 4 hours
 

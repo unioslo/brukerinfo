@@ -18,19 +18,22 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
-$Bofh = new Bofhcom();
+$User = Init::get('User');
+$Bofh = Init::get('Bofh');
 
 $userinfo = getUserinfo(); 
 unset($userinfo['username']);
 
 
-$View = View::create();
+$View = Init::get('View');
 $View->addTitle(txt('ACCOUNT_TITLE'));
 $View->start();
 
 $View->addElement('h1', txt('ACCOUNT_TITLE'));
-$View->addElement('h2', ($Bofh->getPrimary() == $User->getUsername() ? txt('account_name_primary') : txt('account_name_normal')));
+$View->addElement('h2', ($Bofh->getPrimary() == $User->getUsername() 
+    ? txt('account_name_primary') 
+    : txt('account_name_normal')
+));
 
 
 
@@ -122,8 +125,7 @@ if($accounts) {
 function getUserinfo($username = null) {
 
     if(!$username) {
-        global $User;
-        $username = $User->getUsername();
+        $username = Init::get('User')->getUsername();
     }
 
     $Bofh = new Bofhcom();

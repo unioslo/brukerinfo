@@ -18,9 +18,9 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
-$View = View::create();
+$View = Init::get('View');
 
 $form = new BofhFormInline('changeHistory');
 
@@ -185,10 +185,9 @@ $View->addElement('ul', array(txt('printing_moreinfo_printing')), 'class="ekstra
 
 function getHistory($length) {
 
-    global $User;
     global $Bofh;
 
-    $ret = $Bofh->getData('pquota_history', $User->getUsername(), intval($length));
+    $ret = $Bofh->getData('pquota_history', Init::get('User')->getUsername(), intval($length));
     if($ret) return array_reverse($ret);
 
 }

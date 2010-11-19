@@ -1,35 +1,31 @@
 <?php
-# Copyright 2009, 2010 University of Oslo, Norway
-# 
-# This file is part of Cerebrum.
-# 
-# Cerebrum is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Cerebrum is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2009, 2010 University of Oslo, Norway
+// 
+// This file is part of Cerebrum.
+// 
+// Cerebrum is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// Cerebrum is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
-$Bofh = new Bofhcom();
-$View = View::create();
+$User = Init::get('User');
+$Bofh = Init::get('Bofh');
 
 $personinfo = getPersonInfo();
 
 $cache = $Bofh->getCache();
 $aff_descs = $cache['affiliation_desc'];
 $source_system_descs = $cache['source_systems'];
-
-$View->addTitle(txt('PERSON_TITLE'));
-$View->addElement('h1', txt('PERSON_TITLE'));
 
 $dl = View::createElement('dl', null, 'class="complicated"');
 $dl->addData(txt('bofh_info_name'), $personinfo['name']);
@@ -74,6 +70,10 @@ if(!empty($personinfo['fnr'])) {
 }
 if(!empty($fnr)) $dl->addData(txt('bofh_info_fnr'), View::createElement('ul', $fnr));
 
+$View = Init::get('View');
+$View->addTitle(txt('PERSON_TITLE'));
+$View->addElement('h1', txt('PERSON_TITLE'));
+
 
 $View->addElement($dl);
 $View->start();
@@ -92,9 +92,8 @@ $View->addElement($changeinfo);
  */
 function getPersonInfo() {
 
-    global $User;
     global $Bofh;
-    $p = $Bofh->getDataClean('person_info', $User->getUsername());
+    $p = $Bofh->getDataClean('person_info', Init::get('User')->getUsername());
 
     //all the values should come in arrays:
     foreach($p as $k=>$v) {

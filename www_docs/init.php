@@ -1,20 +1,20 @@
 <?php
-# Copyright 2009, 2010 University of Oslo, Norway
-#
-# This file is part of Cerebrum.
-#
-# Cerebrum is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Cerebrum is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2009, 2010 University of Oslo, Norway
+//
+// This file is part of Cerebrum.
+//
+// Cerebrum is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Cerebrum is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * This is the file for setup, and where things get kick-started.
@@ -36,20 +36,9 @@
  *
  */
 
-# Try to get InitBase
-# Check if the include_path links to the InitBase' directory:
-if (!@include_once('InitBase.php')) {
-    # Check if it's symlinked to from www_docs:
-    if(!@include_once(dirname(__FILE__) . '/InitBase.php')) {
-        # Last solution: Preload the settings and include system directory:
-        include_once(dirname(__FILE__) . '/config.php');
-        require_once(LINK_LIB . '/controller/InitBase.php');
-    }
-}
-
-
-
-# This is especially for Brukerinfo
+// Get InitBase before Init, since autoload is not set up yet
+require_once dirname(__FILE__) . '/config.php';
+require_once LINK_LIB . '/controller/InitBase.php';
 
 
 // the page can only work in https!
@@ -59,19 +48,18 @@ if($_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
     die('This page will only work in https mode, check your url.');
 }
 
-class Init extends InitBase {
-
+class Init extends InitBase
+{
     /**
      * Constructor
      * Starts up, gathers config and make some action on the site.
      *
-     * @param   boolean     $session   If session_start() should be called or not
+     * @param   bool    $session    If session_start() should be called or not.
+     *                              Defaults to true, but set to false for
+     *                              static pages.
      */
-    public function __construct( $session = true ) {
-
-        // Getting the configs (which has to be in the same dir as this file)
-        require_once(dirname(__FILE__) . '/config.php');
-
+    public function __construct($session = true)
+    {
         self::$autoload_dirs = array();
         foreach(array('controller', 'model', 'view') as $d) {
             self::$autoload_dirs[] = LINK_SYSTEM . "/$d";
@@ -81,7 +69,14 @@ class Init extends InitBase {
         parent::__construct();
 
         // TODO: move most of the rest to View (and other classes):
+        
+        View::setBaseUrl(BASE_URL);
+        //BofhCom::setBofhdUrl(BOFH_URL);
 
+        BofhForm_reCaptcha::setKeys(
+            RECAPTCHA_PRIVATE_KEY, 
+            RECAPTCHA_PUBLIC_KEY
+        );
 
         // Headerdata (may be overriden by View.inc, but is nice for viewing errors)
         header('Content-Type: text/html; charset=' . strtolower(CHARSET) );
@@ -112,9 +107,69 @@ class Init extends InitBase {
             session_start();
         }
 
+        // TODO: should be moved later
+        TextBrukerinfo::setLocation(LINK_DATA . '/txt/' . INST);
         $this->language();
 
     }
+
+    /**
+     * Returns a object of the institution specific subclass of View. Only one 
+     * object is constructed, the same is returned each time.
+     */
+    protected static function createView()
+    {
+        $view = new View_uio($lang, BASE_URL);
+        // TODO: more settings from config are added here and not inside the 
+        // class
+        return $view;
+    }
+
+    /**
+     * Creates a new User object with default settings for brukerinfo.
+     */
+    protected static function createUser($forward = true)
+    {
+        $user = new User(Init::get('Bofh'));
+
+        // forward the user if not logged on
+        if ($forward && !$user->isLoggedOn()) {
+            View::forward(URL_LOGON);
+        }
+
+        //// logs out the user if tokens are corrupted:
+        //BofhForm::addSecurityCallback(array(self::$user, 'logoff'));
+        //// convenience: send users to logon page with error message:
+        //BofhForm::addSecurityCallback('View::forward', array('logon.php',
+        //    txt('LOGOUT_SECURITY')
+        //));
+
+        return $user;
+    }
+
+    /**
+     * Creates the object for handling the proper Text in the right language.
+     */
+    protected function createText()
+    {
+        TextBrukerinfo::setLocation(LINK_DATA . '/txt/' . INST);
+        TextBrukerinfo::setDefaultLanguage(DEFAULT_LANG);
+        $text = new TextBrukerinfo($_SESSION['chosenLang']);
+        return $text;
+    }
+
+
+    /**
+     * Creates the default object for talking with bofhd, with the proper 
+     * settings for the project.
+     */
+    protected static function createBofh()
+    {
+        BofhCom::setDefaultLocation(BOFH_URL);
+        return new BofhCom();
+    }
+
+
 
     /* 
      * Language
@@ -135,12 +190,8 @@ class Init extends InitBase {
      * If neither of those is set, the language is gotten from the http-parameter
      * ACCEPT_LANGUAGE. This is done by Text::parseAcceptLanguage()
      */
-    protected function language() {
-
-        Text::setInstitution(INST);
-        Text::setLocation(LINK_DATA . '/txt/');
-        Text::setDefaultLanguage(DEFAULT_LANG);
-
+    protected function language()
+    {
         $langs = array_keys(Text::getAvailableLanguages());
 
         if (!empty($_GET['chooseLang']) && in_array($_GET['chooseLang'], $langs)) {
@@ -165,16 +216,6 @@ class Init extends InitBase {
         }
     }
 
-    /**
-     * Returns a View object, for the html output. This method is returning the 
-     * object according to the given institution.
-     */
-    public function getView() {
-
-        if (!$this->view) $this->view = new View();
-        return $this->view;
-
-    }
 
 }
 
@@ -190,9 +231,7 @@ class Init extends InitBase {
  */
 function txt($key) {
 
-    global $View;
-    if(!isset($View)) $v = View::create();
-    else $v = $View;
+    $v = Init::get('View');
     
     if(func_num_args() <= 1) return $v->txt($key);
 
@@ -211,7 +250,6 @@ function txt($key) {
 
 }
 
-
 /**
  * Wraps data into an array if it's not already an array.
  * Useful when returning data from bofhd, as it sometimes likes to
@@ -223,7 +261,6 @@ function to_array($data) {
     return array($data);
 
 }
-
 
 
 ?>

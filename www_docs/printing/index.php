@@ -18,14 +18,14 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
 
 $printerinfo = $Bofh->getData('pquota_status', $User->getUsername());
 
 
 
-$View = View::create();
+$View = Init::get('View');
 $View->addTitle(txt('PRINTING_TITLE'));
 $View->start();
 $View->addElement('h1', txt('PRINTING_TITLE'));

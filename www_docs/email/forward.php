@@ -18,10 +18,10 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
 
-$View = View::create();
+$View = Init::get('View');
 
 
 $forwards = getForwards();

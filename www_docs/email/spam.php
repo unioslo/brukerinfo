@@ -18,9 +18,9 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
-$View = View::create();
+$View = Init::get('View');
 
 // Getting spam settings
 
@@ -54,7 +54,7 @@ foreach($sp_levels as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_level_'.$v['code_str'];
 
-    if(Text::exists($txt_name, $View->getLang(), true)) {
+    if (Text::exists($txt_name, $View->getLanguage(), true)) {
         $v['description'] = txt($txt_name);
     }
 
@@ -69,7 +69,7 @@ foreach($sp_actions as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_action_'.$v['code_str'];
 
-    if(Text::exists($txt_name, $View->getLang(), true)) {
+    if (Text::exists($txt_name, $View->getLanguage(), true)) {
         $v['description'] = txt($txt_name);
     }
 
@@ -93,7 +93,7 @@ $form->addGroupRule('spam_action', txt('email_spam_rule_action_required'), 'requ
 
 
 
-if($form->validate()) {
+if ($form->validate()) {
 
     $lev = $form->exportValue('spam_level');
     $lev = $lev['level'];
@@ -147,9 +147,9 @@ foreach($available_filters as $id => $filter) {
 
 
 // validates and saves the setting
-if($filterform->validate()) {
+if ($filterform->validate()) {
 
-    if($filterform->process('setFilters')) {
+    if ($filterform->process('setFilters')) {
         View::addMessage(txt('email_filter_update_success'));
     }
     //if false, this should already be handled and sent to the user by the function
@@ -195,7 +195,7 @@ function spamActions() {
     foreach(explode("\n", $raw) as $l) {
 
         //the first line is mostlikely 'Choose one of\n'
-        if(!is_numeric(strpos($l, "'"))) continue;
+        if (!is_numeric(strpos($l, "'"))) continue;
         $l = trim($l);
 
         $name = substr($l, 1, strpos($l, "'", 2)-1);
@@ -218,8 +218,8 @@ function getSetLevelAction() {
     $action = null;
 
     foreach($info as $i) {
-        if(isset($i['spam_level'])) $level = $i['spam_level'];
-        if(isset($i['spam_action'])) $action = $i['spam_action'];
+        if (isset($i['spam_level'])) $level = $i['spam_level'];
+        if (isset($i['spam_action'])) $action = $i['spam_action'];
     }
 
     return array($level, $action);
@@ -245,13 +245,13 @@ function availableFilters() {
 
         $filters[$id]['name'] = $id;
         //looking for a better name
-        if(Text::exists($txtkey_name, $View->getLang())) {
+        if (Text::exists($txtkey_name, $View->getLanguage())) {
             $filters[$id]['name'] = txt($txtkey_name);
         }
 
         $filters[$id]['desc'] = $f['description'];
         //looking for a better description
-        if(Text::exists($txtkey_desc, $View->getLang())) {
+        if (Text::exists($txtkey_desc, $View->getLanguage())) {
             $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
         }
     }
@@ -270,7 +270,7 @@ function getActiveFilters() {
 
     $all = $Bofh->getDataClean('email_info', $User->getUsername());
 
-    if(empty($all['filters']) || $all['filters'] == 'None') return null;
+    if (empty($all['filters']) || $all['filters'] == 'None') return null;
 
     //the filters comes in a comma-separated string
     $rawf = explode(', ', $all['filters'][0]);
@@ -297,7 +297,7 @@ function setFilters($data) {
     // setting several in one go is supported by the loop
     foreach ($data as $filter => $value) {
 
-        if(!isset($available_filters[$filter])) {
+        if (!isset($available_filters[$filter])) {
             View::addMessage(txt('email_filter_unknown'), View::MSG_WARNING);
             $err = true;
             continue;
@@ -306,9 +306,9 @@ function setFilters($data) {
         // activating filter
         // TODO: comparing with text values is not recommended, change this behaviuor
         // when the template is made.
-        if($value == txt('email_filter_enable')) {
+        if ($value == txt('email_filter_enable')) {
             // if already active
-            if(isset($active_filters[$filter])) continue;
+            if (isset($active_filters[$filter])) continue;
 
             try {
                 $res = $Bofh->run_command('email_add_filter', $filter, $User->getUsername());
@@ -321,7 +321,7 @@ function setFilters($data) {
         // disabling filter
         } else {
             // if already disabled
-            if(!isset($active_filters[$filter])) continue;
+            if (!isset($active_filters[$filter])) continue;
 
             try {
                 $res = $Bofh->run_command('email_remove_filter', $filter, $User->getUsername());

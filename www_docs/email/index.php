@@ -18,9 +18,9 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
-$View = View::create();
+$View = Init::get('View');
 
 $primary = emailinfo($User->getUsername());
 unset($primary['account']);
@@ -69,7 +69,7 @@ if(isset($primary['forward'])) {
 // spam level
 if(isset($primary['spam_level'])) {
     //getting the translated description
-    if(Text::exists('email_spam_level_'.$primary['spam_level'], $View->getLang())) {
+    if(Text::exists('email_spam_level_'.$primary['spam_level'], $View->getLanguage())) {
         $primary['spam_level_desc'] = txt('email_spam_level_'.$primary['spam_level']);
     }
 
@@ -81,7 +81,7 @@ if(isset($primary['spam_level'])) {
 // spam action
 if(isset($primary['spam_action'])) {
     //getting the translated description
-    if(Text::exists('email_spam_action_'.$primary['spam_action'], $View->getLang())) {
+    if(Text::exists('email_spam_action_'.$primary['spam_action'], $View->getLanguage())) {
         $primary['spam_action_desc'] = txt('email_spam_action_'.$primary['spam_action']);
     }
     $prilist->addData(txt('email_info_spam_action'), 

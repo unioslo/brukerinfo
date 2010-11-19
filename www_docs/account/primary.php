@@ -18,12 +18,12 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
 
 $primary = $Bofh->getPrimary();
 
-$View = View::create();
+$View = Init::get('View');
 $View->addTitle(txt('ACCOUNT_PRIMARY_TITLE'));
 $View->addElement('h1', txt('ACCOUNT_PRIMARY_TITLE'));
 
@@ -31,17 +31,19 @@ $View->addElement('h1', txt('ACCOUNT_PRIMARY_TITLE'));
 //checks first if account already is primary
 if($primary == $User->getUsername()) {
     $View->start();
-    $View->addElement('p', txt('account_primary_already', $User->getUsername()));
+    $View->addElement('p', txt('account_primary_already'));
     die;
 }
 
 $form = new BofhForm('change_primary', null, null, null, 'class="submitonly"');
-$form->addElement('submit', 'confirm', txt('account_primary_form_submit', $User->getUsername()), 'class="submit_warn"');
+$form->addElement('submit', 'confirm', txt('account_primary_form_submit'), 
+    'class="submit_warn"'
+);
 
 
 if($form->validate()) {
     if(setPrimary()) {
-        View::forward('account/', txt('account_primary_success', $User->getUsername()));
+        View::forward('account/', txt('account_primary_success'));
     } else {
         View::addMessage(txt('account_primary_failed'));
     }
@@ -59,8 +61,7 @@ $View->addElement($form);
  */
 function setPrimary() {
 
-    global $User;
-    $username = $User->getUsername();
+    $username = Init::get('User')->getUsername();
     $user = null;
 
     global $Bofh;

@@ -18,12 +18,12 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
-$View = View::create();
+$View = Init::get('View');
 
 // Only employees are allowed to use this command
-if(!$Bofh->is_employee()) View::forward('groups/', txt('employees_only'));
+if(!$Bofh->isEmployee()) View::forward('groups/', txt('employees_only'));
 
 // group spreads possible to use
 $spreads = getSpreads();

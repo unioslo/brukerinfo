@@ -18,9 +18,9 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
-$View = View::create();
+$View = Init::get('View');
 
 
 
@@ -29,8 +29,8 @@ $form = new BofhForm('addTripnote');
 $form->addElement('header', null, txt('email_tripnote_form_title'));
 
 //TODO: add today as default on start?
-$form->addElement('date', 'start', txt('email_tripnote_starting'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$View->getLang()));
-$form->addElement('date', 'end', txt('email_tripnote_ending'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$View->getLang()));
+$form->addElement('date', 'start', txt('email_tripnote_starting'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$View->getLanguage()));
+$form->addElement('date', 'end', txt('email_tripnote_ending'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$View->getLanguage()));
 $form->addElement('textarea', 'message', txt('email_tripnote_message'), 'rows="7"');
 
 $form->addElement('submit', null, txt('email_tripnote_form_submit'), array('class'=>'submit'));
@@ -99,7 +99,6 @@ if($rawnotes && is_array($rawnotes)) {
 };
 
 
-$View = View::create();
 $View->addTitle('Email');
 $View->addTitle(txt('EMAIL_TRIPNOTE_TITLE'));
 

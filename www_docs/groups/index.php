@@ -18,8 +18,8 @@
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
-$Bofh = new Bofhcom();
+$User = Init::get('User');
+$Bofh = Init::get('Bofh');
 
 // getting the users groups
 $adm_groups = getAdmGroups();
@@ -29,7 +29,7 @@ $normal_groups = getGroups();
 $acceptable_group_types = array('group', 'account', 'person');
 
 
-$View = View::create();
+$View = Init::get('View');
 $View->addTitle(txt('GROUPS_TITLE'));
 
 
@@ -392,7 +392,7 @@ if($normal_groups) {
 if(!isset($adm_groups[$User->getUsername()])) {
     try {
         $prs = $Bofh->run_command('group_info', $User->getUsername());
-    } catch(XML_RPC2_FaultException $e) {
+    } catch (XML_RPC2_FaultException $e) {
         $View->addElement('p', txt('groups_no_personal'));
     }
 }
@@ -414,16 +414,12 @@ if(!isset($adm_groups[$User->getUsername()])) {
 /**
  * Gets out the group info about a specific group.
  */
-function getGroup($group) {
-
-    global $Bofh;
-
-    $raw = $Bofh->getDataClean('group_info', $group);
-    return $raw;
-
+function getGroup($group)
+{
+    return Init::get('Bofh')->getDataClean('group_info', $group);
 
     //TODO: move the rest of this function to group/members.php
-    
+
     //users in the group
     $ret['members'] = array();
     $ret['groups'] = array();
@@ -464,14 +460,12 @@ function getGroups() {
 }
 
 /**
- * Gets, and sorts, all the group is moderator of
+ * Gets, and sorts, all the groups the user is moderator of.
  *
  * @return Array    Normal array with just the group names
  */
 function getAdmGroups() {
-
     global $Bofh;
-
     try {
         $raw = $Bofh->run_command('access_list_alterable', 'group');
     } catch(Exception $e) {
@@ -482,14 +476,11 @@ function getAdmGroups() {
 
     $groups = array();
     foreach($raw as $g) {
-
         $groups[$g['entity_name']] = $g['description'];
-
     }
-
+    // sort by keys (groupname)
+    ksort($groups);
     return $groups;
-
-
 }
 
 
