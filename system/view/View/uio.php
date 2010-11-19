@@ -70,8 +70,8 @@ class View_uio extends View {
 
         parent::__construct($language, $base_url);
 
-        $this->user = Init::getUser();
-        if ($this->user->is_logged_on()) $this->logged_in = true;
+        $this->user = Init::get('User');
+        if ($this->user->isLoggedOn()) $this->logged_in = true;
 
         //main title
         $this->addTitle(self::txt('PAGETITLE'));
@@ -89,16 +89,12 @@ class View_uio extends View {
      * @param String    $sub    What submenu shall be return, returns main menu if null
      * @return Array    The menu as a one dimensional array
      */
-    protected function getMenu($sub = null) {
-
+    protected function getMenu($sub = null)
+    {
         if(!$this->logged_in) return;
 
-        global $Bofh;
-        $is_employee = false;
-
-        if(!empty($Bofh) && is_a($Bofh, 'BofhCom') && $Bofh->is_logged_on()) {
-            if($Bofh->is_employee()) $is_employee = true;
-        }
+        $bofh = Init::get('Bofh');
+        $is_employee = $bofh->isEmployee();
 
         //start
         $menu['home']['link']       = '';
