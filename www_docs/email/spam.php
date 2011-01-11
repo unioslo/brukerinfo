@@ -286,8 +286,6 @@ function getActiveFilters() {
  */
 function setFilters($data) {
 
-    print_r($data);
-
     global $Bofh, $User;
     global $available_filters;
     global $active_filters;
@@ -299,6 +297,7 @@ function setFilters($data) {
 
         if (!isset($available_filters[$filter])) {
             View::addMessage(txt('email_filter_unknown'), View::MSG_WARNING);
+            trigger_error("Filter $filter doesn't exist in 'available_filters'", E_USER_NOTICE);
             $err = true;
             continue;
         }
