@@ -72,14 +72,16 @@ function request_group($data) {
     global $Bofh;
     global $spreads;
 
-    if(!$Bofh->is_employee()) return false;
+    if(!$Bofh->isEmployee()) return false;
 
-    foreach($data['gr_spreads'] as $key => $sp) {
-        if(!isset($spreads[$key])) {
-            View::addMessage(txt('groups_new_form_spread_unknown', 
-                                  array('spread'=>$key)), 
-                             View::MSG_WARNING);
-            return false;
+    if (!empty($data['gr_spreads'])) {
+        foreach ($data['gr_spreads'] as $key => $sp) {
+            if (!isset($spreads[$key])) {
+                View::addMessage(txt('groups_new_form_spread_unknown', 
+                                      array('spread'=>$key)), 
+                                 View::MSG_WARNING);
+                return false;
+            }
         }
     }
 
