@@ -74,6 +74,15 @@ function request_group($data) {
 
     if(!$Bofh->isEmployee()) return false;
 
+    // Making all the values oneliners
+    // since the commands are being sent through email and is then
+    // copy-pasted through a superusers bofh-prompt, bogus commands
+    // could easily be put inbetween the lines, e.g:
+    //   Group name: testgroup\n group add baduser brukerreg
+    // This would be easy to detect, but you don't want to risk it.
+    $data = oneliners($data);
+
+    $data['spreads'] = null;
     if (!empty($data['gr_spreads'])) {
         foreach ($data['gr_spreads'] as $key => $sp) {
             if (!isset($spreads[$key])) {
@@ -83,25 +92,17 @@ function request_group($data) {
                 return false;
             }
         }
+        //getting spreads
+        $data['spreads'] = implode(' ', array_keys($data['gr_spreads']));
     }
-
-    // Making all the values oneliners
-    // since the commands are being sent through email and is then
-    // copy-pasted through a superusers bofh-prompt, bogus commands
-    // could easily be put inbetween the lines, e.g:
-    //   Group name: testgroup\n group add baduser brukerreg
-    // This would be easy to detect, but you don't want to risk it.
-    $data = oneliners($data);
-
-    //getting spreads
-    $data['spreads'] = implode(' ', array_keys($data['gr_spreads']));
 
     try {
         $ret = $Bofh->run_command('group_request', 
             $data['gr_name'],
             $data['gr_desc'],
             $data['spreads'],
-            $data['gr_mod']);
+            $data['gr_mod']
+        );
         //todo: check how this is returned - exception or string?
     } catch(Exception $e) {
         Bofhcom::viewError($e);
