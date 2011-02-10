@@ -1,5 +1,5 @@
 <?php
-// Copyright 2009, 2010 University of Oslo, Norway
+// Copyright 2009, 2010, 2011 University of Oslo, Norway
 // 
 // This file is part of Cerebrum.
 // 
@@ -19,7 +19,6 @@
 require_once 'init.php';
 $Init = new Init();
 $User = Init::get('User', false); // do not forward
-
 $User->logoff();
 
 //checks if the site is locked for maintenance (or anything)
@@ -39,7 +38,6 @@ if (LOCKED) {
     $logform->addElement('password', 'pasi', txt('LOGON_FORM_PASSWORD'));
     $logform->addElement('submit', null, txt('LOGON_FORM_SUBMIT'));
     //TODO: add required-rules (and more)?
-
 
     if($logform->validate()) {
         try {

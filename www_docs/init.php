@@ -106,11 +106,6 @@ class Init extends InitBase
             session_name('brukerinfoid');
             session_start();
         }
-
-        // TODO: should be moved later
-        TextBrukerinfo::setLocation(LINK_DATA . '/txt/' . INST);
-        $this->language();
-
     }
 
     /**
@@ -120,8 +115,8 @@ class Init extends InitBase
     protected static function createView()
     {
         $view = new View_uio($lang, BASE_URL);
-        // TODO: more settings from config are added here and not inside the 
-        // class
+        // TODO: more settings from config should be added here and not inside 
+        //       the class
         return $view;
     }
 
@@ -150,11 +145,12 @@ class Init extends InitBase
     /**
      * Creates the object for handling the proper Text in the right language.
      */
-    protected function createText()
+    protected static function createText()
     {
         TextBrukerinfo::setLocation(LINK_DATA . '/txt/' . INST);
         TextBrukerinfo::setDefaultLanguage(DEFAULT_LANG);
-        $text = new TextBrukerinfo($_SESSION['chosenLang']);
+        $lang = self::chooseLanguage();
+        $text = new TextBrukerinfo($lang);
         return $text;
     }
 
@@ -172,48 +168,42 @@ class Init extends InitBase
 
 
     /* 
-     * Language
+     * Calculates the preferred language by different input values and stores it 
+     * in the session and returns it.
      *
-     * This method is getting and setting the chosen
-     * language for the session. Needs to be called
-     * _after_ session_start().
+     * The language is searched for in this order:
+     *  1. An active chosen language - $_GET['chooseLang']. Also sets a cookie.
+     *  2. The session language - $_SESSION['chosenLang']
+     *  3. Previously chosen language - $_COOKIE['chosenLang'].
+     *  4. A preferred language - $_SERVER['HTTP_ACCEPT_LANGUAGE']
+     *  5. The default DEFAULT_LANG if none of the above is present or matches 
+     *     an available language.
      *
-     * The language is gotten in this order:
-     *  1. The session language - $_SESSION['chosenLang']
-     *  2. The cookie language -  $_COOKIE['chosenLang']
-     *  3. Bofhds chosen language for the person (not supported yet)
-     *  4. The chosen languages by the browser (accept_language)
-     *  5. The default DEFAULT_LANG if none of the above is present
-     *
-     * The language can be chosen by the user by sending $_GET[chooseLang],
-     * which stores this in $_SESSION['chosenLang'] and $_COOKIE['chosenLang'].
-     * If neither of those is set, the language is gotten from the http-parameter
-     * ACCEPT_LANGUAGE. This is done by Text::parseAcceptLanguage()
+     *  @return String                  The chosen language.
      */
-    protected function language()
+    protected function chooseLanguage()
     {
         $langs = array_keys(Text::getAvailableLanguages());
+        $chosen = DEFAULT_LANG;
 
         if (!empty($_GET['chooseLang']) && in_array($_GET['chooseLang'], $langs)) {
             $chosen = $_GET['chooseLang'];
-            $_SESSION['chosenLang'] = $chosen;
-            setcookie('chosenLang', $chosen, time()+60*60*24*30, HTML_PRE);
+            setcookie('chosenLang', $chosen, time()+60*60*24*365, HTML_PRE);
         } elseif (!empty($_SESSION['chosenLang'])) {
-        } elseif (!empty($_COOKIE['chosenLang']) && 
-                                    in_array($_COOKIE['chosenLang'], $langs)) {
-            $_SESSION['chosenLang'] = $_COOKIE['chosenLang'];
+            $chosen = $_SESSION['chosenLang'];
+        } elseif (!empty($_COOKIE['chosenLang']) && in_array($_COOKIE['chosenLang'], $langs)) {
+            $chosen = $_COOKIE['chosenLang'];
         } elseif (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             $accept_langs = Text::parseAcceptLanguage($_SERVER['HTTP_ACCEPT_LANGUAGE']);
             foreach($accept_langs as $l) {
                 if (in_array($l, $langs)) {
-                    $_SESSION['chosenLang'] = $l;
+                    $chosen = $l;
                     break;
                 }
             }
-        } else {
-            // at last, when nothing else is possible
-            $_SESSION['chosenLang'] = DEFAULT_LANG;
         }
+        $_SESSION['chosenLang'] = $chosen;
+        return $chosen;
     }
 
 
@@ -229,24 +219,23 @@ class Init extends InitBase
  * @param   String  $key    The key to what text to output
  * @param   mixed           More values to use in sprintf, the first may be an array
  */
-function txt($key) {
-
-    $v = Init::get('View');
+function txt($key)
+{
+    $txt = Init::get('Text');
     
-    if(func_num_args() <= 1) return $v->txt($key);
+    if (func_num_args() <= 1) return $txt->get($key);
 
     $i = 1;
     $args = array();
 
-    if(is_array(func_get_arg($i))) {
+    if (is_array(func_get_arg($i))) {
         $args = func_get_arg($i++);
     } else {
-        for(; $i < func_num_args(); $i++) {
+        for (; $i < func_num_args(); $i++) {
             $args[] = func_get_arg($i);
         }
     }
-
-    return $v->txt($key, $args);
+    return $txt->get($key, $args);
 
 }
 

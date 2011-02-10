@@ -47,7 +47,7 @@ class TextBrukerinfo extends Text
      * Reads the right language file and caches it.
      *
      * @param  String    $lang   Specific language, NULL caches default.
-     * @param  bool      $forec  Forces the cache.
+     * @param  bool      $force  Forces recaching.
      *
      * @return bool              If the data is cached or not.
      */

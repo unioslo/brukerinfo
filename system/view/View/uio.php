@@ -66,16 +66,14 @@ class View_uio extends View {
         );
 
 
-    public function __construct($language, $base_url) {
-
-        parent::__construct($language, $base_url);
-
+    public function __construct($language, $base_url, Text $text = null)
+    {
+        parent::__construct($language, $base_url, $text);
         $this->user = Init::get('User');
         if ($this->user->isLoggedOn()) $this->logged_in = true;
 
         //main title
         $this->addTitle(self::txt('PAGETITLE'));
-
     }
 
     public function __destruct() {
@@ -161,7 +159,7 @@ class View_uio extends View {
 
         if(empty($this->raw_template)) {
 
-            $templlink = sprintf($this->template_file, $this->language);
+            $templlink = sprintf($this->template_file, $this->getLanguage());
 
             if(!is_readable(LINK_DATA . $templlink)) {
 
@@ -226,9 +224,10 @@ class View_uio extends View {
         echo '<div id="headtitle"><a href="">'.txt('header')."</a></div>\n";
 
         echo '<ul id="languages">';
-        foreach(Text::getAvailableLanguages() as $l=>$desc) {
-            if($l == $this->getLanguage()) continue;
-            $desc = ucfirst($desc);
+        foreach (Text::getAvailableLanguages() as $l => $desc) {
+            if ($l == $this->getLanguage()) {
+                continue;
+            }
             echo "<li><a href=\"{$_SERVER['PHP_SELF']}?chooseLang=$l\">$desc</a></li>\n";
         }
         echo "</ul>\n";
