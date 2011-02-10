@@ -1,20 +1,20 @@
 <?php
-# Copyright 2009, 2010 University of Oslo, Norway
-# 
-# This file is part of Cerebrum.
-# 
-# Cerebrum is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Cerebrum is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2009, 2010, 2011 University of Oslo, Norway
+// 
+// This file is part of Cerebrum.
+// 
+// Cerebrum is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// Cerebrum is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
 require_once '../init.php';
 $Init = new Init();
@@ -25,6 +25,40 @@ $View = Init::get('View');
 $primary = emailinfo($User->getUsername());
 unset($primary['account']);
 
+if (!empty($_GET['del_addr'])) {
+
+    if (!in_array($_GET['del_addr'], $primary['deletable'])) {
+        View::forward('email/', txt('email_del_invalid_addr'));
+    }
+    $addr = htmlspecialchars($_GET['del_addr']);
+
+    $delform = new BofhForm('delete_email_addr', null, "email/?del_addr=$addr");
+    $delform->addElement('static', 'Test');
+    $delform->addGroup(array(
+        $delform->createElement('submit', 'confirm', txt('email_del_submit')),
+        $delform->createElement('submit', 'cancel', txt('email_del_cancel')),
+    ));
+
+    if ($delform->validate()) {
+        if (!empty($_POST['cancel'])) View::forward('email/');
+
+        if (!empty($_POST['confirm'])) {
+            if (delEmailAddress($_GET['del_addr'])) {
+                View::addMessage(txt('email_del_success', array('address' => $addr)));
+            } else {
+                View::addMessage(txt('email_del_failed', array('address' => $addr)));
+            }
+            View::forward('email/');
+        }
+    }
+
+    $View->addTitle(txt('email_del_title', array('address' => $addr)));
+    $View->start();
+    $View->addElement('h1', txt('email_del_title', array('address' => $addr)));
+    $View->addElement('p', txt('email_del_intro', array('address' => $addr)));
+    $View->addElement($delform);
+    die;
+}
 
 $View->addTitle(txt('EMAIL_INFO_TITLE'));
 $View->start();
@@ -44,10 +78,20 @@ if(isset($primary['def_addr'])) {
 }
 
 // valid addresses
-if(isset($primary['valid_addr'])) {
+if (isset($primary['valid_addr'])) {
+    if (!empty($primary['deletable'])) {
+        foreach ($primary['valid_addr'] as $id => $addr) {
+            if (in_array($addr, $primary['deletable'])) {
+                $primary['valid_addr'][$id] .= " <a href=\"email/?del_addr=$addr\">"
+                    . txt('email_del_actionlink') . '</a>';
+            }
+
+        }
+    }
     $prilist->addData(txt('email_info_valid_addr'), $primary['valid_addr']);
-    unset($primary['valid_addr']);
 }
+unset($primary['valid_addr']);
+unset($primary['deletable']);
 
 // quota
 if(isset($primary['quota_used'])) {
@@ -124,10 +168,6 @@ if(isset($primary['server'])) {
     unset($primary['server_type']);
 }
 
-
-
-
-
 //adds the rest (if any)
 foreach($primary as $k => $pr) {
     $titl = @txt('email_info_'.$k);
@@ -136,7 +176,6 @@ foreach($primary as $k => $pr) {
     $prilist->addData($titl, $pr);
 
     trigger_error('Forgot to add the value '.$k.'="'.$pr.'" in email/index', E_USER_NOTICE);
-
 }
 
 $View->addElement('div', $prilist, 'class="primary"');
@@ -179,8 +218,8 @@ $View->addElement('ul', array(txt('email_info_more_info')), 'class="ekstrainfo"'
  * and does some cleaning because of weird return
  * from bofhd.
  */
-function emailinfo($username) {
-
+function emailinfo($username)
+{
     global $Bofh;
     $data = $Bofh->getDataClean('email_info', $username);
 
@@ -210,10 +249,23 @@ function emailinfo($username) {
         }
 
     }
-
-
     return $data;
+}
 
+/**
+ * Asks bofhd to delete a given e-mail address.
+ */
+function delEmailAddress($address)
+{
+    global $Bofh, $User;
+    try {
+        $ret = $Bofh->run_command('email_remove_address', $User->getUsername(), $address);
+        // finished with an update, just to be sure
+        $Bofh->run_command('email_update', $User->getUsername());
+        return $ret;
+    } catch (Exception $e) {
+        return false;
+    }
 }
 
 ?>

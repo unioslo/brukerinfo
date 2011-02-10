@@ -92,6 +92,9 @@
     <LOGON_TIMED_OUT>This session has timed out after a period of inactivity. Please log on again.</LOGON_TIMED_OUT>
     <LOGON_CONTROL_FAILED>Due to safety reasons, you have to log on again.</LOGON_CONTROL_FAILED>
 
+    <LOGOUT_SECURITY>Due to safety reasons, you have been logged out. Please try
+        again.</LOGOUT_SECURITY>
+
     <!-- THE PAGES -->
     <!-- Text for specific pages. 
          The first part of the key is what main category the page is in, the second is the page-name.
@@ -259,6 +262,19 @@
 
     <EMAIL_INFO_MORE_INFO>For more information about UiOs e-mail system please see
         &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;the e-mail help pages&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+
+    <EMAIL_DEL_TITLE>Confirm deletion of e-mail address</EMAIL_DEL_TITLE>
+    <EMAIL_DEL_INTRO>Are you sure you want to delete the address
+        &lt;em&gt;{{address}}&lt;/em&gt;? You will not be able to receive e-mail
+        sent to this address anymore.</EMAIL_DEL_INTRO>
+    <EMAIL_DEL_ACTIONLINK>(delete)</EMAIL_DEL_ACTIONLINK>
+    <EMAIL_DEL_SUBMIT>Confirm</EMAIL_DEL_SUBMIT>
+    <EMAIL_DEL_CANCEL>Cancel</EMAIL_DEL_CANCEL>
+    <EMAIL_DEL_INVALID_ADDR>The given address could not be deleted</EMAIL_DEL_INVALID_ADDR>
+    <EMAIL_DEL_SUCCESS>The e-mail address {{address}} was successfully
+        deleted</EMAIL_DEL_SUCCESS>
+    <EMAIL_DEL_FAILED>The e-mail address {{address}} could not be
+        deleted</EMAIL_DEL_FAILED>
 
     <EMAIL_SPAM_TITLE>Spam settings</EMAIL_SPAM_TITLE>
     <EMAIL_SPAM_INTRO>These settings are applied before your e-mails are delivered to your mailbox.

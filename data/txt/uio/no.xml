@@ -87,9 +87,15 @@
     <LOGON_BAD_NAME_OR_PASSWORD>Feil brukernavn eller feil passord</LOGON_BAD_NAME_OR_PASSWORD>
     <LOGON_LOGGED_OUT>Du er logget ut</LOGON_LOGGED_OUT>
 
-    <LOGON_BLOCKED>Du har forsøkt å logge inn for mange ganger og er midlertidig utestengt fra dette webstedet</LOGON_BLOCKED>
-    <LOGON_TIMED_OUT>Denne økten har blitt avbrutt etter en periode uten aktivitet. Logg inn på nytt.</LOGON_TIMED_OUT>
-    <LOGON_CONTROL_FAILED>Du må av sikkerhetshensyn logge inn på nytt.</LOGON_CONTROL_FAILED>
+    <LOGON_BLOCKED>Du har forsøkt å logge inn for mange ganger og er midlertidig
+        utestengt fra dette nettstedet</LOGON_BLOCKED>
+    <LOGON_TIMED_OUT>Denne økten har blitt avbrutt etter en periode uten
+        aktivitet. Logg inn på nytt.</LOGON_TIMED_OUT>
+    <LOGON_CONTROL_FAILED>Du må av sikkerhetshensyn logge inn på
+        nytt.</LOGON_CONTROL_FAILED>
+
+    <LOGOUT_SECURITY>Du er av sikkerhetshensyn blitt logget ut. Vennligst prøv
+        igjen.</LOGOUT_SECURITY>
 
     <!-- THE PAGES -->
     <!-- Text for specific pages. 
@@ -258,6 +264,19 @@
 
     <EMAIL_INFO_MORE_INFO>Hvis du vil vite mer om e-postsystemet ved UiO, kan du lese 
         &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;hjelpesidene for e-post&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+
+    <EMAIL_DEL_TITLE>Bekreft sletting av e-postadresse</EMAIL_DEL_TITLE>
+    <EMAIL_DEL_INTRO>Er du sikker på at du vil slette adressen
+        &lt;em&gt;{{address}}&lt;/em&gt;? Du vil ikke lenger få e-post som er
+        sendt til denne adressen.</EMAIL_DEL_INTRO>
+    <EMAIL_DEL_ACTIONLINK>(slett)</EMAIL_DEL_ACTIONLINK>
+    <EMAIL_DEL_SUBMIT>Bekreft</EMAIL_DEL_SUBMIT>
+    <EMAIL_DEL_CANCEL>Avbryt</EMAIL_DEL_CANCEL>
+    <EMAIL_DEL_INVALID_ADDR>Oppgitt adresse kunne ikke
+        slettes</EMAIL_DEL_INVALID_ADDR>
+    <EMAIL_DEL_SUCCESS>E-postadressen {{address}} er slettet</EMAIL_DEL_SUCCESS>
+    <EMAIL_DEL_FAILED>E-postadressen {{address}} kunne ikke
+        slettes</EMAIL_DEL_FAILED>
 
     <EMAIL_SPAM_TITLE>Spaminnstillinger</EMAIL_SPAM_TITLE>
     <EMAIL_SPAM_INTRO>Disse innstillingene brukes på e-posten før den når innboksen din.
