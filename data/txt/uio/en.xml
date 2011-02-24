@@ -76,8 +76,8 @@
         web page will be encrypted when transfered to the server. Normally, you
         should not enter username and password information on a webpage, but you
         can read about &lt;a
-        href="https://uio.no/tjenester/it/sikkerhet/mer-om/trygt-oppgi-passord.html"&gt;
-        why it is OK in this case&lt;/a&gt;.&lt;/p&gt;
+        href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;why
+        it is OK in this case&lt;/a&gt;.&lt;/p&gt;
         </LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Username:</LOGON_FORM_USERNAME>

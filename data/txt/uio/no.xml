@@ -73,10 +73,10 @@
     <LOGON_OUTRO>
         &lt;p&gt;Av sikkerhetshensyn blir brukernavn og passord du skriver inn
         på denne siden kryptert når det overføres til tjeneren. Vanligvis bør du
-        ikke skrive inn brukernavn og passord på en webside, men du kan du lese
-        om hvorfor du faktisk kan gjøre det her, på &lt;a
-        href="https://uio.no/tjenester/it/sikkerhet/mer-om/trygt-oppgi-passord.html"&gt;denne
-        websiden&lt;/a&gt;.&lt;/p&gt;
+        ikke skrive inn brukernavn og passord på en nettside, men du kan du lese
+        om &lt;a
+        href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;
+        hvorfor du faktisk kan gjøre det her&lt;/a&gt;.&lt;/p&gt;
         </LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Brukernavn:</LOGON_FORM_USERNAME>
@@ -124,7 +124,7 @@
     <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
         er tilknyttet den elektroniske identiteten din ved Universitetet i Oslo. Hvis du trenger mer 
         informasjon eller hjelp i forbindelse med datasystemene ved UiO, kan du gå til
-        &lt;a href="https://uio.no/tjenester/it/"&gt;webstedet for IT-tjenester ved UiO&lt;/a&gt;.</HOME_ABOUT>
+        &lt;a href="https://uio.no/tjenester/it/"&gt;nettstedet for IT-tjenester ved UiO&lt;/a&gt;.</HOME_ABOUT>
 
     <!-- Person page texts -->
     <PERSON_TITLE>Personinformasjon</PERSON_TITLE>
