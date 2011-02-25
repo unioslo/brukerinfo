@@ -1,5 +1,5 @@
 <?php
-// Copyright 2009, 2010 University of Oslo, Norway
+// Copyright 2009, 2010, 2011 University of Oslo, Norway
 //
 // This file is part of Cerebrum.
 //
@@ -79,18 +79,11 @@ class Init extends InitBase
         );
 
         // Headerdata (may be overriden by View.inc, but is nice for viewing errors)
-        header('Content-Type: text/html; charset=' . strtolower(CHARSET) );
+        header('Content-Type: text/html; charset=utf-8');
         // Security tag, preventing the site from popping up in iframes
         // Does for now only work in IE8 and Firefox with NoScript. 
         // http://hackademix.net/2009/01/29/x-frame-options-in-firefox/
         header('X-FRAME-OPTIONS: DENY');
-
-        // Checking if the site has been locked
-        if(file_exists(LOCK_FILE) && trim(file_get_contents(LOCK_FILE))) {
-            define('LOCKED', true);
-        } else {
-            define('LOCKED', false);
-        } // the locking is done by User and View
 
         if($session) {
             // if html_pre is '', session_set_cookie_params considers it to 
@@ -105,6 +98,26 @@ class Init extends InitBase
             session_set_cookie_params(0, $html_pre, $_SERVER['SERVER_NAME'], TRUE, TRUE);
             session_name('brukerinfoid');
             session_start();
+        }
+
+        // Checking if the site has been locked
+        if (file_exists(LOCK_FILE)) {
+            $msg = trim(file_get_contents(LOCK_FILE));
+            if (strlen($msg) > 0) {
+                // log out user
+                $user = Init::get('User', false);
+                $username = $user->getUsername();
+                if ($user->logoff()) {
+                    trigger_error("$username got logged out due to locked page");
+                }
+
+                // view lock page
+                $view = Init::get('View');
+                $view->addTitle(txt('locked_title'));
+                $view->start();
+                $view->addElement('raw', nl2br($msg));
+                die;
+            }
         }
     }
 
@@ -125,7 +138,19 @@ class Init extends InitBase
      */
     protected static function createUser($forward = true)
     {
+        if (!User::setMaxAttempts(ATTEMPTS)) {
+            trigger_error('User::setMaxAttempts('.ATTEMPTS.') didn\'t work');
+        }
+        if (!User::setMaxAttemptsTimeout(ATTEMPT_TIME_OUT_MIN * 60)) {
+            trigger_error('User::setMaxAttemptsTimeout('. (TIME_OUT_MIN * 60)
+                . ') didn\'t work'
+            );
+        }
+
+        // TODO: check for exceptions from User::_construct_control, e.g. 
+        // timeout and security issues.
         $user = new User(Init::get('Bofh'));
+        // if timeout exception: store the present url to forward when logged on again
 
         // forward the user if not logged on
         if ($forward && !$user->isLoggedOn()) {

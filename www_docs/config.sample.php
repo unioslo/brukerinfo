@@ -181,7 +181,7 @@ define('URL_LOGON',         'logon.php');
 /** The default page to go after log on */
 define('URL_LOGGED_IN',     '');
 
-/// OTHER settings
+/// Other settings
 
 // reCaptcha
 

@@ -84,7 +84,7 @@
     <LOGON_FORM_SUBMIT>Logg inn</LOGON_FORM_SUBMIT>
 
     <LOGON_SUCCESS>Velkommen {{full_name}}</LOGON_SUCCESS>
-    <LOGON_BAD_NAME_OR_PASSWORD>Feil brukernavn eller feil passord</LOGON_BAD_NAME_OR_PASSWORD>
+    <LOGON_BAD_NAME_OR_PASSWORD>Feil brukernavn eller passord</LOGON_BAD_NAME_OR_PASSWORD>
     <LOGON_LOGGED_OUT>Du er logget ut</LOGON_LOGGED_OUT>
 
     <LOGON_BLOCKED>Du har forsøkt å logge inn for mange ganger og er midlertidig

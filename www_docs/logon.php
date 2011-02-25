@@ -20,47 +20,35 @@ require_once 'init.php';
 $Init = new Init();
 $User = Init::get('User', false); // do not forward
 $User->logoff();
+$bofh = Init::get('Bofh');
+$View = Init::get('View');
 
-//checks if the site is locked for maintenance (or anything)
-if (LOCKED) {
+$logform = new BofhForm('logon');
+$logform->addElement('text',     'usi',  txt('logon_form_username'), 'id="usi"');
+$logform->addElement('password', 'pasi', txt('logon_form_password'));
+$logform->addElement('submit',   null,   txt('logon_form_submit'));
+//TODO: add required-rules (and more)?
 
-    $lockstr = file_get_contents(LOCK_FILE);
-
-    $View = Init::get('View');
-    $View->addTitle(txt('locked_title'));
-    $View->start();
-    $View->addElement('raw', nl2br($lockstr));
-
-} else { // normal behaviour
-
-    $logform = new BofhForm('logon');
-    $logform->addElement('text', 'usi', txt('LOGON_FORM_USERNAME'), 'id="usi"');
-    $logform->addElement('password', 'pasi', txt('LOGON_FORM_PASSWORD'));
-    $logform->addElement('submit', null, txt('LOGON_FORM_SUBMIT'));
-    //TODO: add required-rules (and more)?
-
-    if($logform->validate()) {
-        try {
-            if($User->logon($logform->exportValue('usi'), $logform->exportValue('pasi'))) {
-                View::forward(URL_LOGGED_IN, txt('logon_success'));
-            }
-            View::addMessage(txt('logon_bad_name_or_password'));
-        } catch (AuthenticateConnectionException $e) {
-            View::addMessage(txt('error_bofh_connection'));
+if ($logform->validate()) {
+    try {
+        if ($User->logon($logform->exportValue('usi'), $logform->exportValue('pasi'))) {
+            View::forward(URL_LOGGED_IN);
         }
-        View::forward(URL_LOGON);
+        View::addMessage(txt('logon_bad_name_or_password'));
+    } catch (UserBlockedException $e) {
+        View::addMessage(txt('logon_blocked'));
+    } catch (AuthenticateConnectionException $e) {
+        View::addMessage(txt('error_bofh_connection'));
     }
-
-
-    $View = Init::get('View');
-    $View->addTitle(txt('LOGON_TITLE'));
-    $View->setFocus('usi');//TODO: move setfokus to Bofhform maybe?
-    $View->start();
-
-    $View->addElement('raw', txt('logon_intro'));
-    $View->addElement($logform);
-    $View->addElement('raw', txt('logon_outro'));
-
+    View::forward(URL_LOGON);
 }
+
+$View->addTitle(txt('LOGON_TITLE'));
+$View->setFocus('usi');//TODO: move setfokus to Bofhform maybe?
+$View->start();
+
+$View->addElement('raw', txt('logon_intro'));
+$View->addElement($logform);
+$View->addElement('raw', txt('logon_outro'));
 
 ?>
