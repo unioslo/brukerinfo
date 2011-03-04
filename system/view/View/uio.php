@@ -185,7 +185,7 @@ class View_uio extends View {
 
         $ret = str_replace('##TITLE##', implode(' - ', array_reverse($this->titles)), $ret);
 
-        $extrahead = '<base href="https://'.$_SERVER['SERVER_NAME'] . HTML_PRE."/\" />\n";
+        $extrahead = '<base href="' . self::$base_url . "\" />\n";
         $extrahead .= $this->htmlCss() . "\n";
         $extrahead .= '    <!--[if lt IE 8]><link rel="stylesheet" style="text/css" href="css/screen.ie.css"><![endif]-->'."\n";
         $extrahead .= '    <!-- Framebusting
