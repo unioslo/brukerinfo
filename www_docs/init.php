@@ -10,7 +10,7 @@
 //
 // Cerebrum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
@@ -61,11 +61,10 @@ class Init extends InitBase
     public function __construct($session = true)
     {
         self::$autoload_dirs = array();
-        foreach(array('controller', 'model', 'view') as $d) {
+        foreach (array('controller', 'model', 'view') as $d) {
             self::$autoload_dirs[] = LINK_SYSTEM . "/$d";
-            self::$autoload_dirs[] = LINK_LIB . "/$d";
+            self::$autoload_dirs[] = LINK_LIB    . "/$d";
         }
-
         parent::__construct();
 
         // TODO: move most of the rest to View (and other classes):
@@ -86,16 +85,17 @@ class Init extends InitBase
         header('X-FRAME-OPTIONS: DENY');
 
         if($session) {
-            // if html_pre is '', session_set_cookie_params considers it to 
-            // false, and defaults the path to be what directory you are in. 
-            // This would create problems if you enter the site in a weird 
-            // directory, e.g. //
-            $html_pre = HTML_PRE;
-            if (!$html_pre) $html_pre = '/';
+            // if the path is '', session_set_cookie_params considers it as
+            // false, and sets it to the path the user is in. This would create 
+            // problems if you enter the site in a sub path (e.g. email/), as 
+            // the session then would only work for that sub path, while another 
+            // path would give you another session.
+            $path = parse_url(BASE_URL, PHP_URL_PATH);
+            if (!$path) $path = '/';
 
             // sets the session cookie to only work in subpages of brukerinfo
             // (and not all in e.g. *.uio.no/*)
-            session_set_cookie_params(0, $html_pre, $_SERVER['SERVER_NAME'], TRUE, TRUE);
+            session_set_cookie_params(0, $path, $_SERVER['SERVER_NAME'], TRUE, TRUE);
             session_name('brukerinfoid');
             session_start();
         }
@@ -213,7 +213,9 @@ class Init extends InitBase
 
         if (!empty($_GET['chooseLang']) && in_array($_GET['chooseLang'], $langs)) {
             $chosen = $_GET['chooseLang'];
-            setcookie('chosenLang', $chosen, time()+60*60*24*365, HTML_PRE);
+            $path = parse_url(BASE_URL, PHP_URL_PATH);
+            if (!$path) $path = '/';
+            setcookie('chosenLang', $chosen, time()+60*60*24*365, $path);
         } elseif (!empty($_SESSION['chosenLang'])) {
             $chosen = $_SESSION['chosenLang'];
         } elseif (!empty($_COOKIE['chosenLang']) && in_array($_COOKIE['chosenLang'], $langs)) {
@@ -230,16 +232,13 @@ class Init extends InitBase
         $_SESSION['chosenLang'] = $chosen;
         return $chosen;
     }
-
-
 }
 
 
 
 
 /** 
- * A shortcut to $View->txt($key)
- * Todo: this could get removed, but clean up the references first.
+ * A shortcut to $Text->get($key)
  *
  * @param   String  $key    The key to what text to output
  * @param   mixed           More values to use in sprintf, the first may be an array
@@ -247,9 +246,9 @@ class Init extends InitBase
 function txt($key)
 {
     $txt = Init::get('Text');
-    
-    if (func_num_args() <= 1) return $txt->get($key);
-
+    if (func_num_args() <= 1) {
+        return $txt->get($key);
+    }
     $i = 1;
     $args = array();
 
@@ -261,7 +260,6 @@ function txt($key)
         }
     }
     return $txt->get($key, $args);
-
 }
 
 /**
