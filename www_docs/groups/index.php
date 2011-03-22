@@ -230,7 +230,7 @@ if(!empty($_GET['group'])) {
     if(isset($_GET['more'])) {
         $primary->addData(View::createElement('a', txt('general_less_details'), 'groups/?group='.$groupname));
     } else {
-        $primary->addData(View::createElement('a', txt('general_more_details'), 'groups/?group='.$groupname.'&amp;more'));
+        $primary->addData(View::createElement('a', txt('general_more_details'), 'groups/?group='.$groupname.'&more'));
     }
 
     if(isset($_GET['more'])) {
@@ -282,14 +282,14 @@ if(!empty($_GET['group'])) {
 
                     if($page > 0) {
                         $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname"));
-                        $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&amp;page=".($page-1)));
+                        $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1)));
                     }
                     for($i = 0; $i <= $max; $i++) {
-                        $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&amp;page=$i"));
+                        $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
                     }
                     if($page < $max) {
-                        $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&amp;page=".($page+1)));
-                        $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&amp;page=".($max)));
+                        $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1)));
+                        $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max)));
                     }
                     $View->addElement($pagelist);
                 }
