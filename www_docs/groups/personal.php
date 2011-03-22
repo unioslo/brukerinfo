@@ -1,55 +1,42 @@
 <?php
-# Copyright 2009, 2010 University of Oslo, Norway
-# 
-# This file is part of Cerebrum.
-# 
-# Cerebrum is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Cerebrum is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2009, 2010, 2011 University of Oslo, Norway
+// 
+// This file is part of Cerebrum.
+// 
+// Cerebrum is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// Cerebrum is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
 require_once '../init.php';
 $Init = new Init();
-$User = new User();
+$User = Init::get('User');
 $Bofh = new Bofhcom();
 
-
-if(hasPersonal()) {
+if (hasPersonal()) {
     View::forward('groups/index.php', txt('groups_personal_already'));
 }
-
-
 
 $form = new BofhForm('makePersonal', null, null, null, 'class="submitonly"');
 $form->addElement('submit', 'add', 'Make personal group');
 
-
-
-
-if($form->validate()) {
-    if($Bofh->getData('group_personal', $User->getUsername())) {
+if ($form->validate()) {
+    if ($Bofh->getData('group_personal', $User->getUsername())) {
         View::forward('groups/', txt('groups_personal_success'));
     } else {
         View::forward('groups/personal.php');
     }
 }
 
-
-
-
-
-
-
-
-$View = View::create();
+$View = Init::get('View');
 $View->addTitle('Groups');
 $View->addTitle(txt('GROUPS_PERSONAL_TITLE'));
 
@@ -61,16 +48,13 @@ $View->addElement($form);
 
 $View->addElement('p', txt('action_delay_hour'), 'class="ekstrainfo"');
 
-
-
-
 /**
  * Checks if the user has a personal group.
  *
  * @return True if user has personal group, false if not.
  */
-function hasPersonal() {
-
+function hasPersonal()
+{
     global $User;
     global $Bofh;
 
@@ -79,8 +63,6 @@ function hasPersonal() {
     } catch(Exception $e) {
         return false;
     }
-
     return true;
-
 }
 ?>
