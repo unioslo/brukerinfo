@@ -284,11 +284,10 @@ function getActiveFilters() {
 /**
  * Sets a filter on or off.
  */
-function setFilters($data) {
-
+function setFilters($data)
+{
     global $Bofh, $User;
-    global $available_filters;
-    global $active_filters;
+    global $available_filters, $active_filters;
 
     $err = false;
 
@@ -332,9 +331,7 @@ function setFilters($data) {
         }
 
     }
-
-    return $res;
-
+    return $err;
 }
 
 

@@ -100,6 +100,8 @@ class View_uio extends View {
         //person
         $menu['person']['link']     = 'person/';
         $menu['person']['sub']      = array(
+            '',
+            'reservations.php',
         );
 
         //accounts

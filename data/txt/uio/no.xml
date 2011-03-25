@@ -39,6 +39,8 @@
     <MENU_HOME>Forside</MENU_HOME>
 
     <MENU_PERSON>Person</MENU_PERSON>
+    <MENU_PERSON_>Person</MENU_PERSON_>
+    <MENU_PERSON_RESERVATIONS>Reservasjoner</MENU_PERSON_RESERVATIONS>
 
     <MENU_ACCOUNT>Brukerkonto</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Kontooversikt</MENU_ACCOUNT_>
@@ -137,6 +139,16 @@
           kontakte &lt;a
           href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
       </PERSON_HOWTO_CHANGE_SAP>
+
+    <!-- Reservation page -->
+    <RESERVATIONS_TITLE>Reservasjoner</RESERVATIONS_TITLE>
+    <RESERVATIONS_INTRO>Rervasjoner fra ulike tjenester.</RESERVATIONS_INTRO>
+    <RESERVATIONS_ACTION_RESERVE>Legg til reservering</RESERVATIONS_ACTION_RESERVE>
+    <RESERVATIONS_ACTION_UNRESERVE>Fjern reservering</RESERVATIONS_ACTION_UNRESERVE>
+    <RESERVATION_UPDATE_SUCCESS_SET>Reservasjon lagt til for {{type}}</RESERVATION_UPDATE_SUCCESS_SET>
+    <RESERVATION_UPDATE_SUCCESS_DEL>Reservasjon fjernet for {{type}}</RESERVATION_UPDATE_SUCCESS_DEL>
+
+    <RESERVATION_TYPE_RESERVE_PASSW>SMS-passord</RESERVATION_TYPE_RESERVE_PASSW>
 
     <!-- Account text -->
     <ACCOUNT_TITLE>Denne brukerkontoen</ACCOUNT_TITLE>

@@ -39,6 +39,8 @@
     <MENU_HOME>Main</MENU_HOME>
 
     <MENU_PERSON>Person</MENU_PERSON>
+    <MENU_PERSON_>Person</MENU_PERSON_>
+    <MENU_PERSON_RESERVATIONS>Reservations</MENU_PERSON_RESERVATIONS>
 
     <MENU_ACCOUNT>Account</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Your account</MENU_ACCOUNT_>
@@ -133,6 +135,16 @@
     <PERSON_HOWTO_CHANGE_SAP>If information in SAP is wrong, please contact
         &lt;a href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
     </PERSON_HOWTO_CHANGE_SAP>
+
+    <!-- Reservation page -->
+    <RESERVATIONS_TITLE>Reservations</RESERVATIONS_TITLE>
+    <RESERVATIONS_INTRO>Reservations from differents services.</RESERVATIONS_INTRO>
+    <RESERVATIONS_ACTION_RESERVE>Add reservation</RESERVATIONS_ACTION_RESERVE>
+    <RESERVATIONS_ACTION_UNRESERVE>Remove reservation</RESERVATIONS_ACTION_UNRESERVE>
+    <RESERVATION_UPDATE_SUCCESS_SET>Set reservation for {{type}}</RESERVATION_UPDATE_SUCCESS_SET>
+    <RESERVATION_UPDATE_SUCCESS_DEL>Removed reservation for {{type}}</RESERVATION_UPDATE_SUCCESS_DEL>
+
+    <RESERVATION_TYPE_RESERVE_PASSW>SMS-password</RESERVATION_TYPE_RESERVE_PASSW>
 
     <!-- Account text -->
     <ACCOUNT_TITLE>Your account</ACCOUNT_TITLE>
