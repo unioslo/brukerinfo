@@ -298,6 +298,12 @@ a img {
     margin-left: 10em;
     font-size: large;
 }
+#content form .notice {
+    color: inherit;
+    display: block;
+    margin-left: 10em;
+    font-size: large;
+}
 #content form .requirednote {
     color: gray;
 }

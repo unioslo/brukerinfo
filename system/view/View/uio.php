@@ -93,31 +93,39 @@ class View_uio extends View {
 
         $bofh = Init::get('Bofh');
         $is_employee = $bofh->isEmployee();
+        $is_personal = $bofh->isPersonal();
 
         //start
         $menu['home']['link']       = '';
 
         //person
-        $menu['person']['link']     = 'person/';
-        $menu['person']['sub']      = array(
-            '',
-            'reservations.php',
-        );
+        if ($is_personal) {
+            $menu['person']['link']     = 'person/';
+            $menu['person']['sub']      = array(
+                '',
+                'reservations.php',
+            );
+        }
 
         //accounts
         $menu['account']['link']   = 'account/';
         $menu['account']['sub']    = array(
             '',
             'password.php',
-            'primary.php'
         );
 
+        if ($is_personal) {
+            $menu['account']['sub'][] = 'primary.php';
+        };
+
         //printer
-        $menu['printing']['link']    = 'printing/';
-        $menu['printing']['sub']     = array(
-            '',
-            'history.php'
-        );
+        if ($is_personal) {
+            $menu['printing']['link']    = 'printing/';
+            $menu['printing']['sub']     = array(
+                '',
+                'history.php'
+            );
+        };
 
         //email
         $menu['email']['link']      = 'email/';
