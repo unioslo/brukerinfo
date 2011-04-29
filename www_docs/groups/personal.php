@@ -26,7 +26,7 @@ if (hasPersonal()) {
 }
 
 $form = new BofhForm('makePersonal', null, null, null, 'class="submitonly"');
-$form->addElement('submit', 'add', 'Make personal group');
+$form->addElement('submit', 'add', txt('groups_personal_submit'));
 
 if ($form->validate()) {
     if ($Bofh->getData('group_personal', $User->getUsername())) {

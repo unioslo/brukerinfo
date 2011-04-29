@@ -419,6 +419,7 @@
     </GROUPS_PERSONAL_INFO>
     <GROUPS_PERSONAL_ALREADY>It looks like you already have a personal group</GROUPS_PERSONAL_ALREADY>
     <GROUPS_PERSONAL_SUCCESS>Created your personal group. It normally takes up to 2 hours before changes are applied.</GROUPS_PERSONAL_SUCCESS>
+    <GROUPS_PERSONAL_SUBMIT>Create personal group</GROUPS_PERSONAL_SUBMIT>
 
     <GROUP_TITLE>Group: {{groupname}}</GROUP_TITLE>
     <GROUP_DESCRIPTION>Description:</GROUP_DESCRIPTION>

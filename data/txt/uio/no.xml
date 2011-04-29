@@ -418,6 +418,7 @@
     <GROUPS_PERSONAL_ALREADY>Det ser ut til at du allerede har en personlig gruppe</GROUPS_PERSONAL_ALREADY>
     <GROUPS_PERSONAL_SUCCESS>Din personlige gruppe er opprettet. Det tar vanligvis opptil 2 timer før endringene 
         trer i kraft.</GROUPS_PERSONAL_SUCCESS>
+    <GROUPS_PERSONAL_SUBMIT>Opprett personlig gruppe</GROUPS_PERSONAL_SUBMIT>
 
     <GROUP_TITLE>Gruppe: {{groupname}}</GROUP_TITLE>
     <GROUP_DESCRIPTION>Beskrivelse:</GROUP_DESCRIPTION>
