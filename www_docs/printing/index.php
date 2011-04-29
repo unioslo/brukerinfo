@@ -21,30 +21,32 @@ $Init = new Init();
 $User = Init::get('User');
 $Bofh = new Bofhcom();
 
-$printerinfo = $Bofh->getData('pquota_status', $User->getUsername());
-
-
-
 $View = Init::get('View');
 $View->addTitle(txt('PRINTING_TITLE'));
 $View->start();
 $View->addElement('h1', txt('PRINTING_TITLE'));
 
-if($printerinfo['has_quota'] == 'F' || $printerinfo['has_blocked_quota'] != 'F') {
+try {
+    $printerinfo = $Bofh->run_command('pquota_status', $User->getUsername());
+} catch (XML_RPC2_FaultException $e) {
+    $printerinfo = null;
+}
 
-    //$View->addElement('p', txt('printing_blocked'));
+if (   !$printerinfo 
+    || $printerinfo['has_quota'] == 'F' 
+    || $printerinfo['has_blocked_quota'] != 'F'
+) {
     $View->addElement('p', $Bofh->getData('pquota_info', $User->getUsername()));
-
 } else {
-
     $kroner = number_format($printerinfo['kroner'], 2, txt('dec_format'), ' ');
 
-    //Todo: make this from addElement instead? If got time...
     $tabl = $View->createElement('table', null, 'class="mini"');
-    $tabl->addData(array(View::createElement('th', txt('printing_table_free')),
+    $tabl->addData(array(
+        View::createElement('th', txt('printing_table_free')),
         null,
         View::createElement('td', $printerinfo['free_quota'], 'class="num"'),
-        null));
+        null,
+    ));
 
     $tabl->addData(array(View::createElement('th', txt('printing_table_paid')),
         '+',
@@ -52,10 +54,12 @@ if($printerinfo['has_quota'] == 'F' || $printerinfo['has_blocked_quota'] != 'F')
         View::createElement('td', txt('printing_table_paid_value', array('kroner'=>$kroner)),
             'class="num"')));
 
-    $tabl->addData(array(View::createElement('th', txt('printing_table_total')),
+    $tabl->addData(array(
+        View::createElement('th', txt('printing_table_total')),
         View::createElement('td', '=', 'class="num_ans"'),
         View::createElement('td', $printerinfo['tot_available'], 'class="num_ans"'),
-        null));
+        null,
+    ));
 
     $printlist[] = txt('printing_moreinfo_pay');
     $printlist[] = txt('printing_moreinfo_prices');
@@ -64,6 +68,6 @@ if($printerinfo['has_quota'] == 'F' || $printerinfo['has_blocked_quota'] != 'F')
 }
 
 $printlist[] = txt('printing_moreinfo_printing');
-if(!empty($printlist)) $View->addElement('ul', $printlist, 'class="ekstrainfo"');
+$View->addElement('ul', $printlist, 'class="ekstrainfo"');
 
 ?>
