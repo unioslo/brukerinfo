@@ -40,7 +40,6 @@
 
     <MENU_PERSON>Person</MENU_PERSON>
     <MENU_PERSON_>Person</MENU_PERSON_>
-    <MENU_PERSON_RESERVATIONS>Reservations</MENU_PERSON_RESERVATIONS>
 
     <MENU_ACCOUNT>Account</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Your account</MENU_ACCOUNT_>
@@ -62,6 +61,7 @@
     <MENU_GROUPS_>Groups</MENU_GROUPS_>
     <MENU_GROUPS_NEW>New group</MENU_GROUPS_NEW>
 
+    <MENU_RESERVATIONS>Reservations</MENU_RESERVATIONS>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->

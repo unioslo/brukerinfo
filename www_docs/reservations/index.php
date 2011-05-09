@@ -26,7 +26,7 @@ $Bofh = Init::get('Bofh');
 
 $owner_id = getOwnerID();
 // Get the trait names for the relevant reservations
-$reservations = getReservations(array(
+$reservations = getReservationTypes(array(
     'reserve_passw',
 ));
 
@@ -48,7 +48,7 @@ $resform->addElement('html', $flist);
 
 if ($resform->validate()) {
     $resform->process('setReservations');
-    View::forward('person/reservations.php');
+    View::forward('reservations/');
 }
 
 $view->start();
@@ -63,11 +63,11 @@ $view->addElement($resform);
  * defined as reservations has to be specified, as this is not handled by 
  * Cerebrum yet.
  */
-function getReservations($traitnames)
+function getReservationTypes($traitnames)
 {
     $bofh = Init::get('Bofh');
     $traits = $bofh->getData('get_constant_description', 'EntityTrait');
-    $pe_traits = getPersonReservations($traitnames);
+    $pe_traits = getReservations($traitnames);
     $ret = array();
     foreach ($traits as $trait) {
         $id = $trait['code_str'];
@@ -82,16 +82,20 @@ function getReservations($traitnames)
 }
 
 /**
- * Gets the logged on person's reservations.
+ * Gets the logged on users's reservations.
  *
- * TODO: this function is not checked if there exists more than one person 
- * trait.
+ * TODO: this function is not checked for more than one trait.
  */
-function getPersonReservations($traitnames)
+function getReservations($traitnames)
 {
     global $owner_id;
     $bofh = Init::get('Bofh');
-    $traits = $bofh->getData('trait_info', "id:$owner_id");
+    $user = Init::get('User');
+    //$traits = $bofh->getData('trait_info', "id:$owner_id");
+    $traits = $bofh->getData('trait_info', $user->getUsername());
+    if (!is_array($traits)) {
+        return array();
+    }
     $sorted = array();
     $name = null;
     foreach ($traits as $trait) {
@@ -104,6 +108,7 @@ function getPersonReservations($traitnames)
         }
     }
     $ret = array();
+    // only return traits defined for reservations:
     foreach ($sorted as $id => $value) {
         if (in_array($id, $traitnames)) {
             $ret[$id] = (bool) $value;
@@ -120,6 +125,7 @@ function setReservations($input)
 {
     global $reservations, $owner_id;
     $bofh = Init::get('Bofh');
+    $user = Init::get('User');
     foreach ($input as $id => $value) {
         if (!isset($reservations[$id])) {
             trigger_error("Unknown reservation '$id' sent from input");
@@ -127,7 +133,7 @@ function setReservations($input)
         }
         $value = intval($value == txt('reservations_action_reserve'));
         try {
-            $res = $bofh->run_command('trait_set', "id:$owner_id", $id, "numval=$value");
+            $res = $bofh->run_command('trait_set', $user->getUsername(), $id, "numval=$value");
             if ($res) {
                 $msgtype = ($value ? 'reservation_update_success_set'
                                    : 'reservation_update_success_del');

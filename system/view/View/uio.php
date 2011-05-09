@@ -102,8 +102,6 @@ class View_uio extends View {
         if ($is_personal) {
             $menu['person']['link']     = 'person/';
             $menu['person']['sub']      = array(
-                '',
-                'reservations.php',
             );
         }
 
@@ -141,7 +139,14 @@ class View_uio extends View {
         $menu['groups']['sub']      = array(
             ''
         );
-        if($is_employee) $menu['groups']['sub'][] = 'new.php';
+        if ($is_employee) $menu['groups']['sub'][] = 'new.php';
+
+        // reservations
+        if ($is_personal) {
+            $menu['reservations']['link'] = 'reservations/';
+            $menu['reservations']['sub'] = array(
+            );
+        }
 
         //returning main menu
         if($sub === null) {

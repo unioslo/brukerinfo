@@ -40,7 +40,6 @@
 
     <MENU_PERSON>Person</MENU_PERSON>
     <MENU_PERSON_>Person</MENU_PERSON_>
-    <MENU_PERSON_RESERVATIONS>Reservasjoner</MENU_PERSON_RESERVATIONS>
 
     <MENU_ACCOUNT>Brukerkonto</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Kontooversikt</MENU_ACCOUNT_>
@@ -61,6 +60,8 @@
     <MENU_GROUPS>Grupper</MENU_GROUPS>
     <MENU_GROUPS_>Grupper</MENU_GROUPS_>
     <MENU_GROUPS_NEW>Ny gruppe</MENU_GROUPS_NEW>
+
+    <MENU_RESERVATIONS>Reservasjoner</MENU_RESERVATIONS>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
