@@ -24,7 +24,6 @@ $Init = new Init();
 $User = Init::get('User');
 $Bofh = Init::get('Bofh');
 
-$owner_id = getOwnerID();
 // Get the trait names for the relevant reservations
 $reservations = getReservationTypes(array(
     'reserve_passw',
@@ -88,10 +87,8 @@ function getReservationTypes($traitnames)
  */
 function getReservations($traitnames)
 {
-    global $owner_id;
     $bofh = Init::get('Bofh');
     $user = Init::get('User');
-    //$traits = $bofh->getData('trait_info', "id:$owner_id");
     $traits = $bofh->getData('trait_info', $user->getUsername());
     if (!is_array($traits)) {
         return array();
@@ -123,7 +120,7 @@ function getReservations($traitnames)
  */
 function setReservations($input)
 {
-    global $reservations, $owner_id;
+    global $reservations;
     $bofh = Init::get('Bofh');
     $user = Init::get('User');
     foreach ($input as $id => $value) {
@@ -147,12 +144,4 @@ function setReservations($input)
     }
 }
 
-/**
- * Get the logged on user's owner_id, most often the person's entity_id.
- */
-function getOwnerID()
-{
-    $bofh = Init::get('Bofh');
-    $res = $bofh->getData('user_info', $bofh->getID());
-    return $res['owner_id'];
-}
+?>
