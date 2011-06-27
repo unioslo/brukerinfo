@@ -9,7 +9,7 @@
     <meta content="Center for Information Technology" name="enhet.fulltnavn" />
     <meta content="USIT" name="enhet.kortnavn" />
     <meta content="houston@usit.uio.no" name="enhet.epost" />
-    <meta content="http://www.usit.uio.no/" name="enhet.vev" />
+    <meta content="https://usit.uio.no/" name="enhet.vev" />
     <meta content="uio.sadm.usit" name="enhet.org" />
     <meta content="##KEYWORDS##" name="emneord" />
     <meta content="##EDITOR.NAME##" name="redaksjon.navn" />
@@ -24,33 +24,25 @@
     <!-- Toppnavigasjonen --> 
     <p class="skipnav"><a href="#snarvei">Hopp over navigasjonen og gå direkte til innholdet</a></p>
     <div id="uio_logo_topp">
-        <a href="http://www.uio.no/"><img alt="Universitetet i Oslo" height="31" src="/visuell-profil/grafikk/studier/logotopp_blaa3.gif" width="267" /></a>
+        <a href="https://uio.no/"><img alt="Universitetet i Oslo" height="31" src="/visuell-profil/grafikk/studier/logotopp_blaa3.gif" width="267" /></a>
     </div>
     <div id="uio_logo_botn">
-        <a href="http://www.uio.no/"><img alt="Universitetet i Oslo" height="19" src="/visuell-profil/grafikk/studier/logobunn_hvit3.gif" width="49" /></a>
+        <a href="https://uio.no/"><img alt="Universitetet i Oslo" height="19" src="/visuell-profil/grafikk/studier/logobunn_hvit3.gif" width="49" /></a>
     </div>
     <ul id="uio_toppmeny">
-        <li><a href="http://www.uio.no/om_uio/">Om UiO</a></li>
-        <li><a href="http://www.uio.no/studier/">Studier</a></li>
-        <li><a href="http://www.uio.no/studentliv/">Studentliv</a></li>
-        <li><a href="http://www.uio.no/forskning/">Forskning</a></li>
-        <li><a href="http://www.uio.no/for_ansatte/">For ansatte</a></li>
-        <li><a href="http://usit.uio.no/it/">IT-tjenester</a></li>
-        <li><a href="http://www.uio.no/tavle/">Oppslagstavle</a></li>
-        <li><a href="http://www.ub.uio.no/">Bibliotek</a></li>
+        <li><a href="https://uio.no/om/">Om UiO</a></li>
+        <li><a href="https://uio.no/studier/">Studier</a></li>
+        <li><a href="https://uio.no/livet-rundt-studiene/">Studentliv</a></li>
+        <li><a href="https://uio.no/forskning/">Forskning</a></li>
+        <li><a href="https://uio.no/for-ansatte/">For ansatte</a></li>
+        <li><a href="https://uio.no/tjenester/it/">IT-tjenester</a></li>
+        <li><a href="https://ub.uio.no/">Bibliotek</a></li>
     </ul>
 
-    <form id="uio_sok" action="http://sok.uio.no/perl/velgsok.pl" method="get">
+    <form id="uio_sok" action="https://uio.no/" method="get">
         <div>
-            <input name="text" type="text" size="19" />
-            <select class="topsoek" name="engine" size="1">
-                <option value="inktomiuio" selected="selected">UiO - nettsider</option>
-                <option value="people">UiO - personer</option>
-                <option value="bibsys_forfatter">BIBSYS - forfatter</option>
-                <option value="bibsys_tittel">BIBSYS - tittel</option>
-                <option value="google">WWW - google</option>
-            </select>
-            <input type="hidden" name="_charset_" />
+            <input name="query" type="text" size="19" />
+            <input type="hidden" name="vrtx" value="searchuio" />
             <input alt="search" name="soek" type="submit" value="S&oslash;k" class="imgsoekbordernull" />
         </div>
     </form> 
@@ -58,7 +50,7 @@
     <div id="uio_it_banner">
         <img alt="It Services - Banner" height="24" src="/visuell-profil/grafikk/it_tjenester/it.gif" width="454" />
     </div>
-    <div id="uio_it_margin"><a href="http://usit.uio.no/it/">IT-tjenester</a></div>
+    <div id="uio_it_margin"><a href="https://uio.no/tjenester/it/">IT-tjenester</a></div>
     <!-- toppnavigasjonen ferdig --> 
 
     <!-- Broedtekstseksjonen --> 
@@ -73,7 +65,7 @@
     <!-- broedtekstseksjonen ferdig -->
 
     <!-- Bunnnavigasjonen --> 
-    <p class="navmarginline" id="bunnnav"><a href="http://www.uio.no/hjelp/kontakt.html">Kontakt UiO</a></p> 
+    <p class="navmarginline" id="bunnnav"><a href="https://uio.no/om/kontaktinformasjon/">Kontakt UiO</a></p> 
     <!-- bunnnavigasjonen ferdig --> 
 
 </body>
