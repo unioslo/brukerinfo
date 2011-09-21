@@ -86,14 +86,17 @@ $View->addElement('div', $list, 'class="primary"');
 
 //other accounts
 $accounts = $Bofh->getAccounts();
-if($accounts) {
+if (sizeof($accounts) > 1) {
 
     $View->addElement('h2', txt('account_other_title'));
 
     $table = View::createElement('table', null, 'class="mini"');
     $table->setHead(txt('account_other_table_name'), txt('account_other_table_expire'));
 
-    foreach($accounts as $aname => $acc) {
+    foreach ($accounts as $aname => $acc) {
+        if ($aname == $Bofh->getUsername()) {
+            continue;
+        }
 
         //checks for expired accounts:
         if($acc['expire']) {

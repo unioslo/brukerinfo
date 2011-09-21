@@ -36,7 +36,7 @@ $View = Init::get('View');
 $View->start();
 $View->addElement('p', txt('home_intro'));
 
-if ($Bofh->getAccounts()) {
+if (sizeof($Bofh->getAccounts()) > 1) {
     $View->addElement('p', txt('home_specific_account'));
 }
 

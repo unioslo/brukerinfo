@@ -183,14 +183,16 @@ $View->addElement('div', $prilist, 'class="primary"');
 
 
 // other accounts:
-$otheraccounts = $Bofh->getAccounts();
-if(!empty($otheraccounts)) {
+$accounts = $Bofh->getAccounts();
+
+if (sizeof($accounts) > 1) {
     $View->addElement('h2', txt('email_other_title'));
     $View->addElement('p', txt('email_other_intro'), 'class="ekstrainfo"');
 
-    foreach($otheraccounts as $aname => $acc) {
-
-        if(!$acc) continue;
+    foreach ($accounts as $aname => $acc) {
+        if (!$acc || $aname == $Bofh->getUsername()) {
+            continue;
+        }
         //todo: needs to know how expire is returned to remove it from the list:
         if($acc['expire'] && $acc['expire']->timestamp < time()) continue;
 
