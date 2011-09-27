@@ -466,8 +466,9 @@
         &lt;p&gt;
         Before filling out this form, please read &lt;a
         href="https://uio.no/tjenester/it/brukernavn-passord/brukeradministrasjon/hjelp/grupper/oppretting/"&gt;
-        the guidelines for new groups&lt;/a&gt;.
-        &lt;/p&gt;</GROUPS_NEW_INTRO>
+        the guidelines&lt;/a&gt; and the &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/hjelp/grupper/oppretting.html"&gt;help
+        for creating groups&lt;/a&gt;.&lt;/p&gt;</GROUPS_NEW_INTRO>
     <GROUPS_NEW_FORM_NAME>Group name:</GROUPS_NEW_FORM_NAME>
     <GROUPS_NEW_FORM_DESC>Description:</GROUPS_NEW_FORM_DESC>
     <GROUPS_NEW_FORM_SPREADS>Spreads:</GROUPS_NEW_FORM_SPREADS>

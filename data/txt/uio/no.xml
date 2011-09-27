@@ -469,7 +469,9 @@
         &lt;p&gt;
         Før du sender inn skjemaet bør du lese gjennom &lt;a
         href="https://uio.no/tjenester/it/brukernavn-passord/brukeradministrasjon/hjelp/grupper/oppretting/"&gt;
-        retningslinjene for oppretting av grupper&lt;/a&gt;.
+        retningslinjene&lt;/a&gt; og &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/hjelp/grupper/oppretting.html"&gt;hjelp
+        for å opprette grupper&lt;/a&gt;.
         &lt;/p&gt;
     </GROUPS_NEW_INTRO>
     <GROUPS_NEW_FORM_NAME>Gruppenavn:</GROUPS_NEW_FORM_NAME>
