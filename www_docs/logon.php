@@ -32,6 +32,14 @@ $logform->addElement('submit',   null,   txt('logon_form_submit'));
 if ($logform->validate()) {
     try {
         if ($User->logon($logform->exportValue('usi'), $logform->exportValue('pasi'))) {
+            if (!empty($_SESSION['UserForward'])) {
+                $base = parse_url(BASE_URL);
+                $url = sprintf('%s://%s%s', $base['scheme'], $base['host'], 
+                    $_SESSION['UserForward']
+                );
+                $_SESSION['UserForward'] = null;
+                View::forward($url);
+            }
             View::forward(URL_LOGGED_IN);
         }
         View::addMessage(txt('logon_bad_name_or_password'));

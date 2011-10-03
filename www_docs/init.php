@@ -135,6 +135,9 @@ class Init extends InitBase
 
     /**
      * Creates a new User object with default settings for brukerinfo.
+     *
+     * @param   bool    $forward    If the user should be forwarded to the logon 
+     *                              page.
      */
     protected static function createUser($forward = true)
     {
@@ -154,6 +157,7 @@ class Init extends InitBase
 
         // forward the user if not logged on
         if ($forward && !$user->isLoggedOn()) {
+            $_SESSION['UserForward'] = $_SERVER['REQUEST_URI'];
             View::forward(URL_LOGON);
         }
 
