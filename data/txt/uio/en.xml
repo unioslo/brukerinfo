@@ -32,6 +32,9 @@
     <!-- Standard notices -->
     <EMPLOYEES_ONLY>Only employees at UiO are allowed to do this.</EMPLOYEES_ONLY>
 
+    <!-- Standard form messages -->
+    <FORM_REQUIRED>This is required</FORM_REQUIRED>
+
     <!-- The top menu -->
     <LOGOUT>Log out</LOGOUT>
 
@@ -40,6 +43,7 @@
 
     <MENU_PERSON>Person</MENU_PERSON>
     <MENU_PERSON_>Person</MENU_PERSON_>
+    <MENU_PERSON_PRIMARY>Primary affiliation</MENU_PERSON_PRIMARY>
 
     <MENU_ACCOUNT>Account</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Your account</MENU_ACCOUNT_>
@@ -135,6 +139,15 @@
     <PERSON_HOWTO_CHANGE_SAP>If information in SAP is wrong, please contact
         &lt;a href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
     </PERSON_HOWTO_CHANGE_SAP>
+
+    <!-- Person primary affiliation -->
+    <PRIMARY_PERSON_TITLE>Primary affiliation</PRIMARY_PERSON_TITLE>
+    <PRIMARY_PERSON_INTRO>Here you can set what should be your primary
+        affiliations at the person presentations at
+        uio.no.</PRIMARY_PERSON_INTRO>
+    <PRIMARY_PERSON_CHOICE>Choose primary affiliation</PRIMARY_PERSON_CHOICE>
+    <PRIMARY_PERSON_UPDATED>Your primary affiliation is updated</PRIMARY_PERSON_UPDATED>
+    <PRIMARY_PERSON_SUBMIT>Update your primary affiliation</PRIMARY_PERSON_SUBMIT>
 
     <!-- Reservation page -->
     <RESERVATIONS_TITLE>Reservations</RESERVATIONS_TITLE>

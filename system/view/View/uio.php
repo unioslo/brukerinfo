@@ -102,6 +102,8 @@ class View_uio extends View {
         if ($is_personal) {
             $menu['person']['link']     = 'person/';
             $menu['person']['sub']      = array(
+                '',
+                'primary.php', 
             );
         }
 

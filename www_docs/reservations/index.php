@@ -56,7 +56,6 @@ $view->addElement('p', txt('reservations_intro'));
 $view->addElement($resform);
 
 
-
 /**
  * Get information about the reservations. The names of the traits that are 
  * defined as reservations has to be specified, as this is not handled by 

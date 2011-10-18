@@ -32,6 +32,9 @@
     <!-- Standard notices -->
     <EMPLOYEES_ONLY>Det er bare ansatte ved UiO som har tilgang til dette.</EMPLOYEES_ONLY>
 
+    <!-- Standard form messages -->
+    <FORM_REQUIRED>Feltet er påkrevd</FORM_REQUIRED>
+
     <!-- The top menu -->
     <LOGOUT>Logg ut</LOGOUT>
 
@@ -40,6 +43,7 @@
 
     <MENU_PERSON>Person</MENU_PERSON>
     <MENU_PERSON_>Person</MENU_PERSON_>
+    <MENU_PERSON_PRIMARY>Primærtilknytning</MENU_PERSON_PRIMARY>
 
     <MENU_ACCOUNT>Brukerkonto</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Kontooversikt</MENU_ACCOUNT_>
@@ -140,6 +144,14 @@
           kontakte &lt;a
           href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
       </PERSON_HOWTO_CHANGE_SAP>
+
+    <!-- Person primary affiliation -->
+    <PRIMARY_PERSON_TITLE>Primærtilknytning</PRIMARY_PERSON_TITLE>
+    <PRIMARY_PERSON_INTRO>Her kan du sette din primærtilknytning, som vises på
+        personpresentasjonen din på uio.no.</PRIMARY_PERSON_INTRO>
+    <PRIMARY_PERSON_CHOICE>Velg primærtilknytning</PRIMARY_PERSON_CHOICE>
+    <PRIMARY_PERSON_UPDATED>Primærtilknytning er oppdatert</PRIMARY_PERSON_UPDATED>
+    <PRIMARY_PERSON_SUBMIT>Oppdater din primærtilknytning</PRIMARY_PERSON_SUBMIT>
 
     <!-- Reservation page -->
     <RESERVATIONS_TITLE>Reservasjoner</RESERVATIONS_TITLE>
