@@ -150,7 +150,8 @@
     <PRIMARY_PERSON_INTRO>Her kan du sette din primærtilknytning, som vises på
         personpresentasjonen din på uio.no.</PRIMARY_PERSON_INTRO>
     <PRIMARY_PERSON_CHOICE>Velg primærtilknytning</PRIMARY_PERSON_CHOICE>
-    <PRIMARY_PERSON_UPDATED>Primærtilknytning er oppdatert</PRIMARY_PERSON_UPDATED>
+    <PRIMARY_PERSON_UPDATED>Primærtilknytning er oppdatert. Det vil ta noen
+        timer før endringen tar effekt.</PRIMARY_PERSON_UPDATED>
     <PRIMARY_PERSON_SUBMIT>Oppdater din primærtilknytning</PRIMARY_PERSON_SUBMIT>
 
     <!-- Reservation page -->

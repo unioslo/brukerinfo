@@ -106,7 +106,7 @@ function get_chosen_primary()
     //  {'strval': 'ANSATT/vitenskapelig@150010'},
     //  ...
     // )
-    for ($i = 0; $i < strlen($traits); $i++) {
+    for ($i = 0; $i < count($traits); $i++) {
         if (!empty($traits[$i]['trait_name'])) {
             if ($traits[$i]['trait_name'] == 'primary_aff') {
                 if (!empty($traits[$i + 1]['strval'])) {
