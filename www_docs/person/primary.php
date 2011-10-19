@@ -43,6 +43,7 @@ $form->addGroup($radios, 'primary', txt('primary_person_choice'), "<br />\n");
 $form->addElement('submit', null, txt('primary_person_submit'));
 
 $form->addRule('primary', txt('form_required'), 'required');
+$form->setDefaults(array('primary' => array('aff' => get_chosen_primary())));
 
 if ($form->validate()) {
     if ($form->process('process_set_primary')) {
@@ -62,16 +63,8 @@ function process_set_primary($data)
     $bofh = Init::get('Bofh');
     $user = Init::get('User');
 
-    $person_info = $bofh->getData('person_info', $user->getUsername());
-    $person_id = null;
-    foreach ($person_info as $p) {
-        if (!empty($p['entity_id'])) {
-            $person_id = $p['entity_id'];
-            break;
-        }
-    }
     try {
-        $ret = $bofh->run_command('trait_set', "entity_id:$person_id",
+        $ret = $bofh->run_command('trait_set', 'entity_id:'.get_person_id(),
             'primary_aff', 'strval='.$primary
         );
     } catch (XML_RPC2_FaultException $e) { 
@@ -79,6 +72,49 @@ function process_set_primary($data)
         return false;
     }
     return $ret;
+}
+
+// TODO: cache this?
+function get_person_id()
+{
+    $bofh = Init::get('Bofh');
+    $user = Init::get('User');
+    $person_info = $bofh->getData('person_info', $user->getUsername());
+    $person_id = null;
+    foreach ($person_info as $p) {
+        if (!empty($p['entity_id'])) {
+            return $p['entity_id'];
+        }
+    }
+}
+
+/**
+ * Return the value of a previously chosen primary affiliation, or null if it 
+ * hasn't been set before.
+ */
+function get_chosen_primary()
+{
+    $bofh = Init::get('Bofh');
+    $traits = $bofh->getData('trait_info', 'entity_id:'.get_person_id());
+    if (!is_array($traits)) {
+        return null;
+    }
+    // the traits are returned in a weird list (so jbofh can represent it)
+    // ({'type': 'person', 'name': 'John Doe'}, 
+    //  ...
+    //  {'trait_name': 'primary_aff'}
+    //  {'strval': 'ANSATT/vitenskapelig@150010'},
+    //  ...
+    // )
+    for ($i = 0; $i < strlen($traits); $i++) {
+        if (!empty($traits[$i]['trait_name'])) {
+            if ($traits[$i]['trait_name'] == 'primary_aff') {
+                if (!empty($traits[$i + 1]['strval'])) {
+                    return $traits[$i + 1]['strval'];
+                }
+            }
+        }
+    }
 }
 
 ?>
