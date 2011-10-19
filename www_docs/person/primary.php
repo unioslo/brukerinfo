@@ -65,7 +65,7 @@ function process_set_primary($data)
 
     try {
         $ret = $bofh->run_command('trait_set', 'entity_id:'.get_person_id(),
-            'primary_aff', 'strval='.$primary
+            'primary_aff', 'strval='.$primary, 'date='.date('Y-m-d')
         );
     } catch (XML_RPC2_FaultException $e) { 
         trigger_error($e);
