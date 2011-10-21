@@ -33,6 +33,12 @@ $view = Init::get('View');
 $view->addTitle(txt('reservations_title'));
 
 $flist = $view->createElement('table');
+$flist->setHead(array(
+    txt('reservations_tablehead_name'),
+    txt('reservations_tablehead_desc'),
+    txt('reservations_tablehead_action'),
+));
+
 foreach ($reservations as $id => $reservation) {
     $status = ($reservation['value'] ? txt('reservations_action_unreserve')
                                      : txt('reservations_action_reserve'));
@@ -90,6 +96,7 @@ function getReservations($traitnames)
     $user = Init::get('User');
     $traits = $bofh->getData('trait_info', $user->getUsername());
     if (!is_array($traits)) {
+        // normally "User has no traits" is returned
         return array();
     }
     $sorted = array();
