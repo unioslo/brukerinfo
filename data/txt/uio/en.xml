@@ -74,16 +74,19 @@
         modify some of the information concerning your web identity and account at the 
         University of Oslo. For more information and help, please see &lt;a
         href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/"&gt;the help pages&lt;/a&gt;.&lt;/p&gt;
-        &lt;p&gt;If you have more than one username, please log on with the 
-        username and password for the account you want to view or modify.&lt;/p&gt;
         </LOGON_INTRO>
     <LOGON_OUTRO>
-        &lt;p&gt;For security reasons, the username and password entered on this
-        web page will be encrypted when transfered to the server. Normally, you
-        should not enter username and password information on a webpage, but you
-        can read about &lt;a
-        href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;why
-        it is OK in this case&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;Forgotten your password? Students can &lt;a
+        href="forgotten/password/"&gt;set a new password by
+        SMS&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;p&gt;Don't know your username at UiO? You can &lt;a
+        href="forgotten/username/"&gt;get your username&lt;/a&gt; if you have
+        chosen to publish your information at www.uio.no.&lt;/p&gt;
+
+        &lt;p&gt;Read about &lt;a
+        href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;where
+        is it safe to enter your username and password&lt;/a&gt;.&lt;/p&gt;
         </LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Username:</LOGON_FORM_USERNAME>
@@ -152,7 +155,7 @@
 
     <!-- Reservation page -->
     <RESERVATIONS_TITLE>Reservations</RESERVATIONS_TITLE>
-    <RESERVATIONS_INTRO>Reservations from different services.</RESERVATIONS_INTRO>
+    <RESERVATIONS_INTRO>Opt-out from different services.</RESERVATIONS_INTRO>
     <RESERVATIONS_ACTION_RESERVE>Add reservation</RESERVATIONS_ACTION_RESERVE>
     <RESERVATIONS_ACTION_UNRESERVE>Remove reservation</RESERVATIONS_ACTION_UNRESERVE>
     <RESERVATION_UPDATE_SUCCESS_SET>Set reservation for {{type}}</RESERVATION_UPDATE_SUCCESS_SET>
@@ -474,7 +477,8 @@
     <GROUPS_MEMBERS_LIST_EMPTY>This group has currently no members</GROUPS_MEMBERS_LIST_EMPTY>
     <GROUPS_MEMBERS_TOO_MANY>This group has too many members to be shown here. Please user jbofh or contact your local IT-service.</GROUPS_MEMBERS_TOO_MANY>
     <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces and/or commas.</GROUPS_MEMBERS_MORE>
-    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Please note that persons are here only used in special cases.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
+    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: persons are only usable in groups
+        for the system Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
 
     <GROUPS_NEW_TITLE>Request new group</GROUPS_NEW_TITLE>
     <GROUPS_NEW_INTRO>&lt;p&gt;Request a new group for use in IT systems at UiO.

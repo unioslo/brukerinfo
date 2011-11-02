@@ -74,16 +74,20 @@
         som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
         Hvis du har behov for mer informasjon eller trenger hjelp til å bruke tjenesten, kan du gå til 
         &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/"&gt;hjelpesidene&lt;/a&gt;.&lt;/p&gt;
-        &lt;p&gt;Hvis du har flere enn ett brukernavn, logger du inn med brukernavnet og passordet
-        til den brukerkontoen du vil se eller endre informasjonen for.&lt;/p&gt;
         </LOGON_INTRO>
     <LOGON_OUTRO>
-        &lt;p&gt;Av sikkerhetshensyn blir brukernavn og passord du skriver inn
-        på denne siden kryptert når det overføres til tjeneren. Vanligvis bør du
-        ikke skrive inn brukernavn og passord på en nettside, men du kan du lese
-        om &lt;a
+        &lt;p&gt;Glemt passordet ditt? Studenter kan &lt;a
+        href="forgotten/password/"&gt;sette nytt passord ved hjelp av
+        SMS&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;p&gt;Vet du ikke hva ditt brukernavn er? Du kan &lt;a
+        href="forgotten/username/"&gt;få dine brukernavn&lt;/a&gt; hvis du
+        ikke har reservert deg fra å bli publisert på UiO sine
+        nettsider.&lt;/p&gt;
+
+        &lt;p&gt;Les om &lt;a
         href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;
-        hvorfor du faktisk kan gjøre det her&lt;/a&gt;.&lt;/p&gt;
+        hvorfor det er trygt å oppgi ditt passord på denne siden&lt;/a&gt;.&lt;/p&gt;
         </LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Brukernavn:</LOGON_FORM_USERNAME>
@@ -475,8 +479,8 @@
         kontakt lokal IT.</GROUPS_MEMBERS_TOO_MANY>
     <GROUPS_MEMBERS_MORE>Hvis du skal legge til flere medlemmer samtidig, skriver du dem inn atskilt med komma 
         og/eller mellomrom.</GROUPS_MEMBERS_MORE>
-    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Legg merke til at personer blir her bare brukt i spesielle tilfeller.
-        </GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
+    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: personer fungerer bare for grupper
+        brukt for Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
 
     <GROUPS_NEW_TITLE>Søk om ny gruppe</GROUPS_NEW_TITLE>
     <GROUPS_NEW_INTRO>&lt;p&gt;Søk om en ny gruppe til bruk i IT-systemene ved UiO.

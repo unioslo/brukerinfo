@@ -62,8 +62,7 @@ if(!empty($_GET['group'])) {
         $newMember->addElement('text', 'grp', txt('groups_members_form_group'));
         $newMember->addElement('text', 'per', txt('groups_members_form_person'));
         $newMember->addElement('html', View::createElement('ul', array(
-            txt('groups_members_more'),
-            txt('groups_members_person_or_account')), 'class="explain"'));
+            txt('groups_members_person_or_account'))));
         $newMember->addElement('submit', null, txt('groups_members_form_submit'));
 
         // adding new members
@@ -257,6 +256,7 @@ if(!empty($_GET['group'])) {
     if($moderator) {
 
         $View->addElement('h2', txt('groups_members_title'));
+        $View->addElement('p', txt('groups_members_more'));
         $View->addElement($newMember);
 
         if($total_members > MAX_LIST_ELEMENTS) {
