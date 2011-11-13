@@ -1,0 +1,145 @@
+/* 
+ * UiO CSS: Admonitions (note, hint, warning etc.)
+ * 
+ * This is for important feedback from action scenarios, and is most often put
+ * at the start of the #uio-app-content or after a main menu.
+ *
+ * Possible admonitions and when to use them:
+ *
+ *  - error     For critical errors?
+ *  - warning   When...
+ *  - note
+ *  - caution
+ *  - important
+ *  - tip
+ *  - hint
+ *  - attention
+ *  - danger
+ *
+ * Examples on how the html should look like:
+ *
+ *  <div class="warning">
+ *      <p class="admonition-title">Warning title</p>
+ *      A short warning text.
+ *  </div>
+ *
+ *  <div class="error">
+ *      <p class="admonition-title">A critical error</p>
+ *      <pre>
+ *          Error message, code and traceroute, if that should be shown.
+ *      </pre>
+ *  </div>
+ *
+ *  <div class="tip">
+ *      <p class="admonition-title">A smart tip in several points</p>
+ *      <ul>
+ *         <li>One</li>
+ *         <li>Two</li>
+ *         <li>Three</li>
+ *      </ul>
+ *  </div>
+ *
+ * Admonitions without 'admonition-title' is also ok. E.g:
+ *
+ *  <div class="danger">
+ *      <p>Stop.</p>
+ *  </div>
+ *
+ * To get smaller admonitions:
+ *
+ *  <div class="note admonition-small">
+ *      ...
+ *  </div>
+ *
+ */
+
+/* Margin, padding m.m. */
+div.admonition, div.attention, div.error, div.hint, div.important, div.note,
+div.tip, div.warning, div.caution, div.danger {
+  background-color: #f8f8f8 !important;
+  color: #000;
+  margin: 15px 0;
+  padding: 15px 25px 10px 66px;
+  display: block;
+  min-height: 25px;
+  border: 1px solid #d5d5d5;
+  border-radius: 10px; /* CSS 3 */
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+div.admonition > div, div.attention > div, div.error > div, div.hint > div, div.important > div,
+div.note > div, div.tip > div, div.warning > div, div.caution > div, div.danger > div {
+    /* tweak to middle align the feedback message if on only one line */
+    display: table-cell;
+    vertical-align: middle;
+    height: 37px;
+    width: 100%;
+}
+/* ^ Margin, padding m.m. */
+
+/* Tittel */
+p.admonition-title {
+    font-weight: bold;
+    font-size: 1.23em;
+}
+/* div.danger p.admonition-title { text-align: center; } */
+/* ^ Tittel */
+
+/* Ymse ting */
+div.admonition ul, div.attention ul, div.error ul, div.hint ul,
+div.important ul, div.note ul, div.tip ul, div.warning ul,
+div.caution ul, div.danger ul {
+    font-size: inherit;
+}
+div.admonition pre.literal-block, div.attention pre.literal-block,
+div.error pre.literal-block, div.hint pre.literal-block, div.important pre.literal-block,
+div.note pre.literal-block, div.tip pre.literal-block, div.warning pre.literal-block,
+div.caution pre.literal-block, div.danger pre.literal-block {
+    font-size: inherit;
+    border: 1px solid #000;
+}
+div.admonition tt.literal, div.attention tt.literal, div.error tt.literal,
+div.hint tt.literal, div.important tt.literal, div.note tt.literal,
+div.tip tt.literal, div.warning tt.literal, div.caution tt.literal,div.danger tt.literal {
+    color: inherit;
+}
+
+.admonition-small {
+  padding: 5px 25px 10px 50px !important;
+  background-position: 12px 12px !important;
+  min-height: 37px !important;
+}
+
+.admonition-small p.admonition-title {
+  font-size: 1em;
+  margin-bottom: -3px;
+}
+
+.admonition-small p.last {
+  margin-bottom: 0px;
+}
+
+/* ^ Ymse ting */
+
+/* Grafikk */
+div.admonition { padding-left: 19px; }
+
+div.error { background-image: url("images/admonitions/error.png"); }
+div.warning { background-image: url("images/admonitions/warning-new.png"); }
+div.note { background-image: url("images/admonitions/note-new.png"); }
+div.caution { background-image: url("images/admonitions/caution.png"); }
+div.important { background-image: url("images/admonitions/important.png"); }
+div.tip { background-image: url("images/admonitions/tip.png"); }
+div.hint { background-image: url("images/admonitions/hint.png"); }
+div.attention { background-image: url("images/admonitions/attention.png"); }
+div.danger { background-image: url("images/admonitions/danger.png"); }
+
+div.error, div.note, div.admonition, div.warning,
+div.caution, div.important, div.tip, div.hint,
+div.attention, div.danger {
+    background-position: 19px 12px ;
+    background-repeat: no-repeat;
+}
+/* ^ Grafikk */
+
+/* ^ UiO CSS: Admonitions (note, hint, warning etc.) */

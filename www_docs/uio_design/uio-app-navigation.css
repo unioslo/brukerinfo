@@ -1,0 +1,166 @@
+/* 
+ * UiO CSS: Navigation elements
+ * 
+ */
+
+/**
+ * Mainmenu:
+ *
+ * +----------------------------------------+
+ * | div#mainmenu (optional)                |
+ * +----------------------------------------+
+ * +----------------------------------------+
+ * | div#app-content                        |
+ * |                                        |
+ * |                                        |
+ * +----------------------------------------+
+ *
+ *  <ul id="app-mainmenu">
+ *      <li><a href="/">Home</a></li>
+ *      <li class="active"><a href="/study">Studies</a></li>
+ *      ...
+ *  </ul>
+ */
+#app-mainmenu {
+    text-align: left;
+    width: 950px;
+    margin: 0 auto;
+    padding: 0;
+    font: bold 14px/25px Arial, sans-serif;
+    position: relative;
+    z-index: 1;
+    list-style: none;
+}
+#app-mainmenu li {
+    list-style: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+#app-mainmenu li a {
+    text-decoration: none;
+    border-top:   solid #e4e4e4 1px;
+    border-right: solid #e4e4e4 1px;
+    border-left:  solid #e4e4e4 1px;
+    margin: 0 10px 0 0;
+    padding: .35em 20px;
+    background-color: #e9e9e9;
+    color: #000000;
+}
+#app-mainmenu li a:link { }
+#app-mainmenu li a:visited { }
+#app-mainmenu li a:hover {
+    background-color: #ddd;
+}
+#app-mainmenu li a.active {
+    background-color: white;
+    padding-bottom: .45em;
+}
+
+
+/**
+ * Page lists:
+ *
+ * E.g:
+ *
+ *  <previous page  1 2 3 (4) 5 6  next page>
+ *
+ * <ul class="app-paging">
+ *      <li><previous</li>
+ *      <li>1</li>
+ *      <li>2</li>
+ *      ...
+ *      <li>last>></li>
+ *  </ul>
+ */
+.app-paging {
+    text-align: right;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.app-paging li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.app-paging li a {
+    padding: .3em .5em;
+    margin: 0;
+}
+
+#app-content .app-paging .app-nav-active {
+    background-color: #0b5a9d;
+    color: #ffffff;
+}
+
+
+/** 
+ * Breadcrumbs
+ *
+ * Should be implemented as a plain list:
+ *
+ *  <ul>
+ *      <li><a href="/">Start page</a></li>
+ *      <li><a href="/doc">Documents</a></li>
+ *      ...
+ *      <li>Edit document</li>
+ *  </ul>
+ */
+#uio-app-breadcrumb {
+    margin: 0 0 1em 0;
+    padding: 0 2px;
+}
+#uio-app-breadcrumb li {
+    display: inline;
+    list-style-type: none;
+    margin: 0 .3em .5em 0;
+    padding: 0 0 .5em 0;
+}
+#uio-app-breadcrumb li:after {
+    content: " >";
+    text-decoration: none;
+    margin-left: .3em;
+}
+
+/** Remove the > from the last breadcrumb */
+#uio-app-breadcrumb li:last-child:after {
+    content: none;
+}
+
+
+/**
+ * Action links, links that should be emphasized.
+ *
+ * Example html:
+ *
+ *  <div class="action"><a href="register/">Register</a></div>
+ *
+ *  <span class="action"><a href="register/">Register</a></span>
+ */
+.action {
+    margin: 0.5em .3em 1.0em 0;
+}
+.action a {
+    color: #000;
+    white-space: nowrap;
+    font: normal 1.1em/1.2em Arial, sans-serif;
+    margin: .1em .5em 1em 0;
+    padding: 6px 10px 6px 12px;
+    text-align: center;
+    display: inline-block;
+    background: url(images/button-background.png) repeat-x 0 0;
+    border: solid #888 1px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -opera-border-radius: 5px;
+    -khtml-border-radius: 5px;
+}
+.action a:hover {
+    text-decoration: none;
+    background: url(images/button-background-darker.png) repeat-x 0 0;
+}
+
