@@ -19,12 +19,10 @@
 /**
  * A subclass of BofhForm to make an easier design for inline use in tables.
  */
-class BofhFormInline extends BofhForm {
-
+class BofhFormInline extends BofhForm
+{
     /** The HTML_QuickForm_Renderer_Default for modifying the html output */
     protected $formRenderer;
-
-
 
     // {{{ construct
     /** 
@@ -40,10 +38,7 @@ class BofhFormInline extends BofhForm {
     public function __construct($name = null, $method = null, $action = null, $target = null, $attr = null, $track = true) {
 
         parent::__construct($name, $method, $action, $target, $attr, $track);
-
-        $this->setAttribute('class', 'inline');
-
-    
+        $this->setAttribute('class', 'app-form inline');
     }
 
     //}}}
