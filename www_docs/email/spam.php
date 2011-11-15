@@ -132,7 +132,7 @@ $View->addTitle(txt('email_spam_title'));
 // making form for the filters (additional spam settings)
 $filterform = new BofhFormUiO('spamfilter');
 
-$flist = View::createElement('table');
+$flist = View::createElement('table', null, 'class="app-table"');
 
 foreach($available_filters as $id => $filter) {
 

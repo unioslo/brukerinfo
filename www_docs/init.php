@@ -71,6 +71,11 @@ class Init extends InitBase
 
         ViewBasic::$base_url = BASE_URL;
 
+        // TODO: remove this, but not after View::forward has been changed to 
+        // something better, or if the View class and ViewBasic share the same 
+        // class variables.
+        View::setBaseUrl(BASE_URL);
+
         BofhForm_reCaptcha::setKeys(
             RECAPTCHA_PRIVATE_KEY, 
             RECAPTCHA_PUBLIC_KEY

@@ -1,20 +1,20 @@
 <?php
-# Copyright 2009, 2010 University of Oslo, Norway
-# 
-# This file is part of Cerebrum.
-# 
-# Cerebrum is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Cerebrum is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2009, 2010, 2011 University of Oslo, Norway
+// 
+// This file is part of Cerebrum.
+// 
+// Cerebrum is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// Cerebrum is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
 require_once '../init.php';
 $Init = new Init();
@@ -23,11 +23,7 @@ $Bofh = new Bofhcom();
 $View = Init::get('View');
 $text = Init::get('Text');
 
-
-
 $form = new BofhFormUiO('addTripnote');
-$form->setAttribute('class', 'app-form-big');
-
 $form->addElement('header', null, txt('email_tripnote_form_title'));
 
 //TODO: add today as default on start?
@@ -47,24 +43,18 @@ $form->setDefaults(array('start'=>date('Y-m-d', time()+3600*24*1), 'end'=>date('
 
 if ($form->validate()) {
     //check dates before sending to bofhd?
-    
     $st = $form->exportValue('start');
     $nd = $form->exportValue('end');
     //Enter begin and end date (YYYY-MM-DD--YYYY-MM-DD) >
     $datestring = $st['Y'] . '-' . $st['M'] . '-' . $st['d'] . '--' .
         $nd['Y'] . '-' . $nd['M'] . '-' . $nd['d'];
-
     try {
-
-        //todo: bofh
-        $Bofh->run_command('email_add_tripnote', $User->getUsername(), $form->exportValue('message'), $datestring);
-
+        $Bofh->run_command('email_add_tripnote', $User->getUsername(), 
+            $form->exportValue('message'), $datestring
+        );
         View::forward('email/tripnote.php', txt('email_tripnote_new_success'));
-
     } catch(Exception $e) {
-
         Bofhcom::viewError($e);
-
     }
 }
 
@@ -169,16 +159,15 @@ $View->addElement('p', txt('email_tripnote_intro'));
 
 if ($othernotes) {
     $View->addElement('h2', txt('email_tripnote_active_title'));
-    $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline">'); //Todo: depreciated, but out of time
-    $table = $View->createElement('table');
+    $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline app-form">'); //Todo: depreciated, but out of time
+    $table = $View->createElement('table', null, 'class="app-table"');
     $table->setHead(txt('email_tripnote_starting'), 
         txt('email_tripnote_ending'),
         txt('email_tripnote_message'),
         null);
 
 
-    foreach($othernotes as $tnote) {
-
+    foreach ($othernotes as $tnote) {
         $start = date('Y-m-d', $tnote['start_date']->timestamp);
 
         $data = array();
@@ -188,7 +177,6 @@ if ($othernotes) {
         $data[] = View::createElement('td', '<input type="submit" class="submit_warn" name="del['.$start.']" value="'.txt('email_tripnote_list_delete').'">');
 
         $table->addData($View->createElement('tr', $data));
-
     }
 
     $View->addElement($table);
@@ -203,7 +191,7 @@ if ($oldnotes) {
     $View->addElement('h2', txt('email_tripnote_old_title'));
     $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline">'); //Todo: depreciated, but out of time
 
-    $table = $View->createElement('table');
+    $table = $View->createElement('table', null, 'class="app-table"');
     $table->setHead('Starting', 'Ending', 'Message', 'Status', null);
 
     foreach(array_reverse($oldnotes) as $tnote) {

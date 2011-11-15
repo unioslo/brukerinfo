@@ -137,6 +137,8 @@
 .app-form textarea, .app-form-big textarea {
     border: 1px solid #888;
     padding: 10px;
+    margin-bottom: 1em;
+    width: 50%;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -144,7 +146,7 @@
 
 /* Aligning text input after radio buttons: */
 .app-form input[type="radio"] + label, .app-form-big input[type="radio"] + label {
-    width: 11.7em;
+    /*width: 11.7em;*/
     display: inline-block;
 }
 

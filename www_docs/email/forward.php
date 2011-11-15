@@ -29,6 +29,7 @@ $keeplocal = (isset($forwards['local']) ? true : false);
 
 //make new forward-form
 $newForm = new BofhFormUiO('addForwarding');
+$newForm->setAttribute('class', 'app-form-big');
 $newForm->addElement('text', 'address', txt('email_forward_form_address'), array('maxlength' => 255));
 $newForm->addElement('checkbox', 'keep', null, txt('email_forward_form_keep'));
 $newForm->addElement('submit', null, txt('email_forward_form_submit'));
