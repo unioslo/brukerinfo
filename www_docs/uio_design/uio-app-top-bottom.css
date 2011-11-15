@@ -56,7 +56,7 @@ body {
   width: 890px;
   margin: 0 auto 20px auto;
   text-align: left;
-  padding: 29px;
+  padding: 0 29px 29px 29px;
   background: #fff;
   border: 1px solid #e4e4e4;
   position: relative;

@@ -7,10 +7,10 @@
  * Mainmenu:
  *
  * +----------------------------------------+
- * | div#mainmenu (optional)                |
+ * | #mainmenu (optional)                   |
  * +----------------------------------------+
  * +----------------------------------------+
- * | div#app-content                        |
+ * | #app-content                           |
  * |                                        |
  * |                                        |
  * +----------------------------------------+
@@ -57,6 +57,58 @@
     padding-bottom: .45em;
 }
 
+/**
+ * Submenu:
+ *
+ * +----------------------------------------+
+ * | #mainmenu (optional)                   |
+ * +----------------------------------------+
+ * +----------------------------------------+
+ * | #submenu (optional)                    |
+ * +----------------------------------------+
+ * +----------------------------------------+
+ * | #app-content                           |
+ * |                                        |
+ * |                                        |
+ * +----------------------------------------+
+ *
+ *  <ul id="app-submenu">
+ *      <li><a href="study/">Study</a></li>
+ *      <li class="active"><a href="study/books">Books</a></li>
+ *      ...
+ *  </ul>
+ */
+#app-submenu {
+    margin: 1em 0;
+    padding: 0;
+    font: bold 1em/25px Arial, sans-serif;
+    position: relative;
+    z-index: 1;
+    list-style: none;
+}
+#app-submenu li {
+    list-style: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+#app-submenu li a {
+    text-decoration: none;
+    border: solid #e4e4e4 1px;
+    margin: 0 10px 0 0;
+    padding: .35em 20px;
+    background-color: #f8f8f8;
+    color: #000000;
+}
+#app-submenu li a:link { }
+#app-submenu li a:visited { }
+#app-submenu li a:hover {
+    background-color: #ddd;
+}
+#app-submenu li a.active {
+    background-color: white;
+    padding-bottom: .45em;
+}
 
 /**
  * Page lists:
