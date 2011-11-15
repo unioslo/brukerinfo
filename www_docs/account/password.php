@@ -27,7 +27,8 @@ $View->addTitle(txt('ACCOUNT_PASSWORD_TITLE'));
 
 
 //the New Password form
-$form = new BofhForm('changePassword');
+$form = new BofhFormUiO('changePassword');
+$form->setAttribute('class', 'app-form-big');
 $form->addElement('password', 'new_pass', txt('account_password_form_new'), 'id="new_pass"');
 //$form->addElement('submit', null, 'Check password');
 //todo: add explaination here...
@@ -95,7 +96,7 @@ $pa->setValue(null);
 
 
 
-$View->setFocus('new_pass');
+$View->setFocus('#new_pass');
 $View->start();
 $View->addElement('h1', txt('ACCOUNT_PASSWORD_TITLE'));
 $View->addElement('raw', txt('ACCOUNT_PASSWORD_INTRO'));

@@ -72,7 +72,7 @@ $prilist = View::createElement('dl', null);
 
 
 // default address
-if(isset($primary['def_addr'])) {
+if (isset($primary['def_addr'])) {
     $prilist->addData(txt('email_info_primary_addr'), $primary['def_addr']);
     unset($primary['def_addr']);
 }
@@ -94,7 +94,7 @@ unset($primary['valid_addr']);
 unset($primary['deletable']);
 
 // quota
-if(isset($primary['quota_used'])) {
+if (isset($primary['quota_used'])) {
     $prilist->addData(txt('email_info_quota'), txt('email_info_quota_info', array(
         'quota_used'    => $primary['quota_used'], 
         'quota_max'     => $primary['quota_hard'], 
@@ -105,15 +105,17 @@ if(isset($primary['quota_used'])) {
 }
 
 // forward
-if(isset($primary['forward'])) {
+if (isset($primary['forward'])) {
     $prilist->addData(txt('email_info_forward'), $primary['forward']);
     unset($primary['forward']);
 }
 
+$text = Init::get('Text');
+
 // spam level
-if(isset($primary['spam_level'])) {
+if (isset($primary['spam_level'])) {
     //getting the translated description
-    if(Text::exists('email_spam_level_'.$primary['spam_level'], $View->getLanguage())) {
+    if ($text->exists('email_spam_level_'.$primary['spam_level'], $text->getLanguage())) {
         $primary['spam_level_desc'] = txt('email_spam_level_'.$primary['spam_level']);
     }
 
@@ -123,9 +125,9 @@ if(isset($primary['spam_level'])) {
     unset($primary['spam_level_desc']);
 }
 // spam action
-if(isset($primary['spam_action'])) {
+if (isset($primary['spam_action'])) {
     //getting the translated description
-    if(Text::exists('email_spam_action_'.$primary['spam_action'], $View->getLanguage())) {
+    if ($text->exists('email_spam_action_'.$primary['spam_action'], $text->getLanguage())) {
         $primary['spam_action_desc'] = txt('email_spam_action_'.$primary['spam_action']);
     }
     $prilist->addData(txt('email_info_spam_action'), 
@@ -135,7 +137,7 @@ if(isset($primary['spam_action'])) {
 }
 
 // filter
-if(!empty($primary['filters']) && $primary['filters'] != 'None') {
+if (!empty($primary['filters']) && $primary['filters'] != 'None') {
 
 
     //getting the description of the filters
@@ -147,7 +149,7 @@ if(!empty($primary['filters']) && $primary['filters'] != 'None') {
         //if(Text::exists("email_filter_{$f}_desc")) {
         //    $filters[] = txt("email_filter_{$f}_desc", array('bofh_desc'=>$filter_desc[$f])) . " ($f)";
         //} elseif(isset($filter_desc[$f])) {
-        if(isset($filter_desc[$f])) {
+        if (isset($filter_desc[$f])) {
             $filters[] = $filter_desc[$f] . " ($f)";
         } else {
             $filters[] = $f;
@@ -162,16 +164,16 @@ if(!empty($primary['filters']) && $primary['filters'] != 'None') {
 unset($primary['filters']);
 
 // server
-if(isset($primary['server'])) {
+if (isset($primary['server'])) {
     $prilist->addData(txt('email_info_server'), $primary['server'] . ' ('.$primary['server_type'].')');
     unset($primary['server']);
     unset($primary['server_type']);
 }
 
 //adds the rest (if any)
-foreach($primary as $k => $pr) {
+foreach ($primary as $k => $pr) {
     $titl = @txt('email_info_'.$k);
-    if(!$titl) $titl = $k;
+    if (!$titl) $titl = $k;
     $titl = ucfirst($k).':';
     $prilist->addData($titl, $pr);
 
@@ -194,7 +196,7 @@ if (sizeof($accounts) > 1) {
             continue;
         }
         //todo: needs to know how expire is returned to remove it from the list:
-        if($acc['expire'] && $acc['expire']->timestamp < time()) continue;
+        if ($acc['expire'] && $acc['expire']->timestamp < time()) continue;
 
         $sec = emailinfo($aname);
 
@@ -226,24 +228,24 @@ function emailinfo($username)
     $data = $Bofh->getDataClean('email_info', $username);
 
     //let valid_addr_1 be first in valid_addr list (if existing)
-    if(empty($data['valid_addr'])) $data['valid_addr'] = array();
-    if(!is_array($data['valid_addr'])) $data['valid_addr'] = array($data['valid_addr']);
+    if (empty($data['valid_addr'])) $data['valid_addr'] = array();
+    if (!is_array($data['valid_addr'])) $data['valid_addr'] = array($data['valid_addr']);
     array_unshift($data['valid_addr'], $data['valid_addr_1']);
     unset($data['valid_addr_1']);
 
-    if(!empty($data['forward_1'])) {
-        if(empty($data['forward'])) {
+    if (!empty($data['forward_1'])) {
+        if (empty($data['forward'])) {
             $data['forward'] = $data['forward_1'];
         } else {
-            if(!is_array($data['forward'])) $data['forward'] = array($data['forward']);
+            if (!is_array($data['forward'])) $data['forward'] = array($data['forward']);
             array_unshift($data['forward'], $data['forward_1']);
         }
     }
     unset($data['forward_1']);
 
     // the filters comes in a string in an array so need to split:
-    if(!empty($data['filters']) && $data['filters'] != 'None') {
-        if(count($data['filters'] == 1)) {
+    if (!empty($data['filters']) && $data['filters'] != 'None') {
+        if (count($data['filters'] == 1)) {
             $data['filters'] = explode(', ', $data['filters'][0]);
         } else {
             //assumes that it has been fixed?

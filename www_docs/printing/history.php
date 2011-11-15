@@ -103,7 +103,7 @@ function createForm($def_length)
  */
 function createHistoryTable($history, $details = false)
 {
-    $table = View::createElement('table');
+    $table = View::createElement('table', null, 'class="app-table"');
     if ($details) {
         $table->setHead(
             txt('printing_history_list_jobid'),

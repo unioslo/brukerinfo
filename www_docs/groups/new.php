@@ -29,8 +29,10 @@ if(!$Bofh->isEmployee()) View::forward('groups/', txt('employees_only'));
 $spreads = getSpreads();
 
 // the request form
-$newform = new BofhForm('newGroup');
-$newform->addElement('text', 'gr_name', txt('groups_new_form_name'));
+$newform = new BofhFormUiO('newGroup');
+$newform->setAttribute('class', 'app-form-big');
+$n = $newform->addElement('text', 'gr_name', txt('groups_new_form_name'));
+$n->setAttribute('id', 'group_name');
 $newform->addElement('text', 'gr_desc', txt('groups_new_form_desc'));
 $newform->addElement('text', 'gr_mod',  txt('groups_new_form_moderator'));
 
@@ -54,6 +56,7 @@ if($newform->validate()) {
     }
 }
 
+$View->setFocus('#group_name');
 $View->addTitle(txt('GROUPS_NEW_TITLE'));
 $View->start();
 $View->addElement('h1', txt('groups_new_title'));

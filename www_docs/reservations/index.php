@@ -32,7 +32,7 @@ $reservations = getReservationTypes(array(
 $view = Init::get('View');
 $view->addTitle(txt('reservations_title'));
 
-$flist = $view->createElement('table');
+$flist = $view->createElement('table', null, 'class="app-table"');
 $flist->setHead(array(
     txt('reservations_tablehead_name'),
     txt('reservations_tablehead_desc'),
@@ -48,7 +48,7 @@ foreach ($reservations as $id => $reservation) {
         "<input type=\"submit\" name=\"$id\" class=\"submit\" value=\"$status\" />",
     ));
 }
-$resform = new BofhForm('reservations');
+$resform = new BofhFormUiO('reservations');
 $resform->addElement('html', $flist);
 
 if ($resform->validate()) {

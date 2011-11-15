@@ -68,21 +68,13 @@ class Init extends InitBase
         parent::__construct();
 
         // TODO: move most of the rest to View (and other classes):
-        
-        View::setBaseUrl(BASE_URL);
-        //BofhCom::setBofhdUrl(BOFH_URL);
+
+        ViewBasic::$base_url = BASE_URL;
 
         BofhForm_reCaptcha::setKeys(
             RECAPTCHA_PRIVATE_KEY, 
             RECAPTCHA_PUBLIC_KEY
         );
-
-        // Headerdata (may be overriden by View.inc, but is nice for viewing errors)
-        header('Content-Type: text/html; charset=utf-8');
-        // Security tag, preventing the site from popping up in iframes
-        // Does for now only work in IE8 and Firefox with NoScript. 
-        // http://hackademix.net/2009/01/29/x-frame-options-in-firefox/
-        header('X-FRAME-OPTIONS: DENY');
 
         if($session) {
             // if the path is '', session_set_cookie_params considers it as
@@ -127,9 +119,9 @@ class Init extends InitBase
      */
     protected static function createView()
     {
-        $view = new View_uio($lang, BASE_URL);
-        // TODO: more settings from config should be added here and not inside 
-        //       the class
+        $text = self::get('Text');
+        $view = new View_uio();
+        $view->setTemplate(LINK_DATA . '/templates/template.uio.' . $text->getLanguage() . '.txt');
         return $view;
     }
 
@@ -277,6 +269,5 @@ function to_array($data) {
     return array($data);
 
 }
-
 
 ?>

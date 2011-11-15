@@ -40,7 +40,7 @@ if (   !$printerinfo
 } else {
     $kroner = number_format($printerinfo['kroner'], 2, txt('dec_format'), ' ');
 
-    $tabl = $View->createElement('table', null, 'class="mini"');
+    $tabl = $View->createElement('table', null, 'class="app-table mini"');
     $tabl->addData(array(
         View::createElement('th', txt('printing_table_free')),
         null,

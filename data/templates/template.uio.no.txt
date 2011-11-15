@@ -1,72 +1,102 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="no" lang="no">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="no">
 <head>
     <title>##TITLE##</title>
-    <link rel="stylesheet" href="/visuell-profil/css/uio.css" />
-    <link rel="shortcut icon" href="/visuell-profil/grafikk/uio.ico" type="image/x-icon" />
-    <link rel="icon" href="/visuell-profil/grafikk/uio.ico" type="image/x-icon" />
-    <meta content="Center for Information Technology" name="enhet.fulltnavn" />
-    <meta content="USIT" name="enhet.kortnavn" />
-    <meta content="houston@usit.uio.no" name="enhet.epost" />
-    <meta content="https://usit.uio.no/" name="enhet.vev" />
-    <meta content="uio.sadm.usit" name="enhet.org" />
-    <meta content="##KEYWORDS##" name="emneord" />
-    <meta content="##EDITOR.NAME##" name="redaksjon.navn" />
-    <meta content="##EDITOR@EMAIL##" name="redaksjon.epost" />
-    <meta content="##KEYWORDS##, it" name="keywords" />
 
-##HEADERS##
+    <base href="##BASEURL##" />
 
+    <!-- UiO profile -->
+    <link media="screen" type="text/css" href="uio_design/uio-app-general.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="uio_design/jquery.min.js"></script> 
+
+    <!-- Framebusting: Prevent clickjacking by avoiding frames. Modern
+         browsers respects the x-frame-options, though.
+         http://en.wikipedia.org/wiki/Framekiller -->
+    <script type="text/javascript">
+        if(top != self) top.location.replace(location);        
+    </script>
+
+    ##HEADERS##
 </head>
 <body>
 
-    <!-- Toppnavigasjonen --> 
-    <p class="skipnav"><a href="#snarvei">Hopp over navigasjonen og gå direkte til innholdet</a></p>
-    <div id="uio_logo_topp">
-        <a href="https://uio.no/"><img alt="Universitetet i Oslo" height="31" src="/visuell-profil/grafikk/studier/logotopp_blaa3.gif" width="267" /></a>
+<!-- Page header starts -->
+<div id="app-head-wrapper"> 
+  <div id="line-top"><div id="uiologo"><a href="https://uio.no/">Universitetet i Oslo</a></div></div>
+  <div id="app-head">
+    <div id="app-name"> 
+       <a href="##APPLIKASJONSLINK##">##APPLIKASJONSNAVN##</a> 
+       <span id="tagline">##TAGLINE##</span>
     </div>
-    <div id="uio_logo_botn">
-        <a href="https://uio.no/"><img alt="Universitetet i Oslo" height="19" src="/visuell-profil/grafikk/studier/logobunn_hvit3.gif" width="49" /></a>
-    </div>
-    <ul id="uio_toppmeny">
-        <li><a href="https://uio.no/om/">Om UiO</a></li>
-        <li><a href="https://uio.no/studier/">Studier</a></li>
-        <li><a href="https://uio.no/livet-rundt-studiene/">Studentliv</a></li>
-        <li><a href="https://uio.no/forskning/">Forskning</a></li>
-        <li><a href="https://uio.no/for-ansatte/">For ansatte</a></li>
-        <li><a href="https://uio.no/tjenester/it/">IT-tjenester</a></li>
-        <li><a href="https://ub.uio.no/">Bibliotek</a></li>
+
+    <!-- Skip to content is recommended to go right after the logo. -->
+    <ul class="hidnav">
+        <li><a href="#app-mainmenu">Hopp til hovedmenyen</a></li>
+        <li><a href="#app-content">Hopp til hovedinnholdet</a></li>
+        <li><a href="#app-footer">Hopp til kontaktinformasjonen</a></li>
     </ul>
 
-    <form id="uio_sok" action="https://uio.no/" method="get">
-        <div>
-            <input name="query" type="text" size="19" />
-            <input type="hidden" name="vrtx" value="searchuio" />
-            <input alt="search" name="soek" type="submit" value="S&oslash;k" class="imgsoekbordernull" />
-        </div>
-    </form> 
+    <!--
+    <form class="searchform" method="get" action='/'> 
+      <fieldset> 
+	<label for="searchstring" class="searchstringlabel">Søk i WebID</label> 
+        <input type="hidden" name="vrtx" value="search"/> 
+	<input type="text" class="searchstring" name="query" value="" /> 
+        <button type="submit" class="searchsubmit"><span>S&oslash;k</span></button> 
+      </fieldset> 
+    </form>
+    -->
 
-    <div id="uio_it_banner">
-        <img alt="It Services - Banner" height="24" src="/visuell-profil/grafikk/it_tjenester/it.gif" width="454" />
+    <div id="head-menu"> 
+        ##LANGUAGES##        
     </div>
-    <div id="uio_it_margin"><a href="https://uio.no/tjenester/it/">IT-tjenester</a></div>
-    <!-- toppnavigasjonen ferdig --> 
+    <div id="head-submenu">
+        <span class="head-help"><a href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/">Hjelp</a></span>
+        ##STATUSLOGON##
+    </div>
+  </div> 
+</div> 
+<!-- Page header end -->
 
-    <!-- Broedtekstseksjonen --> 
-    <div class="navmarginbrod" id="brodtekst"><a name="snarvei"></a> 
-      
+##MAINMENU##
+
+<!-- Page content starts -->
+<div id="app-content">
+
+##SUBMENU##
+
+##MESSAGES##
 
 ##BODY##
 
+</div>
+<!-- Page content end -->
 
-        <div class="signatur">Redaksjon: ##EDITOR.NAME##, <a href="mailto:##EDITOR@EMAIL##">##EDITOR@EMAIL##</a></div> 
-    </div> 
-    <!-- broedtekstseksjonen ferdig -->
+<!-- Page footer starts -->
+<div id="app-footer-wrapper"> 
+   <div id="app-footer">
+     <div id="app-responsible"> 
+       <span class="vrtx-label">Ansvarlig for tjenesten</span> 
+       <span><a href="http://www.usit.uio.no/om/organisasjon/sapp/gt/">USIT - Gruppe for drift av grunntjenester</a></span> 
+     </div>
+     <div id="contact-info"> 
+       <div class="phone-fax-email"> 
+         <span class="vrtx-label">Kontaktinformasjon</span>
+         <span class="email">E-post: <a href="mailto:houston@usit.uio.no">houston@usit.uio.no</a></span>  
+         <span class="tel">Tlf: (228) 40004</span>  
+       </div> 
+     </div>
+     <div id="app-footer-extras">
+     </div>
+   </div> 
+</div>
+<!-- Page footer end -->
 
-    <!-- Bunnnavigasjonen --> 
-    <p class="navmarginline" id="bunnnav"><a href="https://uio.no/om/kontaktinformasjon/">Kontakt UiO</a></p> 
-    <!-- bunnnavigasjonen ferdig --> 
+<!-- IE fixes -->
+<!--[if IE]>
+    <script type="text/javascript" src="uio_design/uio-ie-fixes.js"></script> 
+<![endif]-->
 
 </body>
 </html>

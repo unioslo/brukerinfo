@@ -23,7 +23,8 @@ $User->logoff();
 $bofh = Init::get('Bofh');
 $View = Init::get('View');
 
-$logform = new BofhForm('logon');
+$logform = new BofhFormUiO('logon');
+$logform->setAttribute('class', 'app-form-big');
 $logform->addElement('text',     'usi',  txt('logon_form_username'), 'id="usi"');
 $logform->addElement('password', 'pasi', txt('logon_form_password'));
 $logform->addElement('submit',   null,   txt('logon_form_submit'));
@@ -52,7 +53,7 @@ if ($logform->validate()) {
 }
 
 $View->addTitle(txt('LOGON_TITLE'));
-$View->setFocus('usi');//TODO: move setfokus to Bofhform maybe?
+$View->setFocus('#usi'); //TODO: move setfokus to Bofhform maybe?
 $View->start();
 
 $View->addElement('raw', txt('logon_intro'));

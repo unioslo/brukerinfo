@@ -21,6 +21,7 @@ $Init = new Init();
 $User = Init::get('User');
 $Bofh = new Bofhcom();
 $View = Init::get('View');
+$text = Init::get('Text');
 
 // Getting spam settings
 
@@ -34,7 +35,9 @@ $sp_levels[] = $sp_lvl_raw[3];
 $sp_levels[] = $sp_lvl_raw[2];
 // adding the rest (if any)
 $i = 4;
-while($i<count($sp_lvl_raw)) $sp_levels[] = $sp_lvl_raw[$i++];
+while ($i < count($sp_lvl_raw)) {
+    $sp_levels[] = $sp_lvl_raw[$i++];
+}
 
 // the set level and action
 list($def_level, $def_action) = getSetLevelAction();
@@ -46,7 +49,8 @@ $active_filters = getActiveFilters();
 
 
 
-$form = new BofhForm('setSpam');
+$form = new BofhFormUiO('setSpam');
+$form->setAttribute('class', 'app-form-big');
 
 //spam level
 $levels = array();
@@ -54,7 +58,7 @@ foreach($sp_levels as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_level_'.$v['code_str'];
 
-    if (Text::exists($txt_name, $View->getLanguage(), true)) {
+    if ($text->exists($txt_name, $text->getLanguage(), true)) {
         $v['description'] = txt($txt_name);
     }
 
@@ -69,7 +73,7 @@ foreach($sp_actions as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_action_'.$v['code_str'];
 
-    if (Text::exists($txt_name, $View->getLanguage(), true)) {
+    if ($text->exists($txt_name, $text->getLanguage(), true)) {
         $v['description'] = txt($txt_name);
     }
 
@@ -126,7 +130,7 @@ $View->addTitle(txt('email_spam_title'));
 
 
 // making form for the filters (additional spam settings)
-$filterform = new BofhForm('spamfilter');
+$filterform = new BofhFormUiO('spamfilter');
 
 $flist = View::createElement('table');
 
@@ -233,6 +237,7 @@ function getSetLevelAction() {
 function availableFilters() {
 
     global $Bofh, $View;
+    $text = Init::get('Text');
 
     $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
 
@@ -245,13 +250,13 @@ function availableFilters() {
 
         $filters[$id]['name'] = $id;
         //looking for a better name
-        if (Text::exists($txtkey_name, $View->getLanguage())) {
+        if ($text->exists($txtkey_name, $text->getLanguage())) {
             $filters[$id]['name'] = txt($txtkey_name);
         }
 
         $filters[$id]['desc'] = $f['description'];
         //looking for a better description
-        if (Text::exists($txtkey_desc, $View->getLanguage())) {
+        if ($text->exists($txtkey_desc, $text->getLanguage())) {
             $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
         }
     }

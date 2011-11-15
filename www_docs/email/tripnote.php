@@ -21,16 +21,18 @@ $Init = new Init();
 $User = Init::get('User');
 $Bofh = new Bofhcom();
 $View = Init::get('View');
+$text = Init::get('Text');
 
 
 
-$form = new BofhForm('addTripnote');
+$form = new BofhFormUiO('addTripnote');
+$form->setAttribute('class', 'app-form-big');
 
 $form->addElement('header', null, txt('email_tripnote_form_title'));
 
 //TODO: add today as default on start?
-$form->addElement('date', 'start', txt('email_tripnote_starting'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$View->getLanguage()));
-$form->addElement('date', 'end', txt('email_tripnote_ending'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$View->getLanguage()));
+$form->addElement('date', 'start', txt('email_tripnote_starting'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$text->getLanguage()));
+$form->addElement('date', 'end', txt('email_tripnote_ending'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$text->getLanguage()));
 $form->addElement('textarea', 'message', txt('email_tripnote_message'), 'rows="7"');
 
 $form->addElement('submit', null, txt('email_tripnote_form_submit'), array('class'=>'submit'));
@@ -82,37 +84,31 @@ $oldnotes = array();
 $othernotes = array();
 
 //if empty, bofhd gives out 'no tripnotes for {username}'
-if($rawnotes && is_array($rawnotes)) {
-
-    foreach($rawnotes as $tnote) {
+if ($rawnotes && is_array($rawnotes)) {
+    foreach ($rawnotes as $tnote) {
         $id = date('Y-m-d', $tnote['start_date']->timestamp);
         $tnote['text'] = $tnote['text'];
 
         $tripnotes[$id] = $tnote;
 
-        if($tnote['enable'] == 'ACTIVE' || $tnote['enable'] == 'PENDING') {
+        if ($tnote['enable'] == 'ACTIVE' || $tnote['enable'] == 'PENDING') {
             $othernotes[$id] = $tnote;
         } else {
             $oldnotes[$id] = $tnote;
         }
     }
-};
+}
 
-
-$View->addTitle('Email');
-$View->addTitle(txt('EMAIL_TRIPNOTE_TITLE'));
-
-
-
+$View->addTitle(txt('email_title'));
+$View->addTitle(txt('email_tripnote_title'));
 
 //TODO: cause of lack of time, this form isn't implementet correct 
 //      in BofhFormInline()-class, but done manually:
 //$delform = new BofhFormInline('delTripnote');
 //$dels = array()...
-if(!empty($_POST['confirmed_del'])) {
-
+if (!empty($_POST['confirmed_del'])) {
     $del = $_POST['confirmed_del'];
-    if(!isset($tripnotes[$del])) {
+    if (!isset($tripnotes[$del])) {
         View::forward('email/tripnote.php', 'Found no tripnotes starting at '.htmlspecialchars($del), View::MSG_WARNING);
     }
 
@@ -123,15 +119,14 @@ if(!empty($_POST['confirmed_del'])) {
         Bofhcom::viewError($e);
     }
 }
-if(!empty($_POST['del'])) {
-
-    if(count($_POST['del']) > 1) {
+if (!empty($_POST['del'])) {
+    if (count($_POST['del']) > 1) {
         View::forward('email/tripnote.php', 'Warning, bad data, could not continue.', View::MSG_ERROR);
     }
 
     $del = key($_POST['del']);
 
-    if(!isset($tripnotes[$del])) {
+    if (!isset($tripnotes[$del])) {
         View::forward('email/tripnote.php', 'Unknown out of office message.', View::MSG_WARNING);
     }
 
@@ -146,7 +141,7 @@ if(!empty($_POST['del'])) {
     $dl->addData(txt('email_tripnote_message'),    nl2br($tripnotes[$del]['text']));
     $View->addElement($dl);
 
-    $confirm = new BofhForm('confirm');
+    $confirm = new BofhFormUiO('confirm');
     $confirm->addElement('hidden', 'confirmed_del', $del);
     $confirm->addElement('submit', null, txt('email_tripnote_delete_submit'), 'class="submit_warn"');
     $View->addElement($confirm);
@@ -172,10 +167,8 @@ $View->addElement('h1', txt('EMAIL_TRIPNOTE_TITLE'));
 $View->addElement('p', txt('email_tripnote_intro'));
 
 
-if($othernotes) {
-
+if ($othernotes) {
     $View->addElement('h2', txt('email_tripnote_active_title'));
-
     $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline">'); //Todo: depreciated, but out of time
     $table = $View->createElement('table');
     $table->setHead(txt('email_tripnote_starting'), 
@@ -206,10 +199,8 @@ if($othernotes) {
 $View->addElement($form);
 
 
-if($oldnotes) {
-
+if ($oldnotes) {
     $View->addElement('h2', txt('email_tripnote_old_title'));
-
     $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline">'); //Todo: depreciated, but out of time
 
     $table = $View->createElement('table');

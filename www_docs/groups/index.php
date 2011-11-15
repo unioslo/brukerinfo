@@ -57,7 +57,7 @@ if(!empty($_GET['group'])) {
 
     if($moderator) {
 
-        $newMember = new BofhForm('newMember', null, 'groups/?group='.$groupname);
+        $newMember = new BofhFormUiO('newMember', null, 'groups/?group='.$groupname);
         $newMember->addElement('text', 'acc', txt('groups_members_form_account'));
         $newMember->addElement('text', 'grp', txt('groups_members_form_group'));
         $newMember->addElement('text', 'per', txt('groups_members_form_person'));
@@ -111,7 +111,7 @@ if(!empty($_GET['group'])) {
             //     )
             // )
 
-            $delConfirm = new BofhForm('confirmDelMembers', null, 'groups/?group='.$groupname);
+            $delConfirm = new BofhFormUiO('confirmDelMembers', null, 'groups/?group='.$groupname);
             $delConfirm->addElement('html', View::createElement('p', txt('groups_members_del_confirm', array('groupname'=>$groupname))));
 
             $delList = array();
@@ -294,7 +294,7 @@ if(!empty($_GET['group'])) {
                     $View->addElement($pagelist);
                 }
 
-                $table = View::createElement('table');
+                $table = View::createElement('table', null, 'class="app-table"');
                 $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
 
                 //TODO: make a class for this kind of forms...
@@ -338,7 +338,7 @@ if($adm_groups == -1) {
 
 } elseif($adm_groups) {
 
-    $table = View::createElement('table', null);
+    $table = View::createElement('table', null, 'class="app-table"');
 
     foreach($adm_groups as $n => $g) {
 
@@ -366,10 +366,9 @@ if($adm_groups == -1) {
 
 
 
-if($normal_groups) {
-
+if ($normal_groups) {
     $View->addElement('h2', txt('groups_others_title'));
-    $othtable = View::createElement('table');
+    $othtable = View::createElement('table', null, 'class="app-table"');
     $othtable->setHead(
         txt('groups_table_groupname'),
         txt('groups_table_description')

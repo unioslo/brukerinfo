@@ -25,7 +25,9 @@ $View->addTitle(txt('primary_person_title'));
 $cache = Init::get('Bofh')->getCache();
 $affs  = $cache['affiliations'];
 
-$form = new BofhForm('change_primary');
+$form = new BofhFormUiO('change_primary');
+$form->setAttribute('class', 'app-form-big');
+
 $radios = array();
 foreach ($affs as $aff) {
     // the id to store in the trait

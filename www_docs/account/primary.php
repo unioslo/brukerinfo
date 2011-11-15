@@ -35,7 +35,7 @@ if($primary == $User->getUsername()) {
     die;
 }
 
-$form = new BofhForm('change_primary', null, null, null, 'class="submitonly"');
+$form = new BofhFormUiO('change_primary', null, null, null, 'class="app-form-big submitonly"');
 $form->addElement('submit', 'confirm', txt('account_primary_form_submit'), 
     'class="submit_warn"'
 );

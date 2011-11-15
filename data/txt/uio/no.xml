@@ -12,7 +12,8 @@
 
     <!-- The browsers window title -->
     <PAGETITLE>Brukerinfo - Universitetet i Oslo</PAGETITLE>
-    <HEADER>Brukerinfo - enkel brukeradministrasjon ved UiO</HEADER>
+    <HEADER>Brukerinfo</HEADER>
+    <TAGLINE>Enkel brukeradministrasjon ved UiO</TAGLINE>
     <FOOTER>Brukerinfo - enkel brukeradministrasjon ved UiO</FOOTER>
 
     <!-- The title of the page if it is locked because of a restart 
