@@ -73,17 +73,13 @@
     <LOGON_TITLE>Log on</LOGON_TITLE>
     <LOGON_INTRO>&lt;p&gt;This is a web based user interface you can use to view and
         modify some of the information concerning your web identity and account at the 
-        University of Oslo. For more information and help, please see &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/"&gt;the help pages&lt;/a&gt;.&lt;/p&gt;
-        </LOGON_INTRO>
+        University of Oslo.
+    </LOGON_INTRO>
     <LOGON_OUTRO>
-        &lt;p&gt;Forgotten your password? Students can &lt;a
-        href="forgotten/password/"&gt;set a new password by
-        SMS&lt;/a&gt;.&lt;/p&gt;
-
-        &lt;p&gt;Don't know your username at UiO? You can &lt;a
-        href="forgotten/username/"&gt;retrieve your usernames&lt;/a&gt; if you
-        have chosen to publish your information at www.uio.no.&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;Forgotten your password? Students can &lt;a href="forgotten/password/"&gt;set a new password by SMS&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;Don't know &lt;a href="forgotten/username/"&gt;your username at UiO&lt;/a&gt;?&lt;/li&gt;
+        &lt;/ul&gt;
 
         &lt;p&gt;Read about &lt;a
         href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;where

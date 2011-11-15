@@ -73,18 +73,12 @@
     <LOGON_TITLE>Logg inn</LOGON_TITLE>
     <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen 
         som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
-        Hvis du har behov for mer informasjon eller trenger hjelp til å bruke tjenesten, kan du gå til 
-        &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/"&gt;hjelpesidene&lt;/a&gt;.&lt;/p&gt;
-        </LOGON_INTRO>
+    </LOGON_INTRO>
     <LOGON_OUTRO>
-        &lt;p&gt;Glemt passordet ditt? Studenter kan &lt;a
-        href="forgotten/password/"&gt;sette nytt passord ved hjelp av
-        SMS&lt;/a&gt;.&lt;/p&gt;
-
-        &lt;p&gt;Vet du ikke hva ditt brukernavn er? Du kan &lt;a
-        href="forgotten/username/"&gt;hente fram dine brukernavn&lt;/a&gt;
-        hvis du ikke har reservert deg fra å bli publisert på UiO sine
-        nettsider.&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;Glemt passordet ditt? Studenter kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;Vet du ikke hva &lt;a href="forgotten/username/"&gt;ditt brukernavn ved UiO&lt;/a&gt; er?&lt;/li&gt;
+        &lt;/ul&gt;
 
         &lt;p&gt;Les om &lt;a
         href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;
