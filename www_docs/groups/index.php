@@ -1,20 +1,20 @@
 <?php
-# Copyright 2009, 2010 University of Oslo, Norway
-# 
-# This file is part of Cerebrum.
-# 
-# Cerebrum is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Cerebrum is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2009, 2010, 2011 University of Oslo, Norway
+// 
+// This file is part of Cerebrum.
+// 
+// Cerebrum is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// Cerebrum is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
 require_once '../init.php';
 $Init = new Init();
@@ -28,65 +28,31 @@ $normal_groups = getGroups();
 // the group types which are handled here, other types (e.g. hosts) are ignored
 $acceptable_group_types = array('group', 'account', 'person');
 
-
 $View = Init::get('View');
 $View->addTitle(txt('GROUPS_TITLE'));
 
-
-
-
-
-
-// SHOW A SPECIFIC GROUP
-
-if(!empty($_GET['group'])) {
-
-    //checking if the group exists
-    if(!isset($normal_groups[$_GET['group']]) && !isset($adm_groups[$_GET['group']])) {
+if (!empty($_GET['group'])) { // SHOW A SPECIFIC GROUP
+    if (!isset($normal_groups[$_GET['group']]) && !isset($adm_groups[$_GET['group']])) {
         View::forward('groups/', txt('groups_group_unknown'), View::MSG_WARNING);
     }
-
     $group = $Bofh->getDataClean('group_info', $_GET['group']);
-
-    if(!$group) {
+    if (!$group) {
         View::forward('groups/', txt('groups_group_unknown'), View::MSG_WARNING);
     }
 
     $groupname = ($group['name']);
-    $moderator = (isset($adm_groups[$_GET['group']]) ? true : false); // can user moderate group or not
+    $moderator = (isset($adm_groups[$groupname]) ? true : false); // can user moderate group or not
 
-    if($moderator) {
-
-        $newMember = new BofhFormUiO('newMember', null, 'groups/?group='.$groupname);
-        $newMember->addElement('text', 'acc', txt('groups_members_form_account'));
-        $newMember->addElement('text', 'grp', txt('groups_members_form_group'));
-        $newMember->addElement('text', 'per', txt('groups_members_form_person'));
-        $newMember->addElement('html', View::createElement('ul', array(
-            txt('groups_members_person_or_account'))));
-        $newMember->addElement('submit', null, txt('groups_members_form_submit'));
-
+    if ($moderator) {
         // adding new members
-        if($newMember->validate()) {
-
-            if($newMember->exportValue('per')) {
-                $newper = preg_split('/[\s,]+/', $newMember->exportValue('per'));
-                addMembers($groupname, 'person', $newper);
-            }
-            if($newMember->exportValue('acc')) {
-                $newacc = preg_split('/[\s,]+/', $newMember->exportValue('acc'));
-                addMembers($groupname, 'account', $newacc);
-            }
-            if($newMember->exportValue('grp')) {
-                $newgrp = preg_split('/[\s,]+/', $newMember->exportValue('grp'));
-                addMembers($groupname, 'group', $newgrp);
-            }
+        $newMember = groupmemberForm($groupname);
+        if ($newMember->validate()) {
+            $antall = $newMember->process('groupmemberFormProcess');
             View::forward('groups/?group='.$groupname);
-
         }
 
         // deleting member
-        if(isset($_POST['del'])) {
-
+        if (isset($_POST['del'])) {
             //to separate the types, the del-arrays first dimension refers to the type, e.g:
             // $_POST['del']['group']['info']['groupname']
             // $_POST['del']['account']['info']['username']
@@ -111,42 +77,27 @@ if(!empty($_GET['group'])) {
             //     )
             // )
 
-            $delConfirm = new BofhFormUiO('confirmDelMembers', null, 'groups/?group='.$groupname);
-            $delConfirm->addElement('html', View::createElement('p', txt('groups_members_del_confirm', array('groupname'=>$groupname))));
+            $delConfirm = formConfirmDelMembers($groupname); 
 
-            $delList = array();
-            foreach($_POST['del'] as $v => $delt) {
-                foreach($delt as $id => $del) {
-                    if($v == 'group') {
-                        $delGr[] = $delConfirm->createElement('checkbox', $id, null, $del, 'checked="checked"');
-                    } elseif($v == 'account') {
-                        $delAc[] = $delConfirm->createElement('checkbox', $id, null, $del, 'checked="checked"');
-                    } elseif($v == 'person') {
-                        $delPe[] = $delConfirm->createElement('checkbox', $id, null, $del, 'checked="checked"');
+            // confirmation:
+            if ($delConfirm->validate()) {
+                // TODO: create a process function for this
+
+                if (!empty($_POST['del']['group'])) {
+                    foreach ($delConfirm->exportValue('del[group]') as $id => $d) {
+                        delMembers($groupname, 'group', array($id));
                     }
                 }
-            }
-
-            if(!empty($delGr)) $delConfirm->addGroup($delGr, 'del[group]',   txt('groups_members_del_groups'),   "<br>\n", true);
-            if(!empty($delAc)) $delConfirm->addGroup($delAc, 'del[account]', txt('groups_members_del_accounts'), "<br>\n", true);
-            if(!empty($delPe)) $delConfirm->addGroup($delPe, 'del[person]',  txt('groups_members_del_persons'),  "<br>\n", true);
-
-            $delConfirm->addElement('hidden', 'okDeleteConfirm', true);
-            $delConfirm->addElement('submit', 'okDelete', txt('groups_members_del_submit'), 'class="submit_warn"');
-            $delConfirm->addElement('html', '<a href="groups/?group='.$groupname.'">'.txt('groups_members_del_cancel').'</a>');
-
-            //confirmation:
-            if($delConfirm->validate()) {
-                if(!empty($_POST['del']['group'])) foreach($delConfirm->exportValue('del[group]') as $id => $d) {
-                    delMembers($groupname, 'group', $id);
+                if (!empty($_POST['del']['account'])) {
+                    foreach ($delConfirm->exportValue('del[account]') as $id => $d) {
+                        delMembers($groupname, 'account', array($id));
+                    }
                 }
-                if(!empty($_POST['del']['account'])) foreach($delConfirm->exportValue('del[account]') as $id => $d) {
-                    delMembers($groupname, 'account', $id);
+                if (!empty($_POST['del']['person'])) {
+                    foreach ($delConfirm->exportValue('del[person]') as $id => $d) {
+                        delMembers($groupname, 'person', array($id));
+                    }
                 }
-                if(!empty($_POST['del']['person'])) foreach($delConfirm->exportValue('del[person]') as $id => $d) {
-                    delMembers($groupname, 'person', $id);
-                }
-
                 View::forward('groups/?group='.$groupname);
             }
 
@@ -156,33 +107,27 @@ if(!empty($_GET['group'])) {
             die;
         }
 
-
-        $setDesc = new BofhFormInline('setDesc', null, 'groups/?group='.$groupname);
-        $setDesc->addElement('text', 'desc', null, array('value'=>($group['description']), 'style'=>'width: 50%'));
-        $setDesc->addElement('submit', 'doSet', txt('group_description_submit'));
-
-        if($setDesc->validate()) {
-
-            try {
-                $res = $Bofh->run_command('group_set_description', $groupname, $setDesc->exportValue('desc'));
-                View::addMessage($res);
-            } catch(Exception $e) {
-                Bofhcom::viewError($e);
-            }
-
+        $descForm = formDescription($groupname, $group['description']);
+        if ($descForm->validate()) {
+            $descForm->process('formDescriptionProcess');
             View::forward('groups/?group='.$groupname);
+        }
 
+        // form for deleting members if too many members
+        $delform = getFormDeleteMembers($groupname);
+        if ($delform->validate()) {
+            $delform->process('formDeleteMembersProcess');
+            View::forward('groups/?group='.$groupname);
         }
     }
-
 
     $View->start();
     $View->addElement('h1', txt('group_title', array('groupname'=>$groupname)));
     $primary = View::createElement('div', null, 'class="primary"');
 
     $dl = View::createElement('dl');
-    if($moderator) {
-        $dl->addData(txt('group_description'), $setDesc);
+    if ($moderator) {
+        $dl->addData(txt('group_description'), $descForm);
     } else {
         $dl->addData(txt('group_description'), ($group['description']));
     }
@@ -199,10 +144,10 @@ if(!empty($_GET['group'])) {
     unset($group['owner_type']);
     unset($group['opset']);
 
-    if(!empty($group['members'])) {
+    if (!empty($group['members'])) {
         $dl->addData(txt('group_members'), $group['members']);
     }
-        
+
     //doesn't work for now
     //$dl->addData(txt('group_members'), array(
     //    txt('group_members_groups',  array('number'=>(isset($group['c_group']) ? $group['c_group'] : 0))),
@@ -211,28 +156,19 @@ if(!empty($_GET['group'])) {
     //));
 
     //getting the number of members (to avoid long listing)
-    $total_members = 0;
-    //$total_members += (isset($group['c_group']) ? $group['c_group'] : 0);
-    //$total_members += (isset($group['c_account']) ? $group['c_account'] : 0);
-    //$total_members += (isset($group['c_person']) ? $group['c_person'] : 0);
-
-
     unset($group['c_group']);
     unset($group['c_account']);
     unset($group['c_person']);
 
-
-
-
     $primary->addData($dl);
 
-    if(isset($_GET['more'])) {
+    if (isset($_GET['more'])) {
         $primary->addData(View::createElement('a', txt('general_less_details'), 'groups/?group='.$groupname));
     } else {
         $primary->addData(View::createElement('a', txt('general_more_details'), 'groups/?group='.$groupname.'&more'));
     }
 
-    if(isset($_GET['more'])) {
+    if (isset($_GET['more'])) {
 
         $dl2 = View::createElement('dl');
         unset($group['type']);
@@ -242,87 +178,73 @@ if(!empty($_GET['group'])) {
         asort($group);
 
         //print out the rest of the info
-        foreach($group as $k=>$v) {
-            if(!$v) continue;
+        foreach ($group as $k=>$v) {
+            if (!$v) continue;
             $dl2->addData(ucfirst($k), $v);
         }
         $primary->addData($dl2);
-
     }
 
     $View->addElement($primary);
 
     //if moderator, adds member-functionality
-    if($moderator) {
-
+    if ($moderator) {
         $View->addElement('h2', txt('groups_members_title'));
         $View->addElement('p', txt('groups_members_more'));
         $View->addElement($newMember);
 
-        if($total_members > MAX_LIST_ELEMENTS) {
-
-            $View->addElement('p', txt('groups_members_too_many'));
-
-        } else {
-
-            //the list of members
+        //the list of members
+        try {
             $members = getMembers($groupname);
+            $max = ceil(count($members)/MAX_LIST_ELEMENTS_SPLIT)-1;
+            $page = (empty($_GET['page']) ? 0 : intval($_GET['page']));
 
-            if($members) { // GROUP LIST
+            //preventing empty list
+            if ($page > $max) $page = $max;
 
-                $max = ceil(count($members)/MAX_LIST_ELEMENTS_SPLIT)-1;
-                $page = (empty($_GET['page']) ? 0 : intval($_GET['page']));
+            //making pageview
+            if (count($members) > MAX_LIST_ELEMENTS_SPLIT) {
+                $pagelist = View::createElement('ul', null, 'class="pagenav"');
 
-                //preventing empty list
-                if($page > $max) $page = $max;
-
-                //making pageview
-                if(count($members) > MAX_LIST_ELEMENTS_SPLIT) {
-                    $pagelist = View::createElement('ul', null, 'class="pagenav"');
-
-                    if($page > 0) {
-                        $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname"));
-                        $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1)));
-                    }
-                    for($i = 0; $i <= $max; $i++) {
-                        $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
-                    }
-                    if($page < $max) {
-                        $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1)));
-                        $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max)));
-                    }
-                    $View->addElement($pagelist);
+                if ($page > 0) {
+                    $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname"));
+                    $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1)));
                 }
-
-                $table = View::createElement('table', null, 'class="app-table"');
-                $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
-
-                //TODO: make a class for this kind of forms...
-                $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="inline">'); 
-
-
-                for($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
-                    $table->addData(array(
-                        View::createElement('td', '<input type="checkbox" name="del['.$members[$i]['type'].']['.$members[$i]['id'].']" value="'.$members[$i]['name'].'" id="mem'.$members[$i]['id'].'">', 'class="less"'),
-                        '<label for="mem'.$members[$i]['id'].'">' . $members[$i]['name'] . '</label>', 
-                        $members[$i]['type']
-                    ));
-                };
-
-                $View->addElement($table);
-                $View->addElement('p', '<input type="submit" class="submit_warn" value="'.txt('groups_members_del_submit').'">');
-                $View->addElement('raw', '</form>');
+                for($i = 0; $i <= $max; $i++) {
+                    $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
+                }
+                if ($page < $max) {
+                    $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1)));
+                    $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max)));
+                }
+                $View->addElement($pagelist);
             }
+
+            $table = View::createElement('table', null, 'class="app-table"');
+            $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
+
+            //TODO: make a class for this kind of forms...
+            $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="inline">'); 
+
+
+            for($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
+                $table->addData(array(
+                    View::createElement('td', '<input type="checkbox" name="del['.$members[$i]['type'].']['.$members[$i]['id'].']" value="'.$members[$i]['name'].'" id="mem'.$members[$i]['id'].'">', 'class="less"'),
+                    '<label for="mem'.$members[$i]['id'].'">' . $members[$i]['name'] . '</label>', 
+                    $members[$i]['type']
+                ));
+            };
+
+            $View->addElement($table);
+            $View->addElement('p', '<input type="submit" class="submit_warn" value="'.txt('groups_members_del_submit').'">');
+            $View->addElement('raw', '</form>');
+        } catch (XML_RPC2_FaultException $e) {
+            $View->addElement('p', txt('groups_members_too_many'));
+            $View->addElement(getFormDeleteMembers($groupname));
         }
-
     }
-
     die;
-
 }
-
-
-
 
 // INDEX
 
@@ -332,39 +254,25 @@ $View->addElement('h1', txt('GROUPS_TITLE'));
 // admin groups
 $View->addElement('h2', txt('groups_moderative_title'));
 
-if($adm_groups == -1) {
-
+if ($adm_groups == -1) {
     $View->addElement('p', txt('groups_too_many'));
-
-} elseif($adm_groups) {
-
+} elseif ($adm_groups) {
     $table = View::createElement('table', null, 'class="app-table"');
-
-    foreach($adm_groups as $n => $g) {
-
+    foreach ($adm_groups as $name => $description) {
         $table->addData(array(
-            View::createElement('a', $n, "groups/?group=$n", 'title="Click for more info about this group"'),
-            $g
-            //View::createElement('a', 'Manage members', "groups/members.php?group=$n", 'title="Click for managing the members of this group"')
+            View::createElement('a', $name, "groups/?group=$name", 'title="Click for more info about this group"'),
+            $description,
         ));
-
     }
-
     $table->setHead(
         txt('groups_table_groupname'),
         txt('groups_table_description')
         //'Action:'
     );
-
     $View->addElement($table);
-    
 } else {
-
     $View->addElement('p', txt('groups_empty_mod_list'));
-
 }
-
-
 
 if ($normal_groups) {
     $View->addElement('h2', txt('groups_others_title'));
@@ -374,41 +282,27 @@ if ($normal_groups) {
         txt('groups_table_description')
     );
 
-    foreach($normal_groups as $g => $d) {
-        //skip class-groups (e.g. uio:mn:ifi:inf1000:gruppe2)
-        if(is_numeric(strpos($g, ':'))) continue;
+    foreach ($normal_groups as $name => $description) {
+        // TODO: should we skip class-groups (e.g. uio:mn:ifi:inf1000:gruppe2) or not?
+        if (is_numeric(strpos($name, ':'))) {
+            continue;
+        }
         $othtable->addData(View::createElement('tr', array(
-            //View::createElement('a', $g, "groups/?group=$g", 'title="Click for more info about this group"'),
-            $g,
-            $d
+            $name,
+            $description,
         )));
     }
-
     $View->addElement($othtable);
 }
 
 // recommending a personal group
-if(!isset($adm_groups[$User->getUsername()])) {
+if (!isset($adm_groups[$User->getUsername()])) {
     try {
         $prs = $Bofh->run_command('group_info', $User->getUsername());
     } catch (XML_RPC2_FaultException $e) {
         $View->addElement('p', txt('groups_no_personal'));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Gets out the group info about a specific group.
@@ -422,14 +316,14 @@ function getGroup($group)
     //users in the group
     $ret['members'] = array();
     $ret['groups'] = array();
-    foreach($Bofh->getData('group_list', $group) as $u) {
-        if($u['type'] == 'group') {
+    foreach ($Bofh->getData('group_list', $group) as $u) {
+        if ($u['type'] == 'group') {
             $ret['groups'][] = $u['name'];
         } else {
             //todo: more types than group and account?
             $ret['members'][] = $u['name'];
         }
-        if($u['op'] != 'union') trigger_error("Debugging: The group {$u['name']}'s op is not union, but {$u['type']}", E_USER_NOTICE);
+        if ($u['op'] != 'union') trigger_error("Debugging: The group {$u['name']}'s op is not union, but {$u['type']}", E_USER_NOTICE);
     }
 
     $ret['name'] = $group;
@@ -450,7 +344,7 @@ function getGroups() {
     $raw = $Bofh->getData('group_memberships', 'account', $User->getUsername());
 
     $groups = array();
-    foreach($raw as $g) {
+    foreach ($raw as $g) {
         $groups[$g['group']] = $g['description'];
     }
 
@@ -463,18 +357,19 @@ function getGroups() {
  *
  * @return Array    Normal array with just the group names
  */
-function getAdmGroups() {
-    global $Bofh;
+function getAdmGroups()
+{
+    $bofh = Init::get('Bofh');
     try {
-        $raw = $Bofh->run_command('access_list_alterable', 'group');
-    } catch(Exception $e) {
-        //View::addMessage($e);
+        $raw = $bofh->run_command('access_list_alterable', 'group');
+    } catch(XML_RPC2_FaultException $e) {
+        View::addMessage($e);
         Bofhcom::viewError($e);
-        return -1;
+        throw $e;
     }
 
     $groups = array();
-    foreach($raw as $g) {
+    foreach ($raw as $g) {
         $groups[$g['entity_name']] = $g['description'];
     }
     // sort by keys (groupname)
@@ -486,81 +381,98 @@ function getAdmGroups() {
 /**
  * Gets the list of members of a group
  */
-function getMembers($group) {
-
-    global $Bofh;
+function getMembers($group)
+{
     global $acceptable_group_types;
+    $Bofh = Init::get('Bofh');
 
     //using group_list for now, as it separates the type
     //of members. group_list_expanded lists indirect members too, 
     //which is not what we want
-    $raw = $Bofh->getData('group_list', $group);
-    foreach($raw as $member) {
-        if(in_array($member['type'], $acceptable_group_types)) $ret[] = $member;
+    $raw = $Bofh->run_command('group_list', $group);
+    $ret = array();
+    if ($raw) {
+        foreach ($raw as $member) {
+            if (in_array($member['type'], $acceptable_group_types)) {
+                $ret[] = $member;
+            }
+        }
     }
-
     return $ret;
-
 }
 
 /**
- * Removes member(s) from a group
+ * Removes members from a given group
+ *
+ * @param  String    $group      The group to remove the members from
+ * @param  String    $type       The type of members (person, account, group)
+ * @param  Array     $members    An array of member ids to remove.
+ * @return int                   The number of members that got removed.
  */
-function delMembers($group, $type, $names) {
-
-    if(!$group || !$names) return;
-    if(!($type == 'person' || $type == 'group' || $type = 'account')) {
+function delMembers($group, $type, $members)
+{
+    if (!$group || !$members) {
+        return;
+    }
+    global $acceptable_group_types;
+    if (!in_array($type, $acceptable_group_types)) {
         trigger_error("Unknown type '$type' for addMembers", E_USER_WARNING);
         return;
     }
-
-    global $Bofh;
-
-    //todo: make this method handle arrays later on:
-    //if(is_array($names)) {
-      //  $names = implode(''
-    // or in a loop
-    //}
-
-    try {
-        $res = $Bofh->run_command('group_multi_remove', $type, $names, $group);
-        View::addMessage($res);
-        return true;
-    } catch(Exception $e) {
-        Bofhcom::viewError($e);
-        return false;
+    $Bofh = Init::get('Bofh');
+    $removed = 0;
+    foreach ($members as $mem) {
+        try {
+            $res = $Bofh->run_command('group_multi_remove', $type, $mem, $group);
+            if (strpos($res, 'OK, removed ') === 0) {
+                $removed++;
+            } else {
+                View::addMessage($res, View::MSG_WARNING);
+            }
+        } catch(Exception $e) {
+            Bofhcom::viewError($e);
+        }
     }
-
+    return $removed;
 }
 
 /**
  * Adds members to a group
  *
- * @param String    $group      The group to add the members in
- * @param String    $type       The type of members (person, account, group)
- * @param mixed     $members    An array of members to add
+ * @param  String    $group      The group to add the members in
+ * @param  String    $type       The type of members (person, account, group)
+ * @param  Array     $members    An array of members to add
+ *
+ * @return int                   Number of members that got added. Those who 
+ *                               weren't added triggers a View message.
  */
-function addMembers($group, $type, $members) {
-
-    if(!$group || !$members) return;
-    if(!($type == 'person' || $type == 'group' || $type = 'account')) {
+function addMembers($group, $type, $members)
+{
+    if (!$group || !$members) {
+        return;
+    }
+    global $acceptable_group_types;
+    if (!in_array($type, $acceptable_group_types)) {
         trigger_error("Unknown type '$type' for addMembers", E_USER_WARNING);
         return;
     }
-
-    global $Bofh;
-
-    foreach($members as $m) {
+    $Bofh = Init::get('Bofh');
+    $added = 0;
+    foreach ($members as $m) {
         try {
             $res = $Bofh->run_command('group_multi_add', $type, $m, $group);
-            View::addMessage($res);
+            // check for other messages than plain adds
+            if (strpos($res, 'OK, added ') === 0) {
+                $added++;
+            } else {
+                View::addMessage($res, View::MSG_WARNING);
+            }
         } catch(Exception $e) {
             Bofhcom::viewError($e);
         }
     }
-
+    return $added;
 }
-
 
 /**
  * Adds a description onto spreads. Works with both a string and
@@ -571,22 +483,201 @@ function addMembers($group, $type, $members) {
  * @param mixed     Array or string with the spreads to describe
  * @return          Returns the same as in the input, but with longer string(s)
  */
-function addHelpSpread($spreads_raw) {
- 
-    if(is_array($spreads_raw)) {
-        foreach($spreads_raw as $k => $v) {
-            if($v) $spreads[$k] = addHelpSpread($v);
+function addHelpSpread($spreads_raw)
+{
+    if (is_array($spreads_raw)) {
+        foreach ($spreads_raw as $k => $v) {
+            if ($v) $spreads[$k] = addHelpSpread($v);
         }
     } else {
         $spreads_raw = trim($spreads_raw);
-
         global $Bofh;
         $desc = $Bofh->getSpread($spreads_raw);
-        if($desc) return $desc;
-        else return $spreads_raw;
+        return $desc ? "$desc ($spreads_raw)" : $spreads_raw;
+    }
+    return $spreads;
+}
+
+/**
+ * Return a form for adding group members.
+ *
+ * @param   String  $groupname  The name of the group to handle.
+ */
+function groupmemberForm($groupname)
+{
+    $newMember = new BofhFormUiO('newMember', null, 'groups/?group='.$groupname);
+    $newMember->addElement('text', 'acc', txt('groups_members_form_account'));
+    $newMember->addElement('text', 'grp', txt('groups_members_form_group'));
+    $newMember->addElement('text', 'per', txt('groups_members_form_person'));
+
+    $view = Init::get('View');
+    $newMember->addElement('html', $view->createElement('ul', array(
+        txt('groups_members_person_or_account'),
+    )));
+    $newMember->addElement('submit', null, txt('groups_members_form_submit'));
+    return $newMember;
+}
+
+/**
+ * Process a validated groupmemberForm.
+ *
+ * @param   Array   $input  HTML_QuickForm formatted input, sent by process().
+ */
+function groupmemberFormProcess($input)
+{
+    global $groupname;
+    if (!$groupname) {
+        throw new Exception('No groupname given!');
+    }
+    $added = 0;
+    if ($input['per']) {
+        $newper = preg_split('/[\s,]+/', $input['per']);
+        $added += addMembers($groupname, 'person', $newper);
+    }
+    if ($input['acc']) {
+        $newacc = preg_split('/[\s,]+/', $input['acc']);
+        $added += addMembers($groupname, 'account', $newacc);
+    }
+    if ($input['grp']) {
+        $newgrp = preg_split('/[\s,]+/', $input['grp']);
+        $added += addMembers($groupname, 'group', $newgrp);
+    }
+    if ($added > 0) {
+        View::addMessage(txt('GROUPS_MEMBERS_ADDED_SUCCESS', array(
+            'no_members' => $added,
+        )));
+    }
+}
+
+/**
+ * Return a form for deleting members by giving explicit usernames. Used if a group 
+ * is too large to list all members.
+ */
+function getFormDeleteMembers($groupname)
+{
+    $form = new BofhFormUiO('deleteMembersTooMany', null, 'groups/?group='.$groupname);
+    $form->addElement('text', 'accounts', txt('groups_members_form_del_account'));
+    $form->addElement('text', 'groups',   txt('groups_members_form_del_group'));
+    $form->addElement('text', 'persons',  txt('groups_members_form_del_person'));
+    $form->addElement('submit', null, txt('groups_members_del_submit'));
+    return $form;
+}
+
+/**
+ * Process a delete members form by trying to remove all the members from the 
+ * group.
+ */
+function formDeleteMembersProcess($input)
+{
+    global $groupname, $adm_groups;
+    if (!$groupname || empty($adm_groups[$groupname])) {
+        throw new Exception("Bogus group '$groupname', can't remove members");
+    }
+    $removed = 0;
+    if ($input['persons']) {
+        $persons = preg_split('/[\s,]+/', $input['persons']);
+        $removed += delMembers($groupname, 'person', $persons);
+    }
+    if ($input['accounts']) {
+        $accounts = preg_split('/[\s,]+/', $input['accounts']);
+        $removed += delMembers($groupname, 'account', $accounts);
+    }
+    if ($input['groups']) {
+        $groups = preg_split('/[\s,]+/', $input['groups']);
+        $removed += delMembers($groupname, 'group', $groups);
+    }
+    if ($removed > 0) {
+        View::addMessage(txt('GROUPS_MEMBERS_REMOVED_SUCCESS', array(
+            'no_members' => $removed,
+        )));
+    }
+    return $removed;
+}
+
+/**
+ * Create a form for confirming the deletion of group members.
+ *
+ * TODO: the function makes use of $_POST directly, (should be changed), and 
+ * is on the form:
+ *  $_POST[member_type][member_id] = member_name
+ *
+ * Note that the function doesn't check if the given members actually are 
+ * members of the group, or that the user is allowed to moderate the group.  
+ * That is up to the code that calls this function, and the authorisation in
+ * bofhd.
+ *
+ * @param  String   $groupname  The name of the group
+ * @param  Array    $members    The list of members the user wants to remove.
+ */
+function formConfirmDelMembers($groupname, $members = null)
+{
+    $form = new BofhFormUiO('confirmDelMembers', null, 'groups/?group='.$groupname);
+    $form->addElement('html', View::createElement('p', 
+        txt('groups_members_del_confirm', array('groupname' => $groupname))
+    ));
+
+    // group the members by member type
+    $delList = array();
+    foreach ($_POST['del'] as $type => $members) {
+        foreach ($members as $id => $name) {
+            if ($type == 'group') {
+                $delGr[] = $form->createElement('checkbox', $id, null, $name, 'checked="checked"');
+            } elseif($type == 'account') {
+                $delAc[] = $form->createElement('checkbox', $id, null, $name, 'checked="checked"');
+            } elseif($type == 'person') {
+                $delPe[] = $form->createElement('checkbox', $id, null, $name, 'checked="checked"');
+            }
+        }
     }
 
-    return $spreads;
+    if (!empty($delGr)) {
+        $form->addGroup($delGr, 'del[group]',   txt('groups_members_del_groups'),   "<br>\n", true);
+    }
+    if (!empty($delAc)) {
+        $form->addGroup($delAc, 'del[account]', txt('groups_members_del_accounts'), "<br>\n", true);
+    }
+    if (!empty($delPe)) {
+        $form->addGroup($delPe, 'del[person]',  txt('groups_members_del_persons'),  "<br>\n", true);
+    }
+
+    $form->addElement('hidden', 'okDeleteConfirm', true);
+    $form->addElement('submit', 'okDelete', txt('groups_members_del_submit'), 'class="submit_warn"');
+    $form->addElement('html', '<a href="groups/?group='.$groupname.'">'.txt('groups_members_del_cancel').'</a>');
+    return $form;
+}
+
+/**
+ * Create a form for changing the description of a group.
+ *
+ * @param  String   $groupname   The name of the given group
+ * @param  String   $description The current description for the group.
+ */
+function formDescription($groupname, $description)
+{
+    $form = new BofhFormInline('setDesc', null, 'groups/?group='.$groupname);
+    $form->addElement('text', 'desc', null, array(
+        'value' => $description,
+        'style' => 'width: 50%',
+    ));
+    $form->addElement('submit', 'doSet', txt('group_description_submit'));
+    return $form;
+}
+
+/**
+ * Process the description change of the group.
+ */
+function formDescriptionProcess($input)
+{
+    global $groupname;
+    $bofh = Init::get('Bofh');
+    try {
+        $res = $bofh->run_command('group_set_description', $groupname, $input['desc']);
+        View::addMessage($res);
+        return true;
+    } catch(Exception $e) {
+        Bofhcom::viewError($e);
+        return false;
+    }
 }
 
 ?>

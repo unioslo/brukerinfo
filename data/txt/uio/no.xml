@@ -460,9 +460,16 @@
     <GROUPS_MEMBERS_DEL_SUBMIT>Fjern medlemmer</GROUPS_MEMBERS_DEL_SUBMIT>
     <GROUPS_MEMBERS_DEL_CANCEL>Avbryt</GROUPS_MEMBERS_DEL_CANCEL>
 
+    <GROUPS_MEMBERS_REMOVED_SUCCESS>Fjernet {{no_members}}
+        medlemmer</GROUPS_MEMBERS_REMOVED_SUCCESS>
+
+    <GROUPS_MEMBERS_FORM_DEL_ACCOUNT>Fjern brukerkonto:</GROUPS_MEMBERS_FORM_DEL_ACCOUNT>
+    <GROUPS_MEMBERS_FORM_DEL_GROUP>Fjern gruppe:</GROUPS_MEMBERS_FORM_DEL_GROUP>
+    <GROUPS_MEMBERS_FORM_DEL_PERSON>Fjern person:</GROUPS_MEMBERS_FORM_DEL_PERSON>
+
     <GROUPS_MEMBERS_TITLE>Administrasjon av medlemskap</GROUPS_MEMBERS_TITLE>
     <GROUPS_MEMBERS_CHOOSE>Hvilken gruppe vil du administrere?</GROUPS_MEMBERS_CHOOSE>
-    <GROUPS_MEMBERS_ADDED_SUCCESS>La til nye medlemmer i gruppen</GROUPS_MEMBERS_ADDED_SUCCESS>
+    <GROUPS_MEMBERS_ADDED_SUCCESS>La til {{no_members}} nye medlemmer i gruppen</GROUPS_MEMBERS_ADDED_SUCCESS>
     <GROUPS_MEMBERS_NEWMEMBERS_TITLE>Legg til nye medlemmer</GROUPS_MEMBERS_NEWMEMBERS_TITLE>
     <GROUPS_MEMBERS_FORM_ACCOUNT>Ny(e) brukerkonto(er):</GROUPS_MEMBERS_FORM_ACCOUNT>
     <GROUPS_MEMBERS_FORM_GROUP>Ny(e) gruppe(er):</GROUPS_MEMBERS_FORM_GROUP>
@@ -470,8 +477,10 @@
     <GROUPS_MEMBERS_FORM_SUBMIT>Legg til medlemmer</GROUPS_MEMBERS_FORM_SUBMIT>
     <GROUPS_MEMBERS_LIST_TITLE>Medlemmer</GROUPS_MEMBERS_LIST_TITLE>
     <GROUPS_MEMBERS_LIST_EMPTY>Denne gruppen har ingen medlemmer</GROUPS_MEMBERS_LIST_EMPTY>
-    <GROUPS_MEMBERS_TOO_MANY>Denne gruppen har for mange medlemmer til at de kan vises her. Bruk jbofh eller 
-        kontakt lokal IT.</GROUPS_MEMBERS_TOO_MANY>
+    <GROUPS_MEMBERS_TOO_MANY>Denne gruppen har for mange medlemmer til at de
+        kan vises her. Om du kjenner brukernavnene kan du legge de inn her,
+        eventuelt kan du kontakte din lokale
+        IT-avdeling.</GROUPS_MEMBERS_TOO_MANY>
     <GROUPS_MEMBERS_MORE>Hvis du skal legge til flere medlemmer samtidig, skriver du dem inn atskilt med komma 
         og/eller mellomrom.</GROUPS_MEMBERS_MORE>
     <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: personer fungerer bare for grupper

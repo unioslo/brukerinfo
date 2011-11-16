@@ -462,9 +462,16 @@
     <GROUPS_MEMBERS_DEL_SUBMIT>Remove members</GROUPS_MEMBERS_DEL_SUBMIT>
     <GROUPS_MEMBERS_DEL_CANCEL>Cancel</GROUPS_MEMBERS_DEL_CANCEL>
 
+    <GROUPS_MEMBERS_REMOVED_SUCCESS>Removed {{no_members}}
+        members</GROUPS_MEMBERS_REMOVED_SUCCESS>
+
+    <GROUPS_MEMBERS_FORM_DEL_ACCOUNT>Remove account:</GROUPS_MEMBERS_FORM_DEL_ACCOUNT>
+    <GROUPS_MEMBERS_FORM_DEL_GROUP>Remove group:</GROUPS_MEMBERS_FORM_DEL_GROUP>
+    <GROUPS_MEMBERS_FORM_DEL_PERSON>Remove person:</GROUPS_MEMBERS_FORM_DEL_PERSON>
+
     <GROUPS_MEMBERS_TITLE>Membership management</GROUPS_MEMBERS_TITLE>
     <GROUPS_MEMBERS_CHOOSE>Which group do you want to manage?</GROUPS_MEMBERS_CHOOSE>
-    <GROUPS_MEMBERS_ADDED_SUCCESS>Added new members to the group</GROUPS_MEMBERS_ADDED_SUCCESS>
+    <GROUPS_MEMBERS_ADDED_SUCCESS>Added {{no_members}} new members to the group</GROUPS_MEMBERS_ADDED_SUCCESS>
     <GROUPS_MEMBERS_NEWMEMBERS_TITLE>Add new members</GROUPS_MEMBERS_NEWMEMBERS_TITLE>
     <GROUPS_MEMBERS_FORM_ACCOUNT>New account(s):</GROUPS_MEMBERS_FORM_ACCOUNT>
     <GROUPS_MEMBERS_FORM_GROUP>New group(s):</GROUPS_MEMBERS_FORM_GROUP>
@@ -472,7 +479,9 @@
     <GROUPS_MEMBERS_FORM_SUBMIT>Add members</GROUPS_MEMBERS_FORM_SUBMIT>
     <GROUPS_MEMBERS_LIST_TITLE>Members</GROUPS_MEMBERS_LIST_TITLE>
     <GROUPS_MEMBERS_LIST_EMPTY>This group has currently no members</GROUPS_MEMBERS_LIST_EMPTY>
-    <GROUPS_MEMBERS_TOO_MANY>This group has too many members to be shown here. Please user jbofh or contact your local IT-service.</GROUPS_MEMBERS_TOO_MANY>
+    <GROUPS_MEMBERS_TOO_MANY>This group has too many members to be shown here.
+        If you know the usernames you could remove them explicitly, or contact
+        your local IT-service.</GROUPS_MEMBERS_TOO_MANY>
     <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces and/or commas.</GROUPS_MEMBERS_MORE>
     <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: persons are only usable in groups
         for the system Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
