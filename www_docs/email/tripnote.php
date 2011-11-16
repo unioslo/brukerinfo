@@ -135,38 +135,23 @@ if (!empty($_POST['del'])) {
     $confirm->addElement('hidden', 'confirmed_del', $del);
     $confirm->addElement('submit', null, txt('email_tripnote_delete_submit'), 'class="submit_warn"');
     $View->addElement($confirm);
-
     die;
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
 
 $View->start();
 $View->addElement('h1', txt('EMAIL_TRIPNOTE_TITLE'));
 $View->addElement('p', txt('email_tripnote_intro'));
 
-
 if ($othernotes) {
     $View->addElement('h2', txt('email_tripnote_active_title'));
     $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline app-form">'); //Todo: depreciated, but out of time
     $table = $View->createElement('table', null, 'class="app-table"');
-    $table->setHead(txt('email_tripnote_starting'), 
+    $table->setHead(array(
+        txt('email_tripnote_starting'), 
         txt('email_tripnote_ending'),
         txt('email_tripnote_message'),
-        null);
-
-
+        null,
+    ));
     foreach ($othernotes as $tnote) {
         $start = date('Y-m-d', $tnote['start_date']->timestamp);
 
@@ -178,24 +163,25 @@ if ($othernotes) {
 
         $table->addData($View->createElement('tr', $data));
     }
-
     $View->addElement($table);
     $View->addElement('raw', '</form>');
-
 }
 
 $View->addElement($form);
 
-
 if ($oldnotes) {
     $View->addElement('h2', txt('email_tripnote_old_title'));
-    $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline">'); //Todo: depreciated, but out of time
+    $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline app-form">'); //Todo: deprecated, but out of time
 
     $table = $View->createElement('table', null, 'class="app-table"');
-    $table->setHead('Starting', 'Ending', 'Message', 'Status', null);
-
-    foreach(array_reverse($oldnotes) as $tnote) {
-
+    $table->setHead(array(
+        txt('email_tripnote_starting'),
+        txt('email_tripnote_ending'),
+        txt('email_tripnote_message'),
+        txt('email_tripnote_status'),
+        null,
+    ));
+    foreach (array_reverse($oldnotes) as $tnote) {
         $start = date('Y-m-d', $tnote['start_date']->timestamp);
         $end   = date('Y-m-d', $tnote['end_date']->timestamp);
 
@@ -204,14 +190,12 @@ if ($oldnotes) {
             $end,
             nl2br($tnote['text']),
             '('.strtolower($tnote['enable']).')', 
-            '<input type="submit" class="submit_warn" name="del['.$start.']" value="Delete">'
+            '<input type="submit" class="submit_warn" name="del['.$start.']" value="' . txt('email_tripnote_list_delete') . '">',
         )));
 
     }
-
     $View->addElement($table);
     $View->addElement('raw', '</form>');
-
 }
 
 ?>
