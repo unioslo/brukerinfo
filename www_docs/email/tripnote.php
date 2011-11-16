@@ -23,71 +23,15 @@ $Bofh = new Bofhcom();
 $View = Init::get('View');
 $text = Init::get('Text');
 
-$form = new BofhFormUiO('addTripnote');
-$form->addElement('header', null, txt('email_tripnote_form_title'));
-
-//TODO: add today as default on start?
-$form->addElement('date', 'start', txt('email_tripnote_starting'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+2, 'language'=>$text->getLanguage()));
-$form->addElement('date', 'end', txt('email_tripnote_ending'), array('format'=>'YMd', 'minYear'=>date('Y'), 'maxYear'=>date('Y')+3, 'language'=>$text->getLanguage()));
-$form->addElement('textarea', 'message', txt('email_tripnote_message'), 'rows="7"');
-
-$form->addElement('submit', null, txt('email_tripnote_form_submit'), array('class'=>'submit'));
-
-$form->addRule('message', txt('email_tripnote_rule_message_required'), 'required');
-//TODO: move these texts to Text
-$form->addRule('start', 'Please enter a start-date', 'required');
-$form->addRule('end', 'Please enter an end-date', 'required');
-//TODO: check date (add a checkdate rule)
-
-$form->setDefaults(array('start'=>date('Y-m-d', time()+3600*24*1), 'end'=>date('Y-m-d', time()+3600*24*2)));
-
+$form = formAddTripnote();
 if ($form->validate()) {
-    //check dates before sending to bofhd?
-    $st = $form->exportValue('start');
-    $nd = $form->exportValue('end');
-    //Enter begin and end date (YYYY-MM-DD--YYYY-MM-DD) >
-    $datestring = $st['Y'] . '-' . $st['M'] . '-' . $st['d'] . '--' .
-        $nd['Y'] . '-' . $nd['M'] . '-' . $nd['d'];
-    try {
-        $Bofh->run_command('email_add_tripnote', $User->getUsername(), 
-            $form->exportValue('message'), $datestring
-        );
+    if ($form->process('formAddTripnoteProcess')) {
         View::forward('email/tripnote.php', txt('email_tripnote_new_success'));
-    } catch(Exception $e) {
-        Bofhcom::viewError($e);
     }
 }
 
-
-
-//getting all the tripnotes
-
-$rawnotes = $Bofh->getData('email_list_tripnotes', $User->getUsername());
-
-//sorts old tripnotes from the rest
-
-//all the tripnotes in one list
-$tripnotes = array();
-//old tripnotes
-$oldnotes = array();
-//tripnotes that is either active or waiting to become active
-$othernotes = array();
-
-//if empty, bofhd gives out 'no tripnotes for {username}'
-if ($rawnotes && is_array($rawnotes)) {
-    foreach ($rawnotes as $tnote) {
-        $id = date('Y-m-d', $tnote['start_date']->timestamp);
-        $tnote['text'] = $tnote['text'];
-
-        $tripnotes[$id] = $tnote;
-
-        if ($tnote['enable'] == 'ACTIVE' || $tnote['enable'] == 'PENDING') {
-            $othernotes[$id] = $tnote;
-        } else {
-            $oldnotes[$id] = $tnote;
-        }
-    }
-}
+$tripnotes = getTripnotes();
+list($activenotes, $oldnotes) = sortTripnotes($tripnotes);
 
 $View->addTitle(txt('email_title'));
 $View->addTitle(txt('email_tripnote_title'));
@@ -142,7 +86,7 @@ $View->start();
 $View->addElement('h1', txt('EMAIL_TRIPNOTE_TITLE'));
 $View->addElement('p', txt('email_tripnote_intro'));
 
-if ($othernotes) {
+if ($activenotes) {
     $View->addElement('h2', txt('email_tripnote_active_title'));
     $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline app-form">'); //Todo: depreciated, but out of time
     $table = $View->createElement('table', null, 'class="app-table"');
@@ -152,7 +96,7 @@ if ($othernotes) {
         txt('email_tripnote_message'),
         null,
     ));
-    foreach ($othernotes as $tnote) {
+    foreach ($activenotes as $tnote) {
         $start = date('Y-m-d', $tnote['start_date']->timestamp);
 
         $data = array();
@@ -196,6 +140,125 @@ if ($oldnotes) {
     }
     $View->addElement($table);
     $View->addElement('raw', '</form>');
+}
+
+
+
+/**
+ * Return an array of all tripnotes for the user.
+ */
+function getTripnotes()
+{
+    $bofh = Init::get('Bofh');
+    $user = Init::get('User');
+    $rawnotes = $bofh->getData('email_list_tripnotes', $user->getUsername());
+    if (!$rawnotes || !is_array($rawnotes)) {
+        return array();
+    }
+    $notes = array();
+    foreach ($rawnotes as $note) {
+        $id = date('Y-m-d', $note['start_date']->timestamp);
+        $notes[$id] = $note;
+    }
+    return $notes;
+}
+
+/**
+ * Sort an array of tripnotes into active and inactive.
+ *
+ * Active tripnotes have enable status:
+ *
+ *  - PENDING: Not active yet
+ *  - ON:      If we're in the tripnote's period
+ *  - ACTIVE:  Only one of the tripnotes with status ON can be active. According 
+ *             to bofhd, this is the one with the start date closest to today.
+ *
+ * Inactive tripnotes have enable status:
+ *
+ *  - OFF:     If postmasters have disabled the tripnote
+ *  - OLD:     If end date is in the past
+ *
+ */
+function sortTripnotes($notes)
+{
+    $active   = array();
+    $inactive = array();
+    if (!$notes) {
+        return array(null, null);
+    }
+    foreach ($notes as $id => $note) {
+        if ($note['enable'] === 'ACTIVE') {
+            $note['text'] .= ' <strong>(active)</strong>';
+            $active[$id] = $note;
+        } elseif ($note['enable'] === 'ON' || $note['enable'] === 'PENDING') {
+            $active[$id] = $note;
+        } else {
+            $inactive[$id] = $note;
+        }
+    }
+    return array($active, $inactive);
+}
+
+/**
+ * Create a form for creating a new tripnote.
+ */
+function formAddTripnote()
+{
+    $form = new BofhFormUiO('addTripnote');
+    $form->addElement('header', null, txt('email_tripnote_form_title'));
+    $text = Init::get('Text');
+
+    //TODO: add today as default on start?
+    $form->addElement('date', 'start', txt('email_tripnote_starting'), array(
+        'format'    => 'YMd',
+        'minYear'   => date('Y'),
+        'maxYear'   => date('Y') + 2,
+        'language'  => $text->getLanguage(),
+    ));
+    $form->addElement('date', 'end', txt('email_tripnote_ending'), array(
+        'format'    => 'YMd',
+        'minYear'   => date('Y'),
+        'maxYear'   => date('Y') + 3,
+        'language'  => $text->getLanguage(),
+    ));
+    $form->addElement('textarea', 'message', txt('email_tripnote_message'), 'rows="7"');
+    $form->addElement('submit', null, txt('email_tripnote_form_submit'));
+
+    $form->addRule('message', txt('email_tripnote_rule_message_required'), 'required');
+    $form->addRule('start', 'Please enter a start-date', 'required');
+    $form->addRule('end', 'Please enter an end-date', 'required');
+
+    //TODO: check dates (add a checkdate rule)
+
+    $form->setDefaults(array(
+        'start' => date('Y-m-d', time()+3600*24*1),
+        'end'   => date('Y-m-d', time()+3600*24*2),
+    ));
+    return $form;
+}
+
+/**
+ * Process an add tripnote form.
+ */
+function formAddTripnoteProcess($input)
+{
+    $bofh = Init::get('Bofh');
+    $user = Init::get('User');
+
+    $start = $input['start'];
+    $end   = $input['end'];
+    // begin and end date has the format: YYYY-MM-DD--YYYY-MM-DD
+    $datestring = sprintf('%s-%s-%s--%s-%s-%s', $start['Y'], $start['M'], 
+        $start['d'], $end['Y'], $end['M'], $end['d']
+    );
+    try {
+        return $bofh->run_command('email_add_tripnote', $user->getUsername(), 
+            $input['message'], $datestring
+        );
+    } catch(Exception $e) {
+        Bofhcom::viewError($e);
+        return false;
+    }
 }
 
 ?>
