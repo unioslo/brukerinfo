@@ -1,25 +1,25 @@
 <?php
-# Copyright 2009, 2010 University of Oslo, Norway
-#
-# This file is part of Cerebrum.
-#
-# Cerebrum is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Cerebrum is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
+// Copyright 2009, 2010, 2011 University of Oslo, Norway
+//
+// This file is part of Cerebrum.
+//
+// Cerebrum is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Cerebrum is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
 require_once '../init.php';
 $Init = new Init();
 $User = Init::get('User');
-$Bofh = new Bofhcom();
+$Bofh = Init::get('Bofh');
 $View = Init::get('View');
 $text = Init::get('Text');
 
@@ -54,7 +54,7 @@ $form->setAttribute('class', 'app-form-big');
 
 //spam level
 $levels = array();
-foreach($sp_levels as $v) {
+foreach ($sp_levels as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_level_'.$v['code_str'];
 
@@ -69,7 +69,7 @@ $form->addGroup($levels, 'spam_level', txt('email_spam_form_level'), "<br>\n", f
 
 //spam action
 $actions = array();
-foreach($sp_actions as $v) {
+foreach ($sp_actions as $v) {
     $title = ucfirst(str_replace('_', ' ', $v['code_str']));
     $txt_name = 'email_spam_action_'.$v['code_str'];
 
@@ -134,8 +134,7 @@ $filterform = new BofhFormUiO('spamfilter');
 
 $flist = View::createElement('table', null, 'class="app-table"');
 
-foreach($available_filters as $id => $filter) {
-
+foreach ($available_filters as $id => $filter) {
     $status     = (isset($active_filters[$id]) ? 
         txt('email_filter_disable') : txt('email_filter_enable'));
     $subclass   = (isset($active_filters[$id]) ? 
@@ -147,8 +146,6 @@ foreach($available_filters as $id => $filter) {
         $filter['desc'],
         "<input type=\"submit\" name=\"$id\" class=\"submit$subclass\" value=\"$status\" />"));
 }
-
-
 
 // validates and saves the setting
 if ($filterform->validate()) {
@@ -196,7 +193,7 @@ function spamActions() {
     //          'noaction'    Deliver spam just like legitimate email
 
     $actions = array();
-    foreach(explode("\n", $raw) as $l) {
+    foreach (explode("\n", $raw) as $l) {
 
         //the first line is mostlikely 'Choose one of\n'
         if (!is_numeric(strpos($l, "'"))) continue;
@@ -221,7 +218,7 @@ function getSetLevelAction() {
     $level = null;
     $action = null;
 
-    foreach($info as $i) {
+    foreach ($info as $i) {
         if (isset($i['spam_level'])) $level = $i['spam_level'];
         if (isset($i['spam_action'])) $action = $i['spam_action'];
     }
@@ -243,7 +240,7 @@ function availableFilters() {
 
     //sorting the filters
     $filters = array();
-    foreach($filters_raw as $f) {
+    foreach ($filters_raw as $f) {
         $id = $f['code_str'];
         $txtkey_name = 'email_filter_data_'.$id;
         $txtkey_desc = 'email_filter_data_'.$id.'_desc';
@@ -279,7 +276,7 @@ function getActiveFilters() {
 
     //the filters comes in a comma-separated string
     $rawf = explode(', ', $all['filters'][0]);
-    foreach($rawf as $v) $filters[$v] = true;
+    foreach ($rawf as $v) $filters[$v] = true;
     return $filters;
 
 }
