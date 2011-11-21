@@ -98,23 +98,12 @@ function get_chosen_primary()
 {
     $bofh = Init::get('Bofh');
     $traits = $bofh->getData('trait_info', 'entity_id:'.get_person_id());
-    if (!is_array($traits)) {
+    if (!is_array($traits) || empty($traits['traits'])) {
         return null;
     }
-    // the traits are returned in a weird list (so jbofh can represent it)
-    // ({'type': 'person', 'name': 'John Doe'}, 
-    //  ...
-    //  {'trait_name': 'primary_aff'}
-    //  {'strval': 'ANSATT/vitenskapelig@150010'},
-    //  ...
-    // )
-    for ($i = 0; $i < count($traits); $i++) {
-        if (!empty($traits[$i]['trait_name'])) {
-            if ($traits[$i]['trait_name'] == 'primary_aff') {
-                if (!empty($traits[$i + 1]['strval'])) {
-                    return $traits[$i + 1]['strval'];
-                }
-            }
+    foreach ($traits['traits'] as $trait) {
+        if ($trait['trait_name'] === 'primary_aff') {
+            return $trait['strval'];
         }
     }
 }
