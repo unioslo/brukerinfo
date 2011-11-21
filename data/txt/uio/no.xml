@@ -361,7 +361,9 @@
         Hver avsender mottar fraværsmeldingen kun én gang. Du finner mer
         informasjon på &lt;a
         href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/fravarsmelding/"&gt;
-        USITs side om fraværsmeldinger&lt;/a&gt;.</EMAIL_TRIPNOTE_INTRO>
+        USITs side om fraværsmeldinger&lt;/a&gt;. Merk at en fraværsmelding
+        starter fra og med startdatoen og varer til og med
+        utløpsdatoen.</EMAIL_TRIPNOTE_INTRO>
     <EMAIL_TRIPNOTE_NEW_SUCCESS>Ny fraværsmelding er lagt til</EMAIL_TRIPNOTE_NEW_SUCCESS>
 
     <EMAIL_TRIPNOTE_ACTIVE_TITLE>Aktive fraværsmeldinger</EMAIL_TRIPNOTE_ACTIVE_TITLE>

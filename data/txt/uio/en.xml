@@ -365,7 +365,10 @@
         Each sender will receive the message only once within a period of 7
         days. For more information please see &lt;a
         href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/fravarsmelding/"&gt;
-        USIT's page about out of office messages&lt;/a&gt;.</EMAIL_TRIPNOTE_INTRO>
+        USIT's page about out of office messages&lt;/a&gt;.
+        Note that messages are active from the start date, and up to and
+        including the expire date.
+    </EMAIL_TRIPNOTE_INTRO>
     <EMAIL_TRIPNOTE_NEW_SUCCESS>New Out of office message added</EMAIL_TRIPNOTE_NEW_SUCCESS>
 
     <EMAIL_TRIPNOTE_ACTIVE_TITLE>Active Out of office messages</EMAIL_TRIPNOTE_ACTIVE_TITLE>
