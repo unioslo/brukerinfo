@@ -197,7 +197,7 @@ class View_uio extends ViewTemplate
             return '';
         }
         $base_path = parse_url(self::$base_url, PHP_URL_PATH);
-        $current   = str_replace($base_path, '', $_SERVER['PHP_SELF']);
+        $current   = substr($_SERVER['PHP_SELF'], strlen($base_path));
         $current   = preg_replace('/index\.php$/', '', $current);
         $maindir   = substr($current, 0, strpos($current, '/'));
 
