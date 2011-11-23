@@ -89,32 +89,25 @@ function getReservationTypes($traitnames)
  * Gets the logged on users's reservations.
  *
  * TODO: this function is not checked for more than one trait.
+ *
+ * @param  Array  $traitnames   Names of the traits that should be returned.
+ * @return Array                Array with traitnames as key, and boolean 
+ *                              values, if the trait is active or not.
  */
 function getReservations($traitnames)
 {
     $bofh = Init::get('Bofh');
     $user = Init::get('User');
     $traits = $bofh->getData('trait_info', $user->getUsername());
-    if (!is_array($traits)) {
+    if (!is_array($traits) || empty($traits['traits'])) {
         // normally "User has no traits" is returned
         return array();
     }
-    $sorted = array();
-    $name = null;
-    foreach ($traits as $trait) {
-        foreach ($trait as $tag => $value) {
-            if ($tag == 'trait_name') {
-                $name = $value;
-            } elseif ($tag == 'numval') {
-                $sorted[$name] = $value;
-            }
-        }
-    }
     $ret = array();
-    // only return traits defined for reservations:
-    foreach ($sorted as $id => $value) {
-        if (in_array($id, $traitnames)) {
-            $ret[$id] = (bool) $value;
+    foreach ($traits['traits'] as $trait) {
+        // only return traits defined for reservations:
+        if (in_array($trait['trait_name'], $traitnames)) {
+            $ret[$trait['trait_name']] = (bool) $trait['numval'];
         }
     }
     return $ret;
