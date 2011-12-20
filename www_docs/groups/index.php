@@ -178,8 +178,11 @@ if (!empty($_GET['group'])) { // SHOW A SPECIFIC GROUP
         asort($group);
 
         //print out the rest of the info
-        foreach ($group as $k=>$v) {
+        foreach ($group as $k => $v) {
             if (!$v) continue;
+            if (is_object($v)) {
+                $v = date('Y-m-d', $v->timestamp);
+            }
             $dl2->addData(ucfirst($k), $v);
         }
         $primary->addData($dl2);
