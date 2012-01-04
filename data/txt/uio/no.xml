@@ -57,6 +57,7 @@
 
     <MENU_EMAIL>E-post</MENU_EMAIL>
     <MENU_EMAIL_>E-post</MENU_EMAIL_>
+    <MENU_EMAIL_PRIMARY>Primæradresse</MENU_EMAIL_PRIMARY>
     <MENU_EMAIL_SPAM>Spaminnstillinger</MENU_EMAIL_SPAM>
     <MENU_EMAIL_FILTERS>Ekstra spaminnstillinger</MENU_EMAIL_FILTERS>
     <MENU_EMAIL_TRIPNOTE>Fraværsmeldinger</MENU_EMAIL_TRIPNOTE>
@@ -67,6 +68,7 @@
     <MENU_GROUPS_NEW>Ny gruppe</MENU_GROUPS_NEW>
 
     <MENU_RESERVATIONS>Reservasjoner</MENU_RESERVATIONS>
+    <MENU_GUESTS>Gjestebrukere</MENU_GUESTS>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
@@ -549,6 +551,9 @@
     <BOFH_INFO_FNR>Fødselsnummer:</BOFH_INFO_FNR>
     <BOFH_INFO_FNR_VALUE>Nummer registrert i &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
         {{fnr}}</BOFH_INFO_FNR_VALUE>
+    <BOFH_INFO_CONTACT>Kontaktinformasjon</BOFH_INFO_CONTACT>
+    <BOFH_INFO_CONTACT_VALUE>Kontaktinfo {{type}} registrert i &lt;dfn
+        title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: {{contact}}</BOFH_INFO_CONTACT_VALUE>
     <BOFH_INFO_SPREADS>Kontoen din er aktiv i følgende system(er):</BOFH_INFO_SPREADS>
     <BOFH_INFO_EXPIRE>utløper</BOFH_INFO_EXPIRE>
 

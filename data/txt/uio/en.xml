@@ -57,6 +57,7 @@
 
     <MENU_EMAIL>E-mail</MENU_EMAIL>
     <MENU_EMAIL_>E-mail overview</MENU_EMAIL_>
+    <MENU_EMAIL_PRIMARY>Primary address</MENU_EMAIL_PRIMARY>
     <MENU_EMAIL_SPAM>Spam settings</MENU_EMAIL_SPAM>
     <MENU_EMAIL_FILTERS>Additional spam settings</MENU_EMAIL_FILTERS>
     <MENU_EMAIL_TRIPNOTE>Out of office messages</MENU_EMAIL_TRIPNOTE>
@@ -67,6 +68,7 @@
     <MENU_GROUPS_NEW>New group</MENU_GROUPS_NEW>
 
     <MENU_RESERVATIONS>Reservations</MENU_RESERVATIONS>
+    <MENU_GUESTS>Guest accounts</MENU_GUESTS>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
@@ -547,6 +549,9 @@
     <BOFH_INFO_FNR>National ID number:</BOFH_INFO_FNR>
     <BOFH_INFO_FNR_VALUE>Number registered in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
         {{fnr}}</BOFH_INFO_FNR_VALUE>
+    <BOFH_INFO_CONTACT>Contact information</BOFH_INFO_CONTACT>
+    <BOFH_INFO_CONTACT_VALUE>Kontaktinfo {{type}} registrert i &lt;dfn
+        title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: {{contact}}</BOFH_INFO_CONTACT_VALUE>
     <BOFH_INFO_SPREADS>Your account is active in the following system(s):</BOFH_INFO_SPREADS>
     <BOFH_INFO_EXPIRE>expires</BOFH_INFO_EXPIRE>
 

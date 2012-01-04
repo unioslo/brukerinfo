@@ -63,12 +63,27 @@ if(!empty($names)) $dl->addData(txt('bofh_info_names'), View::createElement('ul'
 if(!empty($personinfo['fnr'])) {
     foreach($personinfo['fnr'] as $k=>$f) {
         $fnr[] = txt('bofh_info_fnr_value', array('fnr'=> $f,
-            'source_system'         => $personinfo['name_src'][$k],
-                'source_system_desc'    => $source_system_descs[$personinfo['name_src'][$k]]
+                'source_system'         => $personinfo['fnr_src'][$k],
+                'source_system_desc'    => $source_system_descs[$personinfo['fnr_src'][$k]]
             ));
     }
 }
 if(!empty($fnr)) $dl->addData(txt('bofh_info_fnr'), View::createElement('ul', $fnr));
+
+// contact info
+if (!empty($personinfo['contact'])) {
+    foreach ($personinfo['contact'] as $k => $contact) {
+        $contactinfo[] = txt('bofh_info_contact_value', array('contact'=> $contact,
+                'source_system'         => $personinfo['contact_src'][$k],
+                'type'                  => $personinfo['contact_type'][$k],
+                'source_system_desc'    => $source_system_descs[$personinfo['contact_src'][$k]]
+        ));
+    }
+}
+if(!empty($contactinfo)) {
+    $dl->addData(txt('bofh_info_contact'), View::createElement('ul', $contactinfo));
+}
+
 
 $View = Init::get('View');
 $View->addTitle(txt('PERSON_TITLE'));

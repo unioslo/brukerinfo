@@ -19,7 +19,7 @@
 require_once '../init.php';
 $Init = new Init();
 $User = Init::get('User');
-$Bofh = new Bofhcom();
+$Bofh = Init::get('Bofh');
 $View = Init::get('View');
 
 $primary = emailinfo($User->getUsername());
