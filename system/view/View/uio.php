@@ -133,12 +133,13 @@ class View_uio extends ViewTemplate
 
         //email
         $menu['email']['link']      = 'email/';
-        $menu['email']['sub']       = array(
-            '',
-            'spam.php',
-            'tripnote.php',
-            'forward.php'
-        );
+        $menu['email']['sub'][]     = '';
+        if ($is_employee) {
+            $menu['email']['sub'][] = 'primary.php';
+        }
+        $menu['email']['sub'][]     = 'spam.php';
+        $menu['email']['sub'][]     = 'tripnote.php';
+        $menu['email']['sub'][]     = 'forward.php';
 
         //groups
         $menu['groups']['link']     = 'groups/';
@@ -153,6 +154,13 @@ class View_uio extends ViewTemplate
             $menu['reservations']['sub'] = array(
             );
         }
+
+        // TODO: not yet
+        //if ($is_personal && $is_employee) {
+        //    $menu['guests']['link'] = 'guests/';
+        //    $menu['guests']['sub'] = array(
+        //    );
+        //}
 
         //returning main menu
         if($sub === null) {
