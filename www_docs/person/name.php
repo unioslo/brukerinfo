@@ -42,7 +42,7 @@ $view->addElement('p', txt('person_name_intro'));
 
 $primary = getPrimaryAddress();
 $name = $bofh->getName();
-$view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$email))); 
+$view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$primary))); 
 $view->addElement($form);
 
 /**
