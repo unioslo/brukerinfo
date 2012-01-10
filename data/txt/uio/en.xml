@@ -154,8 +154,8 @@
 
     <!-- Person name page -->
     <PERSON_NAME_TITLE>Choose your display name</PERSON_NAME_TITLE>
-    <PERSON_NAME_INTRO>Choose what your display name should be in different
-        systems, e.g. the personal presentation at &lt;a
+    <PERSON_NAME_INTRO>Choose what of your registered names that should be shown
+        in different systems at UiO, e.g. the personal presentation at &lt;a
         href="https://uio.no"&gt;uio.no&lt;/a&gt;. Note that your primary e-mail
         address might change due to this.</PERSON_NAME_INTRO>
     <PERSON_NAME_CURRENT>Your current name is
