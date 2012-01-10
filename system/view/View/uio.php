@@ -109,6 +109,9 @@ class View_uio extends ViewTemplate
                 '',
                 'primary.php', 
             );
+            if ($is_employee) {
+                $menu['person']['sub'][] = 'name.php';
+            }
         }
 
         //accounts
@@ -134,9 +137,6 @@ class View_uio extends ViewTemplate
         //email
         $menu['email']['link']      = 'email/';
         $menu['email']['sub'][]     = '';
-        if ($is_employee) {
-            $menu['email']['sub'][] = 'primary.php';
-        }
         $menu['email']['sub'][]     = 'spam.php';
         $menu['email']['sub'][]     = 'tripnote.php';
         $menu['email']['sub'][]     = 'forward.php';

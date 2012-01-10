@@ -45,6 +45,7 @@
     <MENU_PERSON>Person</MENU_PERSON>
     <MENU_PERSON_>Person</MENU_PERSON_>
     <MENU_PERSON_PRIMARY>Primary affiliation</MENU_PERSON_PRIMARY>
+    <MENU_PERSON_NAME>Name</MENU_PERSON_NAME>
 
     <MENU_ACCOUNT>Account</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Your account</MENU_ACCOUNT_>
@@ -57,7 +58,6 @@
 
     <MENU_EMAIL>E-mail</MENU_EMAIL>
     <MENU_EMAIL_>E-mail overview</MENU_EMAIL_>
-    <MENU_EMAIL_PRIMARY>Primary address</MENU_EMAIL_PRIMARY>
     <MENU_EMAIL_SPAM>Spam settings</MENU_EMAIL_SPAM>
     <MENU_EMAIL_FILTERS>Additional spam settings</MENU_EMAIL_FILTERS>
     <MENU_EMAIL_TRIPNOTE>Out of office messages</MENU_EMAIL_TRIPNOTE>
