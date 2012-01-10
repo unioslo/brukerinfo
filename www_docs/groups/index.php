@@ -199,48 +199,51 @@ if (!empty($_GET['group'])) { // SHOW A SPECIFIC GROUP
         //the list of members
         try {
             $members = getMembers($groupname);
-            $max = ceil(count($members)/MAX_LIST_ELEMENTS_SPLIT)-1;
-            $page = (empty($_GET['page']) ? 0 : intval($_GET['page']));
+            if (count($members) > 0) {
 
-            //preventing empty list
-            if ($page > $max) $page = $max;
+                $max = ceil(count($members)/MAX_LIST_ELEMENTS_SPLIT)-1;
+                $page = (empty($_GET['page']) ? 0 : intval($_GET['page']));
 
-            //making pageview
-            if (count($members) > MAX_LIST_ELEMENTS_SPLIT) {
-                $pagelist = View::createElement('ul', null, 'class="pagenav"');
+                //preventing empty list
+                if ($page > $max) $page = $max;
 
-                if ($page > 0) {
-                    $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname"));
-                    $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1)));
+                //making pageview
+                if (count($members) > MAX_LIST_ELEMENTS_SPLIT) {
+                    $pagelist = View::createElement('ul', null, 'class="pagenav"');
+
+                    if ($page > 0) {
+                        $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname"));
+                        $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1)));
+                    }
+                    for($i = 0; $i <= $max; $i++) {
+                        $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
+                    }
+                    if ($page < $max) {
+                        $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1)));
+                        $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max)));
+                    }
+                    $View->addElement($pagelist);
                 }
-                for($i = 0; $i <= $max; $i++) {
-                    $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
+
+                $table = View::createElement('table', null, 'class="app-table"');
+                $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
+
+                //TODO: make a class for this kind of forms...
+                $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="inline">'); 
+
+
+                for ($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
+                    $table->addData(array(
+                        View::createElement('td', '<input type="checkbox" name="del['.$members[$i]['type'].']['.$members[$i]['id'].']" value="'.$members[$i]['name'].'" id="mem'.$members[$i]['id'].'">', 'class="less"'),
+                        '<label for="mem'.$members[$i]['id'].'">' . $members[$i]['name'] . '</label>', 
+                        $members[$i]['type']
+                    ));
                 }
-                if ($page < $max) {
-                    $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1)));
-                    $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max)));
-                }
-                $View->addElement($pagelist);
+
+                $View->addElement($table);
+                $View->addElement('p', '<input type="submit" class="submit_warn" value="'.txt('groups_members_del_submit').'">');
+                $View->addElement('raw', '</form>');
             }
-
-            $table = View::createElement('table', null, 'class="app-table"');
-            $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
-
-            //TODO: make a class for this kind of forms...
-            $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="inline">'); 
-
-
-            for($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
-                $table->addData(array(
-                    View::createElement('td', '<input type="checkbox" name="del['.$members[$i]['type'].']['.$members[$i]['id'].']" value="'.$members[$i]['name'].'" id="mem'.$members[$i]['id'].'">', 'class="less"'),
-                    '<label for="mem'.$members[$i]['id'].'">' . $members[$i]['name'] . '</label>', 
-                    $members[$i]['type']
-                ));
-            };
-
-            $View->addElement($table);
-            $View->addElement('p', '<input type="submit" class="submit_warn" value="'.txt('groups_members_del_submit').'">');
-            $View->addElement('raw', '</form>');
         } catch (XML_RPC2_FaultException $e) {
             $View->addElement('p', txt('groups_members_too_many'));
             $View->addElement(getFormDeleteMembers($groupname));
