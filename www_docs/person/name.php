@@ -41,7 +41,7 @@ $view->addElement('h1', txt('person_name_title'));
 $view->addElement('p', txt('person_name_intro')); 
 
 $primary = getPrimaryAddress();
-$name = $bofh->getName();
+$name = getName();
 $view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$primary))); 
 $view->addElement($form);
 
@@ -153,6 +153,23 @@ function makeAddress($names)
         $ret[] = $name[0];
     }
     return implode('.', $ret) . '.' . $last;
+}
+
+/**
+ * Get the primary full name for the current person.
+ *
+ * The name returned from $bofh->getName() is cached, so we should not use that 
+ * in this case.
+ */
+function getName()
+{
+    $bofh = Init::get('Bofh');
+    $raw = $bofh->getData('person_info', $bofh->getUsername());
+    foreach ($raw as $row) {
+        if (!empty($row['name'])) {
+            return trim(substr($row['name'], 0, strpos($row['name'], '[')));
+        }
+    }
 }
 
 ?>
