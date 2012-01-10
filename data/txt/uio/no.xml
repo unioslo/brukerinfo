@@ -155,6 +155,20 @@
         timer før endringen tar effekt.</PRIMARY_PERSON_UPDATED>
     <PRIMARY_PERSON_SUBMIT>Oppdater din primærtilknytning</PRIMARY_PERSON_SUBMIT>
 
+    <!-- Person name page -->
+    <PERSON_NAME_TITLE>Velg ditt visningsnavn</PERSON_NAME_TITLE>
+    <PERSON_NAME_INTRO>Velg ditt navn som vil bli vist i forskjellige
+        systemer, for eksempel personpresentasjonen på &lt;a
+        href="https://uio.no"&gt;uio.no&lt;/a&gt;. Merk at primæradressen kan
+        forandre seg som en kosekvens av dette.</PERSON_NAME_INTRO>
+    <PERSON_NAME_CURRENT>Ditt nåværende navn er
+        &lt;strong&gt;{{name}}&lt;/strong&gt; og din primære e-postadresse er:
+        &lt;strong&gt;{{email}}&lt;/strong&gt;.</PERSON_NAME_CURRENT>
+    <PERSON_NAME_FORM_SUBMIT>Velg navn</PERSON_NAME_FORM_SUBMIT>
+    <PERSON_NAME_FORM_SELECT>Velg navn</PERSON_NAME_FORM_SELECT>
+    <PERSON_NAME_SUCCESS>Ditt navn har blitt oppdatert</PERSON_NAME_SUCCESS>
+
+
     <!-- Reservation page -->
     <RESERVATIONS_TITLE>Reservasjoner</RESERVATIONS_TITLE>
     <RESERVATIONS_INTRO>Rervasjoner fra ulike tjenester.</RESERVATIONS_INTRO>

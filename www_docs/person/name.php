@@ -37,15 +37,12 @@ if ($form->validate()) {
 
 $view = Init::get('View');
 $view->start();
-$view->addElement('h1', 'Choose your display name');
-$view->addElement('p', 'Your name will be visible in different systems, like the 
-    personal presentation at <a href="https://uio.no">uio.no</a>. It might also 
-    change your primary e-mail address.');
+$view->addElement('h1', txt('person_name_title'));
+$view->addElement('p', txt('person_name_intro')); 
 
 $primary = getPrimaryAddress();
 $name = $bofh->getName();
-$view->addElement('p', "Your current name is <strong>$name</strong> and your 
-    primary address is: <strong>$primary</strong>.");
+$view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$email))); 
 $view->addElement($form);
 
 /**
@@ -58,8 +55,8 @@ function formModName($names)
         $data[$key] = sprintf('%s (%s)', implode(' ', $n), $key);
     }
     $form = new BofhFormUiO('mod_name');
-    $form->addElement('select', 'address', 'Select name:', $data);
-    $form->addElement('submit', null, 'Set name');
+    $form->addElement('select', 'address', txt('person_name_form_select'), $data);
+    $form->addElement('submit', null, txt('person_name_form_submit'));
 
     $form->addRule('address', txt('FORM_REQUIRED'), 'required');
     return $form;
@@ -88,7 +85,7 @@ function formModNameProcess($input)
         $bofh->viewError($e);
         return;
     }
-    View::addMessage('Name and primary e-mail address changed');
+    View::addMessage(txt('person_name_success'));
 }
 
 /**
