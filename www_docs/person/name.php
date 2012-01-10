@@ -28,8 +28,10 @@ if (!$bofh->isEmployee()) {
 }
 
 $addresses = getAddresses();
+$name = getName();
+$primary = getPrimaryAddress();
 
-$form = formModName($addresses);
+$form = formModName($primary, $addresses);
 if ($form->validate()) {
     $form->process('formModNameProcess');
     View::forward('person/');
@@ -40,15 +42,13 @@ $view->start();
 $view->addElement('h1', txt('person_name_title'));
 $view->addElement('p', txt('person_name_intro')); 
 
-$primary = getPrimaryAddress();
-$name = getName();
 $view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$primary))); 
 $view->addElement($form);
 
 /**
  * Return a form for specifying what names should go as input.
  */
-function formModName($names)
+function formModName($current_addr, $names)
 {
     $data = array();
     foreach ($names as $key => $n) {
@@ -59,6 +59,7 @@ function formModName($names)
     $form->addElement('submit', null, txt('person_name_form_submit'));
 
     $form->addRule('address', txt('FORM_REQUIRED'), 'required');
+    $form->setDefaults(array('address' => $current_addr));
     return $form;
 }
 
