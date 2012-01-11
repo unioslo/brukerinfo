@@ -31,7 +31,7 @@ $addresses = getAddresses();
 $name = getName();
 $primary = getPrimaryAddress();
 
-$form = formModName($primary, $addresses);
+$form = formModName($primary, $name, $addresses);
 if ($form->validate()) {
     $form->process('formModNameProcess');
     View::forward('person/');
@@ -48,18 +48,18 @@ $view->addElement($form);
 /**
  * Return a form for specifying what names should go as input.
  */
-function formModName($current_addr, $names)
+function formModName($current_addr, $current_name, $names)
 {
     $data = array();
-    foreach ($names as $key => $n) {
-        $data[$key] = sprintf('%s (%s)', implode(' ', $n), $key);
+    foreach ($names as $name => $row) {
+        $data[$name] = sprintf('%s (%s)', $name, $row[1]);
     }
     $form = new BofhFormUiO('mod_name');
-    $form->addElement('select', 'address', txt('person_name_form_select'), $data);
+    $form->addElement('select', 'name', txt('person_name_form_select'), $data);
     $form->addElement('submit', null, txt('person_name_form_submit'));
 
-    $form->addRule('address', txt('FORM_REQUIRED'), 'required');
-    $form->setDefaults(array('address' => $current_addr));
+    $form->addRule('name', txt('FORM_REQUIRED'), 'required');
+    $form->setDefaults(array('name' => $current_name));
     return $form;
 }
 
@@ -70,11 +70,11 @@ function formModNameProcess($input)
 {
     global $addresses;
 
-    if (empty($addresses[$input['address']])) {
+    if (empty($addresses[$input['name']])) {
         View::addMessage('Bogus data');
         return;
     }
-    $names = $addresses[$input['address']];
+    $names = $addresses[$input['name']][0];
     $last = array_pop($names);
     $first = implode(' ', $names);
 
@@ -120,9 +120,14 @@ function getAddresses()
     $user = Init::get('User');
 
     $names = $bofh->getData('person_name_suggestions', 'id:'.$bofh->getCache('person_id'));
+    // the raw format is:
+    // array(
+    //  array('first_name', 'second_name'),
+    //  'email_address',
+    // ),
     $ret = array();
     foreach ($names as $row) {
-        $ret[$row[1]] = $row[0];
+        $ret[implode(' ', $row[0])] = $row;
     }
     return $ret;
 }
