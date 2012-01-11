@@ -54,6 +54,7 @@ function formModName($current_addr, $current_name, $names)
     foreach ($names as $name => $row) {
         $data[$name] = sprintf('%s (%s)', $name, $row[1]);
     }
+    ksort($data);
     $form = new BofhFormUiO('mod_name');
     $form->addElement('select', 'name', txt('person_name_form_select'), $data);
     $form->addElement('submit', null, txt('person_name_form_submit'));
@@ -122,7 +123,7 @@ function getAddresses()
     $names = $bofh->getData('person_name_suggestions', 'id:'.$bofh->getCache('person_id'));
     // the raw format is:
     // array(
-    //  array('first_name', 'second_name'),
+    //  array('first_name', 'second_name' ...),
     //  'email_address',
     // ),
     $ret = array();
