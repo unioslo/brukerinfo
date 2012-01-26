@@ -93,7 +93,7 @@ class Init extends InitBase
             // sets the session cookie to only work in subpages of brukerinfo
             // (and not all in e.g. *.uio.no/*)
             session_set_cookie_params(0, $path, $_SERVER['SERVER_NAME'], TRUE, TRUE);
-            session_name('brukerinfoid');
+            session_name('brukerinfonesnaid');
             session_start();
         }
 
@@ -125,8 +125,8 @@ class Init extends InitBase
     protected static function createView()
     {
         $text = self::get('Text');
-        $view = new View_uio();
-        $view->setTemplate(LINK_DATA . '/templates/template.uio.' . $text->getLanguage() . '.txt');
+        $view = new View_hine();
+        $view->setTemplate(LINK_DATA . '/templates/template.hine.' . $text->getLanguage() . '.txt');
         return $view;
     }
 
