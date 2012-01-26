@@ -73,9 +73,9 @@
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Logg inn</LOGON_TITLE>
-    <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen 
-        som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
-    </LOGON_INTRO>
+    <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å bytte passord og
+        se noe av informasjonen knyttet til din person og brukere ved Høgskolen
+        i Nesna.&lt;/p&gt;</LOGON_INTRO>
     <LOGON_OUTRO>
         &lt;ul&gt;
         &lt;li&gt;Glemt passordet ditt? Studenter kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;

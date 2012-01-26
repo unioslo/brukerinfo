@@ -73,10 +73,9 @@
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Log on</LOGON_TITLE>
-    <LOGON_INTRO>&lt;p&gt;This is a web based user interface you can use to view and
-        modify some of the information concerning your web identity and account at the 
-        University of Oslo.
-    </LOGON_INTRO>
+    <LOGON_INTRO>&lt;p&gt;This is a web based user interface for changing your
+        password and to show you some of your information related to your person
+        and user accounts at Nesna University College.&lt;/p&gt;</LOGON_INTRO>
     <LOGON_OUTRO>
         &lt;ul&gt;
         &lt;li&gt;Forgotten your password? Students can &lt;a href="forgotten/password/"&gt;set a new password by SMS&lt;/a&gt;.&lt;/li&gt;
