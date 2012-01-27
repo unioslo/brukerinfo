@@ -123,35 +123,26 @@ class View_hine extends ViewTemplate
             $menu['account']['sub'][] = 'primary.php';
         };
 
-        //printer
-        if ($is_personal) {
-            $menu['printing']['link']    = 'printing/';
-            $menu['printing']['sub']     = array(
-                '',
-                'history.php'
-            );
-        };
-
-        //email
-        $menu['email']['link']      = 'email/';
-        $menu['email']['sub'][]     = '';
-        $menu['email']['sub'][]     = 'spam.php';
-        $menu['email']['sub'][]     = 'tripnote.php';
-        $menu['email']['sub'][]     = 'forward.php';
+        ////email
+        //$menu['email']['link']      = 'email/';
+        //$menu['email']['sub'][]     = '';
+        //$menu['email']['sub'][]     = 'spam.php';
+        //$menu['email']['sub'][]     = 'tripnote.php';
+        //$menu['email']['sub'][]     = 'forward.php';
 
         //groups
         $menu['groups']['link']     = 'groups/';
         $menu['groups']['sub']      = array(
             ''
         );
-        if ($is_employee) $menu['groups']['sub'][] = 'new.php';
+        //if ($is_employee) $menu['groups']['sub'][] = 'new.php';
 
-        // reservations
-        if ($is_personal) {
-            $menu['reservations']['link'] = 'reservations/';
-            $menu['reservations']['sub'] = array(
-            );
-        }
+        //// reservations
+        //if ($is_personal) {
+        //    $menu['reservations']['link'] = 'reservations/';
+        //    $menu['reservations']['sub'] = array(
+        //    );
+        //}
 
         // TODO: not yet
         //if ($is_personal && $is_employee) {
