@@ -41,12 +41,12 @@ body {
     color: #2b2b2b;
     font: normal 90%/1.31em "Helvetica Neue", Helvetica, sans-serif;
     text-align: center;
-    min-width: 1000px;
 }
 
 /* Head and footer */
 
 #app-head-wrapper {
+    text-align: center;
     background: #fff;
     margin-bottom: 20px;
     border-bottom: solid #b6a285 1px; /* Sand */
@@ -72,11 +72,13 @@ body {
 #app-head {
     margin: 0 auto 0 auto;
     height: 128px;
-    width: 970px; /* TODO */
+    /*width: 970px; /* TODO */
+    max-width: 950px;
 }
 
 #app-content {
-    width: 890px;
+    /*width: 890px;*/
+    max-width: 900px;
     margin: 0 auto 20px auto;
     text-align: left;
     padding: 0 29px 29px 29px;
@@ -98,7 +100,8 @@ body {
 
 #app-footer {
     margin-bottom: 0;
-    width: 940px; /* TODO */
+    /*width: 940px; /* TODO */
+    max-width: 950px;
     margin: 0 auto;
     border: none;
     font: normal 0.85em/1.25em Verdana, sans-serif;
@@ -153,7 +156,7 @@ body {
 
 #app-head-wrapper #head-submenu {
     position: absolute;
-    top: 84px;
+    top: 95px;
     right: 15px;
     font-size: 0.92em;
 }

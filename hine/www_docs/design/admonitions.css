@@ -57,7 +57,7 @@
 /* Margin, padding m.m. */
 div.admonition, div.attention, div.error, div.hint, div.important, div.note,
 div.tip, div.warning, div.caution, div.danger {
-  background-color: #f8f8f8 !important;
+  background-color: #b6a285 !important;
   color: #000;
   margin: 15px 0;
   padding: 15px 25px 10px 66px;
@@ -126,8 +126,8 @@ div.tip tt.literal, div.warning tt.literal, div.caution tt.literal,div.danger tt
 div.admonition { padding-left: 19px; }
 
 div.error { background-image: url("images/admonitions/error.png"); }
-div.warning { background-image: url("images/admonitions/warning-new.png"); }
-div.note { background-image: url("images/admonitions/note-new.png"); }
+/* div.warning { background-image: url("images/admonitions/warning-new.png"); } 
+div.note { background-image: url("images/admonitions/note-new.png"); } */
 div.caution { background-image: url("images/admonitions/caution.png"); }
 div.important { background-image: url("images/admonitions/important.png"); }
 div.tip { background-image: url("images/admonitions/tip.png"); }
