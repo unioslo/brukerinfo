@@ -8,8 +8,7 @@
     <!-- Profile -->
     <link media="screen" type="text/css" href="design/general.css" rel="stylesheet" />
 
-    <!-- TODO: is jquery necessary?
-    <script type="text/javascript" src="uio_design/jquery.min.js"></script> -->
+    <script type="text/javascript" src="design/jquery.min.js"></script>
 
     <!-- Framebusting: Prevent clickjacking by avoiding frames. Modern
          browsers respects the x-frame-options, though.
@@ -23,6 +22,7 @@
 <body>
 
 <!-- Page header starts -->
+<div id="app-head-wrapper">
 <div id="app-head"> 
     <a id="app-instancelogo" href="http://hinesna.no/english">
         <img src="design/hine_logo.png" alt="Nesna University College" />
@@ -44,6 +44,7 @@
         <span class="head-help"><a href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/">Help</a></span>
         ##STATUSLOGON##
     </div>
+</div> 
 </div> 
 <!-- Page header end -->
 
