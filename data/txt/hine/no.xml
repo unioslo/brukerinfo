@@ -81,10 +81,6 @@
         &lt;li&gt;Glemt passordet ditt? Studenter kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
         &lt;li&gt;Vet du ikke hva &lt;a href="forgotten/username/"&gt;ditt brukernavn ved HiNesna&lt;/a&gt; er?&lt;/li&gt;
         &lt;/ul&gt;
-
-        &lt;p&gt;Les om &lt;a
-        href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;
-        hvorfor det er trygt å oppgi ditt passord på denne siden&lt;/a&gt;.&lt;/p&gt;
         </LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Brukernavn:</LOGON_FORM_USERNAME>
@@ -137,13 +133,11 @@
     <!-- Person page texts -->
     <PERSON_TITLE>Personinformasjon</PERSON_TITLE>
     <PERSON_HOWTO_CHANGE_FS>
-        Hvis det er feil i informasjon fra FS (Felles Studentsystem), kan du
-        kontakte &lt;a href="https://uio.no/studier/kontakt/"&gt;studentkontoret
-        for din enhet&lt;/a&gt;.
+        Hvis det er feil i informasjon fra FS (Felles Studentsystem), må du
+        kontakte studentkontoret.
       </PERSON_HOWTO_CHANGE_FS>
-      <PERSON_HOWTO_CHANGE_SAP>Hvis det er feil i informasjon fra SAP, kan du
-          kontakte &lt;a
-          href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
+      <PERSON_HOWTO_CHANGE_SAP>Hvis det er feil i informasjon fra SAP, må du
+          kontakte personalavdelingen.
       </PERSON_HOWTO_CHANGE_SAP>
 
     <!-- Person primary affiliation -->

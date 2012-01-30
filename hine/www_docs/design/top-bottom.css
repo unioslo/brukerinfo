@@ -72,12 +72,10 @@ body {
 #app-head {
     margin: 0 auto 0 auto;
     height: 128px;
-    /*width: 970px; /* TODO */
     max-width: 950px;
 }
 
 #app-content {
-    /*width: 890px;*/
     max-width: 900px;
     margin: 0 auto 20px auto;
     text-align: left;
@@ -100,7 +98,6 @@ body {
 
 #app-footer {
     margin-bottom: 0;
-    /*width: 940px; /* TODO */
     max-width: 950px;
     margin: 0 auto;
     border: none;
@@ -123,6 +120,12 @@ body {
 #app-head #app-instancelogo {
     display: block;
     margin: 0 0 1em 0;
+}
+
+/* For small screens: */
+#app-head img {
+    max-width: 90%;
+    overflow: hidden;
 }
 
 #app-head #head-menu {
@@ -214,6 +217,17 @@ body {
 /* ^ Footer */
 
 /* ^ Head and footer */
+
+/* Some overrides for small screens (cellphones, tabs ect) */
+
+@media handheld,                                    /* various gadgets that likes standards */
+       only screen and (max-width: 480px),          /* apples' and blackberries */
+       only screen and (max-device-width: 480px) {  /* buggy android phones */
+       only screen and (max-device-width: 854px) {  /* some larger phones */
+    #app-footer div.phone-fax-email {
+        padding-right: inherit;
+    }
+}
 
 /* Fluid design */
 

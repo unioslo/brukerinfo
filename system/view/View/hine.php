@@ -123,8 +123,8 @@ class View_hine extends ViewTemplate
             $menu['account']['sub'][] = 'primary.php';
         };
 
-        ////email
-        //$menu['email']['link']      = 'email/';
+        //email
+        $menu['email']['link']      = 'email/';
         //$menu['email']['sub'][]     = '';
         //$menu['email']['sub'][]     = 'spam.php';
         //$menu['email']['sub'][]     = 'tripnote.php';
@@ -132,9 +132,9 @@ class View_hine extends ViewTemplate
 
         //groups
         $menu['groups']['link']     = 'groups/';
-        $menu['groups']['sub']      = array(
-            ''
-        );
+        //$menu['groups']['sub']      = array(
+        //    ''
+        //);
         //if ($is_employee) $menu['groups']['sub'][] = 'new.php';
 
         //// reservations

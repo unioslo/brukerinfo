@@ -64,15 +64,13 @@
 <!-- Page footer starts -->
 <div id="app-footer-wrapper"> 
    <div id="app-footer">
-     <div id="app-responsible"> 
-       <span class="vrtx-label">Responsible for the service</span> 
-       <span><a href="http://www.usit.uio.no/om/organisasjon/sapp/gt/">USIT - Gruppe for drift av grunntjenester</a></span> 
-     </div>
      <div id="contact-info"> 
        <div class="phone-fax-email"> 
          <span class="vrtx-label">Contact information</span>
-         <span class="email">E-mail: <a href="mailto:houston@usit.uio.no">houston@usit.uio.no</a></span>  
-         <span class="tel">Tlf: (228) 40004</span>  
+         <span>For employees:
+               <a href="http://www.hinesna.no/support">User support</a></span>
+         <span>For students:
+               <a href="http://www.hinesna.no/bibliotek">The library</a></span>
        </div> 
      </div>
      <div id="app-footer-extras">
