@@ -24,7 +24,7 @@
 <!-- Page header starts -->
 <div id="app-head-wrapper">
 <div id="app-head"> 
-    <a id="app-instancelogo" href="http://hinesna.no/english">
+    <a id="app-instancelogo" href="http://www.hinesna.no/english">
         <img src="design/hine_logo.png" alt="Nesna University College" />
     </a>
 
