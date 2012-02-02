@@ -193,26 +193,16 @@
         &lt;p&gt;Change the password of the account you are logged on to. Please
         note that your password is &lt;em&gt;personal&lt;/em&gt; and must
         &lt;em&gt;never&lt;/em&gt; be shared with anyone else, not even the IT
-        staff at HiNesna.&lt;/p&gt; &lt;p&gt;This is a summary of the requirements,
-        see &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/passord.html"&gt;all
-        password requirements&lt;/a&gt; when in doubt.&lt;/p&gt;
+        staff at HiNesna.&lt;/p&gt;
+
         &lt;p&gt;A password &lt;strong&gt;must&lt;/strong&gt;:
         &lt;ul&gt;
-            &lt;li&gt;Be at least &lt;strong&gt;8 characters&lt;/strong&gt; long&lt;/li&gt;
-            &lt;li&gt;Contain characters from at least &lt;strong&gt;3 of 4&lt;/strong&gt; of these categories:
-                &lt;ul&gt;
-                    &lt;li&gt;Numbers&lt;/li&gt;
-                    &lt;li&gt;Lowercase letters&lt;/li&gt;
-                    &lt;li&gt;Uppercase letters&lt;/li&gt;
-                    &lt;li&gt;Other characters&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
+            &lt;li&gt;Be at least &lt;strong&gt;15 characters&lt;/strong&gt; long&lt;/li&gt;
+            &lt;li&gt;Contain at least two spaces&lt;/li&gt;
         &lt;/ul&gt;
         The password &lt;strong&gt;must not&lt;/strong&gt;:
         &lt;ul&gt;
             &lt;li&gt;Contain æ, ø or å&lt;/li&gt;
-            &lt;li&gt;Contain words found in a dictionary&lt;/li&gt;
             &lt;li&gt;Resemble one of your previous set password&lt;/li&gt;
         &lt;/ul&gt;
         &lt;/p&gt;</ACCOUNT_PASSWORD_INTRO>
@@ -295,6 +285,7 @@
     <EMAIL_INFO_FORWARD>Forwarding:</EMAIL_INFO_FORWARD>
     <EMAIL_INFO_SERVER>IMAP server:</EMAIL_INFO_SERVER>
     <EMAIL_INFO_FILTERS>Filtering:</EMAIL_INFO_FILTERS>
+    <EMAIL_INFO_TARGETTYPE>Status:</EMAIL_INFO_TARGETTYPE>
 
     <EMAIL_OTHER_TITLE>Your other mailboxes</EMAIL_OTHER_TITLE>
     <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>

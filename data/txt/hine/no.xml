@@ -199,26 +199,15 @@
         brukernavnet og passordet til. Merk deg at passordet er
         &lt;em&gt;personlig&lt;/em&gt; og at du &lt;em&gt;aldri&lt;/em&gt; skal
         oppgi det til andre, heller ikke IT-ansatte ved HiNesna.&lt;/p&gt;
-        &lt;p&gt;Dette er et sammendrag av kravene. Hvis du er i tvil, kan du
-        lese &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/passord.html"&gt;alle
-        krav til passord&lt;/a&gt;.&lt;/p&gt;
+
         &lt;p&gt;Et passord &lt;strong&gt;må&lt;/strong&gt;:
         &lt;ul&gt;
-            &lt;li&gt;være minst &lt;strong&gt;8 tegn&lt;/strong&gt; langt&lt;/li&gt;
-            &lt;li&gt;inneholde tegn fra minst &lt;strong&gt;3 &lt;/strong&gt; av disse 4 kategoriene:
-                &lt;ul&gt;
-                    &lt;li&gt;tall&lt;/li&gt;
-                    &lt;li&gt;små bokstaver&lt;/li&gt;
-                    &lt;li&gt;store bokstaver&lt;/li&gt;
-                    &lt;li&gt;andre tegn&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
+            &lt;li&gt;Være minst &lt;strong&gt;15 tegn&lt;/strong&gt; langt&lt;/li&gt;
+            &lt;li&gt;Inneholde minst to mellomrom&lt;/li&gt;
         &lt;/ul&gt;
         Passordet &lt;strong&gt;må ikke&lt;/strong&gt;:
         &lt;ul&gt;
             &lt;li&gt;inneholde æ, ø eller å&lt;/li&gt;
-            &lt;li&gt;inneholde ord som finnes i en ordbok&lt;/li&gt;
             &lt;li&gt;ligne på et passord du har brukt tidligere&lt;/li&gt;
         &lt;/ul&gt;
         &lt;/p&gt;</ACCOUNT_PASSWORD_INTRO>
@@ -298,6 +287,7 @@
     <EMAIL_INFO_FORWARD>Videresending:</EMAIL_INFO_FORWARD>
     <EMAIL_INFO_SERVER>IMAP-tjener:</EMAIL_INFO_SERVER>
     <EMAIL_INFO_FILTERS>Filtrering:</EMAIL_INFO_FILTERS>
+    <EMAIL_INFO_TARGETTYPE>Status:</EMAIL_INFO_TARGETTYPE>
 
     <EMAIL_OTHER_TITLE>Dine andre e-postkontoer</EMAIL_OTHER_TITLE>
     <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>

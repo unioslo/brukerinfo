@@ -70,6 +70,12 @@ $View->addElement('h2', $User->getUsername());
 
 $prilist = View::createElement('dl', null);
 
+// target_type - given if mail is not account, Mailman, Sympa, pipe or RT - 
+// e.g. when mail account is "deleted"
+if (isset($primary['target_type'])) {
+    $prilist->addData(txt('email_info_targettype'), $primary['target_type']);
+    unset($primary['target_type']);
+}
 
 // default address
 if (isset($primary['def_addr'])) {
@@ -171,6 +177,7 @@ if (isset($primary['server'])) {
     unset($primary['server_type']);
 }
 
+
 //adds the rest (if any)
 foreach ($primary as $k => $pr) {
     $titl = @txt('email_info_'.$k);
@@ -199,7 +206,11 @@ if (sizeof($accounts) > 1) {
         //todo: needs to know how expire is returned to remove it from the list:
         if ($acc['expire'] && $acc['expire']->timestamp < time()) continue;
 
-        $sec = emailinfo($aname);
+        try {
+            $sec = emailinfo($aname);
+        } catch (XML_RPC2_FaultException $e) {
+            continue;
+        }
 
         $View->addElement('h3', $sec['account']);
 
@@ -207,13 +218,9 @@ if (sizeof($accounts) > 1) {
         $info->addData(txt('email_info_primary_addr'), $sec['def_addr']);
         $info->addData(txt('email_info_valid_addr'), $sec['valid_addr']);
         $info->addData(txt('email_info_server'), $sec['server'] . ' ('.$sec['server_type'].')');
-
         $View->addElement($info);
-
     }
 }
-
-
 
 $View->addElement('ul', array(txt('email_info_more_info')), 'class="ekstrainfo"');
 
@@ -226,7 +233,8 @@ $View->addElement('ul', array(txt('email_info_more_info')), 'class="ekstrainfo"'
 function emailinfo($username)
 {
     global $Bofh;
-    $data = $Bofh->getDataClean('email_info', $username);
+    // wants to get exceptions if mail account doesn't exist:
+    $data = $Bofh->cleanData($Bofh->run_command('email_info', $username));
 
     //let valid_addr_1 be first in valid_addr list (if existing)
     if (empty($data['valid_addr'])) $data['valid_addr'] = array();

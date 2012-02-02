@@ -41,7 +41,7 @@
         ##LANGUAGES##        
     </div>
     <div id="head-submenu">
-        <span class="head-help"><a href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/">Help</a></span>
+        <!-- <span class="head-help"><a href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/">Help</a></span> -->
         ##STATUSLOGON##
     </div>
 </div> 

@@ -71,6 +71,13 @@ $View->addElement('h2', $User->getUsername());
 $prilist = View::createElement('dl', null);
 
 
+// target_type - given if mail is not account, Mailman, Sympa, pipe or RT - 
+// e.g. when mail account is "deleted"
+if (isset($primary['target_type'])) {
+    $prilist->addData(txt('email_info_targettype'), $primary['target_type']);
+    unset($primary['target_type']);
+}
+
 // default address
 if (isset($primary['def_addr'])) {
     $prilist->addData(txt('email_info_primary_addr'), $primary['def_addr']);
@@ -196,9 +203,15 @@ if (sizeof($accounts) > 1) {
             continue;
         }
         //todo: needs to know how expire is returned to remove it from the list:
-        if ($acc['expire'] && $acc['expire']->timestamp < time()) continue;
+        if ($acc['expire'] && $acc['expire']->timestamp < time()) {
+            continue;
+        }
 
-        $sec = emailinfo($aname);
+        try {
+            $sec = emailinfo($aname);
+        } catch (XML_RPC2_FaultException $e) {
+            continue;
+        }
 
         $View->addElement('h3', $sec['account']);
 
@@ -206,9 +219,7 @@ if (sizeof($accounts) > 1) {
         $info->addData(txt('email_info_primary_addr'), $sec['def_addr']);
         $info->addData(txt('email_info_valid_addr'), $sec['valid_addr']);
         $info->addData(txt('email_info_server'), $sec['server'] . ' ('.$sec['server_type'].')');
-
         $View->addElement($info);
-
     }
 }
 
