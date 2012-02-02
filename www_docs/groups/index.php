@@ -369,9 +369,8 @@ function getAdmGroups()
     try {
         $raw = $bofh->run_command('access_list_alterable', 'group');
     } catch(XML_RPC2_FaultException $e) {
-        View::addMessage($e);
         Bofhcom::viewError($e);
-        throw $e;
+        return -1;
     }
 
     $groups = array();
