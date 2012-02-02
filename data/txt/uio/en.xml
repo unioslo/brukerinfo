@@ -293,6 +293,7 @@
     <EMAIL_TITLE>E-mail</EMAIL_TITLE>
     
     <EMAIL_INFO_TITLE>E-mail overview</EMAIL_INFO_TITLE>
+    <EMAIL_INFO_NO_ACCOUNT>This user account does not have an e-mail account</EMAIL_INFO_NO_ACCOUNT>
     <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
     <EMAIL_INFO_VALID_ADDR>Valid addresses:</EMAIL_INFO_VALID_ADDR>
     <EMAIL_INFO_QUOTA>Quota:</EMAIL_INFO_QUOTA>

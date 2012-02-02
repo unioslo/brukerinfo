@@ -22,7 +22,11 @@ $User = Init::get('User');
 $Bofh = Init::get('Bofh');
 $View = Init::get('View');
 
-$primary = emailinfo($User->getUsername());
+try {
+    $primary = emailinfo($User->getUsername());
+} catch (XML_RPC2_FaultException $e) {
+    View::forward('', txt('email_info_no_account'));
+}
 unset($primary['account']);
 
 if (!empty($_GET['del_addr'])) {
