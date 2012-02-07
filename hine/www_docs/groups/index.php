@@ -302,13 +302,13 @@ if ($normal_groups) {
 }
 
 // recommending a personal group
-if (!isset($adm_groups[$User->getUsername()])) {
-    try {
-        $prs = $Bofh->run_command('group_info', $User->getUsername());
-    } catch (XML_RPC2_FaultException $e) {
-        $View->addElement('p', txt('groups_no_personal'));
-    }
-}
+//if (!isset($adm_groups[$User->getUsername()])) {
+//    try {
+//        $prs = $Bofh->run_command('group_info', $User->getUsername());
+//    } catch (XML_RPC2_FaultException $e) {
+//        $View->addElement('p', txt('groups_no_personal'));
+//    }
+//}
 
 /**
  * Gets out the group info about a specific group.

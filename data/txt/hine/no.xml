@@ -123,7 +123,7 @@
     <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
         er tilknyttet den elektroniske identiteten din ved Høgskolen i Nesna. Hvis du trenger mer 
         informasjon eller hjelp i forbindelse med datasystemene ved HiNesna, kan du gå til
-        &lt;a href="https://uio.no/tjenester/it/"&gt;nettstedet for IT-tjenester ved HiNesna&lt;/a&gt;.</HOME_ABOUT>
+        &lt;a href="http://www.hinesna.no/support"&gt;brukerstøtten ved HiNesna&lt;/a&gt;.</HOME_ABOUT>
 
     <!-- Person page texts -->
     <PERSON_TITLE>Personinformasjon</PERSON_TITLE>
@@ -138,7 +138,7 @@
     <!-- Person primary affiliation -->
     <PRIMARY_PERSON_TITLE>Primærtilknytning</PRIMARY_PERSON_TITLE>
     <PRIMARY_PERSON_INTRO>Her kan du sette din primærtilknytning, som vises på
-        personpresentasjonen din på uio.no.</PRIMARY_PERSON_INTRO>
+        personpresentasjonen din.</PRIMARY_PERSON_INTRO>
     <PRIMARY_PERSON_CHOICE>Velg primærtilknytning</PRIMARY_PERSON_CHOICE>
     <PRIMARY_PERSON_UPDATED>Primærtilknytning er oppdatert. Det vil ta noen
         timer før endringen tar effekt.</PRIMARY_PERSON_UPDATED>
@@ -147,10 +147,9 @@
     <!-- Person name page -->
     <PERSON_NAME_TITLE>Velg ditt visningsnavn</PERSON_NAME_TITLE>
     <PERSON_NAME_INTRO>Velg hvilket av de registrerte navnene dine som vil bli
-        vist i systemene på HiNesna, for eksempel personpresentasjonen på &lt;a
-        href="https://uio.no"&gt;uio.no&lt;/a&gt;. Merk deg at din primære
-        e-postadressen kan forandre seg som en konsekvens av valget.
-    </PERSON_NAME_INTRO>
+        vist i systemene på HiNesna, for eksempel personpresentasjonen. Merk
+        deg at din primære e-postadressen kan forandre seg som en konsekvens
+        av valget.</PERSON_NAME_INTRO>
     <PERSON_NAME_CURRENT>Ditt nåværende navn er
         &lt;strong&gt;{{name}}&lt;/strong&gt; og din primære e-postadresse er:
         &lt;strong&gt;{{email}}&lt;/strong&gt;.</PERSON_NAME_CURRENT>
@@ -217,15 +216,13 @@
     <ACCOUNT_PASSWORD_ERROR_MATCH>Det nye passordet og bekreftelsen av det nye passordet er ikke like.</ACCOUNT_PASSWORD_ERROR_MATCH>
     <ACCOUNT_PASSWORD_SUCCESS>Passordet ditt er skiftet.</ACCOUNT_PASSWORD_SUCCESS>
 
-    <ACCOUNT_PASSWORD_MOREINFO>Vis mer informasjon om &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/"&gt;brukernavn og
-        passord ved HiNesna&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
+    <ACCOUNT_PASSWORD_MOREINFO></ACCOUNT_PASSWORD_MOREINFO>
 
     <ACCOUNT_PRIMARY_TITLE>Gjør brukerkontoen til primærkonto</ACCOUNT_PRIMARY_TITLE>
     <ACCOUNT_PRIMARY_INTRO>Hvis du har flere brukerkontoer ved HiNesna, er én av brukerkontoene primærkontoen din. Merk deg følgende:
         &lt;ul&gt;
         &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; godtar kun pålogging med primærkontoen&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; (blyant.uio.no) godtar kun pålogging med primærkontoen&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; godtar kun pålogging med primærkontoen&lt;/li&gt;
         &lt;/ul&gt;
     </ACCOUNT_PRIMARY_INTRO>
     <ACCOUNT_PRIMARY_ALREADY>Den aktive brukerkontoen ({{username}}) er allerede primærkontoen din.&lt;br&gt;
@@ -288,8 +285,7 @@
     <EMAIL_OTHER_TITLE>Dine andre e-postkontoer</EMAIL_OTHER_TITLE>
     <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>
 
-    <EMAIL_INFO_MORE_INFO>Hvis du vil vite mer om e-postsystemet ved HiNesna, kan du lese 
-        &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;hjelpesidene for e-post&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+    <EMAIL_INFO_MORE_INFO></EMAIL_INFO_MORE_INFO>
 
     <EMAIL_DEL_TITLE>Bekreft sletting av e-postadresse</EMAIL_DEL_TITLE>
     <EMAIL_DEL_INTRO>Er du sikker på at du vil slette adressen
@@ -305,10 +301,8 @@
         slettes</EMAIL_DEL_FAILED>
 
     <EMAIL_SPAM_TITLE>Spaminnstillinger</EMAIL_SPAM_TITLE>
-    <EMAIL_SPAM_INTRO>Disse innstillingene brukes på e-posten før den når innboksen din.
-        Hvis du vil vite mer, kan du lese &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/spam/"&gt;USITs
-        side om spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
+    <EMAIL_SPAM_INTRO>Disse innstillingene brukes på e-posten før den når
+        innboksen din.</EMAIL_SPAM_INTRO>
 
     <EMAIL_SPAM_ACTION_DROPSPAM>Avvis meldinger merket som spam</EMAIL_SPAM_ACTION_DROPSPAM>
     <EMAIL_SPAM_ACTION_SPAMFOLDER>Flytt spam-meldinger til en egen spam-mappe</EMAIL_SPAM_ACTION_SPAMFOLDER>
@@ -413,8 +407,7 @@
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Dine grupper</GROUPS_TITLE>
-    <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere, men du kan opprette en &lt;a 
-        href="groups/personal.php"&gt;personlig gruppe&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
+    <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere.</GROUPS_EMPTY_MOD_LIST>
     <GROUPS_TOO_MANY>Du er moderator for svært mange grupper, så visningen vil ta for lang tid. 
         Bruk kommandolinjegrensesnittet &lt;a
         href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt; i stedet.</GROUPS_TOO_MANY>

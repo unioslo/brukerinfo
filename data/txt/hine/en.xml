@@ -119,8 +119,8 @@
     <HOME_ABOUT_TITLE>About Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>This is a web based user interface
         you can use to view and modify some of the information concerning your electronic identity at
-        Nesna University College. For more information and help about data systems at HiNesna, please see
-        &lt;a href="https://uio.no/tjenester/it/"&gt;IT-services at HiNesna&lt;/a&gt;.</HOME_ABOUT>
+        Nesna University College. For more information and help about data systems at HiNesna, please see the
+        &lt;a href="http://www.hinesna.no/support"&gt;user support at HiNesna&lt;/a&gt;.</HOME_ABOUT>
 
     <!-- Person page texts -->
     <PERSON_TITLE>Personal information</PERSON_TITLE>
@@ -133,8 +133,7 @@
     <!-- Person primary affiliation -->
     <PRIMARY_PERSON_TITLE>Primary affiliation</PRIMARY_PERSON_TITLE>
     <PRIMARY_PERSON_INTRO>Here you can set what should be your primary
-        affiliations at the person presentations at
-        uio.no.</PRIMARY_PERSON_INTRO>
+        affiliations at your person presentation.</PRIMARY_PERSON_INTRO>
     <PRIMARY_PERSON_CHOICE>Choose primary affiliation</PRIMARY_PERSON_CHOICE>
     <PRIMARY_PERSON_UPDATED>Your primary affiliation is updated. The change
         will be applied within a few hours.</PRIMARY_PERSON_UPDATED>
@@ -142,10 +141,10 @@
 
     <!-- Person name page -->
     <PERSON_NAME_TITLE>Choose your display name</PERSON_NAME_TITLE>
-    <PERSON_NAME_INTRO>Choose what of your registered names that should be shown
-        in different systems at HiNesna, e.g. the personal presentation at &lt;a
-        href="https://uio.no"&gt;uio.no&lt;/a&gt;. Note that your primary e-mail
-        address might change due to this.</PERSON_NAME_INTRO>
+    <PERSON_NAME_INTRO>Choose what of your registered names that should be
+        shown in different systems at HiNesna, e.g. the personal presentation.
+        Note that your primary e-mail address might change due to this.
+    </PERSON_NAME_INTRO>
     <PERSON_NAME_CURRENT>Your current name is
         &lt;strong&gt;{{name}}&lt;/strong&gt; and your primary address is:
         &lt;strong&gt;{{email}}&lt;/strong&gt;.</PERSON_NAME_CURRENT>
@@ -212,16 +211,14 @@
     <ACCOUNT_PASSWORD_ERROR_MATCH>The new password does not match with the retype.</ACCOUNT_PASSWORD_ERROR_MATCH>
     <ACCOUNT_PASSWORD_SUCCESS>Your password has been changed.</ACCOUNT_PASSWORD_SUCCESS>
 
-    <ACCOUNT_PASSWORD_MOREINFO>View more information about &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/"&gt;the username
-        and password at HiNesna&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
+    <ACCOUNT_PASSWORD_MOREINFO></ACCOUNT_PASSWORD_MOREINFO>
 
     <ACCOUNT_PRIMARY_TITLE>Make account primary</ACCOUNT_PRIMARY_TITLE>
     <ACCOUNT_PRIMARY_INTRO>If you have more than one account at HiNesna, one of the accounts is the primary
         account. Please be aware of the following:
         &lt;ul&gt;
         &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; accepts only your primary account&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; (blyant.uio.no) accepts only your primary account&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; accepts only your primary account&lt;/li&gt;
         &lt;/ul&gt;
     </ACCOUNT_PRIMARY_INTRO>
     <ACCOUNT_PRIMARY_ALREADY>The active account ({{username}}) is already your primary account.&lt;br&gt;
@@ -286,8 +283,7 @@
     <EMAIL_OTHER_TITLE>Your other mailboxes</EMAIL_OTHER_TITLE>
     <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>
 
-    <EMAIL_INFO_MORE_INFO>For more information about HiNesna's e-mail system please see
-        &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;the e-mail help pages&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+    <EMAIL_INFO_MORE_INFO></EMAIL_INFO_MORE_INFO>
 
     <EMAIL_DEL_TITLE>Confirm deletion of e-mail address</EMAIL_DEL_TITLE>
     <EMAIL_DEL_INTRO>Are you sure you want to delete the address
@@ -303,10 +299,8 @@
         deleted</EMAIL_DEL_FAILED>
 
     <EMAIL_SPAM_TITLE>Spam settings</EMAIL_SPAM_TITLE>
-    <EMAIL_SPAM_INTRO>These settings are applied before your e-mails are delivered to your mailbox.
-        For more information please see &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/spam/"&gt;USIT's
-        page about spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
+    <EMAIL_SPAM_INTRO>These settings are applied before your e-mails are
+        delivered to your mailbox.</EMAIL_SPAM_INTRO>
 
     <!-- 
         The following spam descriptions aren't used in English, as we prefer
@@ -415,8 +409,7 @@
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Your groups</GROUPS_TITLE>
-    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate, but you can make 
-        &lt;a href="groups/personal.php"&gt;your own personal group&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
+    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate.</GROUPS_EMPTY_MOD_LIST>
     <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load. 
         Please use the command line interface
         &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt;

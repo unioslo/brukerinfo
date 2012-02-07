@@ -229,7 +229,10 @@ if (sizeof($accounts) > 1) {
     }
 }
 
-$View->addElement('ul', array(txt('email_info_more_info')), 'class="ekstrainfo"');
+$txt = txt('email_info_more_info');
+if ($txt) {
+    $View->addElement('ul', array($txt), 'class="ekstrainfo"');
+}
 
 
 /**
