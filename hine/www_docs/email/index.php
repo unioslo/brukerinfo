@@ -76,19 +76,19 @@ $prilist = View::createElement('dl', null);
 
 // target_type - given if mail is not account, Mailman, Sympa, pipe or RT - 
 // e.g. when mail account is "deleted"
-if (isset($primary['target_type'])) {
+if (!empty($primary['target_type'])) {
     $prilist->addData(txt('email_info_targettype'), $primary['target_type']);
     unset($primary['target_type']);
 }
 
 // default address
-if (isset($primary['def_addr'])) {
+if (!empty($primary['def_addr'])) {
     $prilist->addData(txt('email_info_primary_addr'), $primary['def_addr']);
     unset($primary['def_addr']);
 }
 
 // valid addresses
-if (isset($primary['valid_addr'])) {
+if (!empty($primary['valid_addr'])) {
     // If the address could be deleted:
     //if (!empty($primary['deletable'])) {
     //    foreach ($primary['valid_addr'] as $id => $addr) {
@@ -99,13 +99,21 @@ if (isset($primary['valid_addr'])) {
 
     //    }
     //}
-    $prilist->addData(txt('email_info_valid_addr'), $primary['valid_addr']);
+    $addresses = array();
+    foreach ($primary['valid_addr'] as $key => $adr) {
+        if ($adr) {
+            $addresses[$key] = $adr;
+        }
+    }
+    if ($addresses) {
+        $prilist->addData(txt('email_info_valid_addr'), $primary['valid_addr']);
+    }
 }
 unset($primary['valid_addr']);
 unset($primary['deletable']);
 
 // quota
-if (isset($primary['quota_used'])) {
+if (!empty($primary['quota_used'])) {
     $prilist->addData(txt('email_info_quota'), txt('email_info_quota_info', array(
         'quota_used'    => $primary['quota_used'], 
         'quota_max'     => $primary['quota_hard'], 
@@ -116,7 +124,7 @@ if (isset($primary['quota_used'])) {
 }
 
 // forward
-if (isset($primary['forward'])) {
+if (!empty($primary['forward'])) {
     $prilist->addData(txt('email_info_forward'), $primary['forward']);
     unset($primary['forward']);
 }
@@ -124,7 +132,7 @@ if (isset($primary['forward'])) {
 $text = Init::get('Text');
 
 // spam level
-if (isset($primary['spam_level'])) {
+if (!empty($primary['spam_level'])) {
     //getting the translated description
     if ($text->exists('email_spam_level_'.$primary['spam_level'], $text->getLanguage())) {
         $primary['spam_level_desc'] = txt('email_spam_level_'.$primary['spam_level']);
@@ -136,7 +144,7 @@ if (isset($primary['spam_level'])) {
     unset($primary['spam_level_desc']);
 }
 // spam action
-if (isset($primary['spam_action'])) {
+if (!empty($primary['spam_action'])) {
     //getting the translated description
     if ($text->exists('email_spam_action_'.$primary['spam_action'], $text->getLanguage())) {
         $primary['spam_action_desc'] = txt('email_spam_action_'.$primary['spam_action']);
@@ -149,8 +157,6 @@ if (isset($primary['spam_action'])) {
 
 // filter
 if (!empty($primary['filters']) && $primary['filters'] != 'None') {
-
-
     //getting the description of the filters
     $filter_desc = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
     //sorting the filters
@@ -167,15 +173,12 @@ if (!empty($primary['filters']) && $primary['filters'] != 'None') {
             trigger_error("Unknown filter '$f' in constants EmailTargetFilter", E_USER_NOTICE);
         }
     }
-
     $prilist->addData(txt('email_info_filters'), $filters);
-} else {
-    $prilist->addData(txt('email_info_filters'), null);
 }
 unset($primary['filters']);
 
 // server
-if (isset($primary['server'])) {
+if (!empty($primary['server'])) {
     $prilist->addData(txt('email_info_server'), $primary['server'] . ' ('.$primary['server_type'].')');
     unset($primary['server']);
     unset($primary['server_type']);

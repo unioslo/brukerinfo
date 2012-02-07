@@ -46,6 +46,7 @@ $list[0] = View::createElement('dl', null, 'class="complicated"');
 $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
 unset($userinfo['spread']);
 
+var_dump($userinfo);
 //afiliations
 if (isset($userinfo['affiliations'])) {
     $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations(explode(',', $userinfo['affiliations'])));

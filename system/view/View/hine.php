@@ -103,13 +103,13 @@ class View_hine extends ViewTemplate
         //person
         if ($is_personal) {
             $menu['person']['link']     = 'person/';
-            $menu['person']['sub']      = array(
-                '',
-                'primary.php', 
-            );
-            if ($is_employee) {
-                $menu['person']['sub'][] = 'name.php';
-            }
+            //$menu['person']['sub']      = array(
+            //    '',
+            //    'primary.php', 
+            //);
+            //if ($is_employee) {
+            //    $menu['person']['sub'][] = 'name.php';
+            //}
         }
 
         //accounts
