@@ -76,12 +76,7 @@
     <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å bytte passord og
         se noe av informasjonen knyttet til din person og brukere ved Høgskolen
         i Nesna.&lt;/p&gt;</LOGON_INTRO>
-    <LOGON_OUTRO>
-        &lt;ul&gt;
-        &lt;li&gt;Glemt passordet ditt? Studenter kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;Vet du ikke hva &lt;a href="forgotten/username/"&gt;ditt brukernavn ved HiNesna&lt;/a&gt; er?&lt;/li&gt;
-        &lt;/ul&gt;
-        </LOGON_OUTRO>
+    <LOGON_OUTRO></LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Brukernavn:</LOGON_FORM_USERNAME>
     <LOGON_FORM_PASSWORD>Passord:</LOGON_FORM_PASSWORD>

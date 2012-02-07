@@ -76,12 +76,7 @@
     <LOGON_INTRO>&lt;p&gt;This is a web based user interface for changing your
         password and to show you some of your information related to your person
         and user accounts at Nesna University College.&lt;/p&gt;</LOGON_INTRO>
-    <LOGON_OUTRO>
-        &lt;ul&gt;
-        &lt;li&gt;Forgotten your password? Students can &lt;a href="forgotten/password/"&gt;set a new password by SMS&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;Don't know &lt;a href="forgotten/username/"&gt;your username at HiNesna&lt;/a&gt;?&lt;/li&gt;
-        &lt;/ul&gt;
-        </LOGON_OUTRO>
+    <LOGON_OUTRO></LOGON_OUTRO>
 
     <LOGON_FORM_USERNAME>Username:</LOGON_FORM_USERNAME>
     <LOGON_FORM_PASSWORD>Password:</LOGON_FORM_PASSWORD>
