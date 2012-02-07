@@ -192,7 +192,7 @@
         &lt;p&gt;A password &lt;strong&gt;must&lt;/strong&gt;:
         &lt;ul&gt;
             &lt;li&gt;Be at least &lt;strong&gt;15 characters&lt;/strong&gt; long&lt;/li&gt;
-            &lt;li&gt;Contain at least two spaces&lt;/li&gt;
+            &lt;li&gt;Contain at least one space&lt;/li&gt;
         &lt;/ul&gt;
         The password &lt;strong&gt;must not&lt;/strong&gt;:
         &lt;ul&gt;

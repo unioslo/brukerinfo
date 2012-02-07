@@ -197,7 +197,7 @@
         &lt;p&gt;Et passord &lt;strong&gt;må&lt;/strong&gt;:
         &lt;ul&gt;
             &lt;li&gt;Være minst &lt;strong&gt;15 tegn&lt;/strong&gt; langt&lt;/li&gt;
-            &lt;li&gt;Inneholde minst to mellomrom&lt;/li&gt;
+            &lt;li&gt;Inneholde minst ett mellomrom&lt;/li&gt;
         &lt;/ul&gt;
         Passordet &lt;strong&gt;må ikke&lt;/strong&gt;:
         &lt;ul&gt;
