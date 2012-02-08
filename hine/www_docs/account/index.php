@@ -43,12 +43,13 @@ $list[0] = View::createElement('dl', null, 'class="complicated"');
 //standard info
 
 //spreads
-$list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
+if (!empty($userinfo['spread'])) {
+    $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
+}
 unset($userinfo['spread']);
 
-//var_dump($userinfo);
 //afiliations
-if (isset($userinfo['affiliations'])) {
+if (!empty($userinfo['affiliations'])) {
     $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations(explode(',', $userinfo['affiliations'])));
     unset($userinfo['affiliations']);
 } else {
@@ -183,11 +184,11 @@ function addHelpSpread($spreads) {
  *
  * TODO: should this, and all other help-functions, be in the same place somewhere?
  */
-function addHelpAffiliations($string) {
-
+function addHelpAffiliations($string)
+{
     //recursive
-    if(is_array($string)) {
-        foreach($string as $k => $v) $string[$k] = addHelpAffiliations($v);
+    if (is_array($string)) {
+        foreach ($string as $k => $v) $string[$k] = addHelpAffiliations($v);
         return $string;
     }
 
