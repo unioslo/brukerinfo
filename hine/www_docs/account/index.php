@@ -179,7 +179,7 @@ function addHelpSpread($spreads) {
  * into a better presentation-form, and adds aff-definitions on it 
  * (by asking bofhcom for the descriptions).
  *
- * Todo: this function is not equal to the function in person/index.php, but
+ * TODO: this function is not equal to the function in person/index.php, but
  *       they could be merged and handle different text-variations...
  *
  * TODO: should this, and all other help-functions, be in the same place somewhere?
