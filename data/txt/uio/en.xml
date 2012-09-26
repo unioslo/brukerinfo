@@ -264,10 +264,10 @@
     <PRINTING_MOREINFO_PAY>To pay for more prints, please log on to 
         &lt;a href="https://studweb.uio.no"&gt;StudentWeb at UiO&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
     <PRINTING_MOREINFO_PRICES>For more information about the printout prices,
-        see &lt;a href="https://uio.no/tjenester/it/utskrift/hjelp/utskriftsbetaling.html"&gt;
+        see &lt;a href="http://www.uio.no/english/studies/admin/printouts/"&gt;
         copy fee at UiO&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
     <PRINTING_MOREINFO_PRINTING>For more information about printing and printers, please visit the page for 
-        &lt;a href="https://uio.no/tjenester/it/utskrift/"&gt;printing services at UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
+        &lt;a href="https://uio.no/english/services/it/printing/"&gt;printing services at UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
 
 
     <PRINTING_HISTORY_TITLE>Print quota history</PRINTING_HISTORY_TITLE>
