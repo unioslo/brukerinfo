@@ -75,6 +75,13 @@ define('LINK_DATA',             '/www/var/virtual/brukerinfo/data');
  */
 define('LOCK_FILE',             LINK_DATA . '/lock');
 
+/**
+ * The location of a message file.
+ * If the file exists and contains data, it will be added to all pages as a 
+ * message, like View::addMessage(file_contents).
+ */
+define('MESSAGE_FILE',          LINK_DATA . '/messages');
+
 /** 
  * The default language for the project. This is used for fallbacks, e.g. if 
  * some text is missing from a chosen language, or when the user has no prefered 

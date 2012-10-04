@@ -127,6 +127,12 @@ class Init extends InitBase
         $text = self::get('Text');
         $view = new View_hine();
         $view->setTemplate(LINK_DATA . '/templates/template.hine.' . $text->getLanguage() . '.txt');
+        if (defined('MESSAGE_FILE') and is_file(MESSAGE_FILE)) {
+            $message = file_get_contents(MESSAGE_FILE);
+            if ($message) {
+                $view->addMessage(trim($message));
+            }
+        }
         return $view;
     }
 
