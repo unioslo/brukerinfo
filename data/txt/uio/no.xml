@@ -160,7 +160,7 @@
     <PERSON_NAME_INTRO>Velg hvilket av de registrerte navnene dine som vil bli
         vist i systemene på UiO, for eksempel personpresentasjonen på &lt;a
         href="https://uio.no"&gt;uio.no&lt;/a&gt;. Merk deg at din primære
-        e-postadressen kan forandre seg som en konsekvens av valget.
+        e-postadresse kan forandre seg som en konsekvens av valget.
     </PERSON_NAME_INTRO>
     <PERSON_NAME_CURRENT>Ditt nåværende navn er
         &lt;strong&gt;{{name}}&lt;/strong&gt; og din primære e-postadresse er:
