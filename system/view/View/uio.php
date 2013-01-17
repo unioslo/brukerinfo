@@ -174,8 +174,8 @@ class View_uio extends ViewTemplate
 
         // guests
         if ($is_guest) {
-            $menu['guest_info']['link']     = 'guests/info.php';
-            $menu['password']['link']  = 'account/password.php';
+            $menu['guest_info']['link'] = 'guests/info.php';
+            $menu['guest_password']['link'] = 'account/password.php';
         }
 
         //returning main menu
