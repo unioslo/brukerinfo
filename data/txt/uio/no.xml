@@ -68,7 +68,10 @@
     <MENU_GROUPS_NEW>Ny gruppe</MENU_GROUPS_NEW>
 
     <MENU_RESERVATIONS>Reservasjoner</MENU_RESERVATIONS>
+
     <MENU_GUESTS>Gjestebrukere</MENU_GUESTS>
+    <MENU_GUESTS_>Dine gjestebrukere</MENU_GUESTS_>
+    <MENU_GUESTS_CREATE>Opprett gjestebruker</MENU_GUESTS_CREATE>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
@@ -532,6 +535,121 @@
     <GROUPS_NEW_FORM_SPREAD_UNKNOWN>Systemet "{{spread}}" er ukjent</GROUPS_NEW_FORM_SPREAD_UNKNOWN>
     <GROUPS_NEW_FORM_MOD_REQUIRED>Trenger en gruppe som skal vere moderator for
         gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
+
+    <!-- Guest pages -->
+    <GUEST_TITLE>Gjestekontoer</GUEST_TITLE>
+    <GUEST_INTRO>&lt;p&gt;Denne tjenesten lar ansatte ved UiO opprette egne
+        gjestebrukere. Disse gjestebrukerene vil ha mulighet til å benytte seg
+        av trådløse aksesspunkt ved universitetet. TODO:
+        More.&lt;/p&gt;</GUEST_INTRO>
+    <GUEST_LIST_PERSONAL>Mine gjester</GUEST_LIST_PERSONAL>
+    <GUEST_LIST_EMPTY>Du har ingen gjester</GUEST_LIST_EMPTY>
+
+    <GUEST_LIST_COL_USERNAME>Brukernavn</GUEST_LIST_COL_USERNAME>
+    <GUEST_LIST_COL_NAME>Fullt navn</GUEST_LIST_COL_NAME>
+    <GUEST_LIST_COL_RESPONSIBLE>Ansvarlig</GUEST_LIST_COL_RESPONSIBLE>
+    <GUEST_LIST_COL_END_DATE>Gyldig til</GUEST_LIST_COL_END_DATE>
+    <GUEST_LIST_COL_STATUS>Status</GUEST_LIST_COL_STATUS>
+
+    <GUEST_STATUS_ACTIVE>Aktiv</GUEST_STATUS_ACTIVE>
+    <GUEST_STATUS_EXPIRED>Utgått</GUEST_STATUS_EXPIRED>
+
+    <GUEST_INFO_TOP>{{str}}</GUEST_INFO_TOP>
+    <GUEST_INFO_USERNAME>Brukernavn:</GUEST_INFO_USERNAME>
+    <GUEST_INFO_NAME>Fullt navn:</GUEST_INFO_NAME>
+    <GUEST_INFO_CONTACT>Kontakt:</GUEST_INFO_CONTACT>
+    <GUEST_INFO_RESPONSIBLE>Ansvarlig:</GUEST_INFO_RESPONSIBLE>
+    <GUEST_INFO_CREATED>Opprettet:</GUEST_INFO_CREATED>
+    <GUEST_INFO_EXPIRED>Gyldig til</GUEST_INFO_EXPIRED>
+    <GUEST_INFO_STATUS>Status:</GUEST_INFO_STATUS>
+    <GUEST_INFO_DAYS_LEFT>Dager igjen:</GUEST_INFO_DAYS_LEFT>
+
+    <GUEST_NEW_TITLE>Opprett ny gjestekonto</GUEST_NEW_TITLE>
+    <GUEST_NEW_INTRO>&lt;p&gt;Fyll ut skjemaet for å opprette en ny
+        gjestebruker. Dersom du oppgir mobilnummer for gjesten, vil gjesten få
+        en SMS med brukernavn og passord. Hvis ikke dette fylles ut, vil
+        brukernavn og passord vises på skjermen.&lt;/p&gt;</GUEST_NEW_INTRO>
+    <GUEST_NEW_FORM_FNAME>Fornavn</GUEST_NEW_FORM_FNAME>
+    <GUEST_NEW_FORM_LNAME>Etternavn</GUEST_NEW_FORM_LNAME>
+    <GUEST_NEW_FORM_CONTACT>Mobilnummer</GUEST_NEW_FORM_CONTACT>
+    <GUEST_NEW_FORM_DURATION>Varighet</GUEST_NEW_FORM_DURATION>
+    <GUEST_NEW_FORM_DAYS>{{days}} dager</GUEST_NEW_FORM_DAYS>
+    <GUEST_NEW_FORM_SUBMIT>Lag konto</GUEST_NEW_FORM_SUBMIT>
+    <GUEST_NEW_FORM_FNAME_REQ>Fornavn er obligatorisk.</GUEST_NEW_FORM_FNAME_REQ>
+    <GUEST_NEW_FORM_LNAME_REQ>Etternavn er obligatorisk.</GUEST_NEW_FORM_LNAME_REQ>
+    <GUEST_NEW_FORM_DURATION_REQ>Varighet er obligatorisk.</GUEST_NEW_FORM_DURATION_REQ>
+    <GUEST_NEW_FORM_CONTACT_FMT>Mobilnummer må være åtte siffer (bare norske
+        telefonnummer er tillatt).</GUEST_NEW_FORM_CONTACT_FMT>
+    <GUEST_NEW_FORM_NAME_FMT>Navn må være minimum {{min}} tegn og maksimum
+        {{max}} tegn.</GUEST_NEW_FORM_NAME_FMT>
+
+    <GUEST_CREATED_SMS>Ny gjestebruker opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
+        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; En SMS med
+        brukernavn og passord ble sendt til
+        &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
+    <GUEST_CREATED_PW>Ny gjestebruker opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
+        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Passord:
+        &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_CREATED_PW>
+    <GUEST_DEACTIVATED>Gjestekonto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
+        avviklet</GUEST_DEACTIVATED>
+    <GUEST_NEW_PASSWORD>Passord endret: &lt;ul&gt;&lt;li&gt;Brukernavn:
+        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Passord:
+        &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_NEW_PASSWORD>
+
+    <GUEST_BTN_DEACTIVATE>Avvikle gjestekonto</GUEST_BTN_DEACTIVATE>
+    <GUEST_BTN_RESETPW>Nullstill passord</GUEST_BTN_RESETPW>
+
+    <GUEST_PW_NOT_CACHED>Kunne ikke vise passord</GUEST_PW_NOT_CACHED>
+    <GUEST_PW_LETTER_LINK>&lt;a href="{{url}}" target="_blank"&gt;Passordark for utskrift&lt;/a&gt; (åpnes i eget vindu)</GUEST_PW_LETTER_LINK>
+    <GUEST_PW_LETTER_BUTTON>Utskriftsvennlig passordark</GUEST_PW_LETTER_BUTTON>
+    <GUEST_PW_LETTER>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Passordbrev&lt;/title&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Du har nå fått nytt passord&lt;/h1&gt; 
+        &lt;p&gt;&lt;i&gt;Dersom du ikke får logget inn med det nye passordet bør
+            du forsikre deg om at du ikke har blandet sammen
+            bokstaven 'O' (stor o) og tallet '0' (null) eller
+            bokstaven 'l' (liten l) og tallet '1' (tallet ett).
+            Sjekk at Caps Lock ikke er på og merk at det kan gå opp
+            til 8 timer til ditt nye passord fungerer som det
+            skal.&lt;/i&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;ul&gt;
+        &lt;li&gt;Ditt brukernavn er: &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;Ditt passord er: &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;
+        &lt;/ul&gt;&lt;/p&gt;
+        &lt;h2&gt;Slik bytter du passord:&lt;/h2&gt;
+        &lt;p&gt;&lt;ul&gt;
+            &lt;li&gt;Skriv inn &lt;a href="https://brukerinfo.uio.no/"&gt;https://brukerinfo.uio.no/&lt;/a&gt; i adressefeltet i en nettleser&lt;/li&gt;
+            &lt;li&gt;Logg inn med brukernavnet og passordet fra dette arket&lt;/li&gt;
+            &lt;li&gt;Velg fanen "Brukerkonto", og fyll ut skjemaet med gammelt og nytt passord&lt;/li&gt;
+            &lt;/ul&gt;
+
+            Det er strengt forbudt å la andre benytte seg av brukernavnet
+            og passordet ditt. Disse skal ikke lånes bort eller oppgis til
+            andre.  Mislighold vil kunne føre til at brukeren din blir
+            sperret for videre bruk.&lt;/p&gt;
+
+        &lt;p&gt;Du plikter å lese og sette deg inn i reglementet for bruk av
+            universitetets IT-tjenester. IT-reglementet finner du på:
+            &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/reglement/"&gt;https://uio.no/tjenester/it/brukernavn-passord/reglement/&lt;/a&gt;&lt;/p&gt;
+
+
+        &lt;p&gt;Ta kontakt med IT-ansvarlig ved din enhet dersom du har
+            problemer med tilgang til IT-tjenester etter gjennomført
+            passordskifte. En oversikt over IT-ansvarlige finner du på
+            &lt;a href="https://uio.no/tjenester/it/kontakt/"&gt;https://uio.no/tjenester/it/kontakt/&lt;/a&gt;. 
+            Har du ikke tilgang til Internett kan du ringe
+            universitetets helpdesktjeneste på 22 84 00 04.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+    </GUEST_PW_LETTER>
+
+    <GUEST_NO_USERNAME>Brukernavn ikke oppgitt</GUEST_NO_USERNAME>
+    <GUEST_UNKNOWN_USERNAME>Fant ikke gjestebruker med brukernavn {{username}}</GUEST_UNKNOWN_USERNAME>
 
     <!-- Help pages -->
     <HELP_TITLE>Hjelp</HELP_TITLE>

@@ -98,6 +98,8 @@ class View_uio extends ViewTemplate
         $bofh = Init::get('Bofh');
         $is_employee = $bofh->isEmployee();
         $is_personal = $bofh->isPersonal();
+        $is_guest = $bofh->hasTraits(array('guest_name', 'guest_owner'));
+        $has_email = $bofh->hasSpreads('IMAP@uio');
 
         //start
         $menu['home']['link']       = '';
@@ -115,12 +117,15 @@ class View_uio extends ViewTemplate
         }
 
         //accounts
-        $menu['account']['link']   = 'account/';
-        $menu['account']['sub']    = array(
-            '',
-            'password.php',
-        );
-
+        if($is_guest) {
+            $menu['account']['link']   = 'account/password.php';
+        } else {
+            $menu['account']['link']   = 'account/';
+            $menu['account']['sub']    = array(
+                '',
+                'password.php',
+            );
+        }
         if ($is_personal) {
             $menu['account']['sub'][] = 'primary.php';
         };
@@ -135,18 +140,23 @@ class View_uio extends ViewTemplate
         };
 
         //email
-        $menu['email']['link']      = 'email/';
-        $menu['email']['sub'][]     = '';
-        $menu['email']['sub'][]     = 'spam.php';
-        $menu['email']['sub'][]     = 'tripnote.php';
-        $menu['email']['sub'][]     = 'forward.php';
+        if ($has_email) {
+            $menu['email']['link']      = 'email/';
+            $menu['email']['sub'][]     = '';
+            $menu['email']['sub'][]     = 'spam.php';
+            $menu['email']['sub'][]     = 'tripnote.php';
+            $menu['email']['sub'][]     = 'forward.php';
+        }
 
-        //groups
-        $menu['groups']['link']     = 'groups/';
-        $menu['groups']['sub']      = array(
-            ''
-        );
-        if ($is_employee) $menu['groups']['sub'][] = 'new.php';
+        // groups
+        // TODO: Better selection than 'not guest'?
+        if (!$is_guest) {
+            $menu['groups']['link']     = 'groups/';
+            $menu['groups']['sub']      = array(
+                ''
+            );
+            if ($is_employee) $menu['groups']['sub'][] = 'new.php';
+        }
 
         // reservations
         if ($is_personal) {
@@ -155,12 +165,16 @@ class View_uio extends ViewTemplate
             );
         }
 
-        // TODO: not yet
-        //if ($is_personal && $is_employee) {
-        //    $menu['guests']['link'] = 'guests/';
-        //    $menu['guests']['sub'] = array(
-        //    );
-        //}
+        // guest or guestadmin
+        if ($is_personal && $is_employee) {
+            $menu['guests']['link'] = 'guests/';
+            $menu['guests']['sub'] = array(
+                '',
+                'create.php',
+            );
+        } elseif($is_guest) {
+            $menu['guests']['link'] = 'guests/info.php';
+        }
 
         //returning main menu
         if($sub === null) {
@@ -174,6 +188,24 @@ class View_uio extends ViewTemplate
         }
     }
 
+
+    /**
+     * Returns the current app subdirectory we're in
+     * TODO: Make public, so that it can be used in View::forward calls,
+     *       so we don't have to hard code the actual directory names 
+     *       in multiple places (e.g. View::forward(View::getSubDir()))
+     *
+     * @return string The directory we're in, relative to the root of the app
+     */
+    private function getSubDir()
+    {
+        $base_path = parse_url(self::$base_url, PHP_URL_PATH);
+        $rel_path  = substr($_SERVER['PHP_SELF'], strlen($base_path));
+        $rel_dir   = preg_replace('/[a-zA-Z0-9]+\.php(\?[^\/]*)?$/', '', $rel_path);
+        $current   = substr($rel_dir, 0, strpos($rel_dir, '/'));
+        return $current;
+    }
+
     /**
      * Returns a html formatted string of either the mainmenu or a submenu.
      */
@@ -184,14 +216,17 @@ class View_uio extends ViewTemplate
         }
         $base_path = parse_url(self::$base_url, PHP_URL_PATH);
         $current   = substr($_SERVER['PHP_SELF'], strlen($base_path));
+        //$current   = preg_replace('/[a-zA-Z0-9]+\.php(\?[^\/]*)?$/', '', $current);
         $current = preg_replace('/index\.php$/', '', $current);
-        $current = substr($current, 0, strpos($current, '/') + 1);
+        $current   = substr($current, 0, strpos($current, '/') + 1);
 
         $menu = array(); 
         foreach($this->getMenu() as $id => $link) {
             $name = txt('MENU_' . strtoupper($id));
-            $active = ($current == $link ? ' class="active"' : '');
-            $menu[] = "<a href=\"$link\"$active>$name</a>";
+            $linkbase = substr($link, 0, strpos($link, '/') + 1);
+            $active = ($current == $linkbase ? ' class="active"' : '');
+            // FIXME: Style override to fit all tabs without wrapping
+            $menu[] = "<a href=\"$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-mainmenu"');
     }
