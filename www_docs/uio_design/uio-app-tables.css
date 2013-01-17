@@ -1,0 +1,119 @@
+/*
+ *
+ * UiO design - Apps - Tables
+ *
+ */
+
+/**
+ * Tables can be created with or without <thead> and <tbody>.
+ *
+ * <table class="app-table" ...>
+ *  <thead>
+ *      <tr>
+ *          <th>Title 1</th>
+ *          <th>Title 2</th>
+ *          <th>Title 3</th>
+ *      </tr>
+ *  </thead>
+ *  <tbody>
+ *      <tr class="odd">
+ *          <td>data 1</td>
+ *          ...
+ *      </tr>
+ *      <tr class="even">
+ *      ...
+ *
+ *  </tbody>
+ * </table>
+ */
+
+.app-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: solid #d0d0d0 1px;
+    margin: .5em 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+.app-table tr, .app-table td, .app-table th,
+.app-table thead {
+    margin: 0;
+    padding: 5px 5px 5px 10px;
+    /* padding: .3em .4em; */
+    text-align: left;
+    border: solid #d0d0d0 1px;
+}
+.app-table tbody {
+}
+
+.app-table th {
+    background-color: #dbdee2;
+    font-weight: bold;
+}
+
+/** Odd and even table rows should be colored differently */
+.app-table .even {
+    background-color: #f8f8f8;
+}
+.app-table .odd {
+}
+
+/**
+ * For table elements that should take up least possible space, e.g. when they
+ * only contain a checkbox.
+ */
+.app-table td.less {
+    width: 1em;
+}
+
+.app-table ul, .app-table li {
+    margin: 0 .5em;
+    padding: 0 .3em;
+}
+
+/* Smaller tables */
+.app-table-small {
+    width: auto !important;
+}
+.app-table-small td {
+    border: none;
+}
+.app-table-small tr {
+    width: 1em;
+}
+
+
+.app-table .ans {
+    font-weight: bold;
+}
+.app-table .num {
+    text-align: right;
+}
+
+.app-table .negative {
+    color: red;
+    width: 3em;
+}
+.app-table .positive {
+    color: black;
+    width: 3em;
+}
+
+.app-table .disabled {
+    color: gray;
+}
+.app-table .actions {
+    width: .1em;
+}
+
+/** 
+ * Forms 
+ * Tables with form elements need some special formatting.
+ */
+.app-table input[type="checkbox"], .app-table input[type="radio"] {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
