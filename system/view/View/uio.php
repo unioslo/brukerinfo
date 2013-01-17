@@ -117,9 +117,7 @@ class View_uio extends ViewTemplate
         }
 
         //accounts
-        if($is_guest) {
-            $menu['account']['link']   = 'account/password.php';
-        } else {
+        if(!$is_guest) {
             $menu['account']['link']   = 'account/';
             $menu['account']['sub']    = array(
                 '',
@@ -165,15 +163,19 @@ class View_uio extends ViewTemplate
             );
         }
 
-        // guest or guestadmin
+        // guests: guest admin
         if ($is_personal && $is_employee) {
             $menu['guests']['link'] = 'guests/';
             $menu['guests']['sub'] = array(
                 '',
                 'create.php',
             );
-        } elseif($is_guest) {
-            $menu['guests']['link'] = 'guests/info.php';
+        }
+
+        // guests
+        if ($is_guest) {
+            $menu['guest_info']['link']     = 'guests/info.php';
+            $menu['password']['link']  = 'account/password.php';
         }
 
         //returning main menu
