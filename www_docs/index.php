@@ -40,16 +40,18 @@ if (sizeof($Bofh->getAccounts()) > 1) {
     $View->addElement('p', txt('home_specific_account'));
 }
 
-$View->addElement('h2', txt('home_shortcuts_title'));
-$View->addElement('ul', array(
-    View::createElement('a', txt('home_shortcuts_password'),        'account/password.php'),
-    //View::createElement('a', txt('home_shortcuts_printing'),         'printing/'),
-    View::createElement('a', txt('home_shortcuts_printing_history'), 'printing/history.php'),
-    View::createElement('a', txt('home_shortcuts_spam'), 'email/spam.php'),
-    View::createElement('a', txt('home_shortcuts_tripnote'), 'email/tripnote.php'),
-    View::createElement('a', txt('home_shortcuts_members'), 'groups/'),
-    View::createElement('a', txt('home_shortcuts_group_request'), 'groups/new.php'),
-));
+if (!$Bofh->hasTraits(array('guest_owner', 'guest_name'))) {
+    $View->addElement('h2', txt('home_shortcuts_title'));
+    $View->addElement('ul', array(
+        View::createElement('a', txt('home_shortcuts_password'),        'account/password.php'),
+        //View::createElement('a', txt('home_shortcuts_printing'),         'printing/'),
+        View::createElement('a', txt('home_shortcuts_printing_history'), 'printing/history.php'),
+        View::createElement('a', txt('home_shortcuts_spam'), 'email/spam.php'),
+        View::createElement('a', txt('home_shortcuts_tripnote'), 'email/tripnote.php'),
+        View::createElement('a', txt('home_shortcuts_members'), 'groups/'),
+        View::createElement('a', txt('home_shortcuts_group_request'), 'groups/new.php'),
+    ));
+}
 
 $View->addElement('h2', txt('home_about_title'));
 $View->addElement('p', txt('home_about'));
