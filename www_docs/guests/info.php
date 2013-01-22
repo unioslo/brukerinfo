@@ -20,7 +20,6 @@
  * Page for viewing and modifying reservations.
  */
 require_once '../init.php';
-include 'guest_helper_func.php';
 
 $Init = new Init();
 $User = Init::get('User');
@@ -55,20 +54,18 @@ $guestinfo = array_pop($guestdata);
 
 
 // Create list with html-formatted user information
-$created = parseDateTime($guestinfo['created']);
-$expires = parseDateTime($guestinfo['expires']);
-$is_active = ($expires > new DateTime());
+$is_active = ($guestinfo['expires'] > new DateTime);
 
 $infolist = View::createElement('dl', null);
 //$infolist->addData(txt('guest_info_name'), $guestinfo['name']);
 $infolist->addData(txt('guest_info_username'), $guestinfo['username']);
 $infolist->addData(txt('guest_info_contact'), $guestinfo['contact']);
 $infolist->addData(txt('guest_info_responsible'), $guestinfo['responsible']);
-$infolist->addData(txt('guest_info_created'), $created->format('Y-m-d'));
-$infolist->addData(txt('guest_info_expired'), $expires->format('Y-m-d'));
+$infolist->addData(txt('guest_info_created'), $guestinfo['created']->format('Y-m-d'));
+$infolist->addData(txt('guest_info_expired'), $guestinfo['expires']->format('Y-m-d'));
 $infolist->addData(txt('guest_info_status'), txt('guest_status_'.$guestinfo['status']));
 if ($is_active) {
-    $infolist->addData(txt('guest_info_days_left'), $expires->diff(new DateTime())->days);
+    $infolist->addData(txt('guest_info_days_left'), $guestinfo['expires']->diff(new DateTime())->days);
 }
 
 // Present...

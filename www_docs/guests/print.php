@@ -20,7 +20,6 @@
  * Printer-friendly page for displaying a guest users username and password.
  */
 require_once '../init.php';
-require 'guest_helper_func.php';
 
 $Init = new Init();
 $User = Init::get('User');
@@ -37,7 +36,12 @@ if (!$Bofh->isEmployee()) {
 } elseif (empty($guest)) {
     View::forward('guests/', txt('guest_no_username'), View::MSG_ERROR);
 } elseif ($form->validate()) {
-    if (!$pw = get_cached_password($guest)) {
+    try {
+        $pw = $Bofh->getCachedPassword($guest);
+    } catch (Exception $e) {
+        $pw = false;
+    }
+    if (!$pw) {
         View::forward('guests/', txt('guest_pw_not_cached'), View::MSG_ERROR);
     } else {
         echo txt('guest_pw_letter', array('uname'=>$guest, 'password'=>$pw));

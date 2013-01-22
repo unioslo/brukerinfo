@@ -20,7 +20,6 @@
  * Page for viewing and modifying reservations.
  */
 require_once '../init.php';
-require './guest_helper_func.php';
 
 $Init = new Init();
 $User = Init::get('User');
@@ -36,14 +35,13 @@ if ($guestform->validate()) {
         View::forward('guests/create.php', $ret);
     }
 }
+$View->setFocus('#guest_fname');
 
 // Present page
 $View->start();
 $View->addElement('h1', txt('guest_new_title'));
 $View->addElement('p', txt('guest_new_intro'));
 $View->addElement($guestform);
-$View->setFocus('#guest_fname');
-
 
 /**
  * Creates an HTML-form for creating guest users.
@@ -55,7 +53,7 @@ function create_guest_form() {
     // Create guest form
     $form = new BofhFormUiO('new_guest');
     $form->setAttribute('class', 'app-form-big');
-    $form->addElement('text', 'g_fname', txt('guest_new_form_fname'), 'id=\"guest_fname\"');
+    $form->addElement('text', 'g_fname', txt('guest_new_form_fname'), 'id="guest_fname"');
     $form->addElement('text', 'g_lname', txt('guest_new_form_lname'));
     $form->addElement('text', 'g_contact', txt('guest_new_form_contact'));
 
@@ -112,19 +110,23 @@ function create_guest($data) {
         return false;
     }
 
+    // Success, SMS sent to user
     if (!empty($res['sms_to'])) {
         return txt('guest_created_sms', array('uname'=>$res['username'],'mobile'=>$res['sms_to']));
     }
 
-    $pw = get_cached_password($res['username']);
-    $msg  = txt('guest_created_pw', array('uname'=>$res['username'], 'password'=>$pw));
-    if ($pw) {
-        $pwbutton = new BofhFormInline('password_sheet', 'post', 'guests/print.php', '_blank');
-        $pwbutton->addElement('hidden', 'u', $res['username']);
-        $pwbutton->addElement('submit', null, txt('guest_pw_letter_button'));
-        $msg .= $pwbutton;
-    }
+    // SMS not set (mobile not given). Fetch password for display
+    try {
+        $pw = $bofh->getCachedPassword($res['username']);
+    } catch (XML_RPC2_FaultException $e) {
+        return txt('guest_created_pw', array('uname'=>$res['username'], 'password'=>''));
+    } 
 
+    $msg = txt('guest_created_pw', array('uname'=>$res['username'], 'password'=>$pw));
+    $pwbutton = new BofhFormInline('password_sheet', 'post', 'guests/print.php', '_blank');
+    $pwbutton->addElement('hidden', 'u', $res['username']);
+    $pwbutton->addElement('submit', null, txt('guest_pw_letter_button'));
+    $msg .= $pwbutton;
     return $msg;
 }
 

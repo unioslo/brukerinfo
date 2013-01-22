@@ -20,7 +20,6 @@
  * Page for viewing and modifying reservations.
  */
 require_once '../init.php';
-include 'guest_helper_func.php';
 
 $Init = new Init();
 $User = Init::get('User');
@@ -51,13 +50,11 @@ $guesttable->setHead(
 // TODO: Sort by username? Status? Time left?
 // Add guests to table
 foreach ($guests as $i => $guest) {
-    $created = parseDateTime($guest['created']);
-    $expires = parseDateTime($guest['expires']);
     $guesttable->addData(
         array(
             View::createElement('a', $guest['username'], "guests/info.php?guest=".$guest['username']),
             $guest['name'],
-            $expires->format('Y-m-d'),
+            $guest['expires']->format('Y-m-d'),
             txt('GUEST_STATUS_'.$guest['status']),
         )
     );
