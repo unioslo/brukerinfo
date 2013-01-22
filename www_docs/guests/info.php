@@ -54,18 +54,20 @@ $guestinfo = array_pop($guestdata);
 
 
 // Create list with html-formatted user information
-$is_active = ($guestinfo['expires'] > new DateTime);
+$created = ($guestinfo['created']) ? $guestinfo['created'] : new DateTime('@0');
+$expires = ($guestinfo['expires']) ? $guestinfo['expires'] : new DateTime('@0');
+$is_active = ($expires > new DateTime);
 
 $infolist = View::createElement('dl', null);
 //$infolist->addData(txt('guest_info_name'), $guestinfo['name']);
 $infolist->addData(txt('guest_info_username'), $guestinfo['username']);
 $infolist->addData(txt('guest_info_contact'), $guestinfo['contact']);
 $infolist->addData(txt('guest_info_responsible'), $guestinfo['responsible']);
-$infolist->addData(txt('guest_info_created'), $guestinfo['created']->format('Y-m-d'));
-$infolist->addData(txt('guest_info_expired'), $guestinfo['expires']->format('Y-m-d'));
+$infolist->addData(txt('guest_info_created'), $created->format('Y-m-d'));
+$infolist->addData(txt('guest_info_expired'), $expires->format('Y-m-d'));
 $infolist->addData(txt('guest_info_status'), txt('guest_status_'.$guestinfo['status']));
 if ($is_active) {
-    $infolist->addData(txt('guest_info_days_left'), $guestinfo['expires']->diff(new DateTime())->days);
+    $infolist->addData(txt('guest_info_days_left'), $expires->diff(new DateTime())->days);
 }
 
 // Present...
@@ -93,7 +95,7 @@ if ($user_is_employee) {
             View::forward("guests/info.php?guest=$guest", $ret);
         }
     }
-    if ($is_active and $user_is_employee) {
+    if ($is_active) {
         $View->addElement('div', $deactivateform, 'style="float: left;"');
         $View->addElement('div', $passwordform, 'style="float: left;"');
     }
@@ -115,7 +117,7 @@ function reset_guest_password($data) {
     $bofh = Init::get('Bofh');
     try {
         $res = $bofh->run_command('user_password', $data['g_uname']);
-        $pw = get_cached_password($data['g_uname']);
+        $pw = $bofh->getCachedPassword($data['g_uname']);
     } catch (XML_RPC2_FaultException $e) {
         // Not translated or user friendly, but this shouldn't happen at all: 
         View::addMessage(htmlspecialchars($e->getMessage()), View::MSG_WARNING);

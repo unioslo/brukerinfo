@@ -54,8 +54,8 @@ foreach ($guests as $i => $guest) {
         array(
             View::createElement('a', $guest['username'], "guests/info.php?guest=".$guest['username']),
             $guest['name'],
-            $guest['expires']->format('Y-m-d'),
-            txt('GUEST_STATUS_'.$guest['status']),
+            (!empty($guest['expires'])) ? $guest['expires']->format('y-m-d') : '',
+            txt('guest_status_'.$guest['status']),
         )
     );
 }
