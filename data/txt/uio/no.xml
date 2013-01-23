@@ -193,6 +193,7 @@
     <!-- Account text -->
     <ACCOUNT_TITLE>Denne brukerkontoen</ACCOUNT_TITLE>
     <ACCOUNT_AFFS_EMPTY>Ingen tilknytninger er angitt</ACCOUNT_AFFS_EMPTY>
+    <ACCOUNT_SPREADS_EMPTY>Ingen system</ACCOUNT_SPREADS_EMPTY>
 
     <ACCOUNT_NAME_PRIMARY>{{username}} (primær)</ACCOUNT_NAME_PRIMARY>
     <ACCOUNT_NAME_NORMAL>{{username}}</ACCOUNT_NAME_NORMAL>
@@ -703,6 +704,7 @@
     <BOFH_INFO_HOME_STATUS>Status for hjemmeområdet</BOFH_INFO_HOME_STATUS>
     <BOFH_INFO_UID>Brukers UID</BOFH_INFO_UID>
     <BOFH_INFO_GECOS>Gecos</BOFH_INFO_GECOS>
+    <BOFH_INFO_QUARANTINED>Karantene</BOFH_INFO_QUARANTINED>
 
     <BOFH_INFO_STEDKODE>stedkode</BOFH_INFO_STEDKODE>
 

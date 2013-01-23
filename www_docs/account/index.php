@@ -43,8 +43,12 @@ $list[0] = View::createElement('dl', null, 'class="complicated"');
 //standard info
 
 //spreads
-$list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
-unset($userinfo['spread']);
+if (isset($userinfo['spread'])) {
+    $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
+    unset($userinfo['spread']);
+} else {
+    $list[0]->addData(ucfirst(txt('bofh_info_spreads')), txt('account_spreads_empty'));
+}
 
 //afiliations
 if (isset($userinfo['affiliations'])) {
@@ -55,8 +59,8 @@ if (isset($userinfo['affiliations'])) {
 }
 
 //expire
-if(isset($userinfo['expire'])) {
-    $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']);
+if(!empty($userinfo['expire']) and $userinfo['expire'] instanceOf DateTime) {
+    $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']->format('Y-m-d'));
     unset($userinfo['expire']);
 }
 
@@ -168,7 +172,7 @@ function addHelpSpread($spreads) {
         $desc = $Bofh->getSpread($spreads);
         if($desc) $spreads = $desc;
     }
-
+    
     return $spreads;
 }
 

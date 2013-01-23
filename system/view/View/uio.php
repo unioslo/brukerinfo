@@ -192,23 +192,6 @@ class View_uio extends ViewTemplate
 
 
     /**
-     * Returns the current app subdirectory we're in
-     * TODO: Make public, so that it can be used in View::forward calls,
-     *       so we don't have to hard code the actual directory names 
-     *       in multiple places (e.g. View::forward(View::getSubDir()))
-     *
-     * @return string The directory we're in, relative to the root of the app
-     */
-    private function getSubDir()
-    {
-        $base_path = parse_url(self::$base_url, PHP_URL_PATH);
-        $rel_path  = substr($_SERVER['PHP_SELF'], strlen($base_path));
-        $rel_dir   = preg_replace('/[a-zA-Z0-9]+\.php(\?[^\/]*)?$/', '', $rel_path);
-        $current   = substr($rel_dir, 0, strpos($rel_dir, '/'));
-        return $current;
-    }
-
-    /**
      * Returns a html formatted string of either the mainmenu or a submenu.
      */
     public function htmlMainmenu()
@@ -218,7 +201,6 @@ class View_uio extends ViewTemplate
         }
         $base_path = parse_url(self::$base_url, PHP_URL_PATH);
         $current   = substr($_SERVER['PHP_SELF'], strlen($base_path));
-        //$current   = preg_replace('/[a-zA-Z0-9]+\.php(\?[^\/]*)?$/', '', $current);
         $current = preg_replace('/index\.php$/', '', $current);
         $current   = substr($current, 0, strpos($current, '/') + 1);
 

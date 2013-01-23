@@ -58,7 +58,7 @@ if($form->validate()) {
                 if(changePassword($form->exportValue('new_pass'), $form->exportValue('cur_pass'), $errmsg)) {
                     View::addMessage(txt('account_password_success'));
                     View::addMessage(txt('action_delay_hour'));
-                    View::forward('account/');
+                    View::forward('account/password.php');
                 } else {
                     //have to send errors manually to the form, (e.g. check for old passwords)
                     $form->setElementError('new_pass', $errmsg);
