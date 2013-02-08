@@ -29,6 +29,8 @@ $View = Init::get('View');
 $View->addTitle(txt('guest_title'));
 if (!$Bofh->isEmployee()) View::forward('', txt('employees_only'));
 
+$show_expired = isset($_GET['show-expired']);
+
 // Run bofhd-command guest_list <operator>
 $guests = $Bofh->getData('guest_list');
 
@@ -36,36 +38,76 @@ $View->start();
 $View->addElement('h1', txt('guest_title'));
 $View->addElement('p', txt('guest_intro'));
 
-// Create html table
-$guesttable = $View->createElement('table', null, 'class="app-table"');
-$guesttable->setHead(
+// Create html tables
+$active_guests = $View->createElement('table', null, 'class="app-table"');
+$active_guests->setHead(
     array(
         txt('guest_list_col_username'),
         txt('guest_list_col_name'),
         txt('guest_list_col_end_date'),
-        txt('guest_list_col_status'),
     )
 );
+$inactive_guests = $View->createElement('table', null, 'class="app-table"');
+$inactive_guests->setHead(
+    array(
+        txt('guest_list_col_username'),
+        txt('guest_list_col_name'),
+        txt('guest_list_col_end_date'),
+    )
+);
+
+
+// Sort guests:
+usort($guests, 'sort_by_name');
+
 
 // TODO: Sort by username? Status? Time left?
 // Add guests to table
 foreach ($guests as $i => $guest) {
-    $guesttable->addData(
-        array(
-            View::createElement('a', $guest['username'], "guests/info.php?guest=".$guest['username']),
-            $guest['name'],
-            (!empty($guest['expires'])) ? $guest['expires']->format('y-m-d') : '',
-            txt('guest_status_'.$guest['status']),
-        )
+    $data = array(
+        View::createElement('a', $guest['username'], "guests/info.php?guest=".$guest['username']),
+        $guest['name'],
+        (!empty($guest['expires'])) ? $guest['expires']->format('y-m-d') : '',
     );
+    if ($guest['status'] == 'active') {
+        $active_guests->addData($data);
+    } else {
+        $inactive_guests->addData($data);
+    }
 }
 
-// Add table to View
-if (empty($guests)) {
-    $View->addElement('h2', txt('guest_list_empty'));
+// Show list of active guest users
+$View->addElement('h2', txt('guest_list_active'));
+if ($active_guests->rowCount() > 0) {
+    $View->addElement($active_guests);
 } else {
-    $View->addElement('h2', txt('guest_list_personal'));
-    $View->addElement($guesttable);
+    $View->addElement('p', txt('guest_list_active_empty'));
+}
+
+// If selected, show list of inactive guest users
+//if ($show_expired) {
+    //$View->addElement('h2', txt('guest_list_inactive'));
+    //if ($inactive_guests->rowCount() > 0) {
+        //$View->addElement($inactive_guests);
+    //} else {
+        //$View->addElement('p', txt('guest_list_inactive_empty'));
+    //}
+//} else {
+    //$View->addElement('a', txt('guest_list_show_inactive'), 'guests/?show-expired');
+//}
+
+/**
+ * Sort by name for the multidimensional array $guests. Case-insensitive. 
+ *
+ * @param array $guest_a One element from the $guests array
+ * @param array $guest_b One element from the $guests array
+ *
+ * @return int  -1 if $guest_a <  $guest_b
+ *               0 if $guest_a == $guest_b
+ *               1 if $guest_a >  $guest_b
+ */
+function sort_by_name($guest_a, $guest_b) {
+    return strcmp(strtolower($guest_a['name']), strtolower($guest_b['name']));
 }
 
 ?>

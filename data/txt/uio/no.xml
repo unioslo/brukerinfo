@@ -72,9 +72,9 @@
     <MENU_GUEST_INFO>Kontoinformasjon</MENU_GUEST_INFO>
     <MENU_GUEST_PASSWORD>Skift passord</MENU_GUEST_PASSWORD>
 
-    <MENU_GUESTS>Gjestebrukere</MENU_GUESTS>
-    <MENU_GUESTS_>Dine gjestebrukere</MENU_GUESTS_>
-    <MENU_GUESTS_CREATE>Opprett gjestebruker</MENU_GUESTS_CREATE>
+    <MENU_GUESTS>Trådløskontoer</MENU_GUESTS>
+    <MENU_GUESTS_>Dine trådløskontoer</MENU_GUESTS_>
+    <MENU_GUESTS_CREATE>Opprett trådløskonto</MENU_GUESTS_CREATE>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
@@ -178,7 +178,7 @@
 
     <!-- Reservation page -->
     <RESERVATIONS_TITLE>Reservasjoner</RESERVATIONS_TITLE>
-    <RESERVATIONS_INTRO>Rervasjoner fra ulike tjenester.</RESERVATIONS_INTRO>
+    <RESERVATIONS_INTRO>Reservasjoner fra ulike tjenester.</RESERVATIONS_INTRO>
     <RESERVATIONS_ACTION_RESERVE>Legg til reservering</RESERVATIONS_ACTION_RESERVE>
     <RESERVATIONS_ACTION_UNRESERVE>Fjern reservering</RESERVATIONS_ACTION_UNRESERVE>
     <RESERVATION_UPDATE_SUCCESS_SET>Reservasjon lagt til for {{type}}</RESERVATION_UPDATE_SUCCESS_SET>
@@ -541,22 +541,22 @@
         gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
 
     <!-- Guest pages -->
-    <GUEST_TITLE>Gjestekontoer</GUEST_TITLE>
-    <GUEST_INTRO>&lt;p&gt;Denne tjenesten lar ansatte ved UiO opprette egne
-        gjestebrukere. Disse gjestebrukerene vil ha mulighet til å benytte seg
-        av trådløse aksesspunkt ved universitetet. TODO:
-        More.&lt;/p&gt;</GUEST_INTRO>
-    <GUEST_LIST_PERSONAL>Mine gjester</GUEST_LIST_PERSONAL>
-    <GUEST_LIST_EMPTY>Du har ingen gjester</GUEST_LIST_EMPTY>
+    <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
+    <GUEST_INTRO>Her kan UiO-ansatte opprette Wifi-kontoer til sine egne
+        gjester. Med en slik Wifi-konto kan en gjest koble til det trådløse
+        nettet på UiO.</GUEST_INTRO>
+    <GUEST_LIST_ACTIVE>Dine aktive trådløskontoer</GUEST_LIST_ACTIVE>
+    <!--<GUEST_LIST_INACTIVE>Dine utgåtte Wifi-kontoer</GUEST_LIST_INACTIVE>-->
+    <GUEST_LIST_ACTIVE_EMPTY>Du har ingen aktive Wifi-kontoer</GUEST_LIST_ACTIVE_EMPTY>
+    <!--<GUEST_LIST_INACTIVE_EMPTY>Du har ingen utgåtte Wifi-kontoer</GUEST_LIST_INACTIVE_EMPTY>-->
+    <!--<GUEST_LIST_SHOW_INACTIVE>Vis utgåtte kontoer</GUEST_LIST_SHOW_INACTIVE>-->
 
     <GUEST_LIST_COL_USERNAME>Brukernavn</GUEST_LIST_COL_USERNAME>
     <GUEST_LIST_COL_NAME>Fullt navn</GUEST_LIST_COL_NAME>
-    <GUEST_LIST_COL_RESPONSIBLE>Ansvarlig</GUEST_LIST_COL_RESPONSIBLE>
-    <GUEST_LIST_COL_END_DATE>Gyldig til</GUEST_LIST_COL_END_DATE>
-    <GUEST_LIST_COL_STATUS>Status</GUEST_LIST_COL_STATUS>
+    <GUEST_LIST_COL_END_DATE>Avsluttes</GUEST_LIST_COL_END_DATE>
 
     <GUEST_STATUS_ACTIVE>Aktiv</GUEST_STATUS_ACTIVE>
-    <GUEST_STATUS_EXPIRED>Utgått</GUEST_STATUS_EXPIRED>
+    <GUEST_STATUS_EXPIRED>Avsluttet</GUEST_STATUS_EXPIRED>
 
     <GUEST_INFO_TOP>{{str}}</GUEST_INFO_TOP>
     <GUEST_INFO_USERNAME>Brukernavn:</GUEST_INFO_USERNAME>
@@ -564,21 +564,25 @@
     <GUEST_INFO_CONTACT>Kontakt:</GUEST_INFO_CONTACT>
     <GUEST_INFO_RESPONSIBLE>Ansvarlig:</GUEST_INFO_RESPONSIBLE>
     <GUEST_INFO_CREATED>Opprettet:</GUEST_INFO_CREATED>
-    <GUEST_INFO_EXPIRED>Gyldig til</GUEST_INFO_EXPIRED>
+    <GUEST_INFO_EXPIRED>Avsluttes</GUEST_INFO_EXPIRED>
     <GUEST_INFO_STATUS>Status:</GUEST_INFO_STATUS>
     <GUEST_INFO_DAYS_LEFT>Dager igjen:</GUEST_INFO_DAYS_LEFT>
 
-    <GUEST_NEW_TITLE>Opprett ny gjestekonto</GUEST_NEW_TITLE>
-    <GUEST_NEW_INTRO>&lt;p&gt;Fyll ut skjemaet for å opprette en ny
-        gjestebruker. Dersom du oppgir mobilnummer for gjesten, vil gjesten få
-        en SMS med brukernavn og passord. Hvis ikke dette fylles ut, vil
-        brukernavn og passord vises på skjermen.&lt;/p&gt;</GUEST_NEW_INTRO>
-    <GUEST_NEW_FORM_FNAME>Fornavn</GUEST_NEW_FORM_FNAME>
-    <GUEST_NEW_FORM_LNAME>Etternavn</GUEST_NEW_FORM_LNAME>
-    <GUEST_NEW_FORM_CONTACT>Mobilnummer</GUEST_NEW_FORM_CONTACT>
-    <GUEST_NEW_FORM_DURATION>Varighet</GUEST_NEW_FORM_DURATION>
+    <GUEST_NEW_TITLE>Opprett ny trådløskonto</GUEST_NEW_TITLE>
+    <GUEST_NEW_INTRO>Dersom du oppgir mobilnummer for gjesten, vil vedkommende
+        få en SMS med brukernavn og passord. Hvis ikke dette fylles ut, vil
+        brukernavn og passord vises på skjermen.</GUEST_NEW_INTRO>
+    <GUEST_NEW_FORM_FNAME>Fornavn:</GUEST_NEW_FORM_FNAME>
+    <GUEST_NEW_FORM_LNAME>Etternavn:</GUEST_NEW_FORM_LNAME>
+    <GUEST_NEW_FORM_DURATION>Varighet:</GUEST_NEW_FORM_DURATION>
     <GUEST_NEW_FORM_DAYS>{{days}} dager</GUEST_NEW_FORM_DAYS>
-    <GUEST_NEW_FORM_SUBMIT>Lag konto</GUEST_NEW_FORM_SUBMIT>
+    <GUEST_NEW_FORM_SEND_SMS>Send passord til mobil:</GUEST_NEW_FORM_SEND_SMS>
+    <GUEST_NEW_FORM_NOSMS>Nei – Passordet vises på skjermen, og du vil
+        få muligheten til å skrive en passordside.</GUEST_NEW_FORM_NOSMS>
+    <GUEST_NEW_FORM_SMS>Ja – Passordet blir sendt med SMS til mobilnummeret du
+        oppgir.</GUEST_NEW_FORM_SMS>
+    <GUEST_NEW_FORM_CONTACT>Mobilnummer:</GUEST_NEW_FORM_CONTACT>
+    <GUEST_NEW_FORM_SUBMIT>Opprett</GUEST_NEW_FORM_SUBMIT>
     <GUEST_NEW_FORM_FNAME_REQ>Fornavn er obligatorisk.</GUEST_NEW_FORM_FNAME_REQ>
     <GUEST_NEW_FORM_LNAME_REQ>Etternavn er obligatorisk.</GUEST_NEW_FORM_LNAME_REQ>
     <GUEST_NEW_FORM_DURATION_REQ>Varighet er obligatorisk.</GUEST_NEW_FORM_DURATION_REQ>
@@ -587,33 +591,33 @@
     <GUEST_NEW_FORM_NAME_FMT>Navn må være minimum {{min}} tegn og maksimum
         {{max}} tegn.</GUEST_NEW_FORM_NAME_FMT>
 
-    <GUEST_CREATED_SMS>Ny gjestebruker opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
+    <GUEST_CREATED_SMS>Ny trådløskonto opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; En SMS med
         brukernavn og passord ble sendt til
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
-    <GUEST_CREATED_PW>Ny gjestebruker opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
+    <GUEST_CREATED_PW>Ny trådløskonto opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Passord:
         &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_CREATED_PW>
-    <GUEST_DEACTIVATED>Gjestekonto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
-        avviklet</GUEST_DEACTIVATED>
-    <GUEST_NEW_PASSWORD>Passord endret: &lt;ul&gt;&lt;li&gt;Brukernavn:
+    <GUEST_DEACTIVATED>Wifi-konto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
+        avsluttet</GUEST_DEACTIVATED>
+    <GUEST_NEW_PASSWORD>Passord endret for trådløskonto:
+        &lt;ul&gt;&lt;li&gt;Brukernavn:
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Passord:
         &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_NEW_PASSWORD>
 
-    <GUEST_BTN_DEACTIVATE>Avvikle gjestekonto</GUEST_BTN_DEACTIVATE>
-    <GUEST_BTN_RESETPW>Nullstill passord</GUEST_BTN_RESETPW>
+    <GUEST_BTN_DEACTIVATE>Avslutt konto</GUEST_BTN_DEACTIVATE>
+    <GUEST_BTN_RESETPW>Sett nytt passord</GUEST_BTN_RESETPW>
 
     <GUEST_PW_NOT_CACHED>Kunne ikke vise passord</GUEST_PW_NOT_CACHED>
-    <GUEST_PW_LETTER_LINK>&lt;a href="{{url}}" target="_blank"&gt;Passordark for utskrift&lt;/a&gt; (åpnes i eget vindu)</GUEST_PW_LETTER_LINK>
-    <GUEST_PW_LETTER_BUTTON>Utskriftsvennlig passordark</GUEST_PW_LETTER_BUTTON>
+    <GUEST_PW_LETTER_BUTTON>Passordside for utskrift</GUEST_PW_LETTER_BUTTON>
     <GUEST_PW_LETTER>
 &lt;html&gt;
     &lt;head&gt;
-        &lt;title&gt;Passordbrev&lt;/title&gt;
+        &lt;title&gt;Passordside&lt;/title&gt;
         &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;h1&gt;Du har nå fått nytt passord&lt;/h1&gt; 
+        &lt;h1&gt;Din trådløskonto&lt;/h1&gt; 
         &lt;p&gt;&lt;i&gt;Dersom du ikke får logget inn med det nye passordet bør
             du forsikre deg om at du ikke har blandet sammen
             bokstaven 'O' (stor o) og tallet '0' (null) eller
@@ -653,7 +657,7 @@
     </GUEST_PW_LETTER>
 
     <GUEST_NO_USERNAME>Brukernavn ikke oppgitt</GUEST_NO_USERNAME>
-    <GUEST_UNKNOWN_USERNAME>Fant ikke gjestebruker med brukernavn {{username}}</GUEST_UNKNOWN_USERNAME>
+    <GUEST_UNKNOWN_USERNAME>Fant ikke trådløskonto med brukernavn {{username}}</GUEST_UNKNOWN_USERNAME>
 
     <!-- Help pages -->
     <HELP_TITLE>Hjelp</HELP_TITLE>
@@ -666,6 +670,15 @@
     <!-- Short text in links, to tell that clicking on this makes you see more information -->
     <GENERAL_MORE_DETAILS>Vis detaljer</GENERAL_MORE_DETAILS>
     <GENERAL_LESS_DETAILS>Skjul detaljer</GENERAL_LESS_DETAILS>
+
+    <GENERAL_TIMEINTERVAL_DAY>{{num}} dag</GENERAL_TIMEINTERVAL_DAY>
+    <GENERAL_TIMEINTERVAL_DAYS>{{num}} dager</GENERAL_TIMEINTERVAL_DAYS>
+    <GENERAL_TIMEINTERVAL_WEEK>{{num}} uke</GENERAL_TIMEINTERVAL_WEEK>
+    <GENERAL_TIMEINTERVAL_WEEKS>{{num}} uker</GENERAL_TIMEINTERVAL_WEEKS>
+    <GENERAL_TIMEINTERVAL_MONTH>{{num}} måned</GENERAL_TIMEINTERVAL_MONTH>
+    <GENERAL_TIMEINTERVAL_MONTHS>{{num}} måneder</GENERAL_TIMEINTERVAL_MONTHS>
+    <GENERAL_TIMEINTERVAL_YEAR>{{num}} år</GENERAL_TIMEINTERVAL_YEAR>
+    <GENERAL_TIMEINTERVAL_YEARS>{{num}} år</GENERAL_TIMEINTERVAL_YEARS>
 
     <!-- Navigation text - Text in the navigation on different pages.  -->
     <NAVIGATION_FIRST>&lt;&lt; første</NAVIGATION_FIRST>

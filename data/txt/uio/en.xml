@@ -72,9 +72,9 @@
     <MENU_GUEST_INFO>Account info</MENU_GUEST_INFO>
     <MENU_GUEST_PASSWORD>Change password</MENU_GUEST_PASSWORD>
 
-    <MENU_GUESTS>Guest accounts</MENU_GUESTS>
-    <MENU_GUESTS_>Your guests</MENU_GUESTS_>
-    <MENU_GUESTS_CREATE>Create guest account</MENU_GUESTS_CREATE>
+    <MENU_GUESTS>Wireless accounts</MENU_GUESTS>
+    <MENU_GUESTS_>Your wireless accounts</MENU_GUESTS_>
+    <MENU_GUESTS_CREATE>Create wireless account</MENU_GUESTS_CREATE>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
@@ -537,73 +537,79 @@
     <GROUPS_NEW_FORM_MOD_REQUIRED>Need a group which can moderate the group</GROUPS_NEW_FORM_MOD_REQUIRED>
 
     <!-- Guest pages -->
-    <GUEST_TITLE>Guest accounts</GUEST_TITLE>
-    <GUEST_INTRO>&lt;p&gt;This service allows empoyees at UiO to create guest users. Guest users can connect to the wireless access points around campus. TODO: More.&lt;/p&gt;</GUEST_INTRO>
-    <GUEST_LIST_PERSONAL>My guests</GUEST_LIST_PERSONAL>
-    <GUEST_LIST_EMPTY>You have no guests</GUEST_LIST_EMPTY>
+    <GUEST_TITLE>Wireless accounts</GUEST_TITLE>
+    <GUEST_INTRO>Staff and employees at the UiO can create Wifi accounts for
+        their guests. Using the Wifi account, a guest can connect to the UiO
+        wireless network.</GUEST_INTRO>
+    <GUEST_LIST_ACTIVE>Your active accounts</GUEST_LIST_ACTIVE>
+    <!--<GUEST_LIST_INACTIVE>Your expired accounts</GUEST_LIST_INACTIVE>-->
+    <GUEST_LIST_ACTIVE_EMPTY>You don't have any active Wifi-accounts</GUEST_LIST_ACTIVE_EMPTY>
+    <!--<GUEST_LIST_INACTIVE_EMPTY>You don't have any expired Wifi-accounts</GUEST_LIST_INACTIVE_EMPTY>-->
+    <!--<GUEST_LIST_SHOW_INACTIVE>Show expired accounts</GUEST_LIST_SHOW_INACTIVE>-->
 
     <GUEST_LIST_COL_USERNAME>Username</GUEST_LIST_COL_USERNAME>
     <GUEST_LIST_COL_NAME>Full name</GUEST_LIST_COL_NAME>
-    <GUEST_LIST_COL_RESPONSIBLE>Responsible</GUEST_LIST_COL_RESPONSIBLE>
-    <GUEST_LIST_COL_END_DATE>Valid until</GUEST_LIST_COL_END_DATE>
-    <GUEST_LIST_COL_STATUS>Status</GUEST_LIST_COL_STATUS>
+    <GUEST_LIST_COL_END_DATE>Expires</GUEST_LIST_COL_END_DATE>
 
     <GUEST_STATUS_ACTIVE>Active</GUEST_STATUS_ACTIVE>
-    <GUEST_STATUS_EXPIRED>Expired</GUEST_STATUS_EXPIRED>
+    <GUEST_STATUS_EXPIRED>Closed</GUEST_STATUS_EXPIRED>
 
     <GUEST_INFO_TOP>{{str}}</GUEST_INFO_TOP>
     <GUEST_INFO_USERNAME>Username:</GUEST_INFO_USERNAME>
     <GUEST_INFO_NAME>Full name:</GUEST_INFO_NAME>
     <GUEST_INFO_CONTACT>Contact:</GUEST_INFO_CONTACT>
     <GUEST_INFO_RESPONSIBLE>Responsible:</GUEST_INFO_RESPONSIBLE>
-    <GUEST_INFO_CREATED>Created on:</GUEST_INFO_CREATED>
-    <GUEST_INFO_EXPIRED>Valid until:</GUEST_INFO_EXPIRED>
+    <GUEST_INFO_CREATED>Created:</GUEST_INFO_CREATED>
+    <GUEST_INFO_EXPIRED>Expires:</GUEST_INFO_EXPIRED>
     <GUEST_INFO_STATUS>Status:</GUEST_INFO_STATUS>
     <GUEST_INFO_DAYS_LEFT>Days left:</GUEST_INFO_DAYS_LEFT>
 
-    <GUEST_NEW_TITLE>Create new guest account</GUEST_NEW_TITLE>
-    <GUEST_NEW_INTRO>&lt;p&gt;Please fill out the form to create a new guest
-        account. If a cell phone number is given, the guest will receive an SMS
-        with username and password. Note that this service will only send SMS
-        to norwegian cell phone numbers. If you don't supply a phone number,
-        the username and password will be shown on
-        screen.&lt;/p&gt;</GUEST_NEW_INTRO>
-    <GUEST_NEW_FORM_FNAME>Given name</GUEST_NEW_FORM_FNAME>
-    <GUEST_NEW_FORM_LNAME>Surname</GUEST_NEW_FORM_LNAME>
-    <GUEST_NEW_FORM_CONTACT>Cell phone</GUEST_NEW_FORM_CONTACT>
-    <GUEST_NEW_FORM_DURATION>Duration</GUEST_NEW_FORM_DURATION>
+    <GUEST_NEW_TITLE>Create new wireless account</GUEST_NEW_TITLE>
+    <GUEST_NEW_INTRO>You have the choice between sending the username and
+        password to a cell phone (note: only Norwegian numbers allowed), or to
+        print a password sheet that can be delivered to your
+        guest.</GUEST_NEW_INTRO>
+    <GUEST_NEW_FORM_FNAME>Given name:</GUEST_NEW_FORM_FNAME>
+    <GUEST_NEW_FORM_LNAME>Surname:</GUEST_NEW_FORM_LNAME>
+    <GUEST_NEW_FORM_DURATION>Duration:</GUEST_NEW_FORM_DURATION>
     <GUEST_NEW_FORM_DAYS>{{days}} days</GUEST_NEW_FORM_DAYS>
-    <GUEST_NEW_FORM_SUBMIT>Create account</GUEST_NEW_FORM_SUBMIT>
+    <GUEST_NEW_FORM_SEND_SMS>Send password to mobile phone:</GUEST_NEW_FORM_SEND_SMS>
+    <GUEST_NEW_FORM_NOSMS>No – The password will be shown on screen, and you
+        will have the option to print a password page.</GUEST_NEW_FORM_NOSMS>
+    <GUEST_NEW_FORM_SMS>Yes – The password will be sent to the cell phone
+        number you supply.</GUEST_NEW_FORM_SMS>
+    <GUEST_NEW_FORM_CONTACT>Mobile phone number:</GUEST_NEW_FORM_CONTACT>
+    <GUEST_NEW_FORM_SUBMIT>Create</GUEST_NEW_FORM_SUBMIT>
     <GUEST_NEW_FORM_FNAME_REQ>Given name is required.</GUEST_NEW_FORM_FNAME_REQ>
     <GUEST_NEW_FORM_LNAME_REQ>Surname is required.</GUEST_NEW_FORM_LNAME_REQ>
-    <GUEST_NEW_FORM_DURATION_REQ>Time limit is required.</GUEST_NEW_FORM_DURATION_REQ>
-    <GUEST_NEW_FORM_CONTACT_FMT>Cell phone number must be eight digits (only
+    <GUEST_NEW_FORM_DURATION_REQ>Duration is required.</GUEST_NEW_FORM_DURATION_REQ>
+    <GUEST_NEW_FORM_CONTACT_FMT>Mobile phone number must be eight digits (only
         Norwegian phone numbers allowed).</GUEST_NEW_FORM_CONTACT_FMT>
     <GUEST_NEW_FORM_NAME_FMT>Name must be at least {{min}} characters, and no
         more than {{max}} characters.</GUEST_NEW_FORM_NAME_FMT>
 
-    <GUEST_CREATED_SMS>Created new guest account: &lt;ul&gt;&lt;li&gt;Username:
+    <GUEST_CREATED_SMS>Created new wireless account: &lt;ul&gt;&lt;li&gt;Username:
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; SMS with the
         username and password was sent to
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
-    <GUEST_CREATED_PW>Created new guest account: &lt;ul&gt;&lt;li&gt;Username:
+    <GUEST_CREATED_PW>Created new wireless account: &lt;ul&gt;&lt;li&gt;Username:
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Password:
         &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_CREATED_PW>
-    <GUEST_DEACTIVATED>Guest account with the username &lt;b&gt;{{uname}}
-        &lt;/b&gt; successfully deactivated</GUEST_DEACTIVATED>
-    <GUEST_NEW_PASSWORD>Password changed: &lt;ul&gt;&lt;li&gt;Username:
+    <GUEST_DEACTIVATED>Wireless account with the username &lt;b&gt;{{uname}}
+        &lt;/b&gt; successfully closed</GUEST_DEACTIVATED>
+    <GUEST_NEW_PASSWORD>Password changed for wireless account:
+        &lt;ul&gt;&lt;li&gt;Username:
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Password:
         &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_NEW_PASSWORD>
 
-    <GUEST_BTN_DEACTIVATE>Deactivate guest account</GUEST_BTN_DEACTIVATE>
-    <GUEST_BTN_RESETPW>Reset password</GUEST_BTN_RESETPW>
+    <GUEST_BTN_DEACTIVATE>Close account</GUEST_BTN_DEACTIVATE>
+    <GUEST_BTN_RESETPW>Set new password</GUEST_BTN_RESETPW>
 
     <GUEST_PW_NOT_CACHED>Unable to display password</GUEST_PW_NOT_CACHED>
-    <GUEST_PW_LETTER_LINK>&lt;a href="{{url}}" target="_blank"&gt;Password sheet for printing&lt;/a&gt; (opens in a new window)</GUEST_PW_LETTER_LINK>
-    <GUEST_PW_LETTER_BUTTON>Password sheet for printing</GUEST_PW_LETTER_BUTTON>
+    <GUEST_PW_LETTER_BUTTON>Password page for printing</GUEST_PW_LETTER_BUTTON>
     <GUEST_PW_LETTER>&lt;html&gt;
     &lt;head&gt;
-        &lt;title&gt;Passordbrev&lt;/title&gt;
+        &lt;title&gt;Password page&lt;/title&gt;
         &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
     &lt;/head&gt;
     &lt;body&gt;
@@ -646,7 +652,7 @@
     &lt;/html&gt;</GUEST_PW_LETTER>
 
     <GUEST_NO_USERNAME>No username given</GUEST_NO_USERNAME>
-    <GUEST_UNKNOWN_USERNAME>No guest accounts found with the username
+    <GUEST_UNKNOWN_USERNAME>No wireless account found with the username
         {{uname}}.</GUEST_UNKNOWN_USERNAME>
 
     <!-- Help pages -->
@@ -660,6 +666,15 @@
     <!-- Short text in links, to tell that clicking on this makes you see more information -->
     <GENERAL_MORE_DETAILS>Show details</GENERAL_MORE_DETAILS>
     <GENERAL_LESS_DETAILS>Hide details</GENERAL_LESS_DETAILS>
+
+    <GENERAL_TIMEINTERVAL_DAY>{{num}} day</GENERAL_TIMEINTERVAL_DAY>
+    <GENERAL_TIMEINTERVAL_DAYS>{{num}} days</GENERAL_TIMEINTERVAL_DAYS>
+    <GENERAL_TIMEINTERVAL_WEEK>{{num}} week</GENERAL_TIMEINTERVAL_WEEK>
+    <GENERAL_TIMEINTERVAL_WEEKS>{{num}} weeks</GENERAL_TIMEINTERVAL_WEEKS>
+    <GENERAL_TIMEINTERVAL_MONTH>{{num}} month</GENERAL_TIMEINTERVAL_MONTH>
+    <GENERAL_TIMEINTERVAL_MONTHS>{{num}} months</GENERAL_TIMEINTERVAL_MONTHS>
+    <GENERAL_TIMEINTERVAL_YEAR>{{num}} year</GENERAL_TIMEINTERVAL_YEAR>
+    <GENERAL_TIMEINTERVAL_YEARS>{{num}} years</GENERAL_TIMEINTERVAL_YEARS>
 
     <!-- Navigation text - Text in the navigation on different pages.  -->
     <NAVIGATION_FIRST>&lt;&lt; first</NAVIGATION_FIRST>

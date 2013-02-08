@@ -32,6 +32,11 @@ $User = Init::get('User');
 // View handles the output to html
 $View = Init::get('View');
 
+// Guests should be redirected to their main page:
+if ($Bofh->hasTraits(array('guest_owner', 'guest_name'))) {
+    View::forward('guests/info.php');
+}
+
 // Start sending the html output. Can not send out headers after this line.
 $View->start();
 $View->addElement('p', txt('home_intro'));
@@ -40,9 +45,10 @@ if (sizeof($Bofh->getAccounts()) > 1) {
     $View->addElement('p', txt('home_specific_account'));
 }
 
-if (!$Bofh->hasTraits(array('guest_owner', 'guest_name'))) {
-    $View->addElement('h2', txt('home_shortcuts_title'));
-    $View->addElement('ul', array(
+$View->addElement('h2', txt('home_shortcuts_title'));
+$View->addElement(
+    'ul', 
+    array(
         View::createElement('a', txt('home_shortcuts_password'),        'account/password.php'),
         //View::createElement('a', txt('home_shortcuts_printing'),         'printing/'),
         View::createElement('a', txt('home_shortcuts_printing_history'), 'printing/history.php'),
@@ -50,8 +56,8 @@ if (!$Bofh->hasTraits(array('guest_owner', 'guest_name'))) {
         View::createElement('a', txt('home_shortcuts_tripnote'), 'email/tripnote.php'),
         View::createElement('a', txt('home_shortcuts_members'), 'groups/'),
         View::createElement('a', txt('home_shortcuts_group_request'), 'groups/new.php'),
-    ));
-}
+    )
+);
 
 $View->addElement('h2', txt('home_about_title'));
 $View->addElement('p', txt('home_about'));
@@ -59,3 +65,4 @@ $View->addElement('p', txt('home_about'));
 // The html is automaticly ended by $View->__destruct(), but you can force it by 
 // $View->end().
 ?>
+

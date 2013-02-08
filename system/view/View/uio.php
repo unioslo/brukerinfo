@@ -102,7 +102,9 @@ class View_uio extends ViewTemplate
         $has_email = $bofh->hasSpreads('IMAP@uio');
 
         //start
-        $menu['home']['link']       = '';
+        if(!$is_guest) {
+            $menu['home']['link']       = '';
+        }
 
         //person
         if ($is_personal) {

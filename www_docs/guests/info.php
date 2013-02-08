@@ -150,7 +150,7 @@ function reset_guest_password($data) {
 function deactivate_guest($data) {
     $bofh = Init::get('Bofh');
     try {
-        $bofh->run_command('guest_deactivate', $data['g_uname']);
+        $bofh->run_command('guest_remove', $data['g_uname']);
     } catch (XML_RPC2_FaultException $e) {
         // Not translated or user friendly, but this shouldn't happen at all: 
         View::addMessage(htmlspecialchars($e->getMessage()), View::MSG_WARNING);

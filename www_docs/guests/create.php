@@ -43,6 +43,25 @@ $View->addElement('h1', txt('guest_new_title'));
 $View->addElement('p', txt('guest_new_intro'));
 $View->addElement($guestform);
 
+// Javascript HTML tag to show/hide elements in the form
+$View->addElement(
+    'raw', <<<SCRIPT
+<script type="text/javascript">
+    function update_phone_input() {
+        var mobile_input = $('#mobile_input').parent().parent();
+        if ($('#mobile_yes').prop('checked')) {
+            mobile_input.show();
+        } else {
+            mobile_input.hide();
+        }
+    }
+    // Set initial state:
+    update_phone_input();
+</script>
+SCRIPT
+);
+
+
 /**
  * Creates an HTML-form for creating guest users.
  * 
@@ -55,21 +74,34 @@ function create_guest_form() {
     $form->setAttribute('class', 'app-form-big');
     $form->addElement('text', 'g_fname', txt('guest_new_form_fname'), 'id="guest_fname"');
     $form->addElement('text', 'g_lname', txt('guest_new_form_lname'));
-    $form->addElement('text', 'g_contact', txt('guest_new_form_contact'));
 
     // Radio-buttons
-    $duration = array(7, 30, 90, 180, 365);
+    $duration = array(7=>txt('general_timeinterval_week', array('num'=>1)), 
+                      30=>txt('general_timeinterval_month', array('num'=>1)), 
+                      90=>txt('general_timeinterval_months', array('num'=>3)), 
+                      180=>txt('general_timeinterval_months', array('num'=>6)), 
+                      365=>txt('general_timeinterval_year', array('num'=>1))
+                  );
     $radio = array();
-    foreach ($duration as $opt) {
-        $radio[] = $form->createElement('radio', null, null, txt('guest_new_form_days', array('days'=>$opt)), $opt);
+    foreach ($duration as $val=>$text) {
+        //$radio[] = View::createElement('radio', null, null, txt('guest_new_form_days', array('days'=>$opt)), $opt);
+        $radio[] = BofhFormUiO::createElement('radio', null, null, $text, $val);
     }
     $form->addGroup($radio, 'g_days', txt('guest_new_form_duration'), '<br />');
+
+    $no = BofhFormUiO::createElement('radio', null, null, txt('guest_new_form_nosms'), 'n', array('onchange'=>'update_phone_input();'));
+    $yes = BofhFormUiO::createElement('radio', null, null, txt('guest_new_form_sms'), 'y', array('id'=>'mobile_yes', 'onchange'=>'update_phone_input();'));
+
+    $form->addGroup(array($no, $yes), 'g_notify', txt('guest_new_form_send_sms'), '<br />');
+    $form->addElement('text', 'g_contact', txt('guest_new_form_contact'), array('id'=>'mobile_input'));
+
     $form->addElement('submit', null, txt('guest_new_form_submit'));
     
     // Inputs that require content
     $form->addRule('g_fname', txt('guest_new_form_fname_req'), 'required');
     $form->addRule('g_lname', txt('guest_new_form_lname_req'), 'required');
     $form->addRule('g_days',  txt('guest_new_form_duration_req'), 'required');
+    $form->addRule('g_notify', txt('guest_new_form_notify_req'), 'required');
 
     // Limit name lengths. It should be possible to make a rule spanning
     // both inputs, with a validation rule callback function, but it's 
@@ -80,14 +112,46 @@ function create_guest_form() {
     $form->addRule('g_lname', txt('guest_new_form_name_fmt', array('min'=>1, 'max'=>255)), 'rangelength', array(1,255));
 
     // Require 8 digit phone number, if entered
-    $form->addRule('g_contact', txt('guest_new_form_contact_fmt'), 'regex', '/^[\d]{8}$/');
-
+    // FIXME: The error message will show next to the radio buttons, because 
+    // g_notify is first in the array. If we swap around the order of the 
+    // array, the rule won't be checked if g_contact is empty. This is because 
+    // addRule doesn't handle arrays properly: addGroupRule should be used for 
+    // this purpose. However, addGroupRule adds UI and other logical constraits 
+    // that we don't want.  Maybe this will work better with QuickForm 2?
+    $form->addRule(array('g_notify', 'g_contact'), txt('guest_new_form_contact_fmt'), 'callback', 'check_mobile');
+    
     // Trim all input prior to validation, and set radio button default
     $form->applyFilter('__ALL__', 'trim');
-    $form->setDefaults(array('g_days'=>30));
+    $form->setDefaults(array('g_days'=>30, 'g_notify'=>'n'));
 
     return $form;
 }
+
+
+/**
+ * Callback function for controlling that the cell phone number is entered 
+ * correctly, if the option for sending SMS is selected
+ *
+ * @param array $data Array containing the arguments for g_nofity and g_contact:
+ *                    $data[0] will contain the value of g_notify ('y' , 'n' or 
+ *                    an empty array (no radio button selected))
+ *                    $data[1] will contain the value of g_contact.
+ *
+ * @return boolean   true if mobile number is valid, or if selected to _not_ 
+ *                   send SMS.  Otherwise false
+ */
+function check_mobile($data) {
+    $notify = $data[0];
+    $number = $data[1];
+    if ($notify == 'y' and preg_match('/^[\d]{8}$/', $number)) {
+        return true;
+    } elseif ($notify == 'n') {
+        return true;
+    }
+    // else
+    return false;
+}
+
 
 
 /**
@@ -102,6 +166,11 @@ function create_guest_form() {
  */
 function create_guest($data) {
     $bofh = Init::get('Bofh');
+
+    // Clear g_contact if g_notify is set to 'n' (Happens if the user fills in a number, and then chooses 'no'
+    if ($data['g_notify'] != 'y') {
+        $data['g_contact'] = '';
+    }
     try {
         $res = $bofh->run_command('guest_create', $data['g_days'], $data['g_fname'], $data['g_lname'], 'guest', $data['g_contact']);
     } catch (XML_RPC2_FaultException $e) {

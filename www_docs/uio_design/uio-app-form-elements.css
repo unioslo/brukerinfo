@@ -55,6 +55,7 @@
 }
 .app-form-big > div > label {
     margin-bottom: .8em;
+    margin-top: 1.0em;
 }
 
 /** 
@@ -127,6 +128,7 @@
 .app-form-big input[type="checkbox"] { 
     margin: 5px 5px 5px 0;
     border: none;
+    vertical-align: middle;
 }
 
 /* labels following a single checkbox should be inlined */
