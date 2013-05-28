@@ -165,20 +165,22 @@ class View_uio extends ViewTemplate
             );
         }
 
+        // TODO: When implementing wifi-guests, comment out the following
         // guests: guest admin
-        if ($is_personal && $is_employee) {
-            $menu['guests']['link'] = 'guests/';
-            $menu['guests']['sub'] = array(
-                '',
-                'create.php',
-            );
-        }
+        //if ($is_personal && $is_employee) {
+            //$menu['guests']['link'] = 'guests/';
+            //$menu['guests']['sub'] = array(
+                //'',
+                //'create.php',
+            //);
+        //}
 
+        // TODO: When implementing wifi-guests, comment out the following
         // guests
-        if ($is_guest) {
-            $menu['guest_info']['link'] = 'guests/info.php';
-            $menu['guest_password']['link'] = 'account/password.php';
-        }
+        //if ($is_guest) {
+            //$menu['guest_info']['link'] = 'guests/info.php';
+            //$menu['guest_password']['link'] = 'account/password.php';
+        //}
 
         //returning main menu
         if($sub === null) {
