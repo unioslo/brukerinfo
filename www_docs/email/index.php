@@ -207,7 +207,7 @@ if (sizeof($accounts) > 1) {
             continue;
         }
         //todo: needs to know how expire is returned to remove it from the list:
-        if ($acc['expire'] && $acc['expire']->timestamp < time()) {
+        if ($acc['expire'] && $acc['expire'] < new DateTime()) {
             continue;
         }
 

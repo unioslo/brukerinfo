@@ -59,7 +59,7 @@ if (isset($userinfo['affiliations'])) {
 }
 
 //expire
-if(!empty($userinfo['expire']) and $userinfo['expire'] instanceOf DateTime) {
+if(!empty($userinfo['expire']) && $userinfo['expire'] instanceof DateTime) {
     $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']->format('Y-m-d'));
     unset($userinfo['expire']);
 }
@@ -103,10 +103,10 @@ if (sizeof($accounts) > 1) {
         }
 
         //checks for expired accounts:
-        if($acc['expire']) {
+        if ($acc['expire']) {
             //older than today:
-            if($acc['expire']->timestamp < time()) $aname = txt('account_name_deleted', array('username'=>$aname));
-            $expire = date(txt('date_format'), $acc['expire']->timestamp);
+            if ($acc['expire'] < new DateTime()) $aname = txt('account_name_deleted', array('username'=>$aname));
+            $expire = $acc['expire']->format(txt('date_format'));
         } else {
             $expire = txt('account_other_expire_not_set');
         }

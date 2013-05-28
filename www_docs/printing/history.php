@@ -142,7 +142,7 @@ function createHistoryTable($history, $details = false)
         }
 
         if (!$details) {
-            $line['time'] = date('Y-m-d', $h['tstamp']->timestamp);
+            $line['time'] = ($h['tstamp']) ? $h['tstamp']->format('Y-m-d') : '';
             unset($line['printer']);
             unset($line['job_id']);
         }
@@ -157,7 +157,7 @@ function createHistoryTable($history, $details = false)
 function translateTransaction($data)
 {
     $line['job_id']  = $data['job_id'];
-    $line['time']    = date('Y-m-d H:i:s', $data['tstamp']->timestamp);
+    $line['time'] = ($data['tstamp']) ? $data['tstamp']->format('Y-m-d H:i:s') : '';
     $line['printer'] = '';
     $line['info']    = '';
     $line['in']      = '';
@@ -225,8 +225,8 @@ function translateTransactionPay($data)
 
     $line['info'] = View::createElement('ul', array(
         '<strong>Payment:</strong> ' . $data['description'],
-        'Bank-id: ' . $data['bank_id']),
-        'Time paid: '. date('Y.m.d H:i', $data['payment_tstamp']->timestamp)
+        'Bank-id: ' . $data['bank_id'],
+        'Time paid: '. (($data['payment_tstamp']) ? $data['payment_tstamp']->format('Y-m-d H:i') : ''),)
     );
     $line['in'] = View::createElement('td', 'kr ' . number_format($data['kroner'], 2, txt('dec_format'), ' '), 'class="num" colspan="2"');
     unset($line['out']);

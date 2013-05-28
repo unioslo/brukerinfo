@@ -133,7 +133,7 @@ if (!empty($_GET['group'])) { // SHOW A SPECIFIC GROUP
     }
     unset($group['description']);
 
-    $dl->addData(txt('group_create_date'), date('Y-m-d', $group['create_date']->timestamp));
+    $dl->addData(txt('group_create_date'), ($group['create_date']) ? $group['create_date']->format('Y-m-d') : '');
     unset($group['create_date']);
 
     $dl->addData(txt('group_spread'), addHelpSpread(explode(',', $group['spread'])));
@@ -180,8 +180,8 @@ if (!empty($_GET['group'])) { // SHOW A SPECIFIC GROUP
         //print out the rest of the info
         foreach ($group as $k => $v) {
             if (!$v) continue;
-            if (is_object($v)) {
-                $v = date('Y-m-d', $v->timestamp);
+            if ($v instanceof DateTime) {
+                $v = $v->format('Y-m-d');
             }
             $dl2->addData(ucfirst($k), $v);
         }

@@ -70,8 +70,8 @@ if (!empty($_POST['del'])) {
     $View->addElement('p', txt('email_tripnote_delete_confirm'));
 
     $dl = $View->createElement('dl');
-    $dl->addData(txt('email_tripnote_starting'),   date('Y-m-d', $tripnotes[$del]['start_date']->timestamp));
-    $dl->addData(txt('email_tripnote_ending'),     date('Y-m-d', $tripnotes[$del]['end_date']->timestamp));
+    $dl->addData(txt('email_tripnote_starting'),   ($tripnotes[$del]['start_date']) ? $tripnotes[$del]['start_date']->format('Y-m-d') : '');
+    $dl->addData(txt('email_tripnote_ending'),     ($tripnotes[$del]['end_date']) ? $tripnotes[$del]['end_date']->format('Y-m-d') : '');
     $dl->addData(txt('email_tripnote_message'),    nl2br($tripnotes[$del]['text']));
     $View->addElement($dl);
 
@@ -97,11 +97,11 @@ if ($activenotes) {
         null,
     ));
     foreach ($activenotes as $tnote) {
-        $start = date('Y-m-d', $tnote['start_date']->timestamp);
+        $start = ($tnote['start_date']) ? $tnote['start_date']->format('Y-m-d') : '';
 
         $data = array();
         $data[] = View::createElement('td', $start);
-        $data[] = View::createElement('td', date('Y-m-d', $tnote['end_date']->timestamp));
+        $data[] = View::createElement('td', ($tnote['end_date']) ? $tnote['end_date']->format('Y-m-d') : '');
         $data[] = View::createElement('td', nl2br($tnote['text']));
         $data[] = View::createElement('td', '<input type="submit" class="submit_warn" name="del['.$start.']" value="'.txt('email_tripnote_list_delete').'">');
 
@@ -126,8 +126,8 @@ if ($oldnotes) {
         null,
     ));
     foreach (array_reverse($oldnotes) as $tnote) {
-        $start = date('Y-m-d', $tnote['start_date']->timestamp);
-        $end   = date('Y-m-d', $tnote['end_date']->timestamp);
+        $start = ($tnote['start_date']) ? $tnote['start_date']->format('Y-m-d') : '';
+        $end   = ($tnote['end_date'])   ? $tnote['end_date']->format('Y-m-d')   : '';
 
         $table->addData(View::createElement('tr', array(
             $start,
@@ -157,7 +157,8 @@ function getTripnotes()
     }
     $notes = array();
     foreach ($rawnotes as $note) {
-        $id = date('Y-m-d', $note['start_date']->timestamp);
+        if (!$note['start_date'] instanceof DateTime) continue;
+        $id = $note['start_date']->format('Y-m-d');
         $notes[$id] = $note;
     }
     return $notes;
