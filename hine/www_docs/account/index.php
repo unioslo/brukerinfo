@@ -56,12 +56,11 @@ if (!empty($userinfo['affiliations'])) {
     $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), txt('account_affs_empty'));
 }
 
-//expire
-if(isset($userinfo['expire'])) {
-    $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']);
+//expire 
+if (isset($userinfo['expire']) && $userinfo['expire'] instanceof DateTime) {
+    $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']->format(txt('date_format')));
     unset($userinfo['expire']);
 }
-
 
 if(isset($_GET['more'])) {
     $list[1] = View::createElement('a', txt('general_less_details'), 'account/');
@@ -79,6 +78,7 @@ if(isset($_GET['more'])) {
         if(!$titl = @txt('bofh_info_'.$k)) { // @ prevents warnings, as data may change
             $titl = $k; // if no given translation, just output variable name
         }
+        $v = ($v instanceof DateTime) ? $v->format(txt('date_format')) : $v;
         $list[2]->addData(ucfirst($titl).':', $v);
     }
 }
@@ -101,10 +101,10 @@ if (sizeof($accounts) > 1) {
         }
 
         //checks for expired accounts:
-        if($acc['expire']) {
+        if ($acc['expire'] instanceof DateTime) {
             //older than today:
-            if($acc['expire']->timestamp < time()) $aname = txt('account_name_deleted', array('username'=>$aname));
-            $expire = date(txt('date_format'), $acc['expire']->timestamp);
+            if ($acc['expire'] < new DateTime()) $aname = txt('account_name_deleted', array('username'=>$aname));
+            $expire = $acc['expire']->format(txt('date_format'));
         } else {
             $expire = txt('account_other_expire_not_set');
         }
