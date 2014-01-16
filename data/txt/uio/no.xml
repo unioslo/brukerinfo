@@ -234,7 +234,12 @@
             &lt;li&gt;inneholde ord som finnes i en ordbok&lt;/li&gt;
             &lt;li&gt;ligne på et passord du har brukt tidligere&lt;/li&gt;
         &lt;/ul&gt;
-        &lt;/p&gt;</ACCOUNT_PASSWORD_INTRO>
+        &lt;/p&gt;
+        &lt;strong&gt;Merk&lt;/strong&gt; at det tar tid før man kan logge med
+        det nye passordet på alle tjenester hos Universitetet. Det anbefales å
+        bytte passord like før man har gått for dagen.
+        &lt;/p&gt;
+    </ACCOUNT_PASSWORD_INTRO>
 
     <ACCOUNT_PASSWORD_FORM_NEW>Nytt passord:</ACCOUNT_PASSWORD_FORM_NEW>
     <ACCOUNT_PASSWORD_FORM_NEW2>Bekreft nytt passord:</ACCOUNT_PASSWORD_FORM_NEW2>

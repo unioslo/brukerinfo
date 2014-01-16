@@ -229,7 +229,13 @@
             &lt;li&gt;Contain words found in a dictionary&lt;/li&gt;
             &lt;li&gt;Resemble one of your previous set password&lt;/li&gt;
         &lt;/ul&gt;
-        &lt;/p&gt;</ACCOUNT_PASSWORD_INTRO>
+        &lt;/p&gt;
+        &lt;p&gt;
+        &lt;strong&gt;Note&lt;/strong&gt; that it takes time before you can
+        log in with your new password to all services at the University.
+        It is advised to change the password at the very end of the working day.
+        &lt;/p&gt;
+        </ACCOUNT_PASSWORD_INTRO>
 
     <ACCOUNT_PASSWORD_FORM_NEW>Enter new password:</ACCOUNT_PASSWORD_FORM_NEW>
     <ACCOUNT_PASSWORD_FORM_NEW2>Confirm new password:</ACCOUNT_PASSWORD_FORM_NEW2>
