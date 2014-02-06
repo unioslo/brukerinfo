@@ -27,8 +27,8 @@ class View_uio extends ViewTemplate
     /** The user-object (if logged on) */
     protected $user;
 
-    /** If the user is logged on or not */
-    protected $logged_in = false;
+    /** Authorization - decides which menu items to present */
+    protected $authz;
 
     public function __construct()
     {
@@ -57,7 +57,7 @@ class View_uio extends ViewTemplate
         header('X-FRAME-OPTIONS: DENY');
 
         $this->user = Init::get('User');
-        $this->logged_in = $this->user->isLoggedOn();
+        $this->authz = Init::get('Authorization');
 
         $language = Init::get('Text')->getLanguage();
         if ($language) {
@@ -90,97 +90,82 @@ class View_uio extends ViewTemplate
      */
     protected function getMenu($sub = null)
     {
-        if (!$this->logged_in) {
+        if (!$this->authz->is_authenticated()) {
             // unauthenticated users should only see the logon page
             return;
-        }
+        } elseif ($this->authz->is_guest()) {
+            // Guest user menu
+            $menu['guest_info']['link']     = 'guests/info.php';
+            $menu['guest_password']['link'] = 'account/password.php';
+        } else {
+            // Generic menu
+            $menu['home']['link'] = '';
 
-        $bofh = Init::get('Bofh');
-        $is_employee = $bofh->isEmployee();
-        $is_personal = $bofh->isPersonal();
-        $is_guest = $bofh->hasTraits(array('guest_name', 'guest_owner'));
-        $has_email = $bofh->hasSpreads('IMAP@uio');
-
-        //start
-        if(!$is_guest) {
-            $menu['home']['link']       = '';
-        }
-
-        //person
-        if ($is_personal) {
-            $menu['person']['link']     = 'person/';
-            $menu['person']['sub']      = array(
-                '',
-                'primary.php', 
-            );
-            if ($is_employee) {
-                $menu['person']['sub'][] = 'name.php';
+            // person menu items
+            if ($this->authz->is_personal()) {
+                $menu['person']['link'] = 'person/';
+                $menu['person']['sub']  = array(
+                    '',
+                    'primary.php', 
+                );
+                if ($this->authz->can_set_display_name()) {
+                    $menu['person']['sub'][] = 'name.php';
+                }
             }
-        }
 
-        //accounts
-        if(!$is_guest) {
-            $menu['account']['link']   = 'account/';
-            $menu['account']['sub']    = array(
+            // account menu items
+            $menu['account']['link'] = 'account/';
+            $menu['account']['sub']  = array(
                 '',
                 'password.php',
             );
-        }
-        if ($is_personal) {
-            $menu['account']['sub'][] = 'primary.php';
-        };
+            if ($this->authz->can_set_primary_account()) {
+                $menu['account']['sub'][] = 'primary.php';
+            };
 
-        //printer
-        if ($is_personal) {
-            $menu['printing']['link']    = 'printing/';
-            $menu['printing']['sub']     = array(
-                '',
-                'history.php'
-            );
-        };
+            // Print menu items
+            if ($this->authz->can_print()) {
+                $menu['printing']['link'] = 'printing/';
+                $menu['printing']['sub']  = array(
+                    '',
+                    'history.php'
+                );
+            };
 
-        //email
-        if ($has_email) {
-            $menu['email']['link']      = 'email/';
-            $menu['email']['sub'][]     = '';
-            $menu['email']['sub'][]     = 'spam.php';
-            $menu['email']['sub'][]     = 'tripnote.php';
-            $menu['email']['sub'][]     = 'forward.php';
-        }
+            // email menu items
+            if ($this->authz->has_email()) {
+                $menu['email']['link'] = 'email/';
+                $menu['email']['sub']  = array('spam.php');
 
-        // groups
-        // TODO: Better selection than 'not guest'?
-        if (!$is_guest) {
+                if ($this->authz->has_imap()) {
+                    $menu['email']['sub'][] = 'tripnote.php';
+                    $menu['email']['sub'][] = 'forward.php';
+                }
+            }
+
+            // Group menu items
             $menu['groups']['link']     = 'groups/';
-            $menu['groups']['sub']      = array(
-                ''
-            );
-            if ($is_employee) $menu['groups']['sub'][] = 'new.php';
+            $menu['groups']['sub']      = array('');
+            if ($this->authz->can_create_groups()) {
+                $menu['groups']['sub'][] = 'new.php';
+            }
+
+            // reservation menu items
+            if ($this->authz->can_set_reservations()) {
+                $menu['reservations']['link'] = 'reservations/';
+                $menu['reservations']['sub']  = array('');
+            }
+
+            // guest admin menu items
+            // TODO: When implementing wifi-guests, comment out the following
+            //if ($this->authz->can_create_guests()) {
+                //$menu['guests']['link'] = 'guests/';
+                //$menu['guests']['sub'] = array(
+                    //'',
+                    //'create.php',
+                //);
+            //}
         }
-
-        // reservations
-        if ($is_personal) {
-            $menu['reservations']['link'] = 'reservations/';
-            $menu['reservations']['sub'] = array(
-            );
-        }
-
-        // TODO: When implementing wifi-guests, comment out the following
-        // guests: guest admin
-        //if ($is_personal && $is_employee) {
-            //$menu['guests']['link'] = 'guests/';
-            //$menu['guests']['sub'] = array(
-                //'',
-                //'create.php',
-            //);
-        //}
-
-        // TODO: When implementing wifi-guests, comment out the following
-        // guests
-        //if ($is_guest) {
-            //$menu['guest_info']['link'] = 'guests/info.php';
-            //$menu['guest_password']['link'] = 'account/password.php';
-        //}
 
         //returning main menu
         if($sub === null) {
@@ -200,7 +185,7 @@ class View_uio extends ViewTemplate
      */
     public function htmlMainmenu()
     {
-        if (!$this->logged_in) {
+        if (!$this->authz->is_authenticated()) {
             return '';
         }
         $base_path = parse_url(self::$base_url, PHP_URL_PATH);
@@ -224,7 +209,7 @@ class View_uio extends ViewTemplate
      */
     public function htmlSubmenu()
     {
-        if (!$this->logged_in) {
+        if (!$this->authz->is_authenticated()) {
             return '';
         }
         $base_path = parse_url(self::$base_url, PHP_URL_PATH);
@@ -250,7 +235,7 @@ class View_uio extends ViewTemplate
      */
     public function htmlStatusbox()
     {
-        if (!$this->logged_in) {
+        if (!$this->authz->is_authenticated()) {
             return '';
         }
         return '<span id="head-login"><span id="head-login-user-fullname">'

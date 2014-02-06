@@ -22,6 +22,11 @@ $User = Init::get('User');
 $Bofh = Init::get('Bofh');
 $View = Init::get('View');
 $text = Init::get('Text');
+$Authz = Init::get('Authorization');
+
+if (!$Authz->has_email()) {
+    View::forward('', txt('email_info_no_account'));
+}
 
 // Getting spam settings
 
