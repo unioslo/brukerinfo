@@ -32,8 +32,11 @@ $User = Init::get('User');
 // View handles the output to html
 $View = Init::get('View');
 
+// Access control for shortcuts:
+$Authz = Init::get('Authorization');
+
 // Guests should be redirected to their main page:
-if ($Bofh->hasTraits(array('guest_owner', 'guest_name'))) {
+if ($Authz->is_guest()) {
     View::forward('guests/info.php');
 }
 
@@ -45,19 +48,27 @@ if (sizeof($Bofh->getAccounts()) > 1) {
     $View->addElement('p', txt('home_specific_account'));
 }
 
-$View->addElement('h2', txt('home_shortcuts_title'));
-$View->addElement(
-    'ul', 
-    array(
-        View::createElement('a', txt('home_shortcuts_password'),        'account/password.php'),
-        //View::createElement('a', txt('home_shortcuts_printing'),         'printing/'),
-        View::createElement('a', txt('home_shortcuts_printing_history'), 'printing/history.php'),
-        View::createElement('a', txt('home_shortcuts_spam'), 'email/spam.php'),
-        View::createElement('a', txt('home_shortcuts_tripnote'), 'email/tripnote.php'),
-        View::createElement('a', txt('home_shortcuts_members'), 'groups/'),
-        View::createElement('a', txt('home_shortcuts_group_request'), 'groups/new.php'),
-    )
+// Setup shortcuts
+$shortcuts = array(
+    View::createElement('a', txt('home_shortcuts_password'), 'account/password.php'),
+    View::createElement('a', txt('home_shortcuts_printing_history'), 'printing/history.php'),
+    View::createElement('a', txt('home_shortcuts_members'), 'groups/'),
+    View::createElement('a', txt('home_shortcuts_group_request'), 'groups/new.php'),
 );
+
+if ($Authz->has_imap()) {
+    $shortcuts[] = View::createElement(
+        'a', txt('home_shortcuts_tripnote'), 'email/tripnote.php'
+    );
+}
+if ($Authz->has_email()) {
+    $shortcuts[] = View::createElement(
+        'a', txt('home_shortcuts_spam'), 'email/spam.php'
+    );
+}
+
+$View->addElement('h2', txt('home_shortcuts_title'));
+$View->addElement('ul', $shortcuts);
 
 $View->addElement('h2', txt('home_about_title'));
 $View->addElement('p', txt('home_about'));

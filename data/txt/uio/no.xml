@@ -663,6 +663,8 @@
 
     <GUEST_NO_USERNAME>Brukernavn ikke oppgitt</GUEST_NO_USERNAME>
     <GUEST_UNKNOWN_USERNAME>Fant ikke trådløskonto med brukernavn {{username}}</GUEST_UNKNOWN_USERNAME>
+    <GUEST_CREATE_NO_ACCESS>Kun ansatte kan opprette
+        gjestebrukere.</GUEST_CREATE_NO_ACCESS>
 
     <!-- Help pages -->
     <HELP_TITLE>Hjelp</HELP_TITLE>

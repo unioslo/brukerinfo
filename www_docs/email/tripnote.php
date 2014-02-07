@@ -22,6 +22,12 @@ $User = Init::get('User');
 $Bofh = new Bofhcom();
 $View = Init::get('View');
 $text = Init::get('Text');
+$Authz = Init::get('Authorization');
+
+if (!$Authz->has_imap()) {
+    // This is very temporary
+    View::forward('', 'IMAP: '.txt('email_info_no_account'));
+}
 
 $form = formAddTripnote();
 if ($form->validate()) {

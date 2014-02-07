@@ -24,6 +24,11 @@ require_once '../init.php';
 $Init = new Init();
 $User = Init::get('User');
 $Bofh = Init::get('Bofh');
+$Authz = Init::get('Authorization');
+
+if (!$Authz->can_create_guests()) {
+    View::forward('', txt('guests_create_no_access'));
+}
 
 // For simplicity
 $guest = $_POST['u'];

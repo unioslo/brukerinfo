@@ -174,6 +174,19 @@ class Init extends InitBase
         return $user;
     }
 
+
+    /**
+     * Creates the object for handling authorization checks
+     *
+     * @return Authorization
+     */
+    protected static function createAuthorization()
+    {
+        $authz = new Authorization_uio(Init::get('Bofh'), Init::get('User'));
+        return $authz;
+    }
+
+
     /**
      * Creates the object for handling the proper Text in the right language.
      */

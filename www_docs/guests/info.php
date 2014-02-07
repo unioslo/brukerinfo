@@ -25,20 +25,18 @@ $Init = new Init();
 $User = Init::get('User');
 $Bofh = Init::get('Bofh');
 $View = Init::get('View');
+$Authz = Init::get('Authorization');
 
 $View->addTitle(txt('guest_title'));
 
-$user_is_employee = $Bofh->isEmployee();
-$user_is_guest    = $Bofh->hasTraits(array('guest_owner', 'guest_name'));
-
 // Determine username of the guest user to show
-if ($user_is_guest) {
+if ($Authz->is_guest()) {
     $guest = $Bofh->getUsername();
-} elseif ($user_is_employee) {
+} elseif ($Authz->can_create_guests()) {
     $guest = (!empty($_POST['g_uname'])) ? $_POST['g_uname'] : (
         (!empty($_GET['guest'])) ? $_GET['guest'] : false);
 } else {
-    View::forward('', txt('employees_only'));
+    View::forward('', txt('guests_create_no_access'));
 }
 
 if (empty($guest)) {
@@ -77,7 +75,7 @@ $View->addElement('h2', txt('guest_info_top', array('str'=>$guestinfo['name'])))
 $View->addElement($infolist);
 
 // Add formsForms
-if ($user_is_employee) {
+if ($Authz->can_create_guests()) {
     $passwordform = new BofhFormInline('new_guest_password');
     $passwordform->addElement('hidden', 'g_uname', $guestinfo['username']);
     $passwordform->addElement('submit', null, txt('guest_btn_resetpw'));
