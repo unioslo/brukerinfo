@@ -660,6 +660,8 @@
     <GUEST_NO_USERNAME>No username given</GUEST_NO_USERNAME>
     <GUEST_UNKNOWN_USERNAME>No wireless account found with the username
         {{uname}}.</GUEST_UNKNOWN_USERNAME>
+    <GUEST_CREATE_NO_ACCESS>Only employees have access to create guest
+        users.</GUEST_CREATE_NO_ACCESS>
 
     <!-- Help pages -->
     <HELP_TITLE>Help</HELP_TITLE>

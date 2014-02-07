@@ -30,7 +30,7 @@ $Authz = Init::get('Authorization');
 $View->addTitle(txt('guest_title'));
 
 // Determine username of the guest user to show
-if ($Auths->is_guest()) {
+if ($Authz->is_guest()) {
     $guest = $Bofh->getUsername();
 } elseif ($Authz->can_create_guests()) {
     $guest = (!empty($_POST['g_uname'])) ? $_POST['g_uname'] : (
