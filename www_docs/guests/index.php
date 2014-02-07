@@ -25,6 +25,11 @@ $Init = new Init();
 $User = Init::get('User');
 $Bofh = Init::get('Bofh');
 $View = Init::get('View');
+$Authz = Init::get('Authorization');
+
+if (!$Authz->can_create_guests()) {
+    View::forward('', txt('guests_create_no_access'));
+}
 
 $View->addTitle(txt('guest_title'));
 if (!$Bofh->isEmployee()) View::forward('', txt('employees_only'));
