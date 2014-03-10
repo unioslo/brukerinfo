@@ -307,7 +307,7 @@
     <EMAIL_TITLE>E-post</EMAIL_TITLE>
 
     <EMAIL_INFO_TITLE>E-postoversikt</EMAIL_INFO_TITLE>
-    <EMAIL_INFO_NO_ACCOUNT>Denne brukerkontoen har ikke noen e-postkonto</EMAIL_INFO_NO_ACCOUNT>
+    <EMAIL_INFO_NO_ACCOUNT>Denne brukerkontoen har ikke noen IMAP-konto</EMAIL_INFO_NO_ACCOUNT>
     <EMAIL_INFO_PRIMARY_ADDR>Primæradresse:</EMAIL_INFO_PRIMARY_ADDR>
     <EMAIL_INFO_VALID_ADDR>Gyldige adresser:</EMAIL_INFO_VALID_ADDR>
     <EMAIL_INFO_QUOTA>Kvote:</EMAIL_INFO_QUOTA>
