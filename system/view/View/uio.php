@@ -139,8 +139,8 @@ class View_uio extends ViewTemplate
 
                 if ($this->authz->has_imap()) {
                     $menu['email']['sub'][] = 'tripnote.php';
-                    $menu['email']['sub'][] = 'forward.php';
                 }
+                $menu['email']['sub'][] = 'forward.php';
             }
 
             // Group menu items

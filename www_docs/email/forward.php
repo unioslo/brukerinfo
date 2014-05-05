@@ -23,11 +23,7 @@ $Bofh = Init::get('Bofh');
 $View = Init::get('View');
 $Authz = Init::get('Authorization');
 
-if (!$Authz->has_imap()) {
-    // This is very temporary
-    View::forward('', 'IMAP: '.txt('email_info_no_account'));
-}
-
+View::forward('', 'IMAP: '.txt('email_info_no_account'));
 
 $forwards = getForwards();
 $keeplocal = (isset($forwards['local']) ? true : false);
