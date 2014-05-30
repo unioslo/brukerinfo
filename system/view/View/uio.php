@@ -153,7 +153,6 @@ class View_uio extends ViewTemplate
             // reservation menu items
             if ($this->authz->can_set_reservations()) {
                 $menu['reservations']['link'] = 'reservations/';
-                $menu['reservations']['sub']  = array('');
             }
 
             // guest admin menu items
