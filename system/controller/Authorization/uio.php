@@ -45,9 +45,8 @@ class Authorization_uio extends Authorization
      */
     protected function is_guest()
     {
-        return false;
-        //return (   $this->is_authenticated()
-                //&& $this->bofh->hasTraits(array('guest_name', 'guest_owner')));
+        return (   $this->is_authenticated()
+                && $this->bofh->hasTraits(array('guest_name', 'guest_owner')));
     }
 
 
@@ -105,9 +104,8 @@ class Authorization_uio extends Authorization
      */
     protected function can_create_guests()
     {
-        return false;
-        //return (   $this->is_authenticated()
-                //&& $this->bofh->isEmployee());
+        return (   $this->is_authenticated()
+                && $this->bofh->isEmployee());
     }
 
 
