@@ -39,14 +39,28 @@ if ($Authz->is_guest()) {
     View::forward('', txt('guests_create_no_access'));
 }
 
+// No guest data
 if (empty($guest)) {
     View::forward('guests/', txt('guest_no_username'), View::MSG_ERROR);
+}
+
+// Clean input string (XSS)
+if (!preg_match("/^[-A-Za-z0-9]+$/", $guest)) {
+    View::forward(
+        'guests/',
+        txt('guest_unknown_username', array('uname'=>htmlspecialchars($guest))),
+        View::MSG_ERROR
+    );
 }
 
 // Get information about the guest
 $guestdata = $Bofh->getData('guest_info', $guest);
 if (empty($guestdata)) {
-    View::forward('guests/', txt('guest_unknown_username', array('uname'=>$guest)), View::MSG_ERROR);
+    View::forward(
+        'guests/',
+        txt('guest_unknown_username', array('uname'=>$guest)),
+        View::MSG_ERROR
+    );
 }
 $guestinfo = array_pop($guestdata);
 
