@@ -135,7 +135,10 @@ class View_uio extends ViewTemplate
             // email menu items
             if ($this->authz->has_email()) {
                 $menu['email']['link'] = 'email/';
-                $menu['email']['sub']  = array('spam.php');
+                $menu['email']['sub']  = array(
+                    '',
+                    'spam.php'
+                );
 
                 if ($this->authz->has_imap()) {
                     $menu['email']['sub'][] = 'tripnote.php';
