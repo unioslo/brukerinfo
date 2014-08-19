@@ -323,7 +323,7 @@
     <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>
 
     <EMAIL_INFO_MORE_INFO>For more information about UiOs e-mail system please see
-        &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;the e-mail help pages&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+        &lt;a href="https://www.uio.no/english/services/it/email-calendar-chat/"&gt;the e-mail help pages&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
 
     <EMAIL_DEL_TITLE>Confirm deletion of e-mail address</EMAIL_DEL_TITLE>
     <EMAIL_DEL_INTRO>Are you sure you want to delete the address
@@ -341,7 +341,7 @@
     <EMAIL_SPAM_TITLE>Spam settings</EMAIL_SPAM_TITLE>
     <EMAIL_SPAM_INTRO>These settings are applied before your e-mails are delivered to your mailbox.
         For more information please see &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/spam/"&gt;USIT's
+        href="http://www.uio.no/english/services/it/email-calendar-chat/email-calendar/more-about-email-calendar/spam.html"&gt;USIT's
         page about spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
 
     <!-- 
@@ -368,21 +368,14 @@
     <EMAIL_FILTER_INTRO>Additional spam settings are extra tools for decreasing
         the amount of spam you receive.  Remember to also set your standard spam
         settings. For more information please see &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/spam/"&gt;
+        href="http://www.uio.no/english/services/it/email-calendar-chat/email-calendar/more-about-email-calendar/spam.html"&gt;
         USIT's page about spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
     <EMAIL_FILTER_UPDATE_SUCCESS>Your additional spam settings have been updated</EMAIL_FILTER_UPDATE_SUCCESS>
     <EMAIL_FILTER_UNKNOWN>Unknown setting</EMAIL_FILTER_UNKNOWN>
     <EMAIL_FILTER_DATA_GREYLIST>Greylisting</EMAIL_FILTER_DATA_GREYLIST>
-    <EMAIL_FILTER_DATA_GREYLIST_DESC>Description:
-        "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt; Please see &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/graalisting/"&gt;
-        USIT's page about greylist&lt;/a&gt; for more information.
-    </EMAIL_FILTER_DATA_GREYLIST_DESC>
+    <EMAIL_FILTER_DATA_GREYLIST_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"</EMAIL_FILTER_DATA_GREYLIST_DESC>
     <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
-    <EMAIL_FILTER_DATA_UIOONLY_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
-        Please see &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/uioonly/"&gt;USIT's page about 
-        UiOonly&lt;/a&gt; for more information.</EMAIL_FILTER_DATA_UIOONLY_DESC>
+    <EMAIL_FILTER_DATA_UIOONLY_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"</EMAIL_FILTER_DATA_UIOONLY_DESC>
     <EMAIL_FILTER_ENABLE>Enable</EMAIL_FILTER_ENABLE>
     <EMAIL_FILTER_DISABLE>Disable</EMAIL_FILTER_DISABLE>
     <EMAIL_FILTER_ON>{{filter}} on</EMAIL_FILTER_ON>
