@@ -589,6 +589,7 @@
     <GUEST_NEW_FORM_FNAME_REQ>Given name is required.</GUEST_NEW_FORM_FNAME_REQ>
     <GUEST_NEW_FORM_LNAME_REQ>Surname is required.</GUEST_NEW_FORM_LNAME_REQ>
     <GUEST_NEW_FORM_DURATION_REQ>Duration is required.</GUEST_NEW_FORM_DURATION_REQ>
+    <GUEST_NEW_FORM_CONTACT_REQ>Mobile phone number is required.</GUEST_NEW_FORM_CONTACT_REQ>
     <GUEST_NEW_FORM_CONTACT_FMT>Mobile phone number must be eight digits (only
         Norwegian phone numbers allowed).</GUEST_NEW_FORM_CONTACT_FMT>
     <GUEST_NEW_FORM_NAME_FMT>Name must be at least {{min}} characters, and no
@@ -598,6 +599,8 @@
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; SMS with the
         username and password was sent to
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
+    <GUEST_CREATED_NOSMS>&lt;b&gt;Warning:&lt;/b&gt; Unable to send SMS to
+        {{mobile}}. &lt;br/&gt;</GUEST_CREATED_NOSMS>
     <GUEST_CREATED_PW>Created new wireless account: &lt;ul&gt;&lt;li&gt;Username:
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Password:
         &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_CREATED_PW>
