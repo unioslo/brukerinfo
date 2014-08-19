@@ -135,7 +135,10 @@ class View_uio extends ViewTemplate
             // email menu items
             if ($this->authz->has_email()) {
                 $menu['email']['link'] = 'email/';
-                $menu['email']['sub']  = array('spam.php');
+                $menu['email']['sub']  = array(
+                    '',
+                    'spam.php'
+                );
 
                 if ($this->authz->has_imap()) {
                     $menu['email']['sub'][] = 'tripnote.php';
@@ -153,7 +156,6 @@ class View_uio extends ViewTemplate
             // reservation menu items
             if ($this->authz->can_set_reservations()) {
                 $menu['reservations']['link'] = 'reservations/';
-                $menu['reservations']['sub']  = array('');
             }
 
             // guest admin menu items
