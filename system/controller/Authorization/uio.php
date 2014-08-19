@@ -61,6 +61,38 @@ class Authorization_uio extends Authorization
                 && $this->bofh->isPersonal());
     }
 
+    /** 
+     * If the user is member of a given group
+     *
+     * @group String Name of the group
+     *
+     * @return bool
+     */
+    protected function is_member_of($group)
+    {
+        if (!$this->is_authenticated()) {
+            return false;
+        }
+        try {
+            // Sigh, this is a bit expensive
+            $memberships = $this->bofh->run_command(
+                'group_memberships', 'account', $this->user->getUsername()
+            );
+            if (empty($memberships)) {
+                return false;  // Cop out if no memberships
+            }
+            foreach ($memberships as $membership) {
+                if ($membership['group'] === $group) {
+                    return true;
+                }
+            }
+        } catch (XML_RPC2_FaultException $e) {
+            // Maybe the group doesn't exist?
+            trigger_error("Unable to check group memberships: $e", E_USER_WARNING);
+        }
+        return false;
+    }
+
 
     /**
      * Check if the user has IMAP spread
@@ -104,6 +136,11 @@ class Authorization_uio extends Authorization
      */
     protected function can_create_guests()
     {
+        /* THIS IS TEMPORARY: Restrict access to group */
+        if (!$this->is_member_of('cerebrum')) {
+            return false;
+        }
+
         return (   $this->is_authenticated()
                 && $this->bofh->isEmployee());
     }
