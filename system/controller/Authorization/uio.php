@@ -137,12 +137,22 @@ class Authorization_uio extends Authorization
     protected function can_create_guests()
     {
         /* THIS IS TEMPORARY: Restrict access to group */
-        if (!$this->is_member_of('cerebrum')) {
+        // First, turn down anyone won't get access anyway
+        if (!(   $this->is_authenticated()
+              && $this->bofh->isEmployee())
+        ){
             return false;
         }
 
-        return (   $this->is_authenticated()
-                && $this->bofh->isEmployee());
+        // User is employee, let's check group membershipt
+        if ($this->is_member_of('cerebrum')) {
+            return true;
+        }
+        return false;
+
+        /* *This is the intended authorized group */
+        //return (   $this->is_authenticated()
+                //&& $this->bofh->isEmployee());
     }
 
 
