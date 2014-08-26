@@ -1,5 +1,5 @@
 <?php
-// Copyright 2013 University of Oslo, Norway
+// Copyright 2013, 2014 University of Oslo, Norway
 // 
 // This file is part of Cerebrum.
 // 
@@ -20,7 +20,6 @@
 /**
  * This is the UIO implementation of the authorization class
  */
-
 class Authorization_uio extends Authorization
 {
     /* Valid prefixes for authentication methods */
@@ -63,10 +62,11 @@ class Authorization_uio extends Authorization
 
     /** 
      * If the user is member of a given group
+     * NOTE: This call can be expensive.
      *
-     * @group String Name of the group
+     * @param string $group Name of the group
      *
-     * @return bool
+     * @return boolean
      */
     protected function is_member_of($group)
     {
@@ -136,23 +136,26 @@ class Authorization_uio extends Authorization
      */
     protected function can_create_guests()
     {
-        /* THIS IS TEMPORARY: Restrict access to group */
-        // First, turn down anyone won't get access anyway
-        if (!(   $this->is_authenticated()
-              && $this->bofh->isEmployee())
-        ){
-            return false;
-        }
-
-        // User is employee, let's check group membershipt
-        if ($this->is_member_of('cerebrum')) {
+        if (in_array(
+            $this->user->getUsername(),
+            array(
+                'baardj', 'bore', 'dmytrok',
+                'elisabhs', 'estephaz', 'fhl',
+                'hamar', 'hanskfje', 'hbf',
+                'jbr', 'jokim', 'jsama',
+                'kolbu', 'mathiasm', 'mocca',
+                'odberg', 'rodseth', 'tgk',
+                'tvl', 'xiaoliz'
+            ),
+            true
+        )) {
             return true;
         }
         return false;
 
-        /* *This is the intended authorized group */
-        //return (   $this->is_authenticated()
-                //&& $this->bofh->isEmployee());
+        /* This is the intended authorized group */
+        return (   $this->is_authenticated()
+            && $this->bofh->isEmployee());
     }
 
 
