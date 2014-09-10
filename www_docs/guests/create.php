@@ -1,18 +1,18 @@
 <?php
 // Copyright 2011 University of Oslo, Norway
-// 
+//
 // This file is part of Cerebrum.
-// 
+//
 // Cerebrum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // Cerebrum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
@@ -34,11 +34,13 @@ if (!$Authz->can_create_guests()) {
 
 $View->addTitle(txt('guest_title'));
 
-$guestform = create_guest_form();
+$guestform = buildForm();
 if ($guestform->validate()) {
-    if ($ret = $guestform->process('create_guest')) {
+    if ($ret = $guestform->process('bofhCreateGuest')) {
         View::forward('guests/create.php', $ret);
     }
+    // else, error. The bofhCreateGuest function should add an error message to
+    // the page.
 }
 $View->setFocus('#guest_fname');
 
@@ -51,11 +53,11 @@ $View->addElement($guestform);
 
 /**
  * Creates an HTML-form for creating guest users.
- * 
+ *
  * @return string HTML form element.
  */
-function create_guest_form() {
-
+function buildForm()
+{
     // Create guest form
     $form = new BofhFormUiO('new_guest');
     $form->setAttribute('class', 'app-form-big');
@@ -67,9 +69,9 @@ function create_guest_form() {
     $form->addElement('text', 'g_lname', txt('guest_new_form_lname'));
 
     /* Expire date selections */
-    $duration = array(  7=>txt('general_timeinterval_week', array('num'=>1)), 
-                       30=>txt('general_timeinterval_month', array('num'=>1)), 
-                       90=>txt('general_timeinterval_months', array('num'=>3)), 
+    $duration = array(  7=>txt('general_timeinterval_week', array('num'=>1)),
+                       30=>txt('general_timeinterval_month', array('num'=>1)),
+                       90=>txt('general_timeinterval_months', array('num'=>3)),
                       180=>txt('general_timeinterval_months', array('num'=>6)),
                   );
     $radio = array();
@@ -80,7 +82,7 @@ function create_guest_form() {
 
     $form->addElement('text', 'g_contact', txt('guest_new_form_contact'));
     $form->addElement('submit', null, txt('guest_new_form_submit'));
-    
+
     // Inputs that require content
     $form->addRule('g_fname', txt('guest_new_form_fname_req'), 'required');
     $form->addRule('g_lname', txt('guest_new_form_lname_req'), 'required');
@@ -88,7 +90,7 @@ function create_guest_form() {
     $form->addRule('g_contact', txt('guest_new_form_contact_req'), 'required');
 
     /* Limit name lengths
-     * Cerebrum limitation of 512 chars, bofhd will throw an error if 
+     * Cerebrum limitation of 512 chars, bofhd will throw an error if
      * fname+lname > 512 - 1 chars.
      * It's easier to enforce max limits of 255 chars for fname and lname...
      */
@@ -109,7 +111,7 @@ function create_guest_form() {
     $form->addRule(
         'g_contact', txt('guest_new_form_contact_fmt'), 'regex', '/^[\d]{8}$/'
     );
-    
+
     // Trim all input prior to validation, and set radio button default
     $form->applyFilter('__ALL__', 'trim');
     $form->setDefaults(array('g_days'=>30));
@@ -120,67 +122,31 @@ function create_guest_form() {
 
 /**
  * Creates a new guest user using BofhCom.
- * 
- * @param array $data Array with the form data from BofhFormUiO('new_guest') to 
- *                    process
  *
- * @return string An HTML element with information about the new guest account, 
- *                and a form button to show a printer friendly password sheet.
- *         boolean false on failure.
+ * @param array $data Array with the form data to process
+ *
+ * @return string|null An HTML element with information about the new guest
+ *                     account, or null on failure.
  */
-function create_guest($data) {
+function bofhCreateGuest($data)
+{
     $bofh = Init::get('Bofh');
 
     try {
         $res = $bofh->run_command(
-            'guest_create', $data['g_days'], $data['g_fname'], $data['g_lname'], 
+            'guest_create', $data['g_days'], $data['g_fname'], $data['g_lname'],
             'guest', $data['g_contact']
         );
     } catch (XML_RPC2_FaultException $e) {
-        // Error. Not translated or user friendly, but this shouldn't happen at all: 
-        View::addMessage(htmlspecialchars($e->getMessage()), View::MSG_WARNING);
-        return false;
+        // Error. Not translated or user friendly, but this shouldn't happen at all:
+        //View::addMessage(htmlspecialchars($e->getMessage()), View::MSG_WARNING);
+        BofhCom::viewError($e);
+        return null;
     }
 
-    // Success, SMS sent to user. Return message for display.
-    if (!empty($res['sms_to']) && !empty($res['sms_sent'])) {
-        return txt(
-            'guest_created_sms',
-            array('uname'=>$res['username'],'mobile'=>$res['sms_to'])
-        );
-    }
-    
-    $msg = ""; // Return message
-
-    /* User created, but SMS was not sent... */
-    if (!empty($res['sms_to']) && empty($res['sms_sent'])) {
-        $msg .= txt('guest_created_nosms', array('mobile'=>$res['sms_to']));
-    }
-
-    // SMS not sent (mobile not given, or error).
-    // Return message for display, and include a button link to a 
-    // printer-friendly `popup' page.
-    try {
-        $pw = $bofh->getCachedPassword($res['username']);
-    } catch (XML_RPC2_FaultException $e) {
-        /* Should this be handled better? */
-        $msg .= txt(
-            'guest_created_pw', array('uname'=>$res['username'], 'password'=>'')
-        );
-        return $msg;
-    } 
-
-    $msg .= txt(
-        'guest_created_pw', array('uname'=>$res['username'], 'password'=>$pw)
+    return txt(
+        'guest_created_sms',
+        array('uname'=>$res['username'],'mobile'=>$res['sms_to'])
     );
-    $pwbutton = new BofhFormInline(
-        'password_sheet', 'post', 'guests/print.php', '_blank'
-    );
-    $pwbutton->addElement('hidden', 'u', $res['username']);
-    $pwbutton->addElement('submit', null, txt('guest_pw_letter_button'));
-    $msg .= $pwbutton;
-    return $msg;
 }
-
 ?>
-
