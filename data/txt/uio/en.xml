@@ -600,10 +600,9 @@
         &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_CREATED_PW>
     <GUEST_DEACTIVATED>Wireless account with the username &lt;b&gt;{{uname}}
         &lt;/b&gt; successfully closed</GUEST_DEACTIVATED>
-    <GUEST_NEW_PASSWORD>Password changed for wireless account:
-        &lt;ul&gt;&lt;li&gt;Username:
-        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Password:
-        &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_NEW_PASSWORD>
+    <GUEST_NEW_PASSWORD>Password changed for wireless account
+        &lt;b&gt;{{uname}}&lt;/b&gt; – notified &lt;b&gt;{{mobile}}&lt;/b&gt;
+        with the new password</GUEST_NEW_PASSWORD>
 
     <GUEST_BTN_DEACTIVATE>Close account</GUEST_BTN_DEACTIVATE>
     <GUEST_BTN_RESETPW>Set new password</GUEST_BTN_RESETPW>
