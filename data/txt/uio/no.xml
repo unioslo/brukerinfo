@@ -604,10 +604,9 @@
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
     <GUEST_DEACTIVATED>Wifi-konto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
         avsluttet</GUEST_DEACTIVATED>
-    <GUEST_NEW_PASSWORD>Passord endret for trådløskonto:
-        &lt;ul&gt;&lt;li&gt;Brukernavn:
-        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Passord:
-        &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_NEW_PASSWORD>
+    <GUEST_NEW_PASSWORD>Passord endret for trådløskonto
+        &lt;b&gt;{{uname}}&lt;/b&gt; – nytt passord sendt til
+        &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_NEW_PASSWORD>
 
     <GUEST_BTN_DEACTIVATE>Avslutt konto</GUEST_BTN_DEACTIVATE>
     <GUEST_BTN_RESETPW>Sett nytt passord</GUEST_BTN_RESETPW>
