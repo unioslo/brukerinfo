@@ -592,6 +592,7 @@
     <GUEST_NEW_FORM_FNAME_REQ>Fornavn er obligatorisk.</GUEST_NEW_FORM_FNAME_REQ>
     <GUEST_NEW_FORM_LNAME_REQ>Etternavn er obligatorisk.</GUEST_NEW_FORM_LNAME_REQ>
     <GUEST_NEW_FORM_DURATION_REQ>Varighet er obligatorisk.</GUEST_NEW_FORM_DURATION_REQ>
+    <GUEST_NEW_FORM_CONTACT_REQ>Mobilnummer er obligatorisk.</GUEST_NEW_FORM_CONTACT_REQ>
     <GUEST_NEW_FORM_CONTACT_FMT>Mobilnummer må være åtte siffer (bare norske
         telefonnummer er tillatt).</GUEST_NEW_FORM_CONTACT_FMT>
     <GUEST_NEW_FORM_NAME_FMT>Navn må være minimum {{min}} tegn og maksimum
@@ -601,15 +602,11 @@
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; En SMS med
         brukernavn og passord ble sendt til
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
-    <GUEST_CREATED_PW>Ny trådløskonto opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
-        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Passord:
-        &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_CREATED_PW>
     <GUEST_DEACTIVATED>Wifi-konto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
         avsluttet</GUEST_DEACTIVATED>
-    <GUEST_NEW_PASSWORD>Passord endret for trådløskonto:
-        &lt;ul&gt;&lt;li&gt;Brukernavn:
-        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Passord:
-        &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</GUEST_NEW_PASSWORD>
+    <GUEST_NEW_PASSWORD>Passord endret for trådløskonto
+        &lt;b&gt;{{uname}}&lt;/b&gt; – nytt passord sendt til
+        &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_NEW_PASSWORD>
 
     <GUEST_BTN_DEACTIVATE>Avslutt konto</GUEST_BTN_DEACTIVATE>
     <GUEST_BTN_RESETPW>Sett nytt passord</GUEST_BTN_RESETPW>

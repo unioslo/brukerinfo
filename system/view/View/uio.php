@@ -159,14 +159,13 @@ class View_uio extends ViewTemplate
             }
 
             // guest admin menu items
-            // TODO: When implementing wifi-guests, comment out the following
-            //if ($this->authz->can_create_guests()) {
-                //$menu['guests']['link'] = 'guests/';
-                //$menu['guests']['sub'] = array(
-                    //'',
-                    //'create.php',
-                //);
-            //}
+            if ($this->authz->can_create_guests()) {
+                $menu['guests']['link'] = 'guests/';
+                $menu['guests']['sub'] = array(
+                    '',
+                    'create.php',
+                );
+            }
         }
 
         //returning main menu

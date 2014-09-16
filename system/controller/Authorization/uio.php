@@ -1,5 +1,5 @@
 <?php
-// Copyright 2013 University of Oslo, Norway
+// Copyright 2013, 2014 University of Oslo, Norway
 // 
 // This file is part of Cerebrum.
 // 
@@ -20,7 +20,6 @@
 /**
  * This is the UIO implementation of the authorization class
  */
-
 class Authorization_uio extends Authorization
 {
     /* Valid prefixes for authentication methods */
@@ -45,9 +44,8 @@ class Authorization_uio extends Authorization
      */
     protected function is_guest()
     {
-        return false;
-        //return (   $this->is_authenticated()
-                //&& $this->bofh->hasTraits(array('guest_name', 'guest_owner')));
+        return (   $this->is_authenticated()
+                && $this->bofh->hasTraits(array('guest_name', 'guest_owner')));
     }
 
 
@@ -60,6 +58,39 @@ class Authorization_uio extends Authorization
     {
         return (   $this->is_authenticated()
                 && $this->bofh->isPersonal());
+    }
+
+    /** 
+     * If the user is member of a given group
+     * NOTE: This call can be expensive.
+     *
+     * @param string $group Name of the group
+     *
+     * @return boolean
+     */
+    protected function is_member_of($group)
+    {
+        if (!$this->is_authenticated()) {
+            return false;
+        }
+        try {
+            // Sigh, this is a bit expensive
+            $memberships = $this->bofh->run_command(
+                'group_memberships', 'account', $this->user->getUsername()
+            );
+            if (empty($memberships)) {
+                return false;  // Cop out if no memberships
+            }
+            foreach ($memberships as $membership) {
+                if ($membership['group'] === $group) {
+                    return true;
+                }
+            }
+        } catch (XML_RPC2_FaultException $e) {
+            // Maybe the group doesn't exist?
+            trigger_error("Unable to check group memberships: $e", E_USER_WARNING);
+        }
+        return false;
     }
 
 
@@ -105,9 +136,26 @@ class Authorization_uio extends Authorization
      */
     protected function can_create_guests()
     {
+        if (in_array(
+            $this->user->getUsername(),
+            array(
+                'baardj', 'bore', 'dmytrok',
+                'elisabhs', 'estephaz', 'fhl',
+                'hamar', 'hanskfje', 'hbf',
+                'jbr', 'jokim', 'jsama',
+                'kolbu', 'mathiasm', 'mocca',
+                'odberg', 'rodseth', 'tgk',
+                'tvl', 'xiaoliz'
+            ),
+            true
+        )) {
+            return true;
+        }
         return false;
-        //return (   $this->is_authenticated()
-                //&& $this->bofh->isEmployee());
+
+        /* This is the intended authorized group */
+        return (   $this->is_authenticated()
+            && $this->bofh->isEmployee());
     }
 
 
