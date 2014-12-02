@@ -26,18 +26,18 @@ $View->addTitle('Account');
 $View->addTitle(txt('ACCOUNT_PASSWORD_TITLE'));
 
 
-//the New Password form
+// The password change form
 $form = new BofhFormUiO('changePassword');
 $form->setAttribute('class', 'app-form-big');
-$form->addElement('password', 'new_pass', txt('account_password_form_new'), 'id="new_pass"');
-//$form->addElement('submit', null, 'Check password');
-//todo: add explaination here...
 
-$form->addElement('password', 'new_pass2', txt('account_password_form_new2'));
 $form->addElement('password', 'cur_pass', txt('account_password_form_current'));
+$form->addElement('html', '<hr />');
+$form->addElement('password', 'new_pass', txt('account_password_form_new'), 'id="new_pass"');
+$form->addElement('password', 'new_pass2', txt('account_password_form_new2'));
+
 $form->addElement('submit', null, txt('account_password_form_submit'));
 
-//Rules:
+// Validation rules
 $form->addRule('new_pass', txt('account_password_rule_new_required'), 'required');
 
 // no more rules here, wants to validate the password first, before checking rest
