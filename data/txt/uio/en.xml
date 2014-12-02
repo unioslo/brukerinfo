@@ -307,7 +307,7 @@
     <EMAIL_TITLE>E-mail</EMAIL_TITLE>
     
     <EMAIL_INFO_TITLE>E-mail overview</EMAIL_INFO_TITLE>
-    <EMAIL_INFO_NO_ACCOUNT>This user account does not have an IMAP account</EMAIL_INFO_NO_ACCOUNT>
+    <EMAIL_INFO_NO_ACCOUNT>This user account does not have an email account</EMAIL_INFO_NO_ACCOUNT>
     <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
     <EMAIL_INFO_VALID_ADDR>Valid addresses:</EMAIL_INFO_VALID_ADDR>
     <EMAIL_INFO_QUOTA>Quota:</EMAIL_INFO_QUOTA>
@@ -315,7 +315,7 @@
     <EMAIL_INFO_SPAM_LEVEL>Spam level:</EMAIL_INFO_SPAM_LEVEL>
     <EMAIL_INFO_SPAM_ACTION>Spam action:</EMAIL_INFO_SPAM_ACTION>
     <EMAIL_INFO_FORWARD>Forwarding:</EMAIL_INFO_FORWARD>
-    <EMAIL_INFO_SERVER>IMAP server:</EMAIL_INFO_SERVER>
+    <EMAIL_INFO_SERVER>Email server:</EMAIL_INFO_SERVER>
     <EMAIL_INFO_FILTERS>Filtering:</EMAIL_INFO_FILTERS>
     <EMAIL_INFO_TARGETTYPE>Status:</EMAIL_INFO_TARGETTYPE>
 
@@ -349,7 +349,7 @@
         the descriptions from bofhd. 
     -->
     <EMAIL_SPAM_ACTION_DROPSPAM>Reject messages classified as spam</EMAIL_SPAM_ACTION_DROPSPAM>
-    <EMAIL_SPAM_ACTION_SPAMFOLDER>Deliver spam to a separate IMAP folder</EMAIL_SPAM_ACTION_SPAMFOLDER>
+    <EMAIL_SPAM_ACTION_SPAMFOLDER>Deliver spam to a separate folder</EMAIL_SPAM_ACTION_SPAMFOLDER>
     <EMAIL_SPAM_ACTION_NOACTION>Deliver spam just like legitimate email</EMAIL_SPAM_ACTION_NOACTION>
 
     <EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>Filter everything that resembles spam</EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>
