@@ -86,7 +86,7 @@
     </LOGON_INTRO>
     <LOGON_OUTRO>
         &lt;ul&gt;
-        &lt;li&gt;Forgotten your password? Students can &lt;a href="forgotten/password/"&gt;set a new password by SMS&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;Forgotten your password? Students and employees can &lt;a href="forgotten/password/"&gt;set a new password by SMS&lt;/a&gt;.&lt;/li&gt;
         &lt;li&gt;Don't know &lt;a href="forgotten/username/"&gt;your username at UiO&lt;/a&gt;?&lt;/li&gt;
         &lt;/ul&gt;
 

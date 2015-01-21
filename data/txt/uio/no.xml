@@ -85,7 +85,7 @@
     </LOGON_INTRO>
     <LOGON_OUTRO>
         &lt;ul&gt;
-        &lt;li&gt;Glemt passordet ditt? Studenter kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;Glemt passordet ditt? Studenter og ansatte kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
         &lt;li&gt;Vet du ikke hva &lt;a href="forgotten/username/"&gt;ditt brukernavn ved UiO&lt;/a&gt; er?&lt;/li&gt;
         &lt;/ul&gt;
 
