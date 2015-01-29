@@ -136,23 +136,6 @@ class Authorization_uio extends Authorization
      */
     protected function can_create_guests()
     {
-        if (in_array(
-            $this->user->getUsername(),
-            array(
-                'baardj', 'bore', 'dmytrok',
-                'elisabhs', 'estephaz', 'fhl',
-                'hamar', 'hanskfje', 'hbf',
-                'jbr', 'jokim', 'jsama',
-                'kolbu', 'mathiasm', 'mocca',
-                'odberg', 'rodseth', 'tgk',
-                'tvl', 'xiaoliz'
-            ),
-            true
-        )) {
-            return true;
-        }
-        return false;
-
         /* This is the intended authorized group */
         return (   $this->is_authenticated()
             && $this->bofh->isEmployee());
