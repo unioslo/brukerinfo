@@ -548,8 +548,8 @@
 
     <!-- Guest pages -->
     <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
-    <GUEST_INTRO>Her kan UiO-ansatte opprette Wifi-kontoer til sine egne
-        gjester. Med en slik Wifi-konto kan en gjest koble til det trådløse
+    <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til UiOs
+        trådløsnett. Kontoene er tidsbegrenset og gir kun tilgang til det trådløse
         nettet på UiO.</GUEST_INTRO>
     <GUEST_LIST_ACTIVE>Dine aktive trådløskontoer</GUEST_LIST_ACTIVE>
     <!--<GUEST_LIST_INACTIVE>Dine utgåtte Wifi-kontoer</GUEST_LIST_INACTIVE>-->
@@ -575,9 +575,8 @@
     <GUEST_INFO_DAYS_LEFT>Dager igjen:</GUEST_INFO_DAYS_LEFT>
 
     <GUEST_NEW_TITLE>Opprett ny trådløskonto</GUEST_NEW_TITLE>
-    <GUEST_NEW_INTRO>Dersom du oppgir mobilnummer for gjesten, vil vedkommende
-        få en SMS med brukernavn og passord. Hvis ikke dette fylles ut, vil
-        brukernavn og passord vises på skjermen.</GUEST_NEW_INTRO>
+    <GUEST_NEW_INTRO>Oppgi gjestens navn og mobilnummer. Vedkommende vil få en SMS
+        med brukernavn og passord. </GUEST_NEW_INTRO>
     <GUEST_NEW_FORM_FNAME>Fornavn:</GUEST_NEW_FORM_FNAME>
     <GUEST_NEW_FORM_LNAME>Etternavn:</GUEST_NEW_FORM_LNAME>
     <GUEST_NEW_FORM_DURATION>Varighet:</GUEST_NEW_FORM_DURATION>

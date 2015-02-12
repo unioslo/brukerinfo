@@ -538,9 +538,9 @@
 
     <!-- Guest pages -->
     <GUEST_TITLE>Wireless accounts</GUEST_TITLE>
-    <GUEST_INTRO>Staff and employees at the UiO can create Wifi accounts for
-        their guests. Using the Wifi account, a guest can connect to the UiO
-        wireless network.</GUEST_INTRO>
+    <GUEST_INTRO>Create and manage accounts that give guest access to the UiO wireless
+        network. The accounts are time-limited and can only be used to access the wireless
+        network.</GUEST_INTRO>
     <GUEST_LIST_ACTIVE>Your active accounts</GUEST_LIST_ACTIVE>
     <!--<GUEST_LIST_INACTIVE>Your expired accounts</GUEST_LIST_INACTIVE>-->
     <GUEST_LIST_ACTIVE_EMPTY>You don't have any active Wifi-accounts</GUEST_LIST_ACTIVE_EMPTY>
@@ -565,10 +565,9 @@
     <GUEST_INFO_DAYS_LEFT>Days left:</GUEST_INFO_DAYS_LEFT>
 
     <GUEST_NEW_TITLE>Create new wireless account</GUEST_NEW_TITLE>
-    <GUEST_NEW_INTRO>You have the choice between sending the username and
-        password to a cell phone (note: only Norwegian numbers allowed), or to
-        print a password sheet that can be delivered to your
-        guest.</GUEST_NEW_INTRO>
+    <GUEST_NEW_INTRO>Enter the name and cell phone number (note: only Norwegian
+        numbers are allowed). The username and password will be
+        sent to this number.</GUEST_NEW_INTRO>
     <GUEST_NEW_FORM_FNAME>Given name:</GUEST_NEW_FORM_FNAME>
     <GUEST_NEW_FORM_LNAME>Surname:</GUEST_NEW_FORM_LNAME>
     <GUEST_NEW_FORM_DURATION>Duration:</GUEST_NEW_FORM_DURATION>
