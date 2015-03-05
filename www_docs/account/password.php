@@ -96,7 +96,7 @@ $pa->setValue(null);
 
 
 
-$View->setFocus('#new_pass');
+$View->setFocus('#cur_pass');
 $View->start();
 $View->addElement('h1', txt('ACCOUNT_PASSWORD_TITLE'));
 $View->addElement('raw', txt('ACCOUNT_PASSWORD_INTRO'));
