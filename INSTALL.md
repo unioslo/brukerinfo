@@ -9,13 +9,15 @@ the reader to be experienced with administration of web servers and bofhd.
 
 Before you get Brukerinfo up and running you need to have:
 
-* A running apache2 web server with PHP5 and some Pear packages.
+* A running web server, e.g. Apache, with PHP5 and some Pear packages.
 * A running bofhd daemon with an updated configuration.
 * Access between the web server and the bofhd daemon.
 
-### Apache2
+### Web server
 
-Apache2 is the recommended web server, as it is the server Brukerinfo was
+You would need a web server to run the application on.
+
+Apache is the recommended web server, as it is the server the application was
 developed on. The project could either be in a subdirectory of a site, or get
 its own site (through `/etc/apache2/sites-available/`).
 
@@ -192,18 +194,18 @@ chmod --recursive ug=rwX,a=             data/
 ``` 
 
 where `cerebrum` is the user that should be updating the code, and `wwwgroup` is
-the administration group that both the administrators and the apache user should
+the administration group that both the administrators and the httpd user should
 be in.
 
 If no such common group is available, the different files has to be readable by
 everyone instead. Note, however, that the `data/` directory might be used for
 passwords files in the future, and should therefore not be readable by anyone
-other than the apache user.
+other than the httpd user.
 
 ### `www_docs`
 
 `www_docs` is the web directory, available to the public, so make sure that the
-location of this directory equals apaches *DocumentRoot* for this project. For
+location of this directory equals Apache's *DocumentRoot* for this project. For
 instance, if *DocumentRoot* is `/var/www/brukerinfo`, move `www_docs` to be this
 directory. The code is usually::
 
