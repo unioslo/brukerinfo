@@ -543,8 +543,8 @@
         network.</GUEST_INTRO>
     <GUEST_LIST_ACTIVE>Your active accounts</GUEST_LIST_ACTIVE>
     <!--<GUEST_LIST_INACTIVE>Your expired accounts</GUEST_LIST_INACTIVE>-->
-    <GUEST_LIST_ACTIVE_EMPTY>You don't have any active Wifi-accounts</GUEST_LIST_ACTIVE_EMPTY>
-    <!--<GUEST_LIST_INACTIVE_EMPTY>You don't have any expired Wifi-accounts</GUEST_LIST_INACTIVE_EMPTY>-->
+    <GUEST_LIST_ACTIVE_EMPTY>You don't have any active wireless accounts</GUEST_LIST_ACTIVE_EMPTY>
+    <!--<GUEST_LIST_INACTIVE_EMPTY>You don't have any expired wireless accounts</GUEST_LIST_INACTIVE_EMPTY>-->
     <!--<GUEST_LIST_SHOW_INACTIVE>Show expired accounts</GUEST_LIST_SHOW_INACTIVE>-->
 
     <GUEST_LIST_COL_USERNAME>Username</GUEST_LIST_COL_USERNAME>

@@ -552,9 +552,9 @@
         trådløsnett. Kontoene er tidsbegrenset og gir kun tilgang til det trådløse
         nettet på UiO.</GUEST_INTRO>
     <GUEST_LIST_ACTIVE>Dine aktive trådløskontoer</GUEST_LIST_ACTIVE>
-    <!--<GUEST_LIST_INACTIVE>Dine utgåtte Wifi-kontoer</GUEST_LIST_INACTIVE>-->
-    <GUEST_LIST_ACTIVE_EMPTY>Du har ingen aktive Wifi-kontoer</GUEST_LIST_ACTIVE_EMPTY>
-    <!--<GUEST_LIST_INACTIVE_EMPTY>Du har ingen utgåtte Wifi-kontoer</GUEST_LIST_INACTIVE_EMPTY>-->
+    <!--<GUEST_LIST_INACTIVE>Dine utgåtte trådløskontoer</GUEST_LIST_INACTIVE>-->
+    <GUEST_LIST_ACTIVE_EMPTY>Du har ingen aktive trådløskontoer</GUEST_LIST_ACTIVE_EMPTY>
+    <!--<GUEST_LIST_INACTIVE_EMPTY>Du har ingen utgåtte trådløskontoer</GUEST_LIST_INACTIVE_EMPTY>-->
     <!--<GUEST_LIST_SHOW_INACTIVE>Vis utgåtte kontoer</GUEST_LIST_SHOW_INACTIVE>-->
 
     <GUEST_LIST_COL_USERNAME>Brukernavn</GUEST_LIST_COL_USERNAME>
@@ -601,7 +601,7 @@
         &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; En SMS med
         brukernavn og passord ble sendt til
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
-    <GUEST_DEACTIVATED>Wifi-konto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
+    <GUEST_DEACTIVATED>Trådløskonto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
         avsluttet</GUEST_DEACTIVATED>
     <GUEST_NEW_PASSWORD>Passord endret for trådløskonto
         &lt;b&gt;{{uname}}&lt;/b&gt; – nytt passord sendt til
