@@ -5,3 +5,5 @@ hine/www_docs/forgotten
 www_docs/postmaster
 data/motd
 stats
+.*.swp
+*~
