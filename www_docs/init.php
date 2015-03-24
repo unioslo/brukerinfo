@@ -93,7 +93,7 @@ class Init extends InitBase
             // sets the session cookie to only work in subpages of brukerinfo
             // (and not all in e.g. *.uio.no/*)
             session_set_cookie_params(0, $path, $_SERVER['SERVER_NAME'], TRUE, TRUE);
-            session_name('brukerinfoid');
+            session_name('brukerinfo' . INST . 'id');
             session_start();
         }
 
