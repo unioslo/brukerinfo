@@ -16,28 +16,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-// Get the initial setup code. Should be imported by every php file under 
-// www_docs. In directories below www_docs use '../' to locate it.
-require_once 'init.php';
-
-// Standard config
-$Init = new Init();
-
-// Bofh-communication
-$Bofh = Init::get('Bofh');
-
-// User-object, handling the authentication
-$User = Init::get('User');
-
-// View handles the output to html
-$View = Init::get('View');
-
-// Access control for shortcuts:
-$Authz = Init::get('Authorization');
-
-$mod = Init::get('Modules');
-
-$mod->getPage($_SERVER['PATH_INFO']);
-
-?>
-
+interface ModuleGroup {
+    public function getName();
+    public function getInfoPath();
+    public function getSubgroups();
+    public function getShortcuts();
+    public function display($path);
+}

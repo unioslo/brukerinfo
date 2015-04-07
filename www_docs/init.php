@@ -43,7 +43,7 @@ require_once LINK_LIB . '/controller/InitBase.php';
 
 // the page can only work in https!
 // this will hopefully not be seen, as the server is automatic resending users to https
-if($_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
+if(HTTPS_ONLY && $_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
     trigger_error('Someone got to an unsecure page, died badly. Wrong setup in apache?', E_USER_WARNING);
     die('This page will only work in https mode, check your url.');
 }
@@ -65,6 +65,7 @@ class Init extends InitBase
             self::$autoload_dirs[] = LINK_SYSTEM . "/$d";
             self::$autoload_dirs[] = LINK_LIB    . "/$d";
         }
+        self::$autoload_dirs[] = LINK_SYSTEM . "/modules";
         parent::__construct();
 
         // TODO: move most of the rest to View (and other classes):
@@ -92,7 +93,7 @@ class Init extends InitBase
 
             // sets the session cookie to only work in subpages of brukerinfo
             // (and not all in e.g. *.uio.no/*)
-            session_set_cookie_params(0, $path, $_SERVER['SERVER_NAME'], TRUE, TRUE);
+            session_set_cookie_params(0, $path, $_SERVER['SERVER_NAME'], HTTPS_ONLY, true);
             session_name('brukerinfo' . INST . 'id');
             session_start();
         }
@@ -125,8 +126,10 @@ class Init extends InitBase
     protected static function createView()
     {
         $text = self::get('Text');
-        $view = new View_uio();
-        $view->setTemplate(LINK_DATA . '/templates/template.uio.' . $text->getLanguage() . '.txt');
+        $viewcls = new ReflectionClass('View_' . INST);
+        $view = $viewcls->newInstance();
+        $view->setTemplate(LINK_DATA . '/templates/template.'. INST. '.' . 
+            $text->getLanguage() . '.txt');
         if (defined('MESSAGE_FILE') and is_file(MESSAGE_FILE)) {
             $message = file_get_contents(MESSAGE_FILE);
             if ($message) {
@@ -211,6 +214,19 @@ class Init extends InitBase
     }
 
 
+    /**
+     * Creates modules instance and initializes it
+     */
+    protected static function createModules() {
+        $modules = new Modules();
+        new Home($modules);
+        require_once LINK_DATA . "/features.php";
+        foreach (get_feature_list() as $feature) {
+            get_feature($feature, $modules);
+        }
+        return $modules;
+    }
+
 
     /* 
      * Calculates the preferred language by different input values and stores it 
@@ -226,7 +242,7 @@ class Init extends InitBase
      *
      *  @return String                  The chosen language.
      */
-    protected function chooseLanguage()
+    protected static function chooseLanguage()
     {
         $langs = array_keys(Text::getAvailableLanguages());
         $chosen = DEFAULT_LANG;

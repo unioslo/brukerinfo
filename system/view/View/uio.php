@@ -189,18 +189,20 @@ class View_uio extends ViewTemplate
         if (!$this->authz->is_authenticated()) {
             return '';
         }
-        $base_path = parse_url(self::$base_url, PHP_URL_PATH);
-        $current   = substr($_SERVER['PHP_SELF'], strlen($base_path));
-        $current = preg_replace('/index\.php$/', '', $current);
-        $current   = substr($current, 0, strpos($current, '/') + 1);
 
         $menu = array(); 
-        foreach($this->getMenu() as $id => $link) {
-            $name = txt('MENU_' . strtoupper($id));
-            $linkbase = substr($link, 0, strpos($link, '/') + 1);
-            $active = ($current == $linkbase ? ' class="active"' : '');
-            // FIXME: Style override to fit all tabs without wrapping
-            $menu[] = "<a href=\"$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
+        $mod = Init::get("Modules");
+        $current = $mod->getCurrentGroup($_SERVER['PATH_INFO']);
+        foreach ($mod->listGroups() as $grp) {
+            $paths = $grp->getInfoPath();
+            if ($grp === $current) {
+                $active = ' class="active"';
+            } else {
+                $active = "";
+            }
+            $name = txt('MENU_' . strtoupper($grp->getName()));
+            $link = $paths[0];
+            $menu[] = "<a href=\"index.php/$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-mainmenu"');
     }
@@ -213,20 +215,17 @@ class View_uio extends ViewTemplate
         if (!$this->authz->is_authenticated()) {
             return '';
         }
-        $base_path = parse_url(self::$base_url, PHP_URL_PATH);
-        $current   = substr($_SERVER['PHP_SELF'], strlen($base_path));
-        $current   = preg_replace('/index\.php$/', '', $current);
-        $maindir   = substr($current, 0, strpos($current, '/'));
+        $mod = Init::get("Modules");
+        $current = $_SERVER['PATH_INFO'];
+        $gr = $mod->getCurrentGroup($current);
+        $maindir = $gr->getName();
+        $menu = array();
 
-        $rawmenu = $this->getMenu($maindir);
-        if (!$rawmenu) {
-            return '';
-        }
-        $menu = array(); 
-        foreach($this->getMenu($maindir) as $link) {
-            $name = txt(strtoupper('MENU_' . $maindir . '_' . basename($link, '.php')));
-            $active = ($current == ("$maindir/$link") ? ' class="active"' : '');
-            $menu[] = "<a href=\"$maindir/$link\"$active>$name</a>";
+        foreach($mod->listSubgroups($gr) as $link) {
+            $name = txt(strtoupper('MENU_' . $maindir . '_' . $link));
+            $active = ($current == "/$maindir/$link" ? ' class="active"' : '');
+            $menu[] = "<a href=\"index.php/$maindir/$link\"$active>$name</a>";
+            echo("$name");
         }
         return self::createElement('ul', $menu, 'id="app-submenu"');
     }
@@ -286,7 +285,7 @@ class View_uio extends ViewTemplate
                 $ret .= '<p class="admonition-title">' . $message[2] . '</p>';
             }
             $ret .= $message[0] . '</div>';
-            $ret .= $msg . "\n";
+            $ret .= $ret . "\n";
         }
         return $ret;
     }

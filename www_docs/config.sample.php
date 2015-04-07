@@ -45,6 +45,11 @@ define('DEBUG',                 false);
 define('INST',                  'uio');
 
 /**
+ * The available functions and pages for brukerinfo.
+ */
+define('FEATURES',              'person account printing email groups reservations guests guest_info guest_password');
+
+/**
  * The location of the system files, that is, the projects' "system/" directory.
  * It is preferred that this directory is not reachable through a web browser, 
  * so place it somewhere else than in www_docs.
