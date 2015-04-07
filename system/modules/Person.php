@@ -22,7 +22,9 @@ class Person implements ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::getAuthorization();
-        $modules->addGroup($this);
+        if (INST == 'uio' && !$this->authz->is_guest() || INST == 'hine' && Init::get('Bofh')->isPersonal()) {
+            $modules->addGroup($this);
+        }
     }
 
     public function getName() {
@@ -34,12 +36,15 @@ class Person implements ModuleGroup {
     }
 
     public function getSubgroups() {
-        $bofh = Init::get("Bofh");
-        if ($bofh->isEmployee()) {
-            return array('', 'name', 'primary');
-        } else {
-            return array('', 'primary');
+        if (INST == 'uio') {
+            $bofh = Init::get("Bofh");
+            if ($bofh->isEmployee()) {
+                return array('', 'name', 'primary');
+            } else {
+                return array('', 'primary');
+            }
         }
+        return array();
     }
 
     public function getShortcuts() {

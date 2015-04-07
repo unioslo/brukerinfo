@@ -6,9 +6,9 @@
     <base href="##BASEURL##" />
 
     <!-- Profile -->
-    <link media="screen" type="text/css" href="design/general.css" rel="stylesheet" />
+    <link media="screen" type="text/css" href="hine_design/general.css" rel="stylesheet" />
 
-    <script type="text/javascript" src="design/jquery.min.js"></script>
+    <script type="text/javascript" src="hine_design/jquery.min.js"></script>
 
     <!-- Framebusting: Prevent clickjacking by avoiding frames. Modern
          browsers respects the x-frame-options, though.
@@ -25,7 +25,7 @@
 <div id="app-head-wrapper">
 <div id="app-head"> 
     <a id="app-instancelogo" href="http://www.hinesna.no/english">
-        <img src="design/hine_logo.png" alt="Nesna University College" />
+        <img src="hine_design/hine_logo.png" alt="Nesna University College" />
     </a>
 
     <a id="app-name" href="##APPLIKASJONSLINK##">##APPLIKASJONSNAVN##</a>

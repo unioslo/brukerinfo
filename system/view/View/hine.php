@@ -55,6 +55,7 @@ class View_hine extends ViewTemplate
         header('X-FRAME-OPTIONS: DENY');
 
         $this->user = Init::get('User');
+        $this->authz = Init::get('Authorization');
         $this->logged_in = $this->user->isLoggedOn();
 
         $language = Init::get('Text')->getLanguage();
@@ -80,107 +81,27 @@ class View_hine extends ViewTemplate
     }
 
     /**
-     * Returns the main menu, or a sub menu if a sub menu id is given.
-     *
-     * @param  String   $sub    If a sub menu should be returned.
-     * @return Array            The menu as a one dimensional array, the keys 
-     *                          are identifiers, and the values are links.
-     */
-    protected function getMenu($sub = null)
-    {
-        if (!$this->logged_in) {
-            // unauthenticated users should only see the logon page
-            return;
-        }
-
-        $bofh = Init::get('Bofh');
-        $is_employee = $bofh->isEmployee();
-        $is_personal = $bofh->isPersonal();
-
-        //start
-        $menu['home']['link']       = '';
-
-        //person
-        if ($is_personal) {
-            $menu['person']['link']     = 'person/';
-            //$menu['person']['sub']      = array(
-            //    '',
-            //    'primary.php', 
-            //);
-            //if ($is_employee) {
-            //    $menu['person']['sub'][] = 'name.php';
-            //}
-        }
-
-        //accounts
-        $menu['account']['link']   = 'account/';
-        $menu['account']['sub']    = array(
-            '',
-            'password.php',
-        );
-
-        if ($is_personal) {
-            $menu['account']['sub'][] = 'primary.php';
-        };
-
-        //email
-        $menu['email']['link']      = 'email/';
-        //$menu['email']['sub'][]     = '';
-        //$menu['email']['sub'][]     = 'spam.php';
-        //$menu['email']['sub'][]     = 'tripnote.php';
-        //$menu['email']['sub'][]     = 'forward.php';
-
-        //groups
-        $menu['groups']['link']     = 'groups/';
-        //$menu['groups']['sub']      = array(
-        //    ''
-        //);
-        //if ($is_employee) $menu['groups']['sub'][] = 'new.php';
-
-        //// reservations
-        //if ($is_personal) {
-        //    $menu['reservations']['link'] = 'reservations/';
-        //    $menu['reservations']['sub'] = array(
-        //    );
-        //}
-
-        // TODO: not yet
-        //if ($is_personal && $is_employee) {
-        //    $menu['guests']['link'] = 'guests/';
-        //    $menu['guests']['sub'] = array(
-        //    );
-        //}
-
-        //returning main menu
-        if($sub === null) {
-            $main = array();
-            foreach ($menu as $k => $v) {
-                $main[$k] = $v['link'];
-            }
-            return $main;
-        } elseif (isset($menu[$sub])) {
-            return $menu[$sub]['sub'];
-        }
-    }
-
-    /**
      * Returns a html formatted string of either the mainmenu or a submenu.
      */
     public function htmlMainmenu()
     {
-        if (!$this->logged_in) {
+        if (!$this->authz->is_authenticated()) {
             return '';
         }
-        $base_path = parse_url(self::$base_url, PHP_URL_PATH);
-        $current   = substr($_SERVER['PHP_SELF'], strlen($base_path));
-        $current = preg_replace('/index\.php$/', '', $current);
-        $current = substr($current, 0, strpos($current, '/') + 1);
 
         $menu = array(); 
-        foreach($this->getMenu() as $id => $link) {
-            $name = txt('MENU_' . strtoupper($id));
-            $active = ($current == $link ? ' class="active"' : '');
-            $menu[] = "<a href=\"$link\"$active>$name</a>";
+        $mod = Init::get("Modules");
+        $current = $mod->getCurrentGroup($_SERVER['PATH_INFO']);
+        foreach ($mod->listGroups() as $grp) {
+            $paths = $grp->getInfoPath();
+            if ($grp === $current) {
+                $active = ' class="active"';
+            } else {
+                $active = "";
+            }
+            $name = txt('MENU_' . strtoupper($grp->getName()));
+            $link = $paths[0];
+            $menu[] = "<a href=\"index.php/$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-mainmenu"');
     }
@@ -190,23 +111,20 @@ class View_hine extends ViewTemplate
      */
     public function htmlSubmenu()
     {
-        if (!$this->logged_in) {
+        if (!$this->authz->is_authenticated()) {
             return '';
         }
-        $base_path = parse_url(self::$base_url, PHP_URL_PATH);
-        $current   = substr($_SERVER['PHP_SELF'], strlen($base_path));
-        $current   = preg_replace('/index\.php$/', '', $current);
-        $maindir   = substr($current, 0, strpos($current, '/'));
+        $mod = Init::get("Modules");
+        $current = $_SERVER['PATH_INFO'];
+        $gr = $mod->getCurrentGroup($current);
+        $maindir = $gr->getName();
+        $menu = array();
 
-        $rawmenu = $this->getMenu($maindir);
-        if (!$rawmenu) {
-            return '';
-        }
-        $menu = array(); 
-        foreach($this->getMenu($maindir) as $link) {
-            $name = txt(strtoupper('MENU_' . $maindir . '_' . basename($link, '.php')));
-            $active = ($current == ("$maindir/$link") ? ' class="active"' : '');
-            $menu[] = "<a href=\"$maindir/$link\"$active>$name</a>";
+        foreach($mod->listSubgroups($gr) as $link) {
+            $name = txt(strtoupper('MENU_' . $maindir . '_' . $link));
+            $active = ($current == "/$maindir/$link" ? ' class="active"' : '');
+            $menu[] = "<a href=\"index.php/$maindir/$link\"$active>$name</a>";
+            echo("$name");
         }
         return self::createElement('ul', $menu, 'id="app-submenu"');
     }

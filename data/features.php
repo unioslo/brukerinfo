@@ -35,9 +35,10 @@ function get_feature_list() {
         return $ret;
     } else {
         $features = array(
-            'uio' => 'account email groups guests person printing reservations',
-            'hine'=> 'account email groups person',
-            'tsd' => ''
+            'uio' => array('account', 'email', 'groups', 'guests', 'person', 
+                           'printing', 'reservations'),
+            'hine'=> array('account', 'email', 'groups', 'person'),
+            'tsd' => array('')
         );
         return $features[INST];
     }

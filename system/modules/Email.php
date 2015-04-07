@@ -22,7 +22,7 @@ class Email implements ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get("Authorization");
-        if ($this->authz->has_email()) {
+        if (INST != 'uio' || $this->authz->has_email()) {
             $modules->addGroup($this);
         }
     }
@@ -36,16 +36,22 @@ class Email implements ModuleGroup {
     }
 
     public function getSubgroups() {
-        return array('', 'forward', 'spam', 'tripnote');
+        if (INST == 'uio') {
+            return array('', 'forward', 'spam', 'tripnote');
+        } elseif (INST == 'hine') {
+            return array('');
+        }
     }
 
     public function getShortcuts() {
         $ret = array();
-        if ($this->authz->has_imap()) {
-            $ret[] = array('email/tripnote', txt('home_shortcuts_tripnote'));
-        }
-        if ($this->authz->has_email()) {
-            $ret[] = array('email/spam', txt('home_shortcuts_spam'));
+        if (INST == 'uio') {
+            if ($this->authz->has_imap()) {
+                $ret[] = array('email/tripnote', txt('home_shortcuts_tripnote'));
+            }
+            if ($this->authz->has_email()) {
+                $ret[] = array('email/spam', txt('home_shortcuts_spam'));
+            }
         }
         return $ret;
     }
@@ -80,7 +86,7 @@ class Email implements ModuleGroup {
         }
         unset($primary['account']);
 
-        if (!empty($_GET['del_addr'])) {
+        if (INST == 'uio' && !empty($_GET['del_addr'])) {
 
             if (!in_array($_GET['del_addr'], $primary['deletable'])) {
                 View::forward('email/', txt('email_del_invalid_addr'));
@@ -140,17 +146,31 @@ class Email implements ModuleGroup {
         }
 
         // valid addresses
-        if (isset($primary['valid_addr'])) {
-            if (!empty($primary['deletable'])) {
-                foreach ($primary['valid_addr'] as $id => $addr) {
-                    if (in_array($addr, $primary['deletable'])) {
-                        $primary['valid_addr'][$id] .= " <a href=\"email/?del_addr=$addr\">"
-                            . txt('email_del_actionlink') . '</a>';
-                    }
+        if (INST == 'uio') {
+            if (isset($primary['valid_addr'])) {
+                if (!empty($primary['deletable'])) {
+                    foreach ($primary['valid_addr'] as $id => $addr) {
+                        if (in_array($addr, $primary['deletable'])) {
+                            $primary['valid_addr'][$id] .= " <a href=\"index.php/email/?del_addr=$addr\">"
+                                . txt('email_del_actionlink') . '</a>';
+                        }
 
+                    }
+                }
+                $prilist->addData(txt('email_info_valid_addr'), $primary['valid_addr']);
+            }
+        } elseif (INST == 'hine') {
+            if (isset($primary['valid_addr'])) {
+                $addresses = array();
+                foreach ($primary['valid_addr'] as $key => $adr) {
+                    if ($adr) {
+                        $addresses[$key] = $adr;
+                    }
+                }
+                if ($addresses) {
+                    $prilist->addData(txt('email_info_valid_addr'), $primary['valid_addr']);
                 }
             }
-            $prilist->addData(txt('email_info_valid_addr'), $primary['valid_addr']);
         }
         unset($primary['valid_addr']);
         unset($primary['deletable']);
@@ -220,7 +240,7 @@ class Email implements ModuleGroup {
             }
 
             $prilist->addData(txt('email_info_filters'), $filters);
-        } else {
+        } elseif (INST == 'uio') {
             $prilist->addData(txt('email_info_filters'), null);
         }
         unset($primary['filters']);
@@ -278,9 +298,9 @@ class Email implements ModuleGroup {
             }
         }
 
-
-
-        $View->addElement('ul', array(txt('email_info_more_info')), 'class="ekstrainfo"');
+        $txt = txt('email_info_more_info');
+        if ($txt)
+            $View->addElement('ul', array(txt('email_info_more_info')), 'class="ekstrainfo"');
 
 
         /**
@@ -291,7 +311,11 @@ class Email implements ModuleGroup {
         function emailinfo($username)
         {
             global $Bofh;
-            $data = $Bofh->getDataClean('email_info', $username);
+            if (INST == 'hine') {
+                $data = $Bofh->cleanData($Bofh->run_command('email_info', $username));
+            } else {
+                $data = $Bofh->getDataClean('email_info', $username);
+            }
 
             //let valid_addr_1 be first in valid_addr list (if existing)
             if (empty($data['valid_addr'])) $data['valid_addr'] = array();

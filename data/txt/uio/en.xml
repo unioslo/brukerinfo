@@ -29,6 +29,7 @@
     <ERROR_BOFH_CONNECTION>Could not connect to the database, please try again later.</ERROR_BOFH_CONNECTION>
     <ERROR_BOFH_ERROR>Error in the communication with the database, please try again later.</ERROR_BOFH_ERROR>
     <ERROR_BOFH_RESTARTED>The database has been restarted, please update the page or log on again.</ERROR_BOFH_RESTARTED>
+    <ERROR_SUBGROUP_NO_ROUTE>Invalid URL</ERROR_SUBGROUP_NO_ROUTE>
 
     <!-- Standard notices -->
     <EMPLOYEES_ONLY>Only employees at UiO are allowed to do this.</EMPLOYEES_ONLY>

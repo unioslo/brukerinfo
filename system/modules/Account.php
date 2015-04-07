@@ -22,7 +22,9 @@ class Account implements ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::getAuthorization();
-        $modules->addGroup($this);
+        if (INST != 'uio' || !$this->authz->is_guest()) {
+            $modules->addGroup($this);
+        }
     }
 
     public function getName() {
@@ -34,7 +36,11 @@ class Account implements ModuleGroup {
     }
 
     public function getSubgroups() {
-        return array('', 'primary', 'password');
+        if (INST == 'uio' || Init::get('Bofh')->isPersonal()) {
+            return array('', 'primary', 'password');
+        } else {
+            return array('', 'password');
+        }
     }
 
     public function getShortcuts() {
@@ -78,15 +84,17 @@ class Account implements ModuleGroup {
         //standard info
 
         //spreads
-        if (isset($userinfo['spread'])) {
+        if (!empty($userinfo['spread'])) {
             $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
             unset($userinfo['spread']);
         } else {
-            $list[0]->addData(ucfirst(txt('bofh_info_spreads')), txt('account_spreads_empty'));
+            if (INST != 'hine') {
+                $list[0]->addData(ucfirst(txt('bofh_info_spreads')), txt('account_spreads_empty'));
+            }
         }
 
         //afiliations
-        if (isset($userinfo['affiliations'])) {
+        if (!empty($userinfo['affiliations'])) {
             $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations(explode(',', $userinfo['affiliations'])));
             unset($userinfo['affiliations']);
         } else {
@@ -95,15 +103,15 @@ class Account implements ModuleGroup {
 
         //expire
         if(!empty($userinfo['expire']) && $userinfo['expire'] instanceof DateTime) {
-            $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']->format('Y-m-d'));
+            $list[0]->addData(ucfirst(txt('bofh_info_expire')).':', $userinfo['expire']->format(txt('date_format')));
             unset($userinfo['expire']);
         }
 
 
         if(isset($_GET['more'])) {
-            $list[1] = View::createElement('a', txt('general_less_details'), 'account/');
+            $list[1] = View::createElement('a', txt('general_less_details'), 'index.php/account/');
         } else {
-            $list[1] = View::createElement('a', txt('general_more_details'), 'account/?more');
+            $list[1] = View::createElement('a', txt('general_more_details'), 'index.php/account/?more');
         }
 
 
@@ -116,7 +124,7 @@ class Account implements ModuleGroup {
                 if(!$titl = @txt('bofh_info_'.$k)) { // @ prevents warnings, as data may change
                     $titl = $k; // if no given translation, just output variable name
                 }
-                $list[2]->addData(ucfirst($titl).':', $v);
+                $list[2]->addData(ucfirst($titl).':', ($v instanceof DateTime) ? $v->format(txt('date_format')) : $v);
             }
         }
 
@@ -138,7 +146,7 @@ class Account implements ModuleGroup {
                 }
 
                 //checks for expired accounts:
-                if ($acc['expire']) {
+                if ($acc['expire'] instanceof DateTime) {
                     //older than today:
                     if ($acc['expire'] < new DateTime()) $aname = txt('account_name_deleted', array('username'=>$aname));
                     $expire = $acc['expire']->format(txt('date_format'));
@@ -198,8 +206,9 @@ class Account implements ModuleGroup {
         function addHelpAffiliations($string) {
 
             //recursive
-            if(is_array($string)) {
-                foreach($string as $k => $v) $string[$k] = addHelpAffiliations($v);
+            if (is_array($string)) {
+                foreach ($string as $k => $v)
+                    $string[$k] = addHelpAffiliations($v);
                 return $string;
             }
 
@@ -354,7 +363,7 @@ class Account implements ModuleGroup {
                         if(changePassword($form->exportValue('new_pass'), $form->exportValue('cur_pass'), $errmsg)) {
                             View::addMessage(txt('account_password_success'));
                             View::addMessage(txt('action_delay_hour'));
-                            View::forward('account/index.php');
+                            View::forward('index.php/account/');
                         } else {
                             //have to send errors manually to the form, (e.g. check for old passwords)
                             $form->setElementError('new_pass', $errmsg);

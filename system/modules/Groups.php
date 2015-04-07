@@ -22,7 +22,8 @@ class Groups implements ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::getAuthorization();
-        $modules->addGroup($this);
+        if (INST != 'uio' || !$this->authz->is_guest())
+            $modules->addGroup($this);
     }
 
     public function getName() {
@@ -34,13 +35,21 @@ class Groups implements ModuleGroup {
     }
 
     public function getSubgroups() {
-        return array('', 'new', 'personal');
+        if (INST == 'uio') {
+            return array('', 'new', 'personal');
+        }
+        return array();
     }
 
     public function getShortcuts() {
+        if (INST == 'uio') {
+            return array(
+                array('groups/', txt('home_shortcuts_members')),
+                array('groups/new/', txt('home_shortcuts_group_request'))
+            );
+        }
         return array(
             array('groups/', txt('home_shortcuts_members')),
-            array('groups/new/', txt('home_shortcuts_group_request'))
         );
     }
 
@@ -549,7 +558,7 @@ class Groups implements ModuleGroup {
             }
             unset($group['description']);
 
-            $dl->addData(txt('group_create_date'), ($group['create_date']) ? $group['create_date']->format('Y-m-d') : '');
+            $dl->addData(txt('group_create_date'), ($group['create_date']) ? $group['create_date']->format(txt('date_format')) : '');
             unset($group['create_date']);
 
             $dl->addData(txt('group_spread'), addHelpSpread(explode(',', $group['spread'])));
@@ -718,7 +727,7 @@ class Groups implements ModuleGroup {
         }
 
         // recommending a personal group
-        if (!isset($adm_groups[$User->getUsername()])) {
+        if (INST == 'uio' && !isset($adm_groups[$User->getUsername()])) {
             try {
                 $prs = $Bofh->run_command('group_info', $User->getUsername());
             } catch (XML_RPC2_FaultException $e) {

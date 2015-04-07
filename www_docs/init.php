@@ -1,5 +1,5 @@
 <?php
-// Copyright 2009, 2010, 2011 University of Oslo, Norway
+// Copyright 2009–2015 University of Oslo, Norway
 //
 // This file is part of Cerebrum.
 //
@@ -185,7 +185,8 @@ class Init extends InitBase
      */
     protected static function createAuthorization()
     {
-        $authz = new Authorization_uio(Init::get('Bofh'), Init::get('User'));
+        $authzcls = new ReflectionClass('Authorization_' . INST);
+        $authz = $authzcls->newInstance(Init::get('Bofh'), Init::get('User'));
         return $authz;
     }
 

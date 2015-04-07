@@ -86,6 +86,9 @@ class Modules {
         array_shift($parts);
         $grp = $this->getCurrentGroup($path);
         array_shift($parts);
+        if ($parts && !in_array($parts[0], $grp->getSubgroups())) {
+            View::forward('', txt('error_subgroup_no_route'));
+        }
         return $grp->display($parts);
     }
 
