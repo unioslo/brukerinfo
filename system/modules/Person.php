@@ -190,7 +190,7 @@ class Person implements ModuleGroup {
     public function personname() {
         $bofh = Init::get('Bofh');
         if (!$bofh->isEmployee()) {
-            View::forward('email/', txt('EMPLOYEES_ONLY'));
+            View::forward('index.php/person/', txt('EMPLOYEES_ONLY'));
         }
 
         $addresses = getAddresses();
@@ -200,7 +200,7 @@ class Person implements ModuleGroup {
         $form = formModName($primary, $name, $addresses);
         if ($form->validate()) {
             $form->process('formModNameProcess');
-            View::forward('person/');
+            View::forward('index.php/person/');
         }
 
         $view = Init::get('View');
@@ -426,9 +426,9 @@ class Person implements ModuleGroup {
 
         if ($form->validate()) {
             if ($form->process('process_set_primary')) {
-                View::forward('person/primary.php', txt('primary_person_updated'));
+                View::forward('index.php/person/primary/', txt('primary_person_updated'));
             }
-            View::forward('person/primary.php', txt('error_bofh_error'));
+            View::forward('index.php/person/primary/', txt('error_bofh_error'));
         }
 
         $View->start();

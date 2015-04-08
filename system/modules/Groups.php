@@ -458,11 +458,11 @@ class Groups implements ModuleGroup {
 
         if (!empty($_GET['group'])) { // SHOW A SPECIFIC GROUP
             if (!isset($normal_groups[$_GET['group']]) && !isset($adm_groups[$_GET['group']])) {
-                View::forward('groups/', txt('groups_group_unknown'), View::MSG_WARNING);
+                View::forward('index.php/groups/', txt('groups_group_unknown'), View::MSG_WARNING);
             }
             $group = $Bofh->getDataClean('group_info', $_GET['group']);
             if (!$group) {
-                View::forward('groups/', txt('groups_group_unknown'), View::MSG_WARNING);
+                View::forward('index.php/groups/', txt('groups_group_unknown'), View::MSG_WARNING);
             }
 
             $groupname = ($group['name']);
@@ -473,7 +473,7 @@ class Groups implements ModuleGroup {
                 $newMember = groupmemberForm($groupname);
                 if ($newMember->validate()) {
                     $antall = $newMember->process('groupmemberFormProcess');
-                    View::forward('groups/?group='.$groupname);
+                    View::forward('index.php/groups/?group='.$groupname);
                 }
 
                 // deleting member
@@ -523,7 +523,7 @@ class Groups implements ModuleGroup {
                                 delMembers($groupname, 'person', array($id));
                             }
                         }
-                        View::forward('groups/?group='.$groupname);
+                        View::forward('index.php/groups/?group='.$groupname);
                     }
 
                     $View->start();
@@ -535,14 +535,14 @@ class Groups implements ModuleGroup {
                 $descForm = formDescription($groupname, $group['description']);
                 if ($descForm->validate()) {
                     $descForm->process('formDescriptionProcess');
-                    View::forward('groups/?group='.$groupname);
+                    View::forward('index.php/groups/?group='.$groupname);
                 }
 
                 // form for deleting members if too many members
                 $delform = getFormDeleteMembers($groupname);
                 if ($delform->validate()) {
                     $delform->process('formDeleteMembersProcess');
-                    View::forward('groups/?group='.$groupname);
+                    View::forward('index.php/groups/?group='.$groupname);
                 }
             }
 
@@ -588,9 +588,9 @@ class Groups implements ModuleGroup {
             $primary->addData($dl);
 
             if (isset($_GET['more'])) {
-                $primary->addData(View::createElement('a', txt('general_less_details'), 'groups/?group='.$groupname));
+                $primary->addData(View::createElement('a', txt('general_less_details'), 'index.php/groups/?group='.$groupname));
             } else {
-                $primary->addData(View::createElement('a', txt('general_more_details'), 'groups/?group='.$groupname.'&more'));
+                $primary->addData(View::createElement('a', txt('general_more_details'), 'index.php/groups/?group='.$groupname.'&more'));
             }
 
             if (isset($_GET['more'])) {
@@ -637,15 +637,15 @@ class Groups implements ModuleGroup {
                             $pagelist = View::createElement('ul', null, 'class="pagenav"');
 
                             if ($page > 0) {
-                                $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname"));
-                                $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1)));
+                                $pagelist->addData(View::createElement('a', txt('navigation_first'), "index.php/groups/?group=$groupname"));
+                                $pagelist->addData(View::createElement('a', txt('navigation_previous'), "index.php/groups/?group=$groupname&page=".($page-1)));
                             }
                             for($i = 0; $i <= $max; $i++) {
-                                $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
+                                $pagelist->addData(View::createElement('a', ($i+1), "index.php/groups/?group=$groupname&page=$i"));
                             }
                             if ($page < $max) {
-                                $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1)));
-                                $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max)));
+                                $pagelist->addData(View::createElement('a', txt('navigation_next'), "index.php/groups/?group=$groupname&page=".($page+1)));
+                                $pagelist->addData(View::createElement('a', txt('navigation_last'), "index.php/groups/?group=$groupname&page=".($max)));
                             }
                             $View->addElement($pagelist);
                         }
@@ -691,7 +691,7 @@ class Groups implements ModuleGroup {
             $table = View::createElement('table', null, 'class="app-table"');
             foreach ($adm_groups as $name => $description) {
                 $table->addData(array(
-                    View::createElement('a', $name, "groups/?group=$name", 'title="Click for more info about this group"'),
+                    View::createElement('a', $name, "index.php/groups/?group=$name", 'title="Click for more info about this group"'),
                     $description,
                 ));
             }
@@ -743,7 +743,7 @@ class Groups implements ModuleGroup {
         $View = Init::get('View');
 
         // Only employees are allowed to use this command
-        if(!$Bofh->isEmployee()) View::forward('groups/', txt('employees_only'));
+        if(!$Bofh->isEmployee()) View::forward('index.php/groups/', txt('employees_only'));
 
         // group spreads possible to use
         $spreads = getSpreads();
@@ -772,7 +772,7 @@ class Groups implements ModuleGroup {
 
         if($newform->validate()) {
             if($ret = $newform->process('request_group')) {
-                View::forward('groups/', $ret);
+                View::forward('index.php/groups/', $ret);
             }
         }
 
@@ -873,7 +873,7 @@ class Groups implements ModuleGroup {
         $Bofh = new Bofhcom();
 
         if (hasPersonal()) {
-            View::forward('groups/index.php', txt('groups_personal_already'));
+            View::forward('index.php/groups/index/', txt('groups_personal_already'));
         }
 
         $form = new BofhForm('makePersonal', null, null, null, 'class="submitonly"');
@@ -881,9 +881,9 @@ class Groups implements ModuleGroup {
 
         if ($form->validate()) {
             if ($Bofh->getData('group_personal', $User->getUsername())) {
-                View::forward('groups/', txt('groups_personal_success'));
+                View::forward('index.php/groups/', txt('groups_personal_success'));
             } else {
-                View::forward('groups/personal.php');
+                View::forward('index.php/groups/personal/');
             }
         }
 

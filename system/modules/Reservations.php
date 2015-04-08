@@ -158,7 +158,7 @@ class Reservations implements ModuleGroup {
 
         if ($resform->validate()) {
             $resform->process('setReservations');
-            View::forward('reservations/');
+            View::forward('index.php/reservations/');
         }
 
         $view->start();

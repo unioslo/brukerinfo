@@ -286,7 +286,7 @@ class Account implements ModuleGroup {
 
         if($form->validate()) {
             if(setPrimary()) {
-                View::forward('account/', txt('account_primary_success'));
+                View::forward('index.php/account/', txt('account_primary_success'));
             } else {
                 View::addMessage(txt('account_primary_failed'));
             }

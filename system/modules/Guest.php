@@ -116,7 +116,7 @@ class Guest implements ModuleGroup {
         // Add guests to table
         foreach ($guests as $i => $guest) {
             $data = array(
-                View::createElement('a', $guest['username'], "guests/info.php?guest=".$guest['username']),
+                View::createElement('a', $guest['username'], "index.php/guests/info/?guest=".$guest['username']),
                 $guest['name'],
                 (!empty($guest['expires'])) ? $guest['expires']->format('y-m-d') : '',
             );
@@ -182,7 +182,7 @@ class Guest implements ModuleGroup {
         $guestform = buildForm();
         if ($guestform->validate()) {
             if ($ret = $guestform->process('bofhCreateGuest')) {
-                View::forward('guests/create.php', $ret);
+                View::forward('index.php/guests/create/', $ret);
             }
             // else, error. The bofhCreateGuest function should add an error message to
             // the page.
@@ -319,13 +319,13 @@ class Guest implements ModuleGroup {
 
         // No guest data
         if (empty($guest)) {
-            View::forward('guests/', txt('guest_no_username'), View::MSG_ERROR);
+            View::forward('index.php/guests/', txt('guest_no_username'), View::MSG_ERROR);
         }
 
         // Clean input string (XSS)
         if (!preg_match("/^[-A-Za-z0-9]+$/", $guest)) {
             View::forward(
-                'guests/',
+                'index.php/guests/',
                 txt('guest_unknown_username', array('uname'=>htmlspecialchars($guest))),
                 View::MSG_ERROR
             );
@@ -354,7 +354,7 @@ class Guest implements ModuleGroup {
         $guestdata = $Bofh->getData('guest_info', $guest);
         if (empty($guestdata)) {
             View::forward(
-                'guests/',
+                'index.php/guests/',
                 txt('guest_unknown_username', array('uname'=>$guest)),
                 View::MSG_ERROR
             );
@@ -480,7 +480,7 @@ class Guest implements ModuleGroup {
         if (!$Bofh->isEmployee()) {
             View::forward('', txt('employees_only'));
         } elseif (empty($guest)) {
-            View::forward('guests/', txt('guest_no_username'), View::MSG_ERROR);
+            View::forward('index.php/guests/', txt('guest_no_username'), View::MSG_ERROR);
         } elseif ($form->validate()) {
             try {
                 $pw = $Bofh->getCachedPassword($guest);
@@ -488,7 +488,7 @@ class Guest implements ModuleGroup {
                 $pw = false;
             }
             if (!$pw) {
-                View::forward('guests/', txt('guest_pw_not_cached'), View::MSG_ERROR);
+                View::forward('index.php/guests/', txt('guest_pw_not_cached'), View::MSG_ERROR);
             } else {
                 echo txt('guest_pw_letter', array('uname'=>$guest, 'password'=>$pw));
             }
