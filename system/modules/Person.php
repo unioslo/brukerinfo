@@ -52,7 +52,7 @@ class Person implements ModuleGroup {
     }
 
     public function display($path) {
-        if (count($path) == 0) {
+        if (!$path) {
             return $this->index();
         }
         switch ($path[0]) {

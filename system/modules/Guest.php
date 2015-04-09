@@ -48,18 +48,21 @@ class Guest implements ModuleGroup {
     }
 
     public function display($path) {
+        if (!$path) {
+            return $this->index();
+        }
         switch ($path[0]) {
         case '': case 'index':
             if ($this->authz->is_guest()) {
-                return info();
+                return $this->info();
             }
-            return index();
+            return $this->index();
         case 'create':
-            return create();
+            return $this->create();
         case 'print':
-            return doprint();
+            return $this->doprint();
         case 'info':
-            return info();
+            return $this->info();
         }
     }
 

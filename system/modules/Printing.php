@@ -44,6 +44,9 @@ class Printing implements ModuleGroup {
     }
 
     public function display($path) {
+        if (!$path) {
+            return $this->index();
+        }
         switch ($path[0]) {
         case '': case 'index':
             return $this->index();
