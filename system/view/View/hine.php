@@ -119,12 +119,13 @@ class View_hine extends ViewTemplate
         $gr = $mod->getCurrentGroup($current);
         $maindir = $gr->getName();
         $menu = array();
+        $path = explode('/', $current);
+        $activesub = (count($path) >= 3 ? $path[2] : '');
 
         foreach($mod->listSubgroups($gr) as $link) {
             $name = txt(strtoupper('MENU_' . $maindir . '_' . $link));
-            $active = ($current == "/$maindir/$link" ? ' class="active"' : '');
+            $active = ($activesub == "$link" ? ' class="active"' : '');
             $menu[] = "<a href=\"index.php/$maindir/$link\"$active>$name</a>";
-            echo("$name");
         }
         return self::createElement('ul', $menu, 'id="app-submenu"');
     }
