@@ -1,0 +1,730 @@
+<txt>
+<meta>
+    <lang>no</lang>
+    <inst>uio</inst>
+</meta>
+<data>
+
+    <!-- The format for dates -->
+    <DATE_FORMAT>Y-m-d</DATE_FORMAT>
+    <!-- The format of the decimal point (normally ',' or '.') -->
+    <DEC_FORMAT>,</DEC_FORMAT>
+
+    <!-- The browsers window title -->
+    <PAGETITLE>Brukerinfo - Universitetet i Oslo</PAGETITLE>
+    <HEADER>Brukerinfo</HEADER>
+    <TAGLINE>Enkel brukeradministrasjon ved UiO</TAGLINE>
+    <FOOTER>Brukerinfo - enkel brukeradministrasjon ved UiO</FOOTER>
+
+    <!-- The title of the page if it is locked because of a restart 
+         of bofhd or the site is being updated -->
+    <LOCKED_TITLE>Nede for vedlikehold</LOCKED_TITLE>
+
+    <!-- All pages with action-commands with system delay ends with this text -->
+    <ACTION_DELAY_MIN>Endringer vil tre i kraft innen {{delay_min}} minutter.</ACTION_DELAY_MIN>
+    <ACTION_DELAY_HOUR>Endringer vil tre i kraft innen {{delay_hour}} timer.</ACTION_DELAY_HOUR>
+    <ACTION_DELAY_EMAIL>Endringer vil tre i kraft innen {{delay_email}} minutter.</ACTION_DELAY_EMAIL>
+
+    <!-- Errors -->
+    <ERROR_BOFH_CONNECTION>Kunne ikke koble til databasen. Prøv igjen senere.</ERROR_BOFH_CONNECTION>
+    <ERROR_BOFH_ERROR>Feil i kommunikasjonen med databasen. Prøv igjen senere.</ERROR_BOFH_ERROR>
+    <ERROR_BOFH_RESTARTED>Databasen har blitt startet på nytt. Oppdater siden, eller logg inn på nytt.</ERROR_BOFH_RESTARTED>
+    <ERROR_SUBGROUP_NO_ROUTE>Ugyldig URL</ERROR_SUBGROUP_NO_ROUTE>
+
+    <!-- Standard notices -->
+    <EMPLOYEES_ONLY>Det er bare ansatte ved UiO som har tilgang til dette.</EMPLOYEES_ONLY>
+
+    <!-- Standard form messages -->
+    <FORM_REQUIRED>Feltet er påkrevd</FORM_REQUIRED>
+
+    <!-- The top menu -->
+    <LOGOUT>Logg ut</LOGOUT>
+
+    <!-- The main menu -->
+    <MENU_HOME>Forside</MENU_HOME>
+
+    <MENU_PERSON>Person</MENU_PERSON>
+    <MENU_PERSON_>Person</MENU_PERSON_>
+    <MENU_PERSON_PRIMARY>Primærtilknytning</MENU_PERSON_PRIMARY>
+    <MENU_PERSON_NAME>Navn</MENU_PERSON_NAME>
+
+    <MENU_ACCOUNT>Brukerkonto</MENU_ACCOUNT>
+    <MENU_ACCOUNT_>Kontooversikt</MENU_ACCOUNT_>
+    <MENU_ACCOUNT_PASSWORD>Skift passord</MENU_ACCOUNT_PASSWORD>
+    <MENU_ACCOUNT_PRIMARY>Primærkonto</MENU_ACCOUNT_PRIMARY>
+
+    <MENU_PRINTING>Utskrift</MENU_PRINTING>
+    <MENU_PRINTING_>Utskriftsoversikt</MENU_PRINTING_>
+    <MENU_PRINTING_HISTORY>Utskriftshistorikk</MENU_PRINTING_HISTORY>
+
+    <MENU_EMAIL>E-post</MENU_EMAIL>
+    <MENU_EMAIL_>E-postoversikt</MENU_EMAIL_>
+    <MENU_EMAIL_SPAM>Spaminnstillinger</MENU_EMAIL_SPAM>
+    <MENU_EMAIL_FILTERS>Ekstra spaminnstillinger</MENU_EMAIL_FILTERS>
+    <MENU_EMAIL_TRIPNOTE>Fraværsmeldinger</MENU_EMAIL_TRIPNOTE>
+    <MENU_EMAIL_FORWARD>Videresending</MENU_EMAIL_FORWARD>
+
+    <MENU_GROUPS>Grupper</MENU_GROUPS>
+    <MENU_GROUPS_>Grupper</MENU_GROUPS_>
+    <MENU_GROUPS_NEW>Ny gruppe</MENU_GROUPS_NEW>
+
+    <MENU_RESERVATIONS>Reservasjoner</MENU_RESERVATIONS>
+    <MENU_RESERVATIONS_>Reservasjoner</MENU_RESERVATIONS_>
+
+    <MENU_GUEST_INFO>Kontoinformasjon</MENU_GUEST_INFO>
+    <MENU_GUEST_PASSWORD>Skift passord</MENU_GUEST_PASSWORD>
+
+    <MENU_GUESTS>Trådløskontoer</MENU_GUESTS>
+    <MENU_GUESTS_>Dine trådløskontoer</MENU_GUESTS_>
+    <MENU_GUESTS_CREATE>Opprett trådløskonto</MENU_GUESTS_CREATE>
+
+    <!-- Logon and logout -->
+    <!-- TODO: not all these are implemented right now... -->
+    <LOGON_TITLE>Logg inn</LOGON_TITLE>
+    <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen 
+        som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
+    </LOGON_INTRO>
+    <LOGON_OUTRO>
+        &lt;ul&gt;
+        &lt;li&gt;Glemt passordet ditt? Studenter og ansatte kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;Vet du ikke hva &lt;a href="forgotten/username/"&gt;ditt brukernavn ved UiO&lt;/a&gt; er?&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p&gt;Les om &lt;a
+        href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;
+        hvorfor det er trygt å oppgi ditt passord på denne siden&lt;/a&gt;.&lt;/p&gt;
+        </LOGON_OUTRO>
+
+    <LOGON_FORM_USERNAME>Brukernavn:</LOGON_FORM_USERNAME>
+    <LOGON_FORM_PASSWORD>Passord:</LOGON_FORM_PASSWORD>
+    <LOGON_FORM_SUBMIT>Logg inn</LOGON_FORM_SUBMIT>
+
+    <LOGON_SUCCESS>Velkommen {{full_name}}</LOGON_SUCCESS>
+    <LOGON_BAD_NAME_OR_PASSWORD>Feil brukernavn eller passord</LOGON_BAD_NAME_OR_PASSWORD>
+    <LOGON_LOGGED_OUT>Du er logget ut</LOGON_LOGGED_OUT>
+
+    <LOGON_BLOCKED>Du har forsøkt å logge inn for mange ganger og er midlertidig
+        utestengt fra dette nettstedet</LOGON_BLOCKED>
+    <LOGON_TIMED_OUT>Denne økten har blitt avbrutt etter en periode uten
+        aktivitet. Logg inn på nytt.</LOGON_TIMED_OUT>
+    <LOGON_CONTROL_FAILED>Du må av sikkerhetshensyn logge inn på
+        nytt.</LOGON_CONTROL_FAILED>
+
+    <LOGOUT_SECURITY>Du er av sikkerhetshensyn blitt logget ut. Vennligst prøv
+        igjen.</LOGOUT_SECURITY>
+
+    <!-- THE PAGES -->
+    <!-- Text for specific pages. 
+         The first part of the key is what main category the page is in, the second is the page-name.
+         The rest of the key name is the function of the text (what it tries to tell the user).
+         -->
+
+    <!-- Home - the start page -->
+    <HOME_TITLE>Velkommen</HOME_TITLE> <!-- wofh -->
+    <HOME_INTRO></HOME_INTRO>
+    <HOME_SPECIFIC_ACCOUNT>
+        Merk deg at du kan utføre endringer kun for brukerkontoen &lt;em&gt;{{username}}&lt;/em&gt;.
+        Hvis du vil utføre endringer på en annen brukerkonto, logger du inn med brukernavn og passord som gir tilgang til den brukerkontoen.
+    </HOME_SPECIFIC_ACCOUNT>
+
+    <HOME_SHORTCUTS_TITLE>Snarveier</HOME_SHORTCUTS_TITLE>
+    <HOME_SHORTCUTS_PASSWORD>Skifte passord</HOME_SHORTCUTS_PASSWORD>
+    <HOME_SHORTCUTS_PRINTING>Vise utskriftsstatus</HOME_SHORTCUTS_PRINTING>
+    <HOME_SHORTCUTS_PRINTING_HISTORY>Vise utskriftslogg</HOME_SHORTCUTS_PRINTING_HISTORY>
+    <HOME_SHORTCUTS_SPAM>Angi spaminnstillinger</HOME_SHORTCUTS_SPAM>
+    <HOME_SHORTCUTS_TRIPNOTE>Legge inn fraværsmelding</HOME_SHORTCUTS_TRIPNOTE>
+    <HOME_SHORTCUTS_MEMBERS>Legge til eller fjerne medlemmer i en gruppe</HOME_SHORTCUTS_MEMBERS>
+    <HOME_SHORTCUTS_GROUP_REQUEST>Søk om en ny gruppe</HOME_SHORTCUTS_GROUP_REQUEST>
+
+    <HOME_ABOUT_TITLE>Om Brukerinfo</HOME_ABOUT_TITLE>
+    <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
+        er tilknyttet den elektroniske identiteten din ved Universitetet i Oslo. Hvis du trenger mer 
+        informasjon eller hjelp i forbindelse med datasystemene ved UiO, kan du gå til
+        &lt;a href="https://uio.no/tjenester/it/"&gt;nettstedet for IT-tjenester ved UiO&lt;/a&gt;.</HOME_ABOUT>
+
+    <!-- Person page texts -->
+    <PERSON_TITLE>Personinformasjon</PERSON_TITLE>
+    <PERSON_HOWTO_CHANGE_FS>
+        Hvis det er feil i informasjon fra FS (Felles Studentsystem), kan du
+        kontakte &lt;a href="https://uio.no/studier/kontakt/"&gt;studentkontoret
+        for din enhet&lt;/a&gt;.
+      </PERSON_HOWTO_CHANGE_FS>
+      <PERSON_HOWTO_CHANGE_SAP>Hvis det er feil i informasjon fra SAP, kan du
+          kontakte &lt;a
+          href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
+      </PERSON_HOWTO_CHANGE_SAP>
+
+    <!-- Person primary affiliation -->
+    <PRIMARY_PERSON_TITLE>Primærtilknytning</PRIMARY_PERSON_TITLE>
+    <PRIMARY_PERSON_INTRO>Her kan du sette din primærtilknytning, som vises på
+        personpresentasjonen din på uio.no.</PRIMARY_PERSON_INTRO>
+    <PRIMARY_PERSON_CHOICE>Velg primærtilknytning</PRIMARY_PERSON_CHOICE>
+    <PRIMARY_PERSON_UPDATED>Primærtilknytning er oppdatert. Det vil ta noen
+        timer før endringen tar effekt.</PRIMARY_PERSON_UPDATED>
+    <PRIMARY_PERSON_SUBMIT>Oppdater din primærtilknytning</PRIMARY_PERSON_SUBMIT>
+
+    <!-- Person name page -->
+    <PERSON_NAME_TITLE>Velg ditt visningsnavn</PERSON_NAME_TITLE>
+    <PERSON_NAME_INTRO>Velg hvilket av de registrerte navnene dine som vil bli
+        vist i systemene på UiO, for eksempel personpresentasjonen på &lt;a
+        href="https://uio.no"&gt;uio.no&lt;/a&gt;. Merk deg at din primære
+        e-postadresse kan forandre seg som en konsekvens av valget.
+    </PERSON_NAME_INTRO>
+    <PERSON_NAME_CURRENT>Ditt nåværende navn er
+        &lt;strong&gt;{{name}}&lt;/strong&gt; og din primære e-postadresse er:
+        &lt;strong&gt;{{email}}&lt;/strong&gt;.</PERSON_NAME_CURRENT>
+    <PERSON_NAME_FORM_SUBMIT>Velg navn</PERSON_NAME_FORM_SUBMIT>
+    <PERSON_NAME_FORM_SELECT>Velg navn</PERSON_NAME_FORM_SELECT>
+    <PERSON_NAME_SUCCESS>Ditt navn har blitt oppdatert</PERSON_NAME_SUCCESS>
+
+
+    <!-- Reservation page -->
+    <RESERVATIONS_TITLE>Reservasjoner</RESERVATIONS_TITLE>
+    <RESERVATIONS_INTRO>Reservasjoner fra ulike tjenester.</RESERVATIONS_INTRO>
+    <RESERVATIONS_ACTION_RESERVE>Legg til reservering</RESERVATIONS_ACTION_RESERVE>
+    <RESERVATIONS_ACTION_UNRESERVE>Fjern reservering</RESERVATIONS_ACTION_UNRESERVE>
+    <RESERVATION_UPDATE_SUCCESS_SET>Reservasjon lagt til for {{type}}</RESERVATION_UPDATE_SUCCESS_SET>
+    <RESERVATION_UPDATE_SUCCESS_DEL>Reservasjon fjernet for {{type}}</RESERVATION_UPDATE_SUCCESS_DEL>
+
+    <RESERVATIONS_TABLEHEAD_NAME>Reservasjonstype</RESERVATIONS_TABLEHEAD_NAME>
+    <RESERVATIONS_TABLEHEAD_DESC>Forklaring</RESERVATIONS_TABLEHEAD_DESC>
+    <RESERVATIONS_TABLEHEAD_ACTION></RESERVATIONS_TABLEHEAD_ACTION>
+
+    <RESERVATION_TYPE_RESERVE_PASSW>SMS-passord</RESERVATION_TYPE_RESERVE_PASSW>
+
+    <!-- Account text -->
+    <ACCOUNT_TITLE>Denne brukerkontoen</ACCOUNT_TITLE>
+    <ACCOUNT_AFFS_EMPTY>Ingen tilknytninger er angitt</ACCOUNT_AFFS_EMPTY>
+    <ACCOUNT_SPREADS_EMPTY>Ingen system</ACCOUNT_SPREADS_EMPTY>
+
+    <ACCOUNT_NAME_PRIMARY>{{username}} (primær)</ACCOUNT_NAME_PRIMARY>
+    <ACCOUNT_NAME_NORMAL>{{username}}</ACCOUNT_NAME_NORMAL>
+    <ACCOUNT_NAME_DELETED>{{username}} (avviklet)</ACCOUNT_NAME_DELETED>
+
+    <ACCOUNT_OTHER_TITLE>Andre brukerkontoer</ACCOUNT_OTHER_TITLE>
+    <ACCOUNT_OTHER_INFO>Hvis du vil ha informasjon for en annen brukerkonto som er din, logger du inn 
+        med brukernavn og passord til den brukerkontoen.</ACCOUNT_OTHER_INFO>
+    <ACCOUNT_OTHER_TABLE_NAME>Navn:</ACCOUNT_OTHER_TABLE_NAME>
+    <ACCOUNT_OTHER_TABLE_EXPIRE>Utløper:</ACCOUNT_OTHER_TABLE_EXPIRE>
+    <ACCOUNT_OTHER_EXPIRE_NOT_SET>(ikke angitt)</ACCOUNT_OTHER_EXPIRE_NOT_SET>
+
+    <ACCOUNT_PASSWORD_TITLE>Skift passord</ACCOUNT_PASSWORD_TITLE>
+    <ACCOUNT_PASSWORD_INTRO>
+        &lt;p&gt;Skift passordet til brukerkontoen du er logget inn med
+        brukernavnet og passordet til. Merk deg at passordet er
+        &lt;em&gt;personlig&lt;/em&gt; og at du &lt;em&gt;aldri&lt;/em&gt; skal
+        oppgi det til andre, heller ikke IT-ansatte ved UiO.&lt;/p&gt;
+        &lt;p&gt;Dette er et sammendrag av kravene. Hvis du er i tvil, kan du
+        lese &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/passord.html"&gt;alle
+        krav til passord&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;Et passord &lt;strong&gt;må&lt;/strong&gt;:
+        &lt;ul&gt;
+            &lt;li&gt;være minst &lt;strong&gt;8 tegn&lt;/strong&gt; langt&lt;/li&gt;
+            &lt;li&gt;inneholde tegn fra minst &lt;strong&gt;3 &lt;/strong&gt; av disse 4 kategoriene:
+                &lt;ul&gt;
+                    &lt;li&gt;tall&lt;/li&gt;
+                    &lt;li&gt;små bokstaver&lt;/li&gt;
+                    &lt;li&gt;store bokstaver&lt;/li&gt;
+                    &lt;li&gt;andre tegn&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        Passordet &lt;strong&gt;må ikke&lt;/strong&gt;:
+        &lt;ul&gt;
+            &lt;li&gt;inneholde æ, ø eller å&lt;/li&gt;
+            &lt;li&gt;inneholde ord som finnes i en ordbok&lt;/li&gt;
+            &lt;li&gt;ligne på et passord du har brukt tidligere&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/p&gt;
+        &lt;strong&gt;Merk&lt;/strong&gt; at det tar tid før man kan logge med
+        det nye passordet på alle tjenester hos Universitetet. Det anbefales å
+        bytte passord like før man har gått for dagen.
+        &lt;/p&gt;
+    </ACCOUNT_PASSWORD_INTRO>
+
+    <ACCOUNT_PASSWORD_FORM_NEW>Nytt passord:</ACCOUNT_PASSWORD_FORM_NEW>
+    <ACCOUNT_PASSWORD_FORM_NEW2>Bekreft nytt passord:</ACCOUNT_PASSWORD_FORM_NEW2>
+    <ACCOUNT_PASSWORD_FORM_CURRENT>Nåværende passord:</ACCOUNT_PASSWORD_FORM_CURRENT>
+    <ACCOUNT_PASSWORD_FORM_SUBMIT>Skift passordet</ACCOUNT_PASSWORD_FORM_SUBMIT>
+    <ACCOUNT_PASSWORD_RULE_NEW_REQUIRED>Skriv inn det nye passordet</ACCOUNT_PASSWORD_RULE_NEW_REQUIRED>
+
+    <ACCOUNT_PASSWORD_ERROR_CURRENT>Nåværende passord er skrevet inn feil.</ACCOUNT_PASSWORD_ERROR_CURRENT>
+    <ACCOUNT_PASSWORD_ERROR_MATCH>Det nye passordet og bekreftelsen av det nye passordet er ikke like.</ACCOUNT_PASSWORD_ERROR_MATCH>
+    <ACCOUNT_PASSWORD_SUCCESS>Passordet ditt er skiftet.</ACCOUNT_PASSWORD_SUCCESS>
+
+    <ACCOUNT_PASSWORD_MOREINFO>Vis mer informasjon om &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/"&gt;brukernavn og
+        passord ved UiO&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
+
+    <ACCOUNT_PRIMARY_TITLE>Gjør brukerkontoen til primærkonto</ACCOUNT_PRIMARY_TITLE>
+    <ACCOUNT_PRIMARY_INTRO>Hvis du har flere brukerkontoer ved UiO, er én av brukerkontoene primærkontoen din. Merk deg følgende:
+        &lt;ul&gt;
+        &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; godtar kun pålogging med primærkontoen&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; (blyant.uio.no) godtar kun pålogging med primærkontoen&lt;/li&gt;
+        &lt;/ul&gt;
+    </ACCOUNT_PRIMARY_INTRO>
+    <ACCOUNT_PRIMARY_ALREADY>Den aktive brukerkontoen ({{username}}) er allerede primærkontoen din.&lt;br&gt;
+        Hvis du vil gjøre en annen brukerkonto til primærkonto, logger du inn med brukernavnet og passordet til den brukerkontoen.</ACCOUNT_PRIMARY_ALREADY>
+    <ACCOUNT_PRIMARY_FORM_SUBMIT>Gjør {{username}} til primærkonto</ACCOUNT_PRIMARY_FORM_SUBMIT>
+    <ACCOUNT_PRIMARY_SUCCESS>Kontoen {{username}} er nå primærkontoen din. Det tar vanligvis opptil 2 timer før endringene trer i kraft.</ACCOUNT_PRIMARY_SUCCESS>
+    <ACCOUNT_PRIMARY_FAILED>Systemet kunne ikke endre primærkonto. Kontakt lokal IT eller Houston.</ACCOUNT_PRIMARY_FAILED>
+
+    <!-- Printing text -->
+    <PRINTING_TITLE>Utskriftsoversikt</PRINTING_TITLE>
+    <PRINTING_TABLE_FREE>Gratisutskrifter:</PRINTING_TABLE_FREE>
+    <PRINTING_TABLE_PAID>Betalte utskrifter:</PRINTING_TABLE_PAID>
+    <PRINTING_TABLE_PAID_VALUE>(kr {{kroner}})</PRINTING_TABLE_PAID_VALUE>
+    <PRINTING_TABLE_TOTAL>Totalt antall tilgjengelige utskrifter:</PRINTING_TABLE_TOTAL>
+
+    <PRINTING_MOREINFO_PAY>Hvis du skal betale for flere utskrifter, logger du inn på 
+        &lt;a href="https://studweb.uio.no"&gt;StudentWeb ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
+    <PRINTING_MOREINFO_PRICES>Hvis du vil vite mer om utskriftspriser, kan du lese om 
+        &lt;a href="https://uio.no/tjenester/it/utskrift/hjelp/utskriftsbetaling.html"&gt;
+        kopiavgiften ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
+    <PRINTING_MOREINFO_PRINTING>Hvis du vil vite mer om utskrift og skrivere, kan du gå til siden for 
+        &lt;a href="https://uio.no/tjenester/it/utskrift/"&gt;utskriftstjenester ved UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
+
+
+    <PRINTING_HISTORY_TITLE>Logg over utskriftskvote</PRINTING_HISTORY_TITLE>
+    <PRINTING_HISTORY_FORM_DAYS>siste {{length}} dager</PRINTING_HISTORY_FORM_DAYS>
+    <PRINTING_HISTORY_FORM_UNLIMITED>ubegrenset</PRINTING_HISTORY_FORM_UNLIMITED>
+    <PRINTING_HISTORY_FORM_DEFAULT>(standard)</PRINTING_HISTORY_FORM_DEFAULT>
+    <PRINTING_HISTORY_FORM_WHEN>Vis:</PRINTING_HISTORY_FORM_WHEN>
+    <!-- "Details:" are now blank to make the form smaller -->
+    <PRINTING_HISTORY_FORM_DETAILS></PRINTING_HISTORY_FORM_DETAILS>
+    <PRINTING_HISTORY_FORM_DETAILS_BUTTON>detaljer</PRINTING_HISTORY_FORM_DETAILS_BUTTON>
+    <PRINTING_HISTORY_FORM_SUBMIT>Oppdater</PRINTING_HISTORY_FORM_SUBMIT>
+
+    <PRINTING_HISTORY_LIST_JOBID>Jobb-ID</PRINTING_HISTORY_LIST_JOBID>
+    <PRINTING_HISTORY_LIST_TIME>Tid</PRINTING_HISTORY_LIST_TIME>
+    <PRINTING_HISTORY_LIST_PRINTER>Skriver</PRINTING_HISTORY_LIST_PRINTER>
+    <PRINTING_HISTORY_LIST_INFO>Info</PRINTING_HISTORY_LIST_INFO>
+    <PRINTING_HISTORY_LIST_IN>Inn</PRINTING_HISTORY_LIST_IN>
+    <PRINTING_HISTORY_LIST_OUT>Ut</PRINTING_HISTORY_LIST_OUT>
+
+    <PRINTING_HISTORY_EMPTY>Fant ingen informasjon om utskrifter i angitt periode. Prøv å utvide perioden.</PRINTING_HISTORY_EMPTY>
+
+    <!-- Email text -->
+    <EMAIL_TITLE>E-post</EMAIL_TITLE>
+
+    <EMAIL_INFO_TITLE>E-postoversikt</EMAIL_INFO_TITLE>
+    <EMAIL_INFO_NO_ACCOUNT>Denne brukerkontoen har ikke noen e-postkonto</EMAIL_INFO_NO_ACCOUNT>
+    <EMAIL_INFO_PRIMARY_ADDR>Primæradresse:</EMAIL_INFO_PRIMARY_ADDR>
+    <EMAIL_INFO_VALID_ADDR>Gyldige adresser:</EMAIL_INFO_VALID_ADDR>
+    <EMAIL_INFO_QUOTA>Kvote:</EMAIL_INFO_QUOTA>
+    <EMAIL_INFO_QUOTA_INFO>{{quota_used}}MiB av {{quota_max}}MiB er brukt (advarsel ved {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO>
+    <EMAIL_INFO_SPAM_LEVEL>Spamfiltreringsnivå:</EMAIL_INFO_SPAM_LEVEL>
+    <EMAIL_INFO_SPAM_ACTION>Spambehandlinger:</EMAIL_INFO_SPAM_ACTION>
+    <EMAIL_INFO_FORWARD>Videresending:</EMAIL_INFO_FORWARD>
+    <EMAIL_INFO_SERVER>E-posttjener:</EMAIL_INFO_SERVER>
+    <EMAIL_INFO_FILTERS>Filtrering:</EMAIL_INFO_FILTERS>
+    <EMAIL_INFO_TARGETTYPE>Status:</EMAIL_INFO_TARGETTYPE>
+
+    <EMAIL_OTHER_TITLE>Dine andre e-postkontoer</EMAIL_OTHER_TITLE>
+    <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>
+
+    <EMAIL_INFO_MORE_INFO>Hvis du vil vite mer om e-postsystemet ved UiO, kan du lese 
+        &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;hjelpesidene for e-post&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+
+    <EMAIL_DEL_TITLE>Bekreft sletting av e-postadresse</EMAIL_DEL_TITLE>
+    <EMAIL_DEL_INTRO>Er du sikker på at du vil slette adressen
+        &lt;em&gt;{{address}}&lt;/em&gt;? Du vil ikke lenger få e-post som er
+        sendt til denne adressen.</EMAIL_DEL_INTRO>
+    <EMAIL_DEL_ACTIONLINK>(slett)</EMAIL_DEL_ACTIONLINK>
+    <EMAIL_DEL_SUBMIT>Bekreft</EMAIL_DEL_SUBMIT>
+    <EMAIL_DEL_CANCEL>Avbryt</EMAIL_DEL_CANCEL>
+    <EMAIL_DEL_INVALID_ADDR>Oppgitt adresse kunne ikke
+        slettes</EMAIL_DEL_INVALID_ADDR>
+    <EMAIL_DEL_SUCCESS>E-postadressen {{address}} er slettet</EMAIL_DEL_SUCCESS>
+    <EMAIL_DEL_FAILED>E-postadressen {{address}} kunne ikke
+        slettes</EMAIL_DEL_FAILED>
+
+    <EMAIL_SPAM_TITLE>Spaminnstillinger</EMAIL_SPAM_TITLE>
+    <EMAIL_SPAM_INTRO>Disse innstillingene brukes på e-posten før den når innboksen din.
+        Hvis du vil vite mer, kan du lese &lt;a
+        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/spam.html"&gt;USITs
+        side om spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
+
+    <EMAIL_SPAM_ACTION_DROPSPAM>Avvis meldinger merket som spam</EMAIL_SPAM_ACTION_DROPSPAM>
+    <EMAIL_SPAM_ACTION_SPAMFOLDER>Flytt spam-meldinger til en egen spam-mappe</EMAIL_SPAM_ACTION_SPAMFOLDER>
+    <EMAIL_SPAM_ACTION_NOACTION>Ikke gjør noe som helst med meldinger merket som spam</EMAIL_SPAM_ACTION_NOACTION>
+
+    <EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>Merk alle meldinger som ligner på spam</EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>
+    <EMAIL_SPAM_LEVEL_MOST_SPAM>Merk mesteparten av meldinger som ligner på spam</EMAIL_SPAM_LEVEL_MOST_SPAM>
+    <EMAIL_SPAM_LEVEL_STANDARD_SPAM>Bare merk meldinger som opplagt er spam</EMAIL_SPAM_LEVEL_STANDARD_SPAM>
+    <EMAIL_SPAM_LEVEL_NO_FILTER>Ingen meldinger vil bli merket som spam</EMAIL_SPAM_LEVEL_NO_FILTER>
+
+    <EMAIL_SPAM_FORM_LEVEL>Spamfiltreringsnivå:</EMAIL_SPAM_FORM_LEVEL>
+    <EMAIL_SPAM_FORM_ACTION>Spambehandling:</EMAIL_SPAM_FORM_ACTION>
+    <EMAIL_SPAM_FORM_SUBMIT>Oppdater spaminnstillinger</EMAIL_SPAM_FORM_SUBMIT>
+    <EMAIL_SPAM_RULE_LEVEL_REQUIRED>Velg et spamfiltreringsnivå</EMAIL_SPAM_RULE_LEVEL_REQUIRED>
+    <EMAIL_SPAM_RULE_ACTION_REQUIRED>Velg hva du vil gjøre med spam</EMAIL_SPAM_RULE_ACTION_REQUIRED>
+
+    <EMAIL_FILTER_TITLE>Flere spaminnstillinger</EMAIL_FILTER_TITLE>
+    <EMAIL_FILTER_INTRO>Dette er verktøy du kan bruke til å redusere mengden
+        spam enda mer.  Husk også å angi standardinnstillingene mot spam. Hvis
+        du vil vite mer, kan du lese &lt;a
+        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/spam.html"&gt;
+        USITs side om spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
+    <EMAIL_FILTER_UNKNOWN>Ukjent innstilling</EMAIL_FILTER_UNKNOWN>
+    <EMAIL_FILTER_UPDATE_SUCCESS>De ekstra spaminnstillingene er oppdatert</EMAIL_FILTER_UPDATE_SUCCESS>
+    <EMAIL_FILTER_DATA_GREYLIST>Grålisting</EMAIL_FILTER_DATA_GREYLIST>
+    <EMAIL_FILTER_DATA_GREYLIST_DESC>Beskrivelse:
+        "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt; Du finner informasjon
+        om dette på &lt;a
+        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/graalisting.html"&gt;
+        USITs side om grålisting&lt;/a&gt;.
+      </EMAIL_FILTER_DATA_GREYLIST_DESC>
+    <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
+    <EMAIL_FILTER_DATA_UIOONLY_DESC>Beskrivelse: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
+        Du finner informasjon om dette på &lt;a 
+        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/uioonly.html"&gt;USITs side om UiOonly&lt;/a&gt;.
+      </EMAIL_FILTER_DATA_UIOONLY_DESC>
+      <EMAIL_FILTER_ENABLE>Aktiver</EMAIL_FILTER_ENABLE>
+      <EMAIL_FILTER_DISABLE>Deaktiver</EMAIL_FILTER_DISABLE>
+      <EMAIL_FILTER_ON>{{filter}} på</EMAIL_FILTER_ON>
+      <EMAIL_FILTER_OFF>{{filter}} av</EMAIL_FILTER_OFF>
+      <EMAIL_FILTER_RULE_REQUIRED>Angi et valg for {{filter}}</EMAIL_FILTER_RULE_REQUIRED>
+    <EMAIL_FILTER_SUBMIT>Oppdater</EMAIL_FILTER_SUBMIT>
+
+    <EMAIL_TRIPNOTE_TITLE>Fraværsmeldinger</EMAIL_TRIPNOTE_TITLE>
+    <EMAIL_TRIPNOTE_INTRO>Fraværsmeldinger er svar som sendes automatisk til
+        e-postmeldinger brukerkontoen din mottar innenfor en angitt periode.
+        Hver avsender mottar fraværsmeldingen kun én gang. Du finner mer
+        informasjon på &lt;a
+        href="https://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        USITs side om fraværsmeldinger&lt;/a&gt;. Merk at en fraværsmelding
+        starter fra og med startdatoen og varer til og med
+        utløpsdatoen.</EMAIL_TRIPNOTE_INTRO>
+    <EMAIL_TRIPNOTE_NEW_SUCCESS>Ny fraværsmelding er lagt til</EMAIL_TRIPNOTE_NEW_SUCCESS>
+
+    <EMAIL_TRIPNOTE_ACTIVE_TITLE>Aktive fraværsmeldinger</EMAIL_TRIPNOTE_ACTIVE_TITLE>
+    <EMAIL_TRIPNOTE_LIST_DELETE>Slett</EMAIL_TRIPNOTE_LIST_DELETE>
+    <EMAIL_TRIPNOTE_STARTING>Starter:</EMAIL_TRIPNOTE_STARTING>
+    <EMAIL_TRIPNOTE_ENDING>Utløper:</EMAIL_TRIPNOTE_ENDING>
+    <EMAIL_TRIPNOTE_MESSAGE>Melding:</EMAIL_TRIPNOTE_MESSAGE>
+    <EMAIL_TRIPNOTE_STATUS>Status:</EMAIL_TRIPNOTE_STATUS>
+
+    <EMAIL_TRIPNOTE_FORM_TITLE>Ny fraværsmelding</EMAIL_TRIPNOTE_FORM_TITLE>
+    <EMAIL_TRIPNOTE_FORM_SUBMIT>Opprett fraværsmelding</EMAIL_TRIPNOTE_FORM_SUBMIT>
+
+    <EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>Skriv inn meldingen</EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>
+
+    <EMAIL_TRIPNOTE_OLD_TITLE>Gamle fraværsmeldinger</EMAIL_TRIPNOTE_OLD_TITLE>
+    <EMAIL_TRIPNOTE_DELETE_TITLE>Bekreft sletting</EMAIL_TRIPNOTE_DELETE_TITLE>
+    <EMAIL_TRIPNOTE_DELETE_CONFIRM>Er du sikker på at du vil slette følgende fraværsmelding?</EMAIL_TRIPNOTE_DELETE_CONFIRM>
+    <EMAIL_TRIPNOTE_DELETE_SUBMIT>Bekreft sletting</EMAIL_TRIPNOTE_DELETE_SUBMIT>
+
+    <EMAIL_FORWARD_TITLE>Videresending</EMAIL_FORWARD_TITLE>
+    <EMAIL_FORWARD_INTRO>Du kan videresende all e-post som kommer til
+        brukerkontoen din, til en eller flere andre adresser.  Merk deg at dette
+        av sikkerhetshensyn ikke anbefales. Du finner mer informasjon på &lt;a
+        href="https://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        USITs side om videresending&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
+    <EMAIL_FORWARD_LOCAL>Behold kopi</EMAIL_FORWARD_LOCAL>
+    <EMAIL_FORWARD_NEW_TITLE>Opprett regel for videresending</EMAIL_FORWARD_NEW_TITLE>
+    <EMAIL_FORWARD_NEW_OK>Du har opprettet en ny regel for videresending. Det tar vanligvis opptil 2 timer 
+        før endringene trer i kraft.</EMAIL_FORWARD_NEW_OK>
+
+    <EMAIL_FORWARD_DELETE_SUBMIT>Slett</EMAIL_FORWARD_DELETE_SUBMIT>
+
+    <EMAIL_FORWARD_DELETE_CONFIRM_TITLE>Bekreft sletting av regel for videresending</EMAIL_FORWARD_DELETE_CONFIRM_TITLE>
+    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Er du sikker på at du vil slette videresendingen til 
+        &lt;strong&gt;{{target}}&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
+    <EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>Slett</EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>
+    <EMAIL_FORWARD_DELETE_UNKNOWN>Ukjent adresse for videresending</EMAIL_FORWARD_DELETE_UNKNOWN>
+
+    <EMAIL_FORWARD_ADDLOCAL_TITLE>Behold en kopi</EMAIL_FORWARD_ADDLOCAL_TITLE>
+    <EMAIL_FORWARD_ADDLOCAL>Kontoen din videresender nå all e-post som er adressert til din UiO-adresse, 
+        til en annen adresse. Vil du beholde en kopi av meldingene som videresendes, i UiO-kontoen din?
+      </EMAIL_FORWARD_ADDLOCAL>
+    <EMAIL_FORWARD_ADDLOCAL_SUBMIT>Behold en kopi</EMAIL_FORWARD_ADDLOCAL_SUBMIT>
+
+    <EMAIL_FORWARD_FORM_ADDRESS>Videresend all e-post til denne adressen:</EMAIL_FORWARD_FORM_ADDRESS>
+    <EMAIL_FORWARD_FORM_KEEP>Behold en kopi av meldingene i UiO-kontoen</EMAIL_FORWARD_FORM_KEEP>
+    <EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>Skriv inn adressen du vil videresende all e-post til.</EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>
+    <EMAIL_FORWARD_FORM_SUBMIT>Opprett regel</EMAIL_FORWARD_FORM_SUBMIT>
+
+
+    <!-- Groups pages -->
+    <GROUPS_TITLE>Dine grupper</GROUPS_TITLE>
+    <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere, men du kan opprette en &lt;a 
+        href="index.php/groups/personal"&gt;personlig gruppe&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
+    <GROUPS_TOO_MANY>Du er moderator for svært mange grupper, så visningen vil ta for lang tid. 
+        Bruk kommandolinjegrensesnittet &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt; i stedet.</GROUPS_TOO_MANY>
+    <GROUPS_GROUP_UNKNOWN>Kunne ikke finne angitt gruppe</GROUPS_GROUP_UNKNOWN>
+    <GROUPS_MODERATIVE_TITLE>Grupper du kan moderere</GROUPS_MODERATIVE_TITLE>
+    <GROUPS_OTHERS_TITLE>Dine gruppemedlemskap</GROUPS_OTHERS_TITLE>
+    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="index.php/groups/personal"&gt;opprette 
+        den&lt;/a&gt;?</GROUPS_NO_PERSONAL>
+
+    <GROUPS_TABLE_GROUPNAME>Gruppe:</GROUPS_TABLE_GROUPNAME>
+    <GROUPS_TABLE_DESCRIPTION>Beskrivelse:</GROUPS_TABLE_DESCRIPTION>
+
+
+    <GROUPS_PERSONAL_TITLE>Opprett personlig gruppe</GROUPS_PERSONAL_TITLE>
+    <GROUPS_PERSONAL_INFO>Den personlige gruppen er en gruppe med samme navn som brukerkontoen din (i dette 
+        tilfellet {{username}}). Du administrerer gruppen og avgjør hvem som skal være medlemmer med tilgang til f.eks. 
+        delte dokumenter og mulighet til å utføre skript.</GROUPS_PERSONAL_INFO>
+    <GROUPS_PERSONAL_ALREADY>Det ser ut til at du allerede har en personlig gruppe</GROUPS_PERSONAL_ALREADY>
+    <GROUPS_PERSONAL_SUCCESS>Din personlige gruppe er opprettet. Det tar vanligvis opptil 2 timer før endringene 
+        trer i kraft.</GROUPS_PERSONAL_SUCCESS>
+    <GROUPS_PERSONAL_SUBMIT>Opprett personlig gruppe</GROUPS_PERSONAL_SUBMIT>
+
+    <GROUP_TITLE>Gruppe: {{groupname}}</GROUP_TITLE>
+    <GROUP_DESCRIPTION>Beskrivelse:</GROUP_DESCRIPTION>
+    <GROUP_DESCRIPTION_SUBMIT>Endre beskrivelse</GROUP_DESCRIPTION_SUBMIT>
+    <GROUP_CREATE_DATE>Opprettet:</GROUP_CREATE_DATE>
+    <GROUP_SPREAD>Tilgang:</GROUP_SPREAD>
+    <GROUP_OWNER>Eier:</GROUP_OWNER>
+    <GROUP_MEMBERS>Medlemmer:</GROUP_MEMBERS>
+    <GROUP_MEMBERS_GROUPS>{{number}} grupper</GROUP_MEMBERS_GROUPS>
+    <GROUP_MEMBERS_ACCOUNTS>{{number}} brukerkontoer</GROUP_MEMBERS_ACCOUNTS>
+    <GROUP_MEMBERS_PERSONS>{{number}} personer</GROUP_MEMBERS_PERSONS>
+
+    <GROUP_MEMBERS_TABLE_NAME>Navn:</GROUP_MEMBERS_TABLE_NAME>
+    <GROUP_MEMBERS_TABLE_TYPE>Type:</GROUP_MEMBERS_TABLE_TYPE>
+
+    <GROUPS_MEMBERS_DEL_TITLE>Bekreft fjerning av medlemmer</GROUPS_MEMBERS_DEL_TITLE>
+    <GROUPS_MEMBERS_DEL_CONFIRM>Er du sikker på at du vil fjerne følgende medlemmer fra gruppen 
+        &lt;strong&gt;{{groupname}}&lt;/strong&gt;?</GROUPS_MEMBERS_DEL_CONFIRM>
+    <GROUPS_MEMBERS_DEL_GROUPS>Grupper:</GROUPS_MEMBERS_DEL_GROUPS>
+    <GROUPS_MEMBERS_DEL_PERSONS>Personer:</GROUPS_MEMBERS_DEL_PERSONS>
+    <GROUPS_MEMBERS_DEL_ACCOUNTS>Kontoer:</GROUPS_MEMBERS_DEL_ACCOUNTS>
+    <GROUPS_MEMBERS_DEL_SUBMIT>Fjern medlemmer</GROUPS_MEMBERS_DEL_SUBMIT>
+    <GROUPS_MEMBERS_DEL_CANCEL>Avbryt</GROUPS_MEMBERS_DEL_CANCEL>
+
+    <GROUPS_MEMBERS_REMOVED_SUCCESS>Fjernet {{no_members}}
+        medlemmer</GROUPS_MEMBERS_REMOVED_SUCCESS>
+
+    <GROUPS_MEMBERS_FORM_DEL_ACCOUNT>Fjern brukerkonto:</GROUPS_MEMBERS_FORM_DEL_ACCOUNT>
+    <GROUPS_MEMBERS_FORM_DEL_GROUP>Fjern gruppe:</GROUPS_MEMBERS_FORM_DEL_GROUP>
+    <GROUPS_MEMBERS_FORM_DEL_PERSON>Fjern person:</GROUPS_MEMBERS_FORM_DEL_PERSON>
+
+    <GROUPS_MEMBERS_TITLE>Administrasjon av medlemskap</GROUPS_MEMBERS_TITLE>
+    <GROUPS_MEMBERS_CHOOSE>Hvilken gruppe vil du administrere?</GROUPS_MEMBERS_CHOOSE>
+    <GROUPS_MEMBERS_ADDED_SUCCESS>La til {{no_members}} nye medlemmer i gruppen</GROUPS_MEMBERS_ADDED_SUCCESS>
+    <GROUPS_MEMBERS_NEWMEMBERS_TITLE>Legg til nye medlemmer</GROUPS_MEMBERS_NEWMEMBERS_TITLE>
+    <GROUPS_MEMBERS_FORM_ACCOUNT>Ny(e) brukerkonto(er):</GROUPS_MEMBERS_FORM_ACCOUNT>
+    <GROUPS_MEMBERS_FORM_GROUP>Ny(e) gruppe(er):</GROUPS_MEMBERS_FORM_GROUP>
+    <GROUPS_MEMBERS_FORM_PERSON>Ny(e) person(er):</GROUPS_MEMBERS_FORM_PERSON>
+    <GROUPS_MEMBERS_FORM_SUBMIT>Legg til medlemmer</GROUPS_MEMBERS_FORM_SUBMIT>
+    <GROUPS_MEMBERS_LIST_TITLE>Medlemmer</GROUPS_MEMBERS_LIST_TITLE>
+    <GROUPS_MEMBERS_LIST_EMPTY>Denne gruppen har ingen medlemmer</GROUPS_MEMBERS_LIST_EMPTY>
+    <GROUPS_MEMBERS_TOO_MANY>Denne gruppen har for mange medlemmer til at de
+        kan vises her. Om du kjenner brukernavnene kan du legge de inn her,
+        eventuelt kan du kontakte din lokale
+        IT-avdeling.</GROUPS_MEMBERS_TOO_MANY>
+    <GROUPS_MEMBERS_MORE>Hvis du skal legge til flere medlemmer samtidig, skriver du dem inn atskilt med komma 
+        og/eller mellomrom.</GROUPS_MEMBERS_MORE>
+    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: personer fungerer bare for grupper
+        brukt for Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
+
+    <GROUPS_NEW_TITLE>Søk om ny gruppe</GROUPS_NEW_TITLE>
+    <GROUPS_NEW_INTRO>&lt;p&gt;Søk om en ny gruppe til bruk i IT-systemene ved UiO.
+        Søknaden vil bli behandlet av brukeradministrasjonen ved
+        UiO, som vil svare deg via e-post.&lt;/p&gt;
+
+        &lt;p&gt;
+        Før du sender inn skjemaet bør du lese gjennom &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/brukeradministrasjon/hjelp/grupper/oppretting/"&gt;
+        retningslinjene&lt;/a&gt; og &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/hjelp/grupper/oppretting.html"&gt;hjelp
+        for å opprette grupper&lt;/a&gt;.
+        &lt;/p&gt;
+    </GROUPS_NEW_INTRO>
+    <GROUPS_NEW_FORM_NAME>Gruppenavn:</GROUPS_NEW_FORM_NAME>
+    <GROUPS_NEW_FORM_DESC>Beskrivelse:</GROUPS_NEW_FORM_DESC>
+    <GROUPS_NEW_FORM_SPREADS>System gruppen skal vere kjent i:</GROUPS_NEW_FORM_SPREADS>
+    <GROUPS_NEW_FORM_MODERATOR>Moderatorgruppe:</GROUPS_NEW_FORM_MODERATOR>
+    <GROUPS_NEW_FORM_SUBMIT>Søk om ny gruppe</GROUPS_NEW_FORM_SUBMIT>
+    <GROUPS_NEW_FORM_NAME_REQUIRED>Gruppenavn er påkrevd</GROUPS_NEW_FORM_NAME_REQUIRED>
+    <GROUPS_NEW_FORM_DESC_REQUIRED>Trenger en beskrivelse av hva gruppen skal
+        brukes til</GROUPS_NEW_FORM_DESC_REQUIRED>
+    <GROUPS_NEW_FORM_SPREAD_UNKNOWN>Systemet "{{spread}}" er ukjent</GROUPS_NEW_FORM_SPREAD_UNKNOWN>
+    <GROUPS_NEW_FORM_MOD_REQUIRED>Trenger en gruppe som skal vere moderator for
+        gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
+
+    <!-- Guest pages -->
+    <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
+    <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til UiOs
+        trådløsnett. Kontoene er tidsbegrenset og gir kun tilgang til det trådløse
+        nettet på UiO.</GUEST_INTRO>
+    <GUEST_LIST_ACTIVE>Dine aktive trådløskontoer</GUEST_LIST_ACTIVE>
+    <!--<GUEST_LIST_INACTIVE>Dine utgåtte trådløskontoer</GUEST_LIST_INACTIVE>-->
+    <GUEST_LIST_ACTIVE_EMPTY>Du har ingen aktive trådløskontoer</GUEST_LIST_ACTIVE_EMPTY>
+    <!--<GUEST_LIST_INACTIVE_EMPTY>Du har ingen utgåtte trådløskontoer</GUEST_LIST_INACTIVE_EMPTY>-->
+    <!--<GUEST_LIST_SHOW_INACTIVE>Vis utgåtte kontoer</GUEST_LIST_SHOW_INACTIVE>-->
+
+    <GUEST_LIST_COL_USERNAME>Brukernavn</GUEST_LIST_COL_USERNAME>
+    <GUEST_LIST_COL_NAME>Fullt navn</GUEST_LIST_COL_NAME>
+    <GUEST_LIST_COL_END_DATE>Avsluttes</GUEST_LIST_COL_END_DATE>
+
+    <GUEST_STATUS_ACTIVE>Aktiv</GUEST_STATUS_ACTIVE>
+    <GUEST_STATUS_EXPIRED>Avsluttet</GUEST_STATUS_EXPIRED>
+
+    <GUEST_INFO_TOP>{{str}}</GUEST_INFO_TOP>
+    <GUEST_INFO_USERNAME>Brukernavn:</GUEST_INFO_USERNAME>
+    <GUEST_INFO_NAME>Fullt navn:</GUEST_INFO_NAME>
+    <GUEST_INFO_CONTACT>Kontakt:</GUEST_INFO_CONTACT>
+    <GUEST_INFO_RESPONSIBLE>Ansvarlig:</GUEST_INFO_RESPONSIBLE>
+    <GUEST_INFO_CREATED>Opprettet:</GUEST_INFO_CREATED>
+    <GUEST_INFO_EXPIRED>Avsluttes</GUEST_INFO_EXPIRED>
+    <GUEST_INFO_STATUS>Status:</GUEST_INFO_STATUS>
+    <GUEST_INFO_DAYS_LEFT>Dager igjen:</GUEST_INFO_DAYS_LEFT>
+
+    <GUEST_NEW_TITLE>Opprett ny trådløskonto</GUEST_NEW_TITLE>
+    <GUEST_NEW_INTRO>Oppgi gjestens navn og mobilnummer. Vedkommende vil få en SMS
+        med brukernavn og passord. </GUEST_NEW_INTRO>
+    <GUEST_NEW_FORM_FNAME>Fornavn:</GUEST_NEW_FORM_FNAME>
+    <GUEST_NEW_FORM_LNAME>Etternavn:</GUEST_NEW_FORM_LNAME>
+    <GUEST_NEW_FORM_DURATION>Varighet:</GUEST_NEW_FORM_DURATION>
+    <GUEST_NEW_FORM_DAYS>{{days}} dager</GUEST_NEW_FORM_DAYS>
+    <GUEST_NEW_FORM_SEND_SMS>Send passord til mobil:</GUEST_NEW_FORM_SEND_SMS>
+    <GUEST_NEW_FORM_NOSMS>Nei – Passordet vises på skjermen, og du vil
+        få muligheten til å skrive en passordside.</GUEST_NEW_FORM_NOSMS>
+    <GUEST_NEW_FORM_SMS>Ja – Passordet blir sendt med SMS til mobilnummeret du
+        oppgir.</GUEST_NEW_FORM_SMS>
+    <GUEST_NEW_FORM_CONTACT>Mobilnummer:</GUEST_NEW_FORM_CONTACT>
+    <GUEST_NEW_FORM_SUBMIT>Opprett</GUEST_NEW_FORM_SUBMIT>
+    <GUEST_NEW_FORM_FNAME_REQ>Fornavn er obligatorisk.</GUEST_NEW_FORM_FNAME_REQ>
+    <GUEST_NEW_FORM_LNAME_REQ>Etternavn er obligatorisk.</GUEST_NEW_FORM_LNAME_REQ>
+    <GUEST_NEW_FORM_DURATION_REQ>Varighet er obligatorisk.</GUEST_NEW_FORM_DURATION_REQ>
+    <GUEST_NEW_FORM_CONTACT_REQ>Mobilnummer er obligatorisk.</GUEST_NEW_FORM_CONTACT_REQ>
+    <GUEST_NEW_FORM_CONTACT_FMT>Mobilnummer må være åtte siffer (bare norske
+        telefonnummer er tillatt).</GUEST_NEW_FORM_CONTACT_FMT>
+    <GUEST_NEW_FORM_NAME_FMT>Navn må være minimum {{min}} tegn og maksimum
+        {{max}} tegn.</GUEST_NEW_FORM_NAME_FMT>
+
+    <GUEST_CREATED_SMS>Ny trådløskonto opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
+        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; En SMS med
+        brukernavn og passord ble sendt til
+        &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
+    <GUEST_DEACTIVATED>Trådløskonto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
+        avsluttet</GUEST_DEACTIVATED>
+    <GUEST_NEW_PASSWORD>Passord endret for trådløskonto
+        &lt;b&gt;{{uname}}&lt;/b&gt; – nytt passord sendt til
+        &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_NEW_PASSWORD>
+
+    <GUEST_BTN_DEACTIVATE>Avslutt konto</GUEST_BTN_DEACTIVATE>
+    <GUEST_BTN_RESETPW>Sett nytt passord</GUEST_BTN_RESETPW>
+
+    <GUEST_PW_NOT_CACHED>Kunne ikke vise passord</GUEST_PW_NOT_CACHED>
+    <GUEST_PW_LETTER_BUTTON>Passordside for utskrift</GUEST_PW_LETTER_BUTTON>
+    <GUEST_PW_LETTER>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Passordside&lt;/title&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Din trådløskonto&lt;/h1&gt; 
+        &lt;p&gt;&lt;i&gt;Dersom du ikke får logget inn med det nye passordet bør
+            du forsikre deg om at du ikke har blandet sammen
+            bokstaven 'O' (stor o) og tallet '0' (null) eller
+            bokstaven 'l' (liten l) og tallet '1' (tallet ett).
+            Sjekk at Caps Lock ikke er på og merk at det kan gå opp
+            til 8 timer til ditt nye passord fungerer som det
+            skal.&lt;/i&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;ul&gt;
+        &lt;li&gt;Ditt brukernavn er: &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;Ditt passord er: &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;
+        &lt;/ul&gt;&lt;/p&gt;
+        &lt;h2&gt;Slik bytter du passord:&lt;/h2&gt;
+        &lt;p&gt;&lt;ul&gt;
+            &lt;li&gt;Skriv inn &lt;a href="https://brukerinfo.uio.no/"&gt;https://brukerinfo.uio.no/&lt;/a&gt; i adressefeltet i en nettleser&lt;/li&gt;
+            &lt;li&gt;Logg inn med brukernavnet og passordet fra dette arket&lt;/li&gt;
+            &lt;li&gt;Velg fanen "Brukerkonto", og fyll ut skjemaet med gammelt og nytt passord&lt;/li&gt;
+            &lt;/ul&gt;
+
+            Det er strengt forbudt å la andre benytte seg av brukernavnet
+            og passordet ditt. Disse skal ikke lånes bort eller oppgis til
+            andre.  Mislighold vil kunne føre til at brukeren din blir
+            sperret for videre bruk.&lt;/p&gt;
+
+        &lt;p&gt;Du plikter å lese og sette deg inn i reglementet for bruk av
+            universitetets IT-tjenester. IT-reglementet finner du på:
+            &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/reglement/"&gt;https://uio.no/tjenester/it/brukernavn-passord/reglement/&lt;/a&gt;&lt;/p&gt;
+
+
+        &lt;p&gt;Ta kontakt med IT-ansvarlig ved din enhet dersom du har
+            problemer med tilgang til IT-tjenester etter gjennomført
+            passordskifte. En oversikt over IT-ansvarlige finner du på
+            &lt;a href="https://uio.no/tjenester/it/kontakt/"&gt;https://uio.no/tjenester/it/kontakt/&lt;/a&gt;. 
+            Har du ikke tilgang til Internett kan du ringe
+            universitetets helpdesktjeneste på 22 84 00 04.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+    </GUEST_PW_LETTER>
+
+    <GUEST_NO_USERNAME>Brukernavn ikke oppgitt</GUEST_NO_USERNAME>
+    <GUEST_UNKNOWN_USERNAME>Fant ikke trådløskonto med brukernavn {{username}}</GUEST_UNKNOWN_USERNAME>
+    <GUEST_CREATE_NO_ACCESS>Kun ansatte kan opprette
+        gjestebrukere.</GUEST_CREATE_NO_ACCESS>
+
+    <!-- Help pages -->
+    <HELP_TITLE>Hjelp</HELP_TITLE>
+    <HELP_LINK>https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/</HELP_LINK>
+
+    <!-- GENERAL TEXT
+         Text that is meant to be global - used on many pages.
+         -->
+
+    <!-- Short text in links, to tell that clicking on this makes you see more information -->
+    <GENERAL_MORE_DETAILS>Vis detaljer</GENERAL_MORE_DETAILS>
+    <GENERAL_LESS_DETAILS>Skjul detaljer</GENERAL_LESS_DETAILS>
+
+    <GENERAL_TIMEINTERVAL_DAY>{{num}} dag</GENERAL_TIMEINTERVAL_DAY>
+    <GENERAL_TIMEINTERVAL_DAYS>{{num}} dager</GENERAL_TIMEINTERVAL_DAYS>
+    <GENERAL_TIMEINTERVAL_WEEK>{{num}} uke</GENERAL_TIMEINTERVAL_WEEK>
+    <GENERAL_TIMEINTERVAL_WEEKS>{{num}} uker</GENERAL_TIMEINTERVAL_WEEKS>
+    <GENERAL_TIMEINTERVAL_MONTH>{{num}} måned</GENERAL_TIMEINTERVAL_MONTH>
+    <GENERAL_TIMEINTERVAL_MONTHS>{{num}} måneder</GENERAL_TIMEINTERVAL_MONTHS>
+    <GENERAL_TIMEINTERVAL_YEAR>{{num}} år</GENERAL_TIMEINTERVAL_YEAR>
+    <GENERAL_TIMEINTERVAL_YEARS>{{num}} år</GENERAL_TIMEINTERVAL_YEARS>
+
+    <!-- Navigation text - Text in the navigation on different pages.  -->
+    <NAVIGATION_FIRST>&lt;&lt; første</NAVIGATION_FIRST>
+    <NAVIGATION_PREVIOUS>&lt; forrige</NAVIGATION_PREVIOUS>
+    <NAVIGATION_NEXT>neste &gt;</NAVIGATION_NEXT>
+    <NAVIGATION_LAST>siste &gt;&gt;</NAVIGATION_LAST>
+
+    <!-- Bofh text - standard names on different bofh terms Gyda: Usikker på om dette skal oversettes-->
+    <BOFH_INFO_NAME>Visningsnavn:</BOFH_INFO_NAME>
+    <BOFH_INFO_BIRTH>Fødselsdato:</BOFH_INFO_BIRTH>
+    <BOFH_INFO_AFFILIATIONS>Kontoen din har følgende tilknytning(er):</BOFH_INFO_AFFILIATIONS>
+    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
+        ved &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>
+    <BOFH_INFO_PERSON_AFFILIATIONS>Du som person har følgende tilknytning(er):</BOFH_INFO_PERSON_AFFILIATIONS>
+    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Tilknytning i &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: 
+        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt; 
+        &lt;dfn title="{{status_desc}}"&gt;{{status}}&lt;/dfn&gt;
+        ved {{stedkode_desc}} ({{stedkode}})</BOFH_INFO_PERSON_AFFILIATION_VALUE>
+    <BOFH_INFO_NAMES>Navn:</BOFH_INFO_NAMES>
+    <BOFH_INFO_NAME_VALUE>Navn registrert i &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        {{name}}</BOFH_INFO_NAME_VALUE>
+    <BOFH_INFO_FNR>Fødselsnummer:</BOFH_INFO_FNR>
+    <BOFH_INFO_FNR_VALUE>Nummer registrert i &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        {{fnr}}</BOFH_INFO_FNR_VALUE>
+    <BOFH_INFO_CONTACT>Kontaktinformasjon</BOFH_INFO_CONTACT>
+    <BOFH_INFO_CONTACT_VALUE>Kontaktinfo {{type}} registrert i &lt;dfn
+        title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: {{contact}}</BOFH_INFO_CONTACT_VALUE>
+    <BOFH_INFO_SPREADS>Kontoen din er aktiv i følgende system(er):</BOFH_INFO_SPREADS>
+    <BOFH_INFO_EXPIRE>utløper</BOFH_INFO_EXPIRE>
+
+    <BOFH_INFO_HOME>Hjemmeområde</BOFH_INFO_HOME>
+    <BOFH_INFO_SHELL>Shell</BOFH_INFO_SHELL>
+    <BOFH_INFO_DFG_NAME>standard filgruppe</BOFH_INFO_DFG_NAME>
+    <BOFH_INFO_DFG_POSIX_GID>standard filgruppens GID</BOFH_INFO_DFG_POSIX_GID>
+    <BOFH_INFO_OWNER_DESC>beskrivelse</BOFH_INFO_OWNER_DESC>
+    <BOFH_INFO_HOME_STATUS>Status for hjemmeområdet</BOFH_INFO_HOME_STATUS>
+    <BOFH_INFO_UID>Brukers UID</BOFH_INFO_UID>
+    <BOFH_INFO_GECOS>Gecos</BOFH_INFO_GECOS>
+    <BOFH_INFO_QUARANTINED>Karantene</BOFH_INFO_QUARANTINED>
+
+    <BOFH_INFO_STEDKODE>stedkode</BOFH_INFO_STEDKODE>
+
+</data>
+</txt>

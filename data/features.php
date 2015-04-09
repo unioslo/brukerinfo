@@ -38,7 +38,7 @@ function get_feature_list() {
             'uio' => array('account', 'email', 'groups', 'guests', 'person', 
                            'printing', 'reservations'),
             'hine'=> array('account', 'email', 'groups', 'person'),
-            'tsd' => array('')
+            'tsd' => array('Account_tsd', 'groups')
         );
         return $features[INST];
     }
