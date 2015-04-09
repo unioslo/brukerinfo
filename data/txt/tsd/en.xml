@@ -11,10 +11,10 @@
     <DEC_FORMAT>.</DEC_FORMAT>
 
     <!-- The browsers window title -->
-    <PAGETITLE>Brukerinfo - University of Oslo</PAGETITLE>
-    <HEADER>Brukerinfo</HEADER>
-    <TAGLINE>Simple user administration at UiO</TAGLINE>
-    <FOOTER>Brukerinfo - simple user administration at UiO</FOOTER>
+    <PAGETITLE>Brukerinfo (TSD) – University of Oslo</PAGETITLE>
+    <HEADER>Brukerinfo for TSD</HEADER>
+    <TAGLINE>Simple administration for TSD</TAGLINE>
+    <FOOTER>Brukerinfo – simple administration TSD</FOOTER>
 
     <!-- The title of the page if it is locked because of a restart 
          of bofhd or the site is being updated -->
@@ -32,7 +32,7 @@
     <ERROR_SUBGROUP_NO_ROUTE>Invalid URL</ERROR_SUBGROUP_NO_ROUTE>
 
     <!-- Standard notices -->
-    <EMPLOYEES_ONLY>Only employees at UiO are allowed to do this.</EMPLOYEES_ONLY>
+    <EMPLOYEES_ONLY>This is not activated in this version.</EMPLOYEES_ONLY>
 
     <!-- Standard form messages -->
     <FORM_REQUIRED>This is required</FORM_REQUIRED>
@@ -81,16 +81,9 @@
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Log on</LOGON_TITLE>
-    <LOGON_INTRO>&lt;p&gt;This is a web based user interface you can use to view and
-        modify some of the information concerning your web identity and account at the 
-        University of Oslo.
+    <LOGON_INTRO>&lt;p&gt;This is a self service for making changes to your user account at TSD.
     </LOGON_INTRO>
     <LOGON_OUTRO>
-        &lt;ul&gt;
-        &lt;li&gt;Forgotten your password? Students and employees can &lt;a href="forgotten/password/"&gt;set a new password by SMS&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;Don't know &lt;a href="forgotten/username/"&gt;your username at UiO&lt;/a&gt;?&lt;/li&gt;
-        &lt;/ul&gt;
-
         &lt;p&gt;Read about &lt;a
         href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;where
         is it safe to enter your username and password&lt;/a&gt;.&lt;/p&gt;
@@ -136,7 +129,8 @@
 
     <HOME_ABOUT_TITLE>About Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>This is a web based user interface
-        you can use to view and modify some of the information concerning your electronic identity at the 
+        you can use to view and modify some of the information concerning your electronic identity 
+        in TSD projects at the 
         University of Oslo. For more information and help about data systems at UiO, please see
         &lt;a href="https://uio.no/tjenester/it/"&gt;IT-services at UiO&lt;/a&gt;.</HOME_ABOUT>
 
@@ -445,8 +439,7 @@
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Your groups</GROUPS_TITLE>
-    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate, but you can make 
-        &lt;a href="index.php/groups/personal"&gt;your own personal group&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
+    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate.</GROUPS_EMPTY_MOD_LIST>
     <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load. 
         Please use the command line interface
         &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt;
@@ -454,7 +447,7 @@
     <GROUPS_GROUP_UNKNOWN>Could not find specified group</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Groups you can moderate</GROUPS_MODERATIVE_TITLE>
     <GROUPS_OTHERS_TITLE>Your group memberships</GROUPS_OTHERS_TITLE>
-    <GROUPS_NO_PERSONAL>You do not have a personal group. Do you want to &lt;a href="index.php/groups/personal"&gt;create it&lt;/a&gt;?</GROUPS_NO_PERSONAL>
+    <GROUPS_NO_PERSONAL>You do not have a personal group.</GROUPS_NO_PERSONAL>
 
     <GROUPS_TABLE_GROUPNAME>Group:</GROUPS_TABLE_GROUPNAME>
     <GROUPS_TABLE_DESCRIPTION>Description:</GROUPS_TABLE_DESCRIPTION>

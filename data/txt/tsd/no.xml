@@ -11,10 +11,10 @@
     <DEC_FORMAT>,</DEC_FORMAT>
 
     <!-- The browsers window title -->
-    <PAGETITLE>Brukerinfo - Universitetet i Oslo</PAGETITLE>
-    <HEADER>Brukerinfo</HEADER>
-    <TAGLINE>Enkel brukeradministrasjon ved UiO</TAGLINE>
-    <FOOTER>Brukerinfo - enkel brukeradministrasjon ved UiO</FOOTER>
+    <PAGETITLE>Brukerinfo (TSD) – Universitetet i Oslo</PAGETITLE>
+    <HEADER>Brukerinfo for TSD</HEADER>
+    <TAGLINE>Enkel brukeradministrasjon for TSD</TAGLINE>
+    <FOOTER>Brukerinfo – enkel brukeradministrasjon for TSD</FOOTER>
 
     <!-- The title of the page if it is locked because of a restart 
          of bofhd or the site is being updated -->
@@ -32,7 +32,7 @@
     <ERROR_SUBGROUP_NO_ROUTE>Ugyldig URL</ERROR_SUBGROUP_NO_ROUTE>
 
     <!-- Standard notices -->
-    <EMPLOYEES_ONLY>Det er bare ansatte ved UiO som har tilgang til dette.</EMPLOYEES_ONLY>
+    <EMPLOYEES_ONLY>Dette er ikke tilgjengelig i denne versjonen.</EMPLOYEES_ONLY>
 
     <!-- Standard form messages -->
     <FORM_REQUIRED>Feltet er påkrevd</FORM_REQUIRED>
@@ -81,15 +81,10 @@
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Logg inn</LOGON_TITLE>
-    <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen 
-        som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
+    <LOGON_INTRO>&lt;p&gt;Denne tjenesten gir deg tilgang til å gjøre endringer på 
+        brukerkontoen din.
     </LOGON_INTRO>
     <LOGON_OUTRO>
-        &lt;ul&gt;
-        &lt;li&gt;Glemt passordet ditt? Studenter og ansatte kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;Vet du ikke hva &lt;a href="forgotten/username/"&gt;ditt brukernavn ved UiO&lt;/a&gt; er?&lt;/li&gt;
-        &lt;/ul&gt;
-
         &lt;p&gt;Les om &lt;a
         href="https://uio.no/tjenester/it/sikkerhet/hjelp/passord-personinfo/trygt-oppgi-passord.html"&gt;
         hvorfor det er trygt å oppgi ditt passord på denne siden&lt;/a&gt;.&lt;/p&gt;
@@ -138,7 +133,8 @@
 
     <HOME_ABOUT_TITLE>Om Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
-        er tilknyttet den elektroniske identiteten din ved Universitetet i Oslo. Hvis du trenger mer 
+        er tilknyttet den elektroniske identiteten din knyttet til TSD-prosjekt
+        ved Universitetet i Oslo. Hvis du trenger mer 
         informasjon eller hjelp i forbindelse med datasystemene ved UiO, kan du gå til
         &lt;a href="https://uio.no/tjenester/it/"&gt;nettstedet for IT-tjenester ved UiO&lt;/a&gt;.</HOME_ABOUT>
 
@@ -449,16 +445,14 @@
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Dine grupper</GROUPS_TITLE>
-    <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere, men du kan opprette en &lt;a 
-        href="index.php/groups/personal"&gt;personlig gruppe&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
+    <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere.</GROUPS_EMPTY_MOD_LIST>
     <GROUPS_TOO_MANY>Du er moderator for svært mange grupper, så visningen vil ta for lang tid. 
         Bruk kommandolinjegrensesnittet &lt;a
         href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt; i stedet.</GROUPS_TOO_MANY>
     <GROUPS_GROUP_UNKNOWN>Kunne ikke finne angitt gruppe</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Grupper du kan moderere</GROUPS_MODERATIVE_TITLE>
     <GROUPS_OTHERS_TITLE>Dine gruppemedlemskap</GROUPS_OTHERS_TITLE>
-    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="index.php/groups/personal"&gt;opprette 
-        den&lt;/a&gt;?</GROUPS_NO_PERSONAL>
+    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe.</GROUPS_NO_PERSONAL>
 
     <GROUPS_TABLE_GROUPNAME>Gruppe:</GROUPS_TABLE_GROUPNAME>
     <GROUPS_TABLE_DESCRIPTION>Beskrivelse:</GROUPS_TABLE_DESCRIPTION>
