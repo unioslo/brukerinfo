@@ -408,7 +408,7 @@ class Groups implements ModuleGroup {
 
             $form->addElement('hidden', 'okDeleteConfirm', true);
             $form->addElement('submit', 'okDelete', txt('groups_members_del_submit'), 'class="submit_warn"');
-            $form->addElement('html', '<a href="groups/?group='.$groupname.'">'.txt('groups_members_del_cancel').'</a>');
+            $form->addElement('html', '<a href="index.php/groups/?group='.$groupname.'">'.txt('groups_members_del_cancel').'</a>');
             return $form;
         }
 
