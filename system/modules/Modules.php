@@ -82,11 +82,15 @@ class Modules {
     }
 
     public function getPage($path) {
-        $parts = explode("/", $path);
-        array_shift($parts);
         $grp = $this->getCurrentGroup($path);
-        array_shift($parts);
-        if ($parts && !in_array($parts[0], $grp->getSubgroups())) {
+        $parts = explode("/", $path);
+        if (count($parts) < 3) {
+            $parts = array('');
+        } else {
+            array_shift($parts);
+            array_shift($parts);
+        }
+        if ($parts[0] && !in_array($parts[0], $grp->getSubgroups())) {
             View::forward('', txt('error_subgroup_no_route'));
         }
         return $grp->display($parts);
