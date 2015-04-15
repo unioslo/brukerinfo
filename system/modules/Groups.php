@@ -271,7 +271,7 @@ class Groups implements ModuleGroup {
          */
         function groupmemberForm($groupname)
         {
-            $newMember = new BofhFormUiO('newMember', null, 'groups/?group='.$groupname);
+            $newMember = new BofhFormUiO('newMember', null, 'index.php/groups/?group='.$groupname);
             $newMember->addElement('text', 'acc', txt('groups_members_form_account'));
             $newMember->addElement('text', 'grp', txt('groups_members_form_group'));
             $newMember->addElement('text', 'per', txt('groups_members_form_person'));
@@ -321,7 +321,7 @@ class Groups implements ModuleGroup {
          */
         function getFormDeleteMembers($groupname)
         {
-            $form = new BofhFormUiO('deleteMembersTooMany', null, 'groups/?group='.$groupname);
+            $form = new BofhFormUiO('deleteMembersTooMany', null, 'index.php/groups/?group='.$groupname);
             $form->addElement('text', 'accounts', txt('groups_members_form_del_account'));
             $form->addElement('text', 'groups',   txt('groups_members_form_del_group'));
             $form->addElement('text', 'persons',  txt('groups_members_form_del_person'));
@@ -377,7 +377,7 @@ class Groups implements ModuleGroup {
          */
         function formConfirmDelMembers($groupname, $members = null)
         {
-            $form = new BofhFormUiO('confirmDelMembers', null, 'groups/?group='.$groupname);
+            $form = new BofhFormUiO('confirmDelMembers', null, 'index.php/groups/?group='.$groupname);
             $form->addElement('html', View::createElement('p', 
                 txt('groups_members_del_confirm', array('groupname' => $groupname))
             ));
@@ -420,7 +420,7 @@ class Groups implements ModuleGroup {
          */
         function formDescription($groupname, $description)
         {
-            $form = new BofhFormInline('setDesc', null, 'groups/?group='.$groupname);
+            $form = new BofhFormInline('setDesc', null, 'index.php/groups/?group='.$groupname);
             $form->addElement('text', 'desc', null, array(
                 'value' => $description,
                 'style' => 'width: 50%',
