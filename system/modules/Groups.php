@@ -45,6 +45,10 @@ class Groups implements ModuleGroup {
         return array();
     }
 
+    public function getHiddenRoutes() {
+        return array('personal');
+    }
+
     public function getShortcuts() {
         if (INST == 'uio') {
             return array(

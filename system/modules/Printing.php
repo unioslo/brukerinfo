@@ -38,6 +38,10 @@ class Printing implements ModuleGroup {
         return array('', 'history');
     }
 
+    public function getHiddenRoutes() {
+        return array();
+    }
+
     public function getShortcuts() {
         return array(
             array('printing/history/', txt('home_shortcuts_printing_history'))

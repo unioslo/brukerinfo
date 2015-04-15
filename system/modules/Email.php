@@ -47,6 +47,10 @@ class Email implements ModuleGroup {
         }
     }
 
+    public function getHiddenRoutes() {
+        return array();
+    }
+
     public function getShortcuts() {
         $ret = array();
         if (INST == 'uio') {

@@ -90,7 +90,8 @@ class Modules {
             array_shift($parts);
             array_shift($parts);
         }
-        if ($parts[0] && !in_array($parts[0], $grp->getSubgroups())) {
+        if ($parts[0] && !in_array($parts[0], $grp->getSubgroups())
+                      && !in_array($parts[0], $grp->getHiddenRoutes())) {
             View::forward('', txt('error_subgroup_no_route'));
         }
         return $grp->display($parts);

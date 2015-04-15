@@ -20,6 +20,7 @@ interface ModuleGroup {
     public function getName();
     public function getInfoPath();
     public function getSubgroups();
+    public function getHiddenRoutes();
     public function getShortcuts();
     public function display($path);
 }

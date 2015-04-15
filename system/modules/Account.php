@@ -45,6 +45,10 @@ class Account implements ModuleGroup {
         }
     }
 
+    public function getHiddenRoutes() {
+        return array();
+    }
+
     public function getShortcuts() {
         return array(array('account/password', txt('home_shortcuts_password')));
     }

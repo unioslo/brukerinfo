@@ -47,6 +47,10 @@ class Person implements ModuleGroup {
         return array();
     }
 
+    public function getHiddenRoutes() {
+        return array();
+    }
+
     public function getShortcuts() {
         return array();
     }
