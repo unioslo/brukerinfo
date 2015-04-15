@@ -96,6 +96,13 @@ define('MESSAGE_FILE',          LINK_DATA . '/messages');
  */
 define('DEFAULT_LANG',          'en');
 
+/**
+ * The default timezone to be used when working with datetimes.
+ * PHP complains by throwing warnings if it has to fall back to
+ * to using the system settings.
+ */
+date_default_timezone_set('Europe/Oslo');
+
 
 /// Cerebrum settings
 
