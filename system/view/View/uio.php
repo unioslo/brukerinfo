@@ -185,8 +185,7 @@ class View_uio extends ViewTemplate
             if (!empty($message[2])) {
                 $ret .= '<p class="admonition-title">' . $message[2] . '</p>';
             }
-            $ret .= $message[0] . '</div>';
-            $ret .= $ret . "\n";
+            $ret .= $message[0] . "</div>\n";
         }
         return $ret;
     }
