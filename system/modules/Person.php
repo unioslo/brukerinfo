@@ -18,10 +18,12 @@
 
 class Person implements ModuleGroup {
     private $modules;
+    private $authz;
     public function __construct($modules) {
         $this->modules = $modules;
-        $authz = Init::get('Authorization');
-        if (INST == 'uio' && !$authz->is_guest() || INST == 'hine' && Init::get('Bofh')->isPersonal()) {
+        $this->authz = Init::get('Authorization');
+        if (INST == 'uio' && $this->authz->is_personal()
+            || INST == 'hine' && Init::get('Bofh')->isPersonal()) {
             $modules->addGroup($this);
         }
     }
@@ -36,8 +38,7 @@ class Person implements ModuleGroup {
 
     public function getSubgroups() {
         if (INST == 'uio') {
-            $bofh = Init::get("Bofh");
-            if ($bofh->isEmployee()) {
+            if ($this->authz->can_set_display_name()) {
                 return array('', 'name', 'primary');
             } else {
                 return array('', 'primary');

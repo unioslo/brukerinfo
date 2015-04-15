@@ -20,7 +20,10 @@ class Reservations implements ModuleGroup {
     private $modules;
     public function __construct($modules) {
         $this->modules = $modules;
-        $modules->addGroup($this);
+        $authz = Init::get("Authorization");
+        if ($authz->can_set_reservations()) {
+            $modules->addGroup($this);
+        }
     }
 
     public function getName() {

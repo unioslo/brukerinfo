@@ -18,10 +18,11 @@
 
 class Account implements ModuleGroup {
     private $modules;
+    private $authz;
     public function __construct($modules) {
         $this->modules = $modules;
-        $authz = Init::get('Authorization');
-        if (INST != 'uio' || !$authz->is_guest()) {
+        $this->authz = Init::get('Authorization');
+        if (INST != 'uio' || !$this->authz->is_guest()) {
             $modules->addGroup($this);
         }
     }
@@ -35,7 +36,9 @@ class Account implements ModuleGroup {
     }
 
     public function getSubgroups() {
-        if (INST == 'uio' || Init::get('Bofh')->isPersonal()) {
+        if (INST == 'uio' && $this->authz->can_set_primary_account()
+            || Init::get('Bofh')->isPersonal()) {
+
             return array('', 'primary', 'password');
         } else {
             return array('', 'password');

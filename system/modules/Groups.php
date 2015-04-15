@@ -36,7 +36,11 @@ class Groups implements ModuleGroup {
 
     public function getSubgroups() {
         if (INST == 'uio') {
-            return array('', 'new', 'personal');
+            $ret = array('');
+            if ($this->authz->can_create_groups()) {
+                $ret[] = 'new';
+            }
+            return $ret;
         }
         return array();
     }
