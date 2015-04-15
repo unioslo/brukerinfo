@@ -283,7 +283,7 @@ class Account implements ModuleGroup {
 
         $form = new BofhFormUiO('change_primary', null, null, null, 'class="app-form-big submitonly"');
         $form->addElement('submit', 'confirm', txt('account_primary_form_submit'), 
-        'class="submit_warn"'
+        'class="submit"'
     );
 
 

@@ -426,7 +426,7 @@ class Email implements ModuleGroup {
             }
 
             $confirm = new BofhFormUiO('confirm');
-            $confirm->addElement('submit', null, txt('email_forward_delete_confirm_submit'), 'class="submit_warn"');
+            $confirm->addElement('submit', null, txt('email_forward_delete_confirm_submit'), 'class="submit"');
             $confirm->addElement('hidden', 'del', $del);
 
             if ($confirm->validate()) {
@@ -453,7 +453,7 @@ class Email implements ModuleGroup {
         $View->addElement('p',  txt('EMAIL_FORWARD_INTRO'));
 
         if ($forwards) {
-            $View->addElement('raw', '<form method="post" class="inline app-form" action="index.php/email/forward/">');
+            $View->addElement('raw', '<form method="post" class="app-form" action="index.php/email/forward/">');
             $table = View::createElement('table', null, 'class="app-table"');
 
             foreach ($forwards as $k => $v) {
@@ -464,7 +464,7 @@ class Email implements ModuleGroup {
                 }
                 $table->addData(array(
                     $name, 
-                    '<input type="submit" class="submit_warn" name="del['.$k.']" value="'.txt('email_forward_delete_submit').'">',
+                    '<input type="submit" class="submit" name="del['.$k.']" value="'.txt('email_forward_delete_submit').'">',
                 ));
             }
 
@@ -957,7 +957,7 @@ class Email implements ModuleGroup {
 
             $confirm = new BofhFormUiO('confirm');
             $confirm->addElement('hidden', 'confirmed_del', $del);
-            $confirm->addElement('submit', null, txt('email_tripnote_delete_submit'), 'class="submit_warn"');
+            $confirm->addElement('submit', null, txt('email_tripnote_delete_submit'), 'class="submit"');
             $View->addElement($confirm);
             die;
         }
@@ -968,7 +968,7 @@ class Email implements ModuleGroup {
 
         if ($activenotes) {
             $View->addElement('h2', txt('email_tripnote_active_title'));
-            $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline app-form">'); //Todo: depreciated, but out of time
+            $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="app-form">'); //Todo: depreciated, but out of time
             $table = $View->createElement('table', null, 'class="app-table"');
             $table->setHead(array(
                 txt('email_tripnote_starting'), 
@@ -983,7 +983,7 @@ class Email implements ModuleGroup {
                 $data[] = View::createElement('td', $start);
                 $data[] = View::createElement('td', ($tnote['end_date']) ? $tnote['end_date']->format('Y-m-d') : '');
                 $data[] = View::createElement('td', nl2br($tnote['text']));
-                $data[] = View::createElement('td', '<input type="submit" class="submit_warn" name="del['.$start.']" value="'.txt('email_tripnote_list_delete').'">');
+                $data[] = View::createElement('td', '<input type="submit" class="submit" name="del['.$start.']" value="'.txt('email_tripnote_list_delete').'">');
 
                 $table->addData($View->createElement('tr', $data));
             }
@@ -995,7 +995,7 @@ class Email implements ModuleGroup {
 
         if ($oldnotes) {
             $View->addElement('h2', txt('email_tripnote_old_title'));
-            $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="inline app-form">'); //Todo: deprecated, but out of time
+            $View->addElement('raw', '<form method="post" action="email/tripnote.php" class="app-form">'); //Todo: deprecated, but out of time
 
             $table = $View->createElement('table', null, 'class="app-table"');
             $table->setHead(array(
@@ -1014,7 +1014,7 @@ class Email implements ModuleGroup {
                     $end,
                     nl2br($tnote['text']),
                     '('.strtolower($tnote['enable']).')', 
-                    '<input type="submit" class="submit_warn" name="del['.$start.']" value="' . txt('email_tripnote_list_delete') . '">',
+                    '<input type="submit" class="submit" name="del['.$start.']" value="' . txt('email_tripnote_list_delete') . '">',
                 )));
 
             }

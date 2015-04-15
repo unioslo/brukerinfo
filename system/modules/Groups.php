@@ -411,7 +411,7 @@ class Groups implements ModuleGroup {
             }
 
             $form->addElement('hidden', 'okDeleteConfirm', true);
-            $form->addElement('submit', 'okDelete', txt('groups_members_del_submit'), 'class="submit_warn"');
+            $form->addElement('submit', 'okDelete', txt('groups_members_del_submit'), 'class="submit"');
             $form->addElement('html', '<a href="index.php/groups/?group='.$groupname.'">'.txt('groups_members_del_cancel').'</a>');
             return $form;
         }
@@ -658,7 +658,7 @@ class Groups implements ModuleGroup {
                         $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
 
                         //TODO: make a class for this kind of forms...
-                        $View->addElement('raw', '<form method="post" action="index.php/groups/?group='.$groupname.'" class="inline">'); 
+                        $View->addElement('raw', '<form method="post" action="index.php/groups/?group='.$groupname.'" class="app-form">'); 
 
 
                         for ($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
@@ -670,7 +670,7 @@ class Groups implements ModuleGroup {
                         }
 
                         $View->addElement($table);
-                        $View->addElement('p', '<input type="submit" class="submit_warn" value="'.txt('groups_members_del_submit').'">');
+                        $View->addElement('p', '<input type="submit" class="submit" value="'.txt('groups_members_del_submit').'">');
                         $View->addElement('raw', '</form>');
                     }
                 } catch (XML_RPC2_FaultException $e) {

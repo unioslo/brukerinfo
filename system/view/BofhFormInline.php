@@ -38,7 +38,7 @@ class BofhFormInline extends BofhForm
     public function __construct($name = null, $method = null, $action = null, $target = null, $attr = null, $track = true) {
 
         parent::__construct($name, $method, $action, $target, $attr, $track);
-        $this->setAttribute('class', 'app-form inline');
+        $this->setAttribute('class', 'app-form');
     }
 
     //}}}
