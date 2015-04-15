@@ -742,53 +742,6 @@ class Groups implements ModuleGroup {
 
 
     public function newgrp() {
-        $User = Init::get('User');
-        $Bofh = new Bofhcom();
-        $View = Init::get('View');
-
-        // Only employees are allowed to use this command
-        if(!$Bofh->isEmployee()) View::forward('index.php/groups/', txt('employees_only'));
-
-        // group spreads possible to use
-        $spreads = getSpreads();
-
-        // the request form
-        $newform = new BofhFormUiO('newGroup');
-        $newform->setAttribute('class', 'app-form-big');
-        $n = $newform->addElement('text', 'gr_name', txt('groups_new_form_name'));
-        $n->setAttribute('id', 'group_name');
-        $newform->addElement('text', 'gr_desc', txt('groups_new_form_desc'));
-        $newform->addElement('text', 'gr_mod',  txt('groups_new_form_moderator'));
-
-        $choosespreads = array();
-        foreach($spreads as $spread => $description) {
-            $choosespreads[] = HTML_Quickform::createElement('checkbox', $spread, null, 
-                "$spread <span class=\"ekstrainfo\">- $description</span>");
-        }
-        $newform->addGroup($choosespreads, 'gr_spreads', 
-            txt('groups_new_form_spreads'), "<br />\n");
-
-        $newform->addElement('submit', null, txt('groups_new_form_submit'));
-
-        $newform->addRule('gr_name', txt('groups_new_form_name_required'), 'required');
-        $newform->addRule('gr_desc', txt('groups_new_form_desc_required'), 'required');
-        $newform->addRule('gr_mod', txt('groups_new_form_mod_required'), 'required');
-
-        if($newform->validate()) {
-            if($ret = $newform->process('request_group')) {
-                View::forward('index.php/groups/', $ret);
-            }
-        }
-
-        $View->setFocus('#group_name');
-        $View->addTitle(txt('GROUPS_NEW_TITLE'));
-        $View->start();
-        $View->addElement('h1', txt('groups_new_title'));
-        $View->addElement('p', txt('groups_new_intro'));
-        $View->addElement($newform);
-
-
-
         /**
          * Send the group_request function to bofhd.
          * Data is gotten through HTML_QuickForm and
@@ -870,9 +823,71 @@ class Groups implements ModuleGroup {
             ksort($spreads);
             return $spreads;
         }
+        $User = Init::get('User');
+        $Bofh = new Bofhcom();
+        $View = Init::get('View');
+
+        // Only employees are allowed to use this command
+        if(!$Bofh->isEmployee()) View::forward('index.php/groups/', txt('employees_only'));
+
+        // group spreads possible to use
+        $spreads = getSpreads();
+
+        // the request form
+        $newform = new BofhFormUiO('newGroup');
+        $newform->setAttribute('class', 'app-form-big');
+        $n = $newform->addElement('text', 'gr_name', txt('groups_new_form_name'));
+        $n->setAttribute('id', 'group_name');
+        $newform->addElement('text', 'gr_desc', txt('groups_new_form_desc'));
+        $newform->addElement('text', 'gr_mod',  txt('groups_new_form_moderator'));
+
+        $choosespreads = array();
+        foreach($spreads as $spread => $description) {
+            $choosespreads[] = HTML_Quickform::createElement('checkbox', $spread, null, 
+                "$spread <span class=\"ekstrainfo\">- $description</span>");
+        }
+        $newform->addGroup($choosespreads, 'gr_spreads', 
+            txt('groups_new_form_spreads'), "<br />\n");
+
+        $newform->addElement('submit', null, txt('groups_new_form_submit'));
+
+        $newform->addRule('gr_name', txt('groups_new_form_name_required'), 'required');
+        $newform->addRule('gr_desc', txt('groups_new_form_desc_required'), 'required');
+        $newform->addRule('gr_mod', txt('groups_new_form_mod_required'), 'required');
+
+        if($newform->validate()) {
+            if($ret = $newform->process('request_group')) {
+                View::forward('index.php/groups/', $ret);
+            }
+        }
+
+        $View->setFocus('#group_name');
+        $View->addTitle(txt('GROUPS_NEW_TITLE'));
+        $View->start();
+        $View->addElement('h1', txt('groups_new_title'));
+        $View->addElement('p', txt('groups_new_intro'));
+        $View->addElement($newform);
     }
 
     public function personal() {
+        /**
+         * Checks if the user has a personal group.
+         *
+         * @return True if user has personal group, false if not.
+         */
+        function hasPersonal()
+        {
+            global $User;
+            global $Bofh;
+
+            try {
+                $Bofh->run_command('group_list', $User->getUsername());
+            } catch(Exception $e) {
+                return false;
+            }
+            return true;
+        }
+
         $User = Init::get('User');
         $Bofh = new Bofhcom();
 
@@ -902,24 +917,6 @@ class Groups implements ModuleGroup {
         $View->addElement($form);
 
         $View->addElement('p', txt('action_delay_hour'), 'class="ekstrainfo"');
-
-        /**
-         * Checks if the user has a personal group.
-         *
-         * @return True if user has personal group, false if not.
-         */
-        function hasPersonal()
-        {
-            global $User;
-            global $Bofh;
-
-            try {
-                $Bofh->run_command('group_list', $User->getUsername());
-            } catch(Exception $e) {
-                return false;
-            }
-            return true;
-        }
     }
 }
 ?>

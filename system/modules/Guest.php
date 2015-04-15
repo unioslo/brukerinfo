@@ -69,6 +69,19 @@ class Guest implements ModuleGroup {
 
     public function index() {
         /**
+         * Sort by name for the multidimensional array $guests. Case-insensitive. 
+         *
+         * @param array $guest_a One element from the $guests array
+         * @param array $guest_b One element from the $guests array
+         *
+         * @return int  -1 if $guest_a <  $guest_b
+         *               0 if $guest_a == $guest_b
+         *               1 if $guest_a >  $guest_b
+         */
+        function sort_by_name($guest_a, $guest_b) {
+            return strcmp(strtolower($guest_a['name']), strtolower($guest_b['name']));
+        }
+        /**
          * Page for viewing and modifying reservations.
          */
         $User = Init::get('User');
@@ -137,68 +150,12 @@ class Guest implements ModuleGroup {
         } else {
             $View->addElement('p', txt('guest_list_active_empty'));
         }
-
-        // If selected, show list of inactive guest users
-        //if ($show_expired) {
-        //$View->addElement('h2', txt('guest_list_inactive'));
-        //if ($inactive_guests->rowCount() > 0) {
-        //$View->addElement($inactive_guests);
-        //} else {
-        //$View->addElement('p', txt('guest_list_inactive_empty'));
-        //}
-        //} else {
-        //$View->addElement('a', txt('guest_list_show_inactive'), 'guests/?show-expired');
-        //}
-
-        /**
-         * Sort by name for the multidimensional array $guests. Case-insensitive. 
-         *
-         * @param array $guest_a One element from the $guests array
-         * @param array $guest_b One element from the $guests array
-         *
-         * @return int  -1 if $guest_a <  $guest_b
-         *               0 if $guest_a == $guest_b
-         *               1 if $guest_a >  $guest_b
-         */
-        function sort_by_name($guest_a, $guest_b) {
-            return strcmp(strtolower($guest_a['name']), strtolower($guest_b['name']));
-        }
     }
 
     /**
      * Page for viewing and modifying reservations.
      */
     private function create() {
-
-        $User = Init::get('User');
-        $Bofh = Init::get('Bofh');
-        $View = Init::get('View');
-        $Authz = Init::get('Authorization');
-
-        /* Has access to create guests? */
-        if (!$Authz->can_create_guests()) {
-            View::forward('', txt('guests_create_no_access'));
-        }
-
-        $View->addTitle(txt('guest_title'));
-
-        $guestform = buildForm();
-        if ($guestform->validate()) {
-            if ($ret = $guestform->process('bofhCreateGuest')) {
-                View::forward('index.php/guests/create/', $ret);
-            }
-            // else, error. The bofhCreateGuest function should add an error message to
-            // the page.
-        }
-        $View->setFocus('#guest_fname');
-
-        // Present page
-        $View->start();
-        $View->addElement('h1', txt('guest_new_title'));
-        $View->addElement('p', txt('guest_new_intro'));
-        $View->addElement($guestform);
-
-
         /**
          * Creates an HTML-form for creating guest users.
          *
@@ -206,6 +163,35 @@ class Guest implements ModuleGroup {
          */
         function buildForm()
         {
+            /**
+             * Creates a new guest user using BofhCom.
+             *
+             * @param array $data Array with the form data to process
+             *
+             * @return string|null An HTML element with information about the new guest
+             *                     account, or null on failure.
+             */
+            function bofhCreateGuest($data)
+            {
+                $bofh = Init::get('Bofh');
+
+                try {
+                    $res = $bofh->run_command(
+                        'guest_create', $data['g_days'], $data['g_fname'], $data['g_lname'],
+                        'guest', $data['g_contact']
+                    );
+                } catch (XML_RPC2_FaultException $e) {
+                    // Error. Not translated or user friendly, but this shouldn't happen at all:
+                    //View::addMessage(htmlspecialchars($e->getMessage()), View::MSG_WARNING);
+                    BofhCom::viewError($e);
+                    return null;
+                }
+
+                return txt(
+                    'guest_created_sms',
+                    array('uname'=>$res['username'],'mobile'=>$res['sms_to'])
+                );
+            }
             // Create guest form
             $form = new BofhFormUiO('new_guest');
             $form->setAttribute('class', 'app-form-big');
@@ -265,44 +251,113 @@ class Guest implements ModuleGroup {
             $form->setDefaults(array('g_days'=>30));
 
             return $form;
-
-
-            /**
-             * Creates a new guest user using BofhCom.
-             *
-             * @param array $data Array with the form data to process
-             *
-             * @return string|null An HTML element with information about the new guest
-             *                     account, or null on failure.
-             */
-            function bofhCreateGuest($data)
-            {
-                $bofh = Init::get('Bofh');
-
-                try {
-                    $res = $bofh->run_command(
-                        'guest_create', $data['g_days'], $data['g_fname'], $data['g_lname'],
-                        'guest', $data['g_contact']
-                    );
-                } catch (XML_RPC2_FaultException $e) {
-                    // Error. Not translated or user friendly, but this shouldn't happen at all:
-                    //View::addMessage(htmlspecialchars($e->getMessage()), View::MSG_WARNING);
-                    BofhCom::viewError($e);
-                    return null;
-                }
-
-                return txt(
-                    'guest_created_sms',
-                    array('uname'=>$res['username'],'mobile'=>$res['sms_to'])
-                );
-            }
         }
+
+        $User = Init::get('User');
+        $Bofh = Init::get('Bofh');
+        $View = Init::get('View');
+        $Authz = Init::get('Authorization');
+
+        /* Has access to create guests? */
+        if (!$Authz->can_create_guests()) {
+            View::forward('', txt('guests_create_no_access'));
+        }
+
+        $View->addTitle(txt('guest_title'));
+
+        $guestform = buildForm();
+        if ($guestform->validate()) {
+            if ($ret = $guestform->process('bofhCreateGuest')) {
+                View::forward('index.php/guests/create/', $ret);
+            }
+            // else, error. The bofhCreateGuest function should add an error message to
+            // the page.
+        }
+        $View->setFocus('#guest_fname');
+
+        // Present page
+        $View->start();
+        $View->addElement('h1', txt('guest_new_title'));
+        $View->addElement('p', txt('guest_new_intro'));
+        $View->addElement($guestform);
+
+
     }
 
     /**
      * Page for viewing and modifying reservations.
      */
     public function info() {
+        /**
+         * Build a simple form that consists of a button, and a series of hidden fields.
+         *
+         * @param string $name   The ID to give the form
+         * @param string $label  The button label
+         * @param array  $hidden An array of hidden fields, each entry is a
+         *                       <name> => <value> mapping.
+         *
+         * @return BofhFormInline The form
+         */
+        function buildButtonForm($name, $label, array $hidden)
+        {
+            $form = new BofhFormInline($name);
+            foreach ($hidden as $name => $value) {
+                $form->addElement('hidden', $name, $value);
+            }
+            $form->addElement('submit', null, $label);
+            return $form;
+        }
+
+        /**
+         * Generates a new random password for a guest, using BofhCom. PEAR Quickform
+         * handler for 'new_guest_password'.
+         *
+         * @param array $data Array with the form data from 'new_guest_password'
+         *
+         * @return string|boolean A text (potentially HTML) that explains the change
+         *                        that was performed.
+         *                        Returns false on failure.
+         */
+        function bofhResetPassword($data)
+        {
+            $bofh = Init::get('Bofh');
+            try {
+                $res = $bofh->run_command('guest_reset_password', $data['g_uname']);
+            } catch (XML_RPC2_FaultException $e) {
+                // Not translated or user friendly, but this shouldn't happen at all:
+                $bofh->viewError($e);
+                return false;
+            }
+            return txt(
+                'guest_new_password', array(
+                    'uname' => $res['username'], 'mobile' => $res['mobile']
+                )
+            );
+        }
+
+        /**
+         * Deactivates a guest user by using BofhCom. PEAR Quickform handler for
+         * 'deactivate_guest'.
+         *
+         * @param array $data Array with the form data from 'deactivate_guest'
+         *
+         * @return string|boolean A text (potentially HTML) that explains the change
+         *                        that was performed.
+         *                        Returns false on failure.
+         */
+        function bofhDisableGuest($data)
+        {
+            $bofh = Init::get('Bofh');
+            try {
+                $bofh->run_command('guest_remove', $data['g_uname']);
+            } catch (XML_RPC2_FaultException $e) {
+                // Not translated or user friendly, but this shouldn't happen at all:
+                $bofh->viewError($e);
+                return false;
+            }
+            return txt('guest_deactivated', array('uname'=>$data['g_uname']));
+        }
+
         $User = Init::get('User');
         $Bofh = Init::get('Bofh');
         $View = Init::get('View');
@@ -394,75 +449,6 @@ class Guest implements ModuleGroup {
             }
         }
 
-        /**
-         * Build a simple form that consists of a button, and a series of hidden fields.
-         *
-         * @param string $name   The ID to give the form
-         * @param string $label  The button label
-         * @param array  $hidden An array of hidden fields, each entry is a
-         *                       <name> => <value> mapping.
-         *
-         * @return BofhFormInline The form
-         */
-        function buildButtonForm($name, $label, array $hidden)
-        {
-            $form = new BofhFormInline($name);
-            foreach ($hidden as $name => $value) {
-                $form->addElement('hidden', $name, $value);
-            }
-            $form->addElement('submit', null, $label);
-            return $form;
-        }
-
-        /**
-         * Generates a new random password for a guest, using BofhCom. PEAR Quickform
-         * handler for 'new_guest_password'.
-         *
-         * @param array $data Array with the form data from 'new_guest_password'
-         *
-         * @return string|boolean A text (potentially HTML) that explains the change
-         *                        that was performed.
-         *                        Returns false on failure.
-         */
-        function bofhResetPassword($data)
-        {
-            $bofh = Init::get('Bofh');
-            try {
-                $res = $bofh->run_command('guest_reset_password', $data['g_uname']);
-            } catch (XML_RPC2_FaultException $e) {
-                // Not translated or user friendly, but this shouldn't happen at all:
-                $bofh->viewError($e);
-                return false;
-            }
-            return txt(
-                'guest_new_password', array(
-                    'uname' => $res['username'], 'mobile' => $res['mobile']
-                )
-            );
-        }
-
-        /**
-         * Deactivates a guest user by using BofhCom. PEAR Quickform handler for
-         * 'deactivate_guest'.
-         *
-         * @param array $data Array with the form data from 'deactivate_guest'
-         *
-         * @return string|boolean A text (potentially HTML) that explains the change
-         *                        that was performed.
-         *                        Returns false on failure.
-         */
-        function bofhDisableGuest($data)
-        {
-            $bofh = Init::get('Bofh');
-            try {
-                $bofh->run_command('guest_remove', $data['g_uname']);
-            } catch (XML_RPC2_FaultException $e) {
-                // Not translated or user friendly, but this shouldn't happen at all:
-                $bofh->viewError($e);
-                return false;
-            }
-            return txt('guest_deactivated', array('uname'=>$data['g_uname']));
-        }
     }
 
     public function doprint() {

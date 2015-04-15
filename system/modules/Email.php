@@ -73,6 +73,64 @@ class Email implements ModuleGroup {
     }
 
     public function index() {
+        /**
+         * Gets all the info from the users mail account,
+         * and does some cleaning because of weird return
+         * from bofhd.
+         */
+        function emailinfo($username)
+        {
+            global $Bofh;
+            if (INST == 'hine') {
+                $data = $Bofh->cleanData($Bofh->run_command('email_info', $username));
+            } else {
+                $data = $Bofh->getDataClean('email_info', $username);
+            }
+
+            //let valid_addr_1 be first in valid_addr list (if existing)
+            if (empty($data['valid_addr'])) $data['valid_addr'] = array();
+            if (!is_array($data['valid_addr'])) $data['valid_addr'] = array($data['valid_addr']);
+            array_unshift($data['valid_addr'], $data['valid_addr_1']);
+            unset($data['valid_addr_1']);
+
+            if (!empty($data['forward_1'])) {
+                if (empty($data['forward'])) {
+                    $data['forward'] = $data['forward_1'];
+                } else {
+                    if (!is_array($data['forward'])) $data['forward'] = array($data['forward']);
+                    array_unshift($data['forward'], $data['forward_1']);
+                }
+            }
+            unset($data['forward_1']);
+
+            // the filters comes in a string in an array so need to split:
+            if (!empty($data['filters']) && $data['filters'] != 'None') {
+                if (count($data['filters'] == 1)) {
+                    $data['filters'] = explode(', ', $data['filters'][0]);
+                } else {
+                    //assumes that it has been fixed?
+                    trigger_error('Email-filters changed - bug is fixed?', E_USER_NOTICE);
+                }
+
+            }
+            return $data;
+        }
+
+        /**
+         * Asks bofhd to delete a given e-mail address.
+         */
+        function delEmailAddress($address)
+        {
+            global $Bofh, $User;
+            try {
+                $ret = $Bofh->run_command('email_remove_address', $User->getUsername(), $address);
+                // finished with an update, just to be sure
+                $Bofh->run_command('email_update', $User->getUsername());
+                return $ret;
+            } catch (Exception $e) {
+                return false;
+            }
+        }
         $User = Init::get('User');
         $Bofh = Init::get('Bofh');
         $View = Init::get('View');
@@ -304,69 +362,86 @@ class Email implements ModuleGroup {
         $txt = txt('email_info_more_info');
         if ($txt)
             $View->addElement('ul', array(txt('email_info_more_info')), 'class="ekstrainfo"');
-
-
-        /**
-         * Gets all the info from the users mail account,
-         * and does some cleaning because of weird return
-         * from bofhd.
-         */
-        function emailinfo($username)
-        {
-            global $Bofh;
-            if (INST == 'hine') {
-                $data = $Bofh->cleanData($Bofh->run_command('email_info', $username));
-            } else {
-                $data = $Bofh->getDataClean('email_info', $username);
-            }
-
-            //let valid_addr_1 be first in valid_addr list (if existing)
-            if (empty($data['valid_addr'])) $data['valid_addr'] = array();
-            if (!is_array($data['valid_addr'])) $data['valid_addr'] = array($data['valid_addr']);
-            array_unshift($data['valid_addr'], $data['valid_addr_1']);
-            unset($data['valid_addr_1']);
-
-            if (!empty($data['forward_1'])) {
-                if (empty($data['forward'])) {
-                    $data['forward'] = $data['forward_1'];
-                } else {
-                    if (!is_array($data['forward'])) $data['forward'] = array($data['forward']);
-                    array_unshift($data['forward'], $data['forward_1']);
-                }
-            }
-            unset($data['forward_1']);
-
-            // the filters comes in a string in an array so need to split:
-            if (!empty($data['filters']) && $data['filters'] != 'None') {
-                if (count($data['filters'] == 1)) {
-                    $data['filters'] = explode(', ', $data['filters'][0]);
-                } else {
-                    //assumes that it has been fixed?
-                    trigger_error('Email-filters changed - bug is fixed?', E_USER_NOTICE);
-                }
-
-            }
-            return $data;
-        }
-
-        /**
-         * Asks bofhd to delete a given e-mail address.
-         */
-        function delEmailAddress($address)
-        {
-            global $Bofh, $User;
-            try {
-                $ret = $Bofh->run_command('email_remove_address', $User->getUsername(), $address);
-                // finished with an update, just to be sure
-                $Bofh->run_command('email_update', $User->getUsername());
-                return $ret;
-            } catch (Exception $e) {
-                return false;
-            }
-        }
     }
 
     public function forward() {
+        /**
+         * Seems like the way to get the list of forwards is
+         * through email_info, in [forward_1] and [forward].
+         */
+        function getForwards()
+        {
+            global $User;
+            $Bofh = Init::get('Bofh');
+            $info = $Bofh->getData('email_info', $User->getUsername());
+
+            $forwards = array();
+            foreach ($info as $i) {
+                if (isset($i['forward'])) {
+                    if (strpos($i['forward'], '+') === 0) {
+                        $name = 'local';
+                        $status = '(on)';
+                    } else {
+                        list($name, $status) = explode(' ', $i['forward']);
+                    }
+                    $forwards[$name] = $status;
+                }
+                if (isset($i['forward_1'])) {
+                    if (strpos($i['forward_1'], '+') === 0) {
+                        $name = 'local';
+                        $status = '(on)';
+                    } else {
+                        list($name, $status) = explode(' ', $i['forward_1']);
+                    }
+                    $forwards[$name] = $status;
+                }
+            }
+            return $forwards;
+        }
+
+        /**
+         * Adding a forward address.
+         * This function is called through BofhForm: $newForm->process()
+         * and the values are therefore stored as
+         * $values = array:
+         *   'address'   = the adress to forward to
+         *   ['keep']    = if local copy or not
+         */
+        function addForward($values)
+        {
+            global $User;
+            $Bofh = Init::get('Bofh');
+
+            if (!empty($values['address'])) {
+                try {
+                    $res = $Bofh->run_command('email_add_forward', $User->getUsername(), $values['address']);
+                    View::addMessage($res);
+                    View::addMessage(txt('action_delay_email'));
+                } catch(Exception $e) {
+                    Bofhcom::viewError($e);
+                    return;
+                }
+            }
+
+            global $keeplocal;
+
+            //setting the local copy on of off
+            if (!empty($values['keep']) && !$keeplocal) {
+                try {
+                    $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
+                    View::addMessage($res);
+                } catch(Exception $e) {
+                    Bofhcom::viewError($e);
+                }
+            } elseif (empty($values['keep']) && $keeplocal) {
+                try {
+                    $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), 'local');
+                    View::addMessage($res);
+                } catch(Exception $e) {
+                    Bofhcom::viewError($e);
+                }
+            }
+        }
         $User = Init::get('User');
         $Bofh = Init::get('Bofh');
         $View = Init::get('View');
@@ -485,88 +560,167 @@ class Email implements ModuleGroup {
         }
 
         $View->addElement('p', txt('ACTION_DELAY_email'), 'class="ekstrainfo"');
-
-
-        /**
-         * Seems like the way to get the list of forwards is
-         * through email_info, in [forward_1] and [forward].
-         */
-        function getForwards()
-        {
-            global $User;
-            $Bofh = Init::get('Bofh');
-            $info = $Bofh->getData('email_info', $User->getUsername());
-
-            $forwards = array();
-            foreach ($info as $i) {
-                if (isset($i['forward'])) {
-                    if (strpos($i['forward'], '+') === 0) {
-                        $name = 'local';
-                        $status = '(on)';
-                    } else {
-                        list($name, $status) = explode(' ', $i['forward']);
-                    }
-                    $forwards[$name] = $status;
-                }
-                if (isset($i['forward_1'])) {
-                    if (strpos($i['forward_1'], '+') === 0) {
-                        $name = 'local';
-                        $status = '(on)';
-                    } else {
-                        list($name, $status) = explode(' ', $i['forward_1']);
-                    }
-                    $forwards[$name] = $status;
-                }
-            }
-            return $forwards;
-        }
-
-        /**
-         * Adding a forward address.
-         * This function is called through BofhForm: $newForm->process()
-         * and the values are therefore stored as
-         * $values = array:
-         *   'address'   = the adress to forward to
-         *   ['keep']    = if local copy or not
-         */
-        function addForward($values)
-        {
-            global $User;
-            $Bofh = Init::get('Bofh');
-
-            if (!empty($values['address'])) {
-                try {
-                    $res = $Bofh->run_command('email_add_forward', $User->getUsername(), $values['address']);
-                    View::addMessage($res);
-                    View::addMessage(txt('action_delay_email'));
-                } catch(Exception $e) {
-                    Bofhcom::viewError($e);
-                    return;
-                }
-            }
-
-            global $keeplocal;
-
-            //setting the local copy on of off
-            if (!empty($values['keep']) && !$keeplocal) {
-                try {
-                    $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
-                    View::addMessage($res);
-                } catch(Exception $e) {
-                    Bofhcom::viewError($e);
-                }
-            } elseif (empty($values['keep']) && $keeplocal) {
-                try {
-                    $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), 'local');
-                    View::addMessage($res);
-                } catch(Exception $e) {
-                    Bofhcom::viewError($e);
-                }
-            }
-        }
     }
 
     public function spam() {
+        /**
+         * Finds the different action choises to put on spam.
+         * Works in searching way in the help-text today...
+         */
+        function spamActions() {
+
+            global $Bofh;
+
+            $raw = $Bofh->help('arg_help', 'spam_action');
+            //is something like this:
+            //Choose one of
+            //          'dropspam'    Reject messages classified as spam
+            //          'spamfolder'  Deliver spam to a separate IMAP folder
+            //          'noaction'    Deliver spam just like legitimate email
+
+            $actions = array();
+            foreach (explode("\n", $raw) as $l) {
+
+                //the first line is mostlikely 'Choose one of\n'
+                if (!is_numeric(strpos($l, "'"))) continue;
+                $l = trim($l);
+
+                $name = substr($l, 1, strpos($l, "'", 2)-1);
+                $actions[$name] = trim(substr($l, strlen($name)+2));
+
+            }
+            return $actions;
+        }
+
+        /**
+         * Asks for the set values of spam_level and spam_action
+         */
+        function getSetLevelAction() {
+
+            global $User;
+            global $Bofh;
+
+            $info = $Bofh->getData('email_info', $User->getUsername());
+            $level = null;
+            $action = null;
+
+            foreach ($info as $i) {
+                if (isset($i['spam_level'])) $level = $i['spam_level'];
+                if (isset($i['spam_action'])) $action = $i['spam_action'];
+            }
+
+            return array($level, $action);
+
+        }
+
+
+        /**
+         * This function gets all available filters from the constants EmailTargetFilter.
+         */
+        function availableFilters() {
+
+            global $Bofh, $View;
+            $text = Init::get('Text');
+
+            $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
+
+            //sorting the filters
+            $filters = array();
+            foreach ($filters_raw as $f) {
+                $id = $f['code_str'];
+                $txtkey_name = 'email_filter_data_'.$id;
+                $txtkey_desc = 'email_filter_data_'.$id.'_desc';
+
+                $filters[$id]['name'] = $id;
+                //looking for a better name
+                if ($text->exists($txtkey_name, $text->getLanguage())) {
+                    $filters[$id]['name'] = txt($txtkey_name);
+                }
+
+                $filters[$id]['desc'] = $f['description'];
+                //looking for a better description
+                if ($text->exists($txtkey_desc, $text->getLanguage())) {
+                    $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
+                }
+            }
+
+            return $filters;
+
+        }
+
+        /**
+         * Gets what filters the user has active.
+         */
+        function getActiveFilters() {
+
+            global $User;
+            global $Bofh;
+
+            $all = $Bofh->getDataClean('email_info', $User->getUsername());
+
+            if (empty($all['filters']) || $all['filters'] == 'None') return null;
+
+            //the filters comes in a comma-separated string
+            $rawf = explode(', ', $all['filters'][0]);
+            foreach ($rawf as $v) $filters[$v] = true;
+            return $filters;
+
+        }
+
+
+
+        /**
+         * Sets a filter on or off.
+         */
+        function setFilters($data)
+        {
+            global $Bofh, $User;
+            global $available_filters, $active_filters;
+
+            $err = false;
+
+            // setting several in one go is supported by the loop
+            foreach ($data as $filter => $value) {
+
+                if (!isset($available_filters[$filter])) {
+                    View::addMessage(txt('email_filter_unknown'), View::MSG_WARNING);
+                    trigger_error("Filter $filter doesn't exist in 'available_filters'", E_USER_NOTICE);
+                    $err = true;
+                    continue;
+                }
+
+                // activating filter
+                // TODO: comparing with text values is not recommended, change this behaviuor
+                // when the template is made.
+                if ($value == txt('email_filter_enable')) {
+                    // if already active
+                    if (isset($active_filters[$filter])) continue;
+
+                    try {
+                        $res = $Bofh->run_command('email_add_filter', $filter, $User->getUsername());
+                        View::addMessage($res);
+                    } catch(Exception $e) {
+                        Bofhcom::viewError($e);
+                        $err = true;
+                    }
+
+                    // disabling filter
+                } else {
+                    // if already disabled
+                    if (!isset($active_filters[$filter])) continue;
+
+                    try {
+                        $res = $Bofh->run_command('email_remove_filter', $filter, $User->getUsername());
+                        View::addMessage($res);
+                    } catch(Exception $e) {
+                        Bofhcom::viewError($e);
+                        $err = true;
+                    }
+                }
+
+            }
+            return $err;
+        }
         $User = Init::get('User');
         $Bofh = Init::get('Bofh');
         $View = Init::get('View');
@@ -729,169 +883,126 @@ class Email implements ModuleGroup {
         $filterform->addElement('html', $flist);
         $View->addElement($filterform);
         $View->addElement('p', txt('action_delay_email'), 'class="ekstrainfo"');
-
-
-        /**
-         * Finds the different action choises to put on spam.
-         * Works in searching way in the help-text today...
-         */
-        function spamActions() {
-
-            global $Bofh;
-
-            $raw = $Bofh->help('arg_help', 'spam_action');
-            //is something like this:
-            //Choose one of
-            //          'dropspam'    Reject messages classified as spam
-            //          'spamfolder'  Deliver spam to a separate IMAP folder
-            //          'noaction'    Deliver spam just like legitimate email
-
-            $actions = array();
-            foreach (explode("\n", $raw) as $l) {
-
-                //the first line is mostlikely 'Choose one of\n'
-                if (!is_numeric(strpos($l, "'"))) continue;
-                $l = trim($l);
-
-                $name = substr($l, 1, strpos($l, "'", 2)-1);
-                $actions[$name] = trim(substr($l, strlen($name)+2));
-
-            }
-            return $actions;
-        }
-
-        /**
-         * Asks for the set values of spam_level and spam_action
-         */
-        function getSetLevelAction() {
-
-            global $User;
-            global $Bofh;
-
-            $info = $Bofh->getData('email_info', $User->getUsername());
-            $level = null;
-            $action = null;
-
-            foreach ($info as $i) {
-                if (isset($i['spam_level'])) $level = $i['spam_level'];
-                if (isset($i['spam_action'])) $action = $i['spam_action'];
-            }
-
-            return array($level, $action);
-
-        }
-
-
-        /**
-         * This function gets all available filters from the constants EmailTargetFilter.
-         */
-        function availableFilters() {
-
-            global $Bofh, $View;
-            $text = Init::get('Text');
-
-            $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
-
-            //sorting the filters
-            $filters = array();
-            foreach ($filters_raw as $f) {
-                $id = $f['code_str'];
-                $txtkey_name = 'email_filter_data_'.$id;
-                $txtkey_desc = 'email_filter_data_'.$id.'_desc';
-
-                $filters[$id]['name'] = $id;
-                //looking for a better name
-                if ($text->exists($txtkey_name, $text->getLanguage())) {
-                    $filters[$id]['name'] = txt($txtkey_name);
-                }
-
-                $filters[$id]['desc'] = $f['description'];
-                //looking for a better description
-                if ($text->exists($txtkey_desc, $text->getLanguage())) {
-                    $filters[$id]['desc'] = txt($txtkey_desc, array('bofh_desc'=>$f['description']));
-                }
-            }
-
-            return $filters;
-
-        }
-
-        /**
-         * Gets what filters the user has active.
-         */
-        function getActiveFilters() {
-
-            global $User;
-            global $Bofh;
-
-            $all = $Bofh->getDataClean('email_info', $User->getUsername());
-
-            if (empty($all['filters']) || $all['filters'] == 'None') return null;
-
-            //the filters comes in a comma-separated string
-            $rawf = explode(', ', $all['filters'][0]);
-            foreach ($rawf as $v) $filters[$v] = true;
-            return $filters;
-
-        }
-
-
-
-        /**
-         * Sets a filter on or off.
-         */
-        function setFilters($data)
-        {
-            global $Bofh, $User;
-            global $available_filters, $active_filters;
-
-            $err = false;
-
-            // setting several in one go is supported by the loop
-            foreach ($data as $filter => $value) {
-
-                if (!isset($available_filters[$filter])) {
-                    View::addMessage(txt('email_filter_unknown'), View::MSG_WARNING);
-                    trigger_error("Filter $filter doesn't exist in 'available_filters'", E_USER_NOTICE);
-                    $err = true;
-                    continue;
-                }
-
-                // activating filter
-                // TODO: comparing with text values is not recommended, change this behaviuor
-                // when the template is made.
-                if ($value == txt('email_filter_enable')) {
-                    // if already active
-                    if (isset($active_filters[$filter])) continue;
-
-                    try {
-                        $res = $Bofh->run_command('email_add_filter', $filter, $User->getUsername());
-                        View::addMessage($res);
-                    } catch(Exception $e) {
-                        Bofhcom::viewError($e);
-                        $err = true;
-                    }
-
-                    // disabling filter
-                } else {
-                    // if already disabled
-                    if (!isset($active_filters[$filter])) continue;
-
-                    try {
-                        $res = $Bofh->run_command('email_remove_filter', $filter, $User->getUsername());
-                        View::addMessage($res);
-                    } catch(Exception $e) {
-                        Bofhcom::viewError($e);
-                        $err = true;
-                    }
-                }
-
-            }
-            return $err;
-        }
     }
 
     public function tripnote() {
+        /**
+         * Return an array of all tripnotes for the user.
+         */
+        function getTripnotes()
+        {
+            $bofh = Init::get('Bofh');
+            $user = Init::get('User');
+            $rawnotes = $bofh->getData('email_list_tripnotes', $user->getUsername());
+            if (!$rawnotes || !is_array($rawnotes)) {
+                return array();
+            }
+            $notes = array();
+            foreach ($rawnotes as $note) {
+                if (!$note['start_date'] instanceof DateTime) continue;
+                $id = $note['start_date']->format('Y-m-d');
+                $notes[$id] = $note;
+            }
+            return $notes;
+        }
+
+        /**
+         * Sort an array of tripnotes into active and inactive.
+         *
+         * Active tripnotes have enable status:
+         *
+         *  - PENDING: Not active yet
+         *  - ON:      If we're in the tripnote's period
+         *  - ACTIVE:  Only one of the tripnotes with status ON can be active. According 
+         *             to bofhd, this is the one with the start date closest to today.
+         *
+         * Inactive tripnotes have enable status:
+         *
+         *  - OFF:     If postmasters have disabled the tripnote
+         *  - OLD:     If end date is in the past
+         *
+         */
+        function sortTripnotes($notes)
+        {
+            $active   = array();
+            $inactive = array();
+            if (!$notes) {
+                return array(null, null);
+            }
+            foreach ($notes as $id => $note) {
+                if ($note['enable'] === 'ACTIVE') {
+                    $note['text'] .= ' <strong>(active)</strong>';
+                    $active[$id] = $note;
+                } elseif ($note['enable'] === 'ON' || $note['enable'] === 'PENDING') {
+                    $active[$id] = $note;
+                } else {
+                    $inactive[$id] = $note;
+                }
+            }
+            return array($active, $inactive);
+        }
+
+        /**
+         * Create a form for creating a new tripnote.
+         */
+        function formAddTripnote()
+        {
+            $form = new BofhFormUiO('addTripnote');
+            $form->addElement('header', null, txt('email_tripnote_form_title'));
+            $text = Init::get('Text');
+
+            //TODO: add today as default on start?
+            $form->addElement('date', 'start', txt('email_tripnote_starting'), array(
+                'format'    => 'YMd',
+                'minYear'   => date('Y'),
+                'maxYear'   => date('Y') + 2,
+                'language'  => $text->getLanguage(),
+            ));
+            $form->addElement('date', 'end', txt('email_tripnote_ending'), array(
+                'format'    => 'YMd',
+                'minYear'   => date('Y'),
+                'maxYear'   => date('Y') + 3,
+                'language'  => $text->getLanguage(),
+            ));
+            $form->addElement('textarea', 'message', txt('email_tripnote_message'), 'rows="7"');
+            $form->addElement('submit', null, txt('email_tripnote_form_submit'));
+
+            $form->addRule('message', txt('email_tripnote_rule_message_required'), 'required');
+            $form->addRule('start', 'Please enter a start-date', 'required');
+            $form->addRule('end', 'Please enter an end-date', 'required');
+
+            //TODO: check dates (add a checkdate rule)
+
+            $form->setDefaults(array(
+                'start' => date('Y-m-d', time()+3600*24*1),
+                'end'   => date('Y-m-d', time()+3600*24*2),
+            ));
+            return $form;
+        }
+
+        /**
+         * Process an add tripnote form.
+         */
+        function formAddTripnoteProcess($input)
+        {
+            $bofh = Init::get('Bofh');
+            $user = Init::get('User');
+
+            $start = $input['start'];
+            $end   = $input['end'];
+            // begin and end date has the format: YYYY-MM-DD--YYYY-MM-DD
+            $datestring = sprintf('%s-%s-%s--%s-%s-%s', $start['Y'], $start['M'], 
+                $start['d'], $end['Y'], $end['M'], $end['d']
+            );
+            try {
+                return $bofh->run_command('email_add_tripnote', $user->getUsername(), 
+                $input['message'], $datestring
+            );
+            } catch(Exception $e) {
+                Bofhcom::viewError($e);
+                return false;
+            }
+        }
         $User = Init::get('User');
         $Bofh = new Bofhcom();
         $View = Init::get('View');
@@ -1020,126 +1131,6 @@ class Email implements ModuleGroup {
             }
             $View->addElement($table);
             $View->addElement('raw', '</form>');
-        }
-
-
-
-        /**
-         * Return an array of all tripnotes for the user.
-         */
-        function getTripnotes()
-        {
-            $bofh = Init::get('Bofh');
-            $user = Init::get('User');
-            $rawnotes = $bofh->getData('email_list_tripnotes', $user->getUsername());
-            if (!$rawnotes || !is_array($rawnotes)) {
-                return array();
-            }
-            $notes = array();
-            foreach ($rawnotes as $note) {
-                if (!$note['start_date'] instanceof DateTime) continue;
-                $id = $note['start_date']->format('Y-m-d');
-                $notes[$id] = $note;
-            }
-            return $notes;
-        }
-
-        /**
-         * Sort an array of tripnotes into active and inactive.
-         *
-         * Active tripnotes have enable status:
-         *
-         *  - PENDING: Not active yet
-         *  - ON:      If we're in the tripnote's period
-         *  - ACTIVE:  Only one of the tripnotes with status ON can be active. According 
-         *             to bofhd, this is the one with the start date closest to today.
-         *
-         * Inactive tripnotes have enable status:
-         *
-         *  - OFF:     If postmasters have disabled the tripnote
-         *  - OLD:     If end date is in the past
-         *
-         */
-        function sortTripnotes($notes)
-        {
-            $active   = array();
-            $inactive = array();
-            if (!$notes) {
-                return array(null, null);
-            }
-            foreach ($notes as $id => $note) {
-                if ($note['enable'] === 'ACTIVE') {
-                    $note['text'] .= ' <strong>(active)</strong>';
-                    $active[$id] = $note;
-                } elseif ($note['enable'] === 'ON' || $note['enable'] === 'PENDING') {
-                    $active[$id] = $note;
-                } else {
-                    $inactive[$id] = $note;
-                }
-            }
-            return array($active, $inactive);
-        }
-
-        /**
-         * Create a form for creating a new tripnote.
-         */
-        function formAddTripnote()
-        {
-            $form = new BofhFormUiO('addTripnote');
-            $form->addElement('header', null, txt('email_tripnote_form_title'));
-            $text = Init::get('Text');
-
-            //TODO: add today as default on start?
-            $form->addElement('date', 'start', txt('email_tripnote_starting'), array(
-                'format'    => 'YMd',
-                'minYear'   => date('Y'),
-                'maxYear'   => date('Y') + 2,
-                'language'  => $text->getLanguage(),
-            ));
-            $form->addElement('date', 'end', txt('email_tripnote_ending'), array(
-                'format'    => 'YMd',
-                'minYear'   => date('Y'),
-                'maxYear'   => date('Y') + 3,
-                'language'  => $text->getLanguage(),
-            ));
-            $form->addElement('textarea', 'message', txt('email_tripnote_message'), 'rows="7"');
-            $form->addElement('submit', null, txt('email_tripnote_form_submit'));
-
-            $form->addRule('message', txt('email_tripnote_rule_message_required'), 'required');
-            $form->addRule('start', 'Please enter a start-date', 'required');
-            $form->addRule('end', 'Please enter an end-date', 'required');
-
-            //TODO: check dates (add a checkdate rule)
-
-            $form->setDefaults(array(
-                'start' => date('Y-m-d', time()+3600*24*1),
-                'end'   => date('Y-m-d', time()+3600*24*2),
-            ));
-            return $form;
-        }
-
-        /**
-         * Process an add tripnote form.
-         */
-        function formAddTripnoteProcess($input)
-        {
-            $bofh = Init::get('Bofh');
-            $user = Init::get('User');
-
-            $start = $input['start'];
-            $end   = $input['end'];
-            // begin and end date has the format: YYYY-MM-DD--YYYY-MM-DD
-            $datestring = sprintf('%s-%s-%s--%s-%s-%s', $start['Y'], $start['M'], 
-                $start['d'], $end['Y'], $end['M'], $end['d']
-            );
-            try {
-                return $bofh->run_command('email_add_tripnote', $user->getUsername(), 
-                $input['message'], $datestring
-            );
-            } catch(Exception $e) {
-                Bofhcom::viewError($e);
-                return false;
-            }
         }
     }
 }

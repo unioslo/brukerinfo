@@ -188,29 +188,6 @@ class Person implements ModuleGroup {
     }
 
     public function personname() {
-        $bofh = Init::get('Bofh');
-        if (!$bofh->isEmployee()) {
-            View::forward('index.php/person/', txt('EMPLOYEES_ONLY'));
-        }
-
-        $addresses = getAddresses();
-        $name = getName();
-        $primary = getPrimaryAddress();
-
-        $form = formModName($primary, $name, $addresses);
-        if ($form->validate()) {
-            $form->process('formModNameProcess');
-            View::forward('index.php/person/');
-        }
-
-        $view = Init::get('View');
-        $view->start();
-        $view->addElement('h1', txt('person_name_title'));
-        $view->addElement('p', txt('person_name_intro')); 
-
-        $view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$primary))); 
-        $view->addElement($form);
-
         /**
          * Return a form for specifying what names should go as input.
          */
@@ -344,6 +321,28 @@ class Person implements ModuleGroup {
                 }
             }
         }
+        $bofh = Init::get('Bofh');
+        if (!$bofh->isEmployee()) {
+            View::forward('index.php/person/', txt('EMPLOYEES_ONLY'));
+        }
+
+        $addresses = getAddresses();
+        $name = getName();
+        $primary = getPrimaryAddress();
+
+        $form = formModName($primary, $name, $addresses);
+        if ($form->validate()) {
+            $form->process('formModNameProcess');
+            View::forward('index.php/person/');
+        }
+
+        $view = Init::get('View');
+        $view->start();
+        $view->addElement('h1', txt('person_name_title'));
+        $view->addElement('p', txt('person_name_intro')); 
+
+        $view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$primary))); 
+        $view->addElement($form);
     }
 
     public function primary() {
@@ -435,90 +434,6 @@ class Person implements ModuleGroup {
         $View->addElement('h1', txt('primary_person_title'));
         $View->addElement('p', txt('primary_person_intro'));
         $View->addElement($form);
-
-        /*
-        $User = Init::get('User');
-        $Bofh = Init::get('Bofh');
-
-        $personinfo = getPersonInfo();
-
-        $cache = $Bofh->getCache();
-        $aff_descs = $cache['affiliation_desc'];
-        $source_system_descs = $cache['source_systems'];
-
-        $dl = View::createElement('dl', null, 'class="complicated"');
-        $dl->addData(txt('bofh_info_name'), $personinfo['name']);
-        $dl->addData(txt('bofh_info_birth'), $personinfo['birth']);
-
-
-        //affiliations
-        if(!empty($cache['affiliations'])) {
-            $affs = array();
-            foreach($cache['affiliations'] as $key=>$aff) {
-                //adding descriptions
-                $aff['source_system_desc'] = $source_system_descs[$aff['source_system']];
-                $aff['affiliation_desc']   = $aff_descs[$aff['affiliation']];
-                $aff['status_desc']        = $aff_descs[$aff['affiliation'].'/'.$aff['status']];
-                $affs[] = txt('bofh_info_person_affiliation_value', $aff);
-            }
-            $dl->addData(txt('bofh_info_person_affiliations'), View::createElement('ul', $affs));
-        }
-
-
-        //names
-        if(!empty($personinfo['names'])) {
-            foreach($personinfo['names'] as $k=>$n) {
-                $names[] = txt('bofh_info_name_value', array(
-                    'name'                  => $n,
-                    'source_system'         => $personinfo['name_src'][$k],
-                    'source_system_desc'    => $source_system_descs[$personinfo['name_src'][$k]]
-                ));
-            }
-        }
-        if(!empty($names)) $dl->addData(txt('bofh_info_names'), View::createElement('ul', $names));
-
-
-        //fnr
-        if(!empty($personinfo['fnr'])) {
-            foreach($personinfo['fnr'] as $k=>$f) {
-                $fnr[] = txt('bofh_info_fnr_value', array('fnr'=> $f,
-                    'source_system'         => $personinfo['fnr_src'][$k],
-                    'source_system_desc'    => $source_system_descs[$personinfo['fnr_src'][$k]]
-                ));
-            }
-        }
-        if(!empty($fnr)) $dl->addData(txt('bofh_info_fnr'), View::createElement('ul', $fnr));
-
-        // contact info
-        if (!empty($personinfo['contact'])) {
-            foreach ($personinfo['contact'] as $k => $contact) {
-                $contactinfo[] = txt('bofh_info_contact_value', array('contact'=> $contact,
-                    'source_system'         => $personinfo['contact_src'][$k],
-                    'type'                  => $personinfo['contact_type'][$k],
-                    'source_system_desc'    => $source_system_descs[$personinfo['contact_src'][$k]]
-                ));
-            }
-        }
-        if(!empty($contactinfo)) {
-            $dl->addData(txt('bofh_info_contact'), View::createElement('ul', $contactinfo));
-        }
-
-
-        $View = Init::get('View');
-        $View->addTitle(txt('PERSON_TITLE'));
-        $View->addElement('h1', txt('PERSON_TITLE'));
-
-
-        $View->addElement($dl);
-        $View->start();
-
-        $changeinfo = View::createElement('ul', null, 'class="ekstrainfo"');
-        $changeinfo->addData(txt('person_howto_change_fs'));
-        $changeinfo->addData(txt('person_howto_change_sap'));
-        $View->addElement($changeinfo);
-
-     */
-
     }
 }
 ?>
