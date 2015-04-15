@@ -56,9 +56,10 @@ function get_feature($feature, $modules) {
         'reservations' => 'Reservations'
     );
     if (array_key_exists($feature, $features)) {
-        return (new ReflectionClass($features[$feature]))->
-            newInstance($modules);
+        $class = new ReflectionClass($features[$feature]);
+        return $class->newInstance($modules);
     } else {
-        return (new ReflectionClass($feature))->newInstance($modules);
+        $class = new ReflectionClass($feature);
+        return $class->newInstance($modules);
     }
 }
