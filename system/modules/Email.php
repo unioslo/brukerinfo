@@ -96,7 +96,7 @@ class Email implements ModuleGroup {
             }
             $addr = htmlspecialchars($_GET['del_addr']);
 
-            $delform = new BofhForm('delete_email_addr', null, "email/?del_addr=$addr");
+            $delform = new BofhForm('delete_email_addr', null, "index.php/email/?del_addr=$addr");
             $delform->addElement('static', 'Test');
             $delform->addGroup(array(
                 $delform->createElement('submit', 'confirm', txt('email_del_submit')),
