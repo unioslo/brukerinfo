@@ -37,7 +37,11 @@ class Email implements ModuleGroup {
 
     public function getSubgroups() {
         if (INST == 'uio') {
-            return array('', 'forward', 'spam', 'tripnote');
+            $ret = array('', 'forward', 'spam');
+            if ($this->authz->has_imap()) {
+                $ret[] = 'tripnote';
+            }
+            return $ret;
         } elseif (INST == 'hine') {
             return array('');
         }
