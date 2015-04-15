@@ -68,6 +68,7 @@ class Groups implements ModuleGroup {
     }
 
     public function index() {
+        global $groupname, $acceptable_group_types;
         $User = Init::get('User');
         $Bofh = Init::get('Bofh');
 
@@ -293,7 +294,8 @@ class Groups implements ModuleGroup {
         {
             global $groupname;
             if (!$groupname) {
-                throw new Exception('No groupname given!');
+                View::addMessage('No group name given.', View::MSG_ERROR);
+                return;
             }
             $added = 0;
             if ($input['per']) {
@@ -337,7 +339,9 @@ class Groups implements ModuleGroup {
         {
             global $groupname, $adm_groups;
             if (!$groupname || empty($adm_groups[$groupname])) {
-                throw new Exception("Bogus group '$groupname', can't remove members");
+                View::addMessage("Bogus group '$groupname', can't remove members",
+                    View::MSG_ERROR);
+                return;
             }
             $removed = 0;
             if ($input['persons']) {
@@ -654,7 +658,7 @@ class Groups implements ModuleGroup {
                         $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
 
                         //TODO: make a class for this kind of forms...
-                        $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="inline">'); 
+                        $View->addElement('raw', '<form method="post" action="index.php/groups/?group='.$groupname.'" class="inline">'); 
 
 
                         for ($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
