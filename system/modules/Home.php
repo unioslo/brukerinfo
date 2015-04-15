@@ -18,10 +18,8 @@
 
 class Home implements ModuleGroup {
     private $modules;
-    private $authz;
     public function __construct($modules) {
         $this->modules = $modules;
-        $this->authz = Init::getAuthorization();
         $modules->addGroup($this);
     }
 

@@ -21,7 +21,7 @@ class Groups implements ModuleGroup {
     private $authz;
     public function __construct($modules) {
         $this->modules = $modules;
-        $this->authz = Init::getAuthorization();
+        $this->authz = Init::get('Authorization');
         if (INST != 'uio' || !$this->authz->is_guest())
             $modules->addGroup($this);
     }

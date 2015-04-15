@@ -18,11 +18,10 @@
 
 class Person implements ModuleGroup {
     private $modules;
-    private $authz;
     public function __construct($modules) {
         $this->modules = $modules;
-        $this->authz = Init::getAuthorization();
-        if (INST == 'uio' && !$this->authz->is_guest() || INST == 'hine' && Init::get('Bofh')->isPersonal()) {
+        $authz = Init::get('Authorization');
+        if (INST == 'uio' && !$authz->is_guest() || INST == 'hine' && Init::get('Bofh')->isPersonal()) {
             $modules->addGroup($this);
         }
     }

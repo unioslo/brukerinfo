@@ -18,11 +18,10 @@
 
 class Account implements ModuleGroup {
     private $modules;
-    private $authz;
     public function __construct($modules) {
         $this->modules = $modules;
-        $this->authz = Init::getAuthorization();
-        if (INST != 'uio' || !$this->authz->is_guest()) {
+        $authz = Init::get('Authorization');
+        if (INST != 'uio' || !$authz->is_guest()) {
             $modules->addGroup($this);
         }
     }
