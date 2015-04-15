@@ -71,17 +71,16 @@ class Account implements ModuleGroup {
          * @param mixed     Array or string with the spreads to describe
          * @return          Returns the same as in the input, but with longer string(s)
          */
-        function addHelpSpread($spreads) {
+        function addHelpSpread($bofh, $spreads) {
 
             if(is_array($spreads)) {
                 foreach($spreads as $k => $v) {
-                    $spreads[$k] = addHelpSpread($v);
+                    $spreads[$k] = addHelpSpread($bofh, $v);
                 }
             } else {
                 $spreads = trim($spreads);
 
-                global $Bofh;
-                $desc = $Bofh->getSpread($spreads);
+                $desc = $bofh->getSpread($spreads);
                 if($desc) $spreads = $desc;
             }
 
@@ -98,16 +97,15 @@ class Account implements ModuleGroup {
          *
          * TODO: should this, and all other help-functions, be in the same place somewhere?
          */
-        function addHelpAffiliations($string) {
+        function addHelpAffiliations($Bofh, $string) {
 
             //recursive
             if (is_array($string)) {
                 foreach ($string as $k => $v)
-                    $string[$k] = addHelpAffiliations($v);
+                    $string[$k] = addHelpAffiliations($Bofh, $v);
                 return $string;
             }
 
-            global $Bofh;
             $affs = $Bofh->getCache();
             $affs = $affs['affiliation_desc'];
 
@@ -214,7 +212,7 @@ class Account implements ModuleGroup {
 
         //spreads
         if (!empty($userinfo['spread'])) {
-            $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread(explode(',', $userinfo['spread'])));
+            $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread($Bofh, explode(',', $userinfo['spread'])));
             unset($userinfo['spread']);
         } else {
             if (INST != 'hine') {
@@ -224,7 +222,7 @@ class Account implements ModuleGroup {
 
         //afiliations
         if (!empty($userinfo['affiliations'])) {
-            $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations(explode(',', $userinfo['affiliations'])));
+            $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), addHelpAffiliations($Bofh, explode(',', $userinfo['affiliations'])));
             unset($userinfo['affiliations']);
         } else {
             $list[0]->addData(ucfirst(txt('bofh_info_affiliations')), txt('account_affs_empty'));
@@ -323,6 +321,27 @@ class Account implements ModuleGroup {
     }
 
     public function primary() {
+        /**
+         * This function tricks with the numbers for setting an account primary.
+         */
+        function setPrimary($Bofh) {
+
+            $username = Init::get('User')->getUsername();
+            $user = null;
+
+            if(!isset($Bofh)) $Bofh = new Bofhcom();
+
+            $priorities = $Bofh->getData('person_list_user_priorities', $username);
+            $primary = $priorities[0];
+            foreach($priorities as $p) {
+                if($p['priority'] < $primary['priority']) $primary = $p;
+                if(!$user && $p['uname'] == $username) $user = $p;
+            }
+
+            return $Bofh->run_command('person_set_user_priority', $username, $user['priority'], $primary['priority']-1);
+
+        }
+
         $User = Init::get('User');
         $Bofh = new Bofhcom();
 
@@ -342,12 +361,10 @@ class Account implements ModuleGroup {
 
         $form = new BofhFormUiO('change_primary', null, null, null, 'class="app-form-big submitonly"');
         $form->addElement('submit', 'confirm', txt('account_primary_form_submit'), 
-        'class="submit"'
-    );
-
-
+            'class="submit"'
+        );
         if($form->validate()) {
-            if(setPrimary()) {
+            if(setPrimary($Bofh)) {
                 View::forward('index.php/account/', txt('account_primary_success'));
             } else {
                 View::addMessage(txt('account_primary_failed'));
@@ -359,39 +376,13 @@ class Account implements ModuleGroup {
         $View->start();
         $View->addElement('p', txt('account_primary_intro'));
         $View->addElement($form);
-
-
-        /**
-         * This function tricks with the numbers for setting an account primary.
-         */
-        function setPrimary() {
-
-            $username = Init::get('User')->getUsername();
-            $user = null;
-
-            global $Bofh;
-            if(!isset($Bofh)) $Bofh = new Bofhcom();
-
-            $priorities = $Bofh->getData('person_list_user_priorities', $username);
-            $primary = $priorities[0];
-            foreach($priorities as $p) {
-                if($p['priority'] < $primary['priority']) $primary = $p;
-                if(!$user && $p['uname'] == $username) $user = $p;
-            }
-
-            return $Bofh->run_command('person_set_user_priority', $username, $user['priority'], $primary['priority']-1);
-
-        }
     }
 
     public function password() {
         /**
          * Checks if the given password is secure enough to be used.
          */
-        function validatePassword($password, &$returnmsg = null) {
-
-            global $Bofh;
-
+        function validatePassword($Bofh, $password, &$returnmsg = null) {
             try {
 
                 $res = $Bofh->run_command('misc_check_password', $password);
@@ -409,10 +400,7 @@ class Account implements ModuleGroup {
         /** 
          * Checks if the given password is the users correct password
          */
-        function verifyPassword($password) {
-
-            global $Bofh;
-
+        function verifyPassword($Bofh, $password) {
             try {
 
                 $res = $Bofh->run_command('misc_verify_password', Init::get('User')->getUsername(), $password);
@@ -428,10 +416,7 @@ class Account implements ModuleGroup {
         /**
          * Changes the users password.
          */
-        function changePassword($newpas, $curpas, &$errmsg = null) {
-
-            global $Bofh;
-
+        function changePassword($Bofh, $newpas, $curpas, &$errmsg = null) {
             try {
 
                 $res = $Bofh->run_command('user_password', Init::get('User')->getUsername(), $newpas);
@@ -530,7 +515,7 @@ class Account implements ModuleGroup {
 
         if($form->validate()) {
 
-            $pasw_msg = validatePassword($form->exportValue('new_pass'), $errmsg);
+            $pasw_msg = validatePassword($Bofh, $form->exportValue('new_pass'), $errmsg);
             //$pasw_msg now contains either TRUE or a string explaining what is wrong with the password
             if($pasw_msg === true) {
 
@@ -539,9 +524,9 @@ class Account implements ModuleGroup {
                 if($form->exportValue('new_pass') == $form->exportValue('new_pass2')) {
 
                     //check original password
-                    if(verifyPassword($form->exportValue('cur_pass'))) {
+                    if(verifyPassword($Bofh, $form->exportValue('cur_pass'))) {
 
-                        if(changePassword($form->exportValue('new_pass'), $form->exportValue('cur_pass'), $errmsg)) {
+                        if(changePassword($Bofh, $form->exportValue('new_pass'), $form->exportValue('cur_pass'), $errmsg)) {
                             View::addMessage(txt('account_password_success'));
                             View::addMessage(txt('action_delay_hour'));
                             View::forward('index.php/account/');

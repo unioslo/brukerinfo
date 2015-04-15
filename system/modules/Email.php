@@ -84,7 +84,7 @@ class Email implements ModuleGroup {
          */
         function emailinfo($username)
         {
-            global $Bofh;
+            $Bofh = Init::get("Bofh");
             if (INST == 'hine') {
                 $data = $Bofh->cleanData($Bofh->run_command('email_info', $username));
             } else {
@@ -123,9 +123,8 @@ class Email implements ModuleGroup {
         /**
          * Asks bofhd to delete a given e-mail address.
          */
-        function delEmailAddress($address)
+        function delEmailAddress($Bofh, $User, $address)
         {
-            global $Bofh, $User;
             try {
                 $ret = $Bofh->run_command('email_remove_address', $User->getUsername(), $address);
                 // finished with an update, just to be sure
@@ -169,7 +168,7 @@ class Email implements ModuleGroup {
                 if (!empty($_POST['cancel'])) View::forward('index.php/email/');
 
                 if (!empty($_POST['confirm'])) {
-                    if (delEmailAddress($_GET['del_addr'])) {
+                    if (delEmailAddress($Bofh, $User, $_GET['del_addr'])) {
                         View::addMessage(txt('email_del_success', array('address' => $addr)));
                     } else {
                         View::addMessage(txt('email_del_failed', array('address' => $addr)));
@@ -375,7 +374,7 @@ class Email implements ModuleGroup {
          */
         function getForwards()
         {
-            global $User;
+            $User = Init::get("User");
             $Bofh = Init::get('Bofh');
             $info = $Bofh->getData('email_info', $User->getUsername());
 
@@ -413,7 +412,7 @@ class Email implements ModuleGroup {
          */
         function addForward($values)
         {
-            global $User;
+            $User = Init::get("User");
             $Bofh = Init::get('Bofh');
 
             if (!empty($values['address'])) {
@@ -456,6 +455,7 @@ class Email implements ModuleGroup {
         }
 
         $forwards = getForwards();
+        global $keeplocal;
         $keeplocal = (isset($forwards['local']) ? true : false);
 
         //make new forward-form
@@ -571,10 +571,7 @@ class Email implements ModuleGroup {
          * Finds the different action choises to put on spam.
          * Works in searching way in the help-text today...
          */
-        function spamActions() {
-
-            global $Bofh;
-
+        function spamActions($Bofh) {
             $raw = $Bofh->help('arg_help', 'spam_action');
             //is something like this:
             //Choose one of
@@ -599,11 +596,7 @@ class Email implements ModuleGroup {
         /**
          * Asks for the set values of spam_level and spam_action
          */
-        function getSetLevelAction() {
-
-            global $User;
-            global $Bofh;
-
+        function getSetLevelAction($User, $Bofh) {
             $info = $Bofh->getData('email_info', $User->getUsername());
             $level = null;
             $action = null;
@@ -621,9 +614,8 @@ class Email implements ModuleGroup {
         /**
          * This function gets all available filters from the constants EmailTargetFilter.
          */
-        function availableFilters() {
+        function availableFilters($Bofh, $View) {
 
-            global $Bofh, $View;
             $text = Init::get('Text');
 
             $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
@@ -655,11 +647,7 @@ class Email implements ModuleGroup {
         /**
          * Gets what filters the user has active.
          */
-        function getActiveFilters() {
-
-            global $User;
-            global $Bofh;
-
+        function getActiveFilters($User, $Bofh) {
             $all = $Bofh->getDataClean('email_info', $User->getUsername());
 
             if (empty($all['filters']) || $all['filters'] == 'None') return null;
@@ -678,8 +666,9 @@ class Email implements ModuleGroup {
          */
         function setFilters($data)
         {
-            global $Bofh, $User;
             global $available_filters, $active_filters;
+            $Bofh = Init::get("Bofh");
+            $User = Init::get("User");
 
             $err = false;
 
@@ -752,11 +741,12 @@ class Email implements ModuleGroup {
         }
 
         // the set level and action
-        list($def_level, $def_action) = getSetLevelAction();
+        list($def_level, $def_action) = getSetLevelAction($User, $Bofh);
 
         // Getting filter settings
-        $available_filters = availableFilters();
-        $active_filters = getActiveFilters();
+        global $available_filters, $active_filters;
+        $available_filters = availableFilters($Bofh, $View);
+        $active_filters = getActiveFilters($User, $Bofh);
 
 
 

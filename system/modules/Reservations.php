@@ -131,6 +131,7 @@ class Reservations implements ModuleGroup {
         }
 
         // Get the trait names for the relevant reservations
+        global $reservations; //used in setReservations()
         $reservations = getReservationTypes(array(
             'reserve_passw',
         ));

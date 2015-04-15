@@ -262,7 +262,7 @@ class Groups implements ModuleGroup {
                 }
             } else {
                 $spreads_raw = trim($spreads_raw);
-                global $Bofh;
+                $Bofh = Init::get("Bofh");
                 $desc = $Bofh->getSpread($spreads_raw);
                 return $desc ? "$desc ($spreads_raw)" : $spreads_raw;
             }
@@ -753,7 +753,7 @@ class Groups implements ModuleGroup {
          */
 
         function request_group($data) { 
-            global $Bofh;
+            $Bofh = Init::get("Bofh");
             global $spreads;
 
             if(!$Bofh->isEmployee()) return false;
@@ -835,6 +835,7 @@ class Groups implements ModuleGroup {
         if(!$Bofh->isEmployee()) View::forward('index.php/groups/', txt('employees_only'));
 
         // group spreads possible to use
+        global $spreads;
         $spreads = getSpreads();
 
         // the request form

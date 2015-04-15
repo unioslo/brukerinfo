@@ -125,7 +125,7 @@ class Printing implements ModuleGroup {
          */
         function getHistory($length)
         {
-            global $Bofh;
+            $Bofh = Init::get("Bofh");
             return array_reverse($Bofh->run_command('pquota_history', 
                 Init::get('User')->getUsername(), intval($length)));
         }
@@ -293,6 +293,7 @@ class Printing implements ModuleGroup {
             return $line;
         }
         $def_length = 14;
+        global $wraplength;
         $wraplength = 50;
 
         $User = Init::get('User');

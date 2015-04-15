@@ -74,7 +74,7 @@ class Person implements ModuleGroup {
          */
         function getPersonInfo() {
 
-            global $Bofh;
+            $Bofh = Init::get("Bofh");
             $p = $Bofh->getDataClean('person_info', Init::get('User')->getUsername());
 
             //all the values should come in arrays:
@@ -326,6 +326,7 @@ class Person implements ModuleGroup {
             View::forward('index.php/person/', txt('EMPLOYEES_ONLY'));
         }
 
+        global $addresses;
         $addresses = getAddresses();
         $name = getName();
         $primary = getPrimaryAddress();
