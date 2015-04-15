@@ -19,28 +19,36 @@
 class Guest implements ModuleGroup {
     private $modules;
     private $authz;
-    public function __construct($modules) {
+    private $name;
+    public function __construct($modules, $override_name=false) {
         $this->modules = $modules;
         $this->authz = Init::get("Authorization");
-        if ($this->authz->is_guest() || $this->authz->can_create_guests()) {
+        if ($override_name) {
+            $this->name = $override_name;
+            $modules->addGroup($this);
+        } elseif ($this->authz->is_guest()) {
+            $this->name = 'guest_info';
+            $modules->addGroup($this);
+            $pass = new Guest($modules, 'guest_password');
+        } elseif ($this->authz->can_create_guests()) {
+            $this->name = 'guests';
             $modules->addGroup($this);
         }
     }
 
     public function getName() {
-        return 'guests';
+        return $this->name;
     }
 
     public function getInfoPath() {
-        if ($this->authz->is_guest()) {
-            return array('', 'guests');
-        } else {
-            return array('guests');
-        }
+        return array($this->name);
     }
 
     public function getSubgroups() {
-        return array('', 'create', 'info', 'print');
+        if ($this->authz->is_guest()) {
+            return array();
+        }
+        return array('', 'create');
     }
 
     public function getShortcuts() {
@@ -52,6 +60,13 @@ class Guest implements ModuleGroup {
     }
 
     public function display($path) {
+        if ($this->authz->is_guest()) {
+            if ($this->name == 'guest_info') {
+                return $this->info();
+            } else {
+                return $this->doprint();
+            }
+        }
         if (!$path) {
             return $this->index();
         }
@@ -63,10 +78,6 @@ class Guest implements ModuleGroup {
             return $this->index();
         case 'create':
             return $this->create();
-        case 'print':
-            return $this->doprint();
-        case 'info':
-            return $this->info();
         }
     }
 
