@@ -131,68 +131,6 @@ class Account implements ModuleGroup {
         $User = Init::get('User');
         $Bofh = Init::get('Bofh');
 
-        /**
-         * Adds a description onto spreads. Works with both a string and
-         * array of strings.
-         *
-         * @param mixed     Array or string with the spreads to describe
-         * @return          Returns the same as in the input, but with longer string(s)
-         */
-        function addHelpSpread($spreads) {
-
-            if(is_array($spreads)) {
-                foreach($spreads as $k => $v) {
-                    $spreads[$k] = addHelpSpread($v);
-                }
-            } else {
-                $spreads = trim($spreads);
-
-                global $Bofh;
-                $desc = $Bofh->getSpread($spreads);
-                if($desc) $spreads = $desc;
-            }
-
-            return $spreads;
-        }
-
-        /**
-         * Get a bofh-string with the persons affiliations and modify it
-         * into a better presentation-form, and adds aff-definitions on it 
-         * (by asking bofhcom for the descriptions).
-         *
-         * Todo: this function is not equal to the function in person/index.php, but
-         *       they could be merged and handle different text-variations...
-         *
-         * TODO: should this, and all other help-functions, be in the same place somewhere?
-         */
-        function addHelpAffiliations($string) {
-
-            //recursive
-            if (is_array($string)) {
-                foreach ($string as $k => $v)
-                    $string[$k] = addHelpAffiliations($v);
-                return $string;
-            }
-
-            global $Bofh;
-            $affs = $Bofh->getCache();
-            $affs = $affs['affiliation_desc'];
-
-            // example of a line:
-            // ANSATT@150500 (Informatikk)
-            // STUDENT@150000 (Mat.nat. fakultet)
-
-            list($aff, $sted) = explode('@', trim($string), 2);
-            list($stedkode, $stedkode_desc) = explode(' ', $sted, 2);
-
-            return txt('bofh_info_account_affiliation_value', array(
-                'aff'           => $aff,
-                'aff_desc'      => $affs[strtoupper($aff)],
-                'stedkode'      => $stedkode,
-                'stedkode_desc' => $stedkode_desc
-            ));
-        }
-
         $userinfo = $this->getUserinfo(); 
         unset($userinfo['username']);
 
