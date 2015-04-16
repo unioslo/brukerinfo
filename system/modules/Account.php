@@ -374,66 +374,6 @@ class Account implements ModuleGroup {
         $User = Init::get('User');
         $Bofh = new Bofhcom();
 
-        /**
-         * Checks if the given password is secure enough to be used.
-         */
-        function validatePassword($password, &$returnmsg = null) {
-
-            global $Bofh;
-
-            try {
-
-                $res = $Bofh->run_command('misc_check_password', $password);
-                if($res) return true;
-
-            } catch (Exception $e) {
-
-                $returnmsg = $e->getMessage();
-                return substr($returnmsg, strrpos($returnmsg, 'CerebrumError: ')+15);
-
-            }
-        }
-
-
-        /** 
-         * Checks if the given password is the users correct password
-         */
-        function verifyPassword($password) {
-
-            global $Bofh;
-
-            try {
-
-                $res = $Bofh->run_command('misc_verify_password', Init::get('User')->getUsername(), $password);
-                //TODO: the text may change... get smarter way...
-                if($res === 'Password is correct') return true;
-
-            } catch (Exception $e) {
-                return false;
-            }
-
-        }
-
-        /**
-         * Changes the users password.
-         */
-        function changePassword($newpas, $curpas, &$errmsg = null) {
-
-            global $Bofh;
-
-            try {
-
-                $res = $Bofh->run_command('user_password', Init::get('User')->getUsername(), $newpas);
-                if($res) return true;
-
-            } catch (Exception $e) {
-                $errmsg = $e->getMessage();
-                $errmsg = substr($errmsg, strrpos($errmsg, 'CerebrumError: ')+15);
-            }
-
-            return false;
-        }
-
         $View = Init::get('View');
         $View->addTitle('Account');
         $View->addTitle(txt('ACCOUNT_PASSWORD_TITLE'));
