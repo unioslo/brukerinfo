@@ -46,8 +46,17 @@ define('INST',                  'uio');
 
 /**
  * The available functions and pages for brukerinfo.
+ *
+ * Available features:
+ * account, email, groups, guests, person, printing, reservations,
+ * and any class implementing the interface ModuleGroup.
+ *
+ * Set as a string containing the wanted features separated with space, e.g.
+ * define('FEATURES', 'account guests printing');
+ *
+ * Set to null to get default set of features, based on INST.
  */
-define('FEATURES',              'person account printing email groups reservations guests guest_info guest_password');
+define('FEATURES',              null);
 
 /**
  * The location of the system files, that is, the projects' "system/" directory.
