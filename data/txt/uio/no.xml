@@ -313,7 +313,8 @@
     <EMAIL_INFO_PRIMARY_ADDR>Primæradresse:</EMAIL_INFO_PRIMARY_ADDR>
     <EMAIL_INFO_VALID_ADDR>Gyldige adresser:</EMAIL_INFO_VALID_ADDR>
     <EMAIL_INFO_QUOTA>Kvote:</EMAIL_INFO_QUOTA>
-    <EMAIL_INFO_QUOTA_INFO>{{quota_used}}MiB av {{quota_max}}MiB er brukt (advarsel ved {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO>
+    <EMAIL_INFO_QUOTA_INFO>{{quota_used}} MiB av {{quota_max}} MiB er brukt (advarsel ved {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO>
+    <EMAIL_INFO_QUOTA_INFO_NO_USAGE>{{quota_max}} MiB (advarsel ved {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO_NO_USAGE>
     <EMAIL_INFO_SPAM_LEVEL>Spamfiltreringsnivå:</EMAIL_INFO_SPAM_LEVEL>
     <EMAIL_INFO_SPAM_ACTION>Spambehandlinger:</EMAIL_INFO_SPAM_ACTION>
     <EMAIL_INFO_FORWARD>Videresending:</EMAIL_INFO_FORWARD>

@@ -253,6 +253,16 @@ class Email implements ModuleGroup {
             unset($primary['quota_hard']);
             unset($primary['quota_soft']);
         }
+        else if (isset($primary['dis_quota_hard']) && isset($primary['dis_quota_soft'])) {
+            $prilist->addData(txt('email_info_quota'), txt('email_info_quota_info_no_usage', array(
+                'quota_max'     => $primary['dis_quota_hard'],
+                'quota_warn'    => $primary['dis_quota_soft'])));
+            unset($primary['dis_quota_hard']);
+            unset($primary['dis_quota_soft']);
+        }
+
+        // not used
+        unset($primary['target_id']);
 
         // forward
         if (isset($primary['forward'])) {

@@ -312,7 +312,8 @@
     <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
     <EMAIL_INFO_VALID_ADDR>Valid addresses:</EMAIL_INFO_VALID_ADDR>
     <EMAIL_INFO_QUOTA>Quota:</EMAIL_INFO_QUOTA>
-    <EMAIL_INFO_QUOTA_INFO>{{quota_used}}MiB of {{quota_max}}MiB used (warning at {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO>
+    <EMAIL_INFO_QUOTA_INFO>{{quota_used}} MiB of {{quota_max}} MiB used (warning at {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO>
+    <EMAIL_INFO_QUOTA_INFO_NO_USAGE>{{quota_max}} MiB (warning at {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO_NO_USAGE>
     <EMAIL_INFO_SPAM_LEVEL>Spam level:</EMAIL_INFO_SPAM_LEVEL>
     <EMAIL_INFO_SPAM_ACTION>Spam action:</EMAIL_INFO_SPAM_ACTION>
     <EMAIL_INFO_FORWARD>Forwarding:</EMAIL_INFO_FORWARD>
