@@ -144,15 +144,13 @@
 
     <!-- Person page texts -->
     <PERSON_TITLE>Personinformasjon</PERSON_TITLE>
-    <PERSON_HOWTO_CHANGE_FS>
-        Hvis det er feil i informasjon fra FS (Felles Studentsystem), kan du
-        kontakte &lt;a href="https://uio.no/studier/kontakt/"&gt;studentkontoret
-        for din enhet&lt;/a&gt;.
-      </PERSON_HOWTO_CHANGE_FS>
-      <PERSON_HOWTO_CHANGE_SAP>Hvis det er feil i informasjon fra SAP, kan du
-          kontakte &lt;a
-          href="mailto:sapuio-hjelp@admin.uio.no"&gt;SAPUiO&lt;/a&gt;.
-      </PERSON_HOWTO_CHANGE_SAP>
+    <PERSON_HOWTO_CHANGE>
+        &lt;p class="ekstrainfo"&gt;
+        Hvis det er feil i dine personopplysninger, kan du bruke guiden på
+        &lt;a href="https://www.uio.no/om/kontaktinformasjon/endre-personppl.html"&gt;
+        https://www.uio.no/om/kontaktinformasjon/endre-personppl.html&lt;/a&gt;
+        for å få rettet.
+    </PERSON_HOWTO_CHANGE>
 
     <!-- Person primary affiliation -->
     <PRIMARY_PERSON_TITLE>Primærtilknytning</PRIMARY_PERSON_TITLE>
