@@ -185,10 +185,7 @@ class Person implements ModuleGroup {
         $View->addElement($dl);
         $View->start();
 
-        $changeinfo = View::createElement('ul', null, 'class="ekstrainfo"');
-        $changeinfo->addData(txt('person_howto_change_fs'));
-        $changeinfo->addData(txt('person_howto_change_sap'));
-        $View->addElement($changeinfo);
+        $View->add(txt('person_howto_change'));
     }
 
     public function personname() {

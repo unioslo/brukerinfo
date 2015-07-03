@@ -125,11 +125,14 @@
 
     <!-- Person page texts -->
     <PERSON_TITLE>Personal information</PERSON_TITLE>
-    <PERSON_HOWTO_CHANGE_FS>
-        If information in Felles Studentsystem (FS) is wrong, please contact
-        your student office.</PERSON_HOWTO_CHANGE_FS>
-    <PERSON_HOWTO_CHANGE_SAP>If information in SAP is wrong, please contact
-        the HR department.</PERSON_HOWTO_CHANGE_SAP>
+    <PERSON_HOWTO_CHANGE>
+        &lt;ul class="ekstrainfo"&gt;
+        &lt;li&gt;If information in Felles Studentsystem (FS) is wrong, please contact
+        your student office.&lt;/li&gt;
+        &lt;li&gt;If information in SAP is wrong, please contact
+        the HR department.&lt;/li&gt;
+        &lt;/ul&gt;
+    </PERSON_HOWTO_CHANGE>
 
     <!-- Person primary affiliation -->
     <PRIMARY_PERSON_TITLE>Primary affiliation</PRIMARY_PERSON_TITLE>

@@ -128,13 +128,18 @@
 
     <!-- Person page texts -->
     <PERSON_TITLE>Personinformasjon</PERSON_TITLE>
-    <PERSON_HOWTO_CHANGE_FS>
+    <PERSON_HOWTO_CHANGE>
+        &lt;ul class="ekstrainfo"&gt;
+        &lt;li&gt;
         Hvis det er feil i informasjon fra FS (Felles Studentsystem), må du
         kontakte studentkontoret.
-      </PERSON_HOWTO_CHANGE_FS>
-      <PERSON_HOWTO_CHANGE_SAP>Hvis det er feil i informasjon fra SAP, må du
-          kontakte personalavdelingen.
-      </PERSON_HOWTO_CHANGE_SAP>
+        &lt;/li&gt;
+        &lt;li&gt;
+        Hvis det er feil i informasjon fra SAP, må du
+        kontakte personalavdelingen.
+        &lt;/li&gt;
+        &lt;/ul&gt;
+      </PERSON_HOWTO_CHANGE>
 
     <!-- Person primary affiliation -->
     <PRIMARY_PERSON_TITLE>Primærtilknytning</PRIMARY_PERSON_TITLE>
