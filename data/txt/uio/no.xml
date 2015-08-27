@@ -78,6 +78,8 @@
     <MENU_GUESTS_>Dine trådløskontoer</MENU_GUESTS_>
     <MENU_GUESTS_CREATE>Opprett trådløskonto</MENU_GUESTS_CREATE>
 
+    <MENU_OFFICE365>Office365</MENU_OFFICE365>
+
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Logg inn</LOGON_TITLE>
@@ -667,6 +669,9 @@
     <HELP_TITLE>Hjelp</HELP_TITLE>
     <HELP_LINK>https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/</HELP_LINK>
 
+    <!--Office365 pages-->
+    <OFFICE365_TITLE>Samtykke for Office 365</OFFICE365_TITLE>
+    <OFFICE365_TEST>Dette er en test.</OFFICE365_TEST>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->
