@@ -662,7 +662,7 @@
 
     <!--Office365 pages-->
     <OFFICE365_TITLE>OFFICE365 for Office 365</OFFICE365_TITLE>
-    <OFFICE365_TEST>This is a test.</OFFICE365_TEST>
+    <OFFICE365_INTRO>Introtext for Office365-flap</OFFICE365_INTRO>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->

@@ -671,7 +671,7 @@
 
     <!--Office365 pages-->
     <OFFICE365_TITLE>Samtykke for Office 365</OFFICE365_TITLE>
-    <OFFICE365_TEST>Dette er en test.</OFFICE365_TEST>
+    <OFFICE365_INTRO>Dette er introteksten for Office365-flappen.</OFFICE365_INTRO>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->

@@ -54,10 +54,22 @@ class Office365 implements ModuleGroup {
         $view = Init::get('View');
         $view->addTitle(txt('office365_title'));
 
-        $view->start();
-        $view->addElement('h1', txt('office365_title'));
-        $view->addElement('p', txt('office365_test'));
+        $consent_button = $view->createElement('div', null, 'id="modify-office365-consent');
+        $consent_button->addData("<input type=\"submit\" name=\"test\" class=\"submit\" value=\"testtest\" />");
+        $consent_form = new BofhFormUiO('office365');
+        $consent_form->addElement('html', $consent_button);
 
+
+        if ($consent_form->validate()) {
+            $view->start();
+            $view->addElement('h1', 'Form successfully submitted!');
+        }
+        else {
+            $view->start();
+            $view->addElement('h1', txt('office365_title'));
+            $view->addElement('p', txt('office365_intro'));
+            $view->addElement($consent_form);
+        }
     }
 }
 ?>
