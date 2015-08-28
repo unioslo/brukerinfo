@@ -21,6 +21,7 @@ class Office365 extends ModuleGroup {
 
     public function __construct($modules) {
         $this->modules = $modules;
+        $this->authz = Init::get('Authorization');
         $this->modules->addGroup($this);
     }
 
@@ -45,20 +46,38 @@ class Office365 extends ModuleGroup {
     }
 
     public function showInMenu() {
-        $authz = Init::get('Authorization');
-        return $authz->has_office365();
+        return $this->authz->has_office365();
     }
 
     public function display($path) {
         /**
          * Page for viewing and modifying user consent for exporting user data
          * to the Office365-cloud thingamabob.
+         *
+         * This page is only shown in the menu to users that has access to
+         * Office365.
+         *
+         * However, if users without permission tries to log in to
+         * Office365, there is no way for Office365 to determine if they don't
+         * have access, or simply have not consented to create an account yet,
+         * and they will be redirected here.In this scenario, a page informing
+         * the users that they do not have permission to create an Office365
+         * account.
+         *
          */
-
 
         $view = Init::get('View');
         $view->addTitle(txt('office365_title'));
 
+        if ($this->authz->has_office365()) {
+            $this->displayConsentForm($view);
+        }
+        else {
+            $this->displayErrorPage($view);
+        }
+    }
+
+    public function displayConsentForm($view) {
         $consent_button = $view->createElement('div', null, 'id="modify-office365-consent');
         $consent_button->addData("<input type=\"submit\" name=\"test\" class=\"submit\" value=\"testtest\" />");
         $consent_form = new BofhFormUiO('office365');
@@ -75,6 +94,11 @@ class Office365 extends ModuleGroup {
             $view->addElement('p', txt('office365_intro'));
             $view->addElement($consent_form);
         }
+    }
+
+    public function displayErrorPage($view) {
+        $view->start();
+        $view->addElement('h1', 'No access for you!');
     }
 }
 ?>
