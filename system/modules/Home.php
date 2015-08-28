@@ -16,7 +16,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-class Home implements ModuleGroup {
+class Home extends  ModuleGroup {
     private $modules;
     public function __construct($modules) {
         $this->modules = $modules;

@@ -16,11 +16,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-interface ModuleGroup {
-    public function getName();
-    public function getInfoPath();
-    public function getSubgroups();
-    public function getHiddenRoutes();
-    public function getShortcuts();
-    public function display($path);
+abstract class ModuleGroup {
+    abstract public function getName();
+    abstract public function getInfoPath();
+    abstract public function getSubgroups();
+    abstract public function getHiddenRoutes();
+    abstract public function getShortcuts();
+    abstract public function display($path);
+
+    // ModuleGroup will be shown in menu as default. Override in subclass
+    // if needed.
+    public function showInMenu() {
+        return true;
+    }
 }
+?>

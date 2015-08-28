@@ -16,7 +16,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-class Guest implements ModuleGroup {
+class Guest extends  ModuleGroup {
     private $modules;
     private $authz;
     private $name;

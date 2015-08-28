@@ -16,7 +16,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-class Printing implements ModuleGroup {
+class Printing extends ModuleGroup {
     private $modules;
     public function __construct($modules) {
         $this->modules = $modules;
@@ -46,6 +46,10 @@ class Printing implements ModuleGroup {
         return array(
             array('printing/history/', txt('home_shortcuts_printing_history'))
         );
+    }
+
+    public function showInMenu() {
+        return true;
     }
 
     public function display($path) {

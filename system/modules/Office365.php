@@ -16,12 +16,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-class Office365 implements ModuleGroup {
+class Office365 extends ModuleGroup {
     private $modules;
+
     public function __construct($modules) {
         $this->modules = $modules;
-        //$authz = Init::get("Authorization");
-        $modules->addGroup($this);
+        $this->modules->addGroup($this);
     }
 
     public function getName() {
@@ -42,6 +42,11 @@ class Office365 implements ModuleGroup {
 
     public function getShortcuts() {
         return array();
+    }
+
+    public function showInMenu() {
+        $authz = Init::get('Authorization');
+        return $authz->has_office365();
     }
 
     public function display($path) {
@@ -73,4 +78,3 @@ class Office365 implements ModuleGroup {
     }
 }
 ?>
-

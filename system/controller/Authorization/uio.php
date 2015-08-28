@@ -95,6 +95,16 @@ class Authorization_uio extends Authorization
 
 
     /**
+     * Check if the user has Office365
+     *
+     * @return boolean
+     */
+    protected function has_office365()
+    {
+        return $this->bofh->run_command('has_office365');
+    }
+
+    /**
      * Check if the user has IMAP spread
      *
      * @return boolean
