@@ -667,10 +667,17 @@
         Your consent has been registrered, but there will be a delay before this has been registrered in our systems.
         Please be patient until our IT-gnomes have managed to process your consent.
     </OFFICE365_NOT_READY>
-    <OFFICE365_NO_ACCESS>
+    <OFFICE365_CONSENT_TEXT>
+        Yes, I agree to have all my e-mail and personal info exported to Office365.
+    </OFFICE365_CONSENT_TEXT>
+    <OFFICE365_CONFIRM_CONSENT_CHANGE>Confirm</OFFICE365_CONFIRM_CONSENT_CHANGE>
+    <OFFICE365_CONSENT_REGISTERED>Consent has been registered.</OFFICE365_CONSENT_REGISTERED>
+    <OFFICE365_CONSENT_REVOKED>Consent has been revoked.</OFFICE365_CONSENT_REVOKED>
+    <OFFICE365_NO_ACCESS_TITLE>This account has no Office365</OFFICE365_NO_ACCESS_TITLE>
+    <OFFICE365_NO_ACCESS_TEXT>
         You tried to log in to Office365, but your measly, unprivilegied account does not have access to Office365.
         Maybe if you had worked a little harder in life, you may have been deemed worthy for this mighty privilege.
-    </OFFICE365_NO_ACCESS>
+    </OFFICE365_NO_ACCESS_TEXT>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->

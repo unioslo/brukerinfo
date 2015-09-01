@@ -73,14 +73,7 @@ class Office365 extends ModuleGroup {
         $view->addTitle(txt('office365_title'));
 
         if ($this->authz->has_office365()) {
-            if ($redirected) {
-                // Check if consent is registered in Cerebrum. Put in real check against Cerebrum when it is ready.
-                if (true) {
-                    // Show message that it make take a while before everything is synced.
-                    $view->addElement('p', txt('office365_not_ready'));
-                }
-            }
-            $this->displayConsentForm($view);
+            $this->displayConsentForm($view, $redirected);
             return;
         }
 
@@ -94,28 +87,50 @@ class Office365 extends ModuleGroup {
         View::forward('index.php/');
     }
 
-    public function displayConsentForm($view) {
-        $consent_button = $view->createElement('div', null, 'id="modify-office365-consent');
-        $consent_button->addData("<input type=\"submit\" name=\"test\" class=\"submit\" value=\"testtest\" />");
+    public function displayConsentForm($view, $redirected) {
         $consent_form = new BofhFormUiO('office365');
-        $consent_form->addElement('checkbox', 'consent', null, txt('email_forward_form_keep'));
+        $consent_form->setAttribute('class', 'app-form-big');
+        $consent_button = $consent_form->createElement('checkbox', 'consent', null, txt('office365_consent_text'));
         $consent_form->addElement($consent_button);
+        $consent_form->addElement('submit', null, txt('office365_confirm_consent_change'));
+
+        $view->addElement('h1', txt('office365_title'));
+        $view->addElement('p', txt('office365_intro'));
 
         if ($consent_form->validate()) {
-            $view->addElement('h1', 'Form successfully submitted!');
-            $view->start();
+            $test = $consent_form->getElement('consent');
+            if ($test->getChecked()) {
+                // Insert bofh-command & error handling to give consent here when it's ready.
+                $view->addElement('p', txt('office365_consent_registered'));
+            }
+            else {
+                // Insert bofh-command & error-handling to revoke consent here when it's ready.
+                $view->addElement('p', txt('office365_consent_revoked'));
+            }
+        }
+
+        if ($redirected) {
+            // Check if consent is registered in Cerebrum. Put in real check against Cerebrum when it is ready.
+            if (true) {
+                // Show message that it make take a while before everything is synced.
+                $view->addElement('p', txt('office365_not_ready'));
+            }
+        }
+
+        $has_consented = true; // Replace with real Bofh-command when ready.
+        if ($has_consented) {
+            $consent_button->setChecked(true);
         }
         else {
-            $view->addElement('h1', txt('office365_title'));
-            $view->addElement('p', txt('office365_intro'));
-            $view->addElement($consent_form);
-            $view->start();
+            $consent_button->setChecked(false);
         }
+        $view->addElement($consent_form);
+        $view->start();
     }
 
     public function displayErrorPage($view) {
-        $view->addElement('h1', 'No access for you!');
-        $view->addElement('p', txt('office365_no_access'));
+        $view->addElement('h1', txt('office365_no_access_title'));
+        $view->addElement('p', txt('office365_no_access_text'));
         $view->start();
     }
 }

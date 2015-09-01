@@ -674,11 +674,18 @@
     <OFFICE365_INTRO>Dette er introteksten for Office365-flappen.</OFFICE365_INTRO>
     <OFFICE365_NOT_READY>
         Du har allerede samtykket, men endringene har ikke blitt oppdatert i alle våre systemer riktig ennå.
-        Vennligst vent en liten stund til IT-gnomene får prosessert endringene.
+        Vennligst vent en liten stund til IT-gnomene våre får prosessert endringene.
     </OFFICE365_NOT_READY>
-    <OFFICE365_NO_ACCESS>
+    <OFFICE365_CONSENT_TEXT>
+        Ja, jeg samtykker i at all min e-post og personlige info blir videresendt til Office365.
+    </OFFICE365_CONSENT_TEXT>
+    <OFFICE365_CONFIRM_CONSENT_CHANGE>Bekreft</OFFICE365_CONFIRM_CONSENT_CHANGE>
+    <OFFICE365_CONSENT_REGISTERED>Samtykke registrert.</OFFICE365_CONSENT_REGISTERED>
+    <OFFICE365_CONSENT_REVOKED>Samtykke har blitt trukket.</OFFICE365_CONSENT_REVOKED>
+    <OFFICE365_NO_ACCESS_TITLE>Denne brukerkontoen har ikke Office365</OFFICE365_NO_ACCESS_TITLE>
+    <OFFICE365_NO_ACCESS_TEXT>
         Du har prøvd å logge inn i Office365, men dette har jo ikke du tilgang til. Makan!
-    </OFFICE365_NO_ACCESS>
+    </OFFICE365_NO_ACCESS_TEXT>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->
