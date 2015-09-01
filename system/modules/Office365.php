@@ -22,6 +22,7 @@ class Office365 extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
+        $this->bofh = Init::get('Bofh');
         $this->modules->addGroup($this);
     }
 
@@ -66,39 +67,56 @@ class Office365 extends ModuleGroup {
          *
          */
 
+        $redirected = (strpos($_SERVER['QUERY_STRING'], 'redirected=true') !== false) ? true : false;
+
         $view = Init::get('View');
         $view->addTitle(txt('office365_title'));
 
         if ($this->authz->has_office365()) {
+            if ($redirected) {
+                // Check if consent is registered in Cerebrum. Put in real check against Cerebrum when it is ready.
+                if (true) {
+                    // Show message that it make take a while before everything is synced.
+                    $view->addElement('p', txt('office365_not_ready'));
+                }
+            }
             $this->displayConsentForm($view);
+            return;
         }
-        else {
+
+        // Render error page if user was redirected and does not have Office365
+        if ($redirected) {
             $this->displayErrorPage($view);
+            return;
         }
+        // If no redirect (user tried to manually enter the route), and user
+        // does not have Office365, forward to main page.
+        View::forward('index.php/');
     }
 
     public function displayConsentForm($view) {
         $consent_button = $view->createElement('div', null, 'id="modify-office365-consent');
         $consent_button->addData("<input type=\"submit\" name=\"test\" class=\"submit\" value=\"testtest\" />");
         $consent_form = new BofhFormUiO('office365');
-        $consent_form->addElement('html', $consent_button);
-
+        $consent_form->addElement('checkbox', 'consent', null, txt('email_forward_form_keep'));
+        $consent_form->addElement($consent_button);
 
         if ($consent_form->validate()) {
-            $view->start();
             $view->addElement('h1', 'Form successfully submitted!');
+            $view->start();
         }
         else {
-            $view->start();
             $view->addElement('h1', txt('office365_title'));
             $view->addElement('p', txt('office365_intro'));
             $view->addElement($consent_form);
+            $view->start();
         }
     }
 
     public function displayErrorPage($view) {
-        $view->start();
         $view->addElement('h1', 'No access for you!');
+        $view->addElement('p', txt('office365_no_access'));
+        $view->start();
     }
 }
 ?>

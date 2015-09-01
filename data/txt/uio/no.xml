@@ -672,6 +672,13 @@
     <!--Office365 pages-->
     <OFFICE365_TITLE>Samtykke for Office 365</OFFICE365_TITLE>
     <OFFICE365_INTRO>Dette er introteksten for Office365-flappen.</OFFICE365_INTRO>
+    <OFFICE365_NOT_READY>
+        Du har allerede samtykket, men endringene har ikke blitt oppdatert i alle våre systemer riktig ennå.
+        Vennligst vent en liten stund til IT-gnomene får prosessert endringene.
+    </OFFICE365_NOT_READY>
+    <OFFICE365_NO_ACCESS>
+        Du har prøvd å logge inn i Office365, men dette har jo ikke du tilgang til. Makan!
+    </OFFICE365_NO_ACCESS>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->

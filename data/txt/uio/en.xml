@@ -663,6 +663,14 @@
     <!--Office365 pages-->
     <OFFICE365_TITLE>Consent for Office 365</OFFICE365_TITLE>
     <OFFICE365_INTRO>Introtext for Office365-flap</OFFICE365_INTRO>
+    <OFFICE365_NOT_READY>
+        Your consent has been registrered, but there will be a delay before this has been registrered in our systems.
+        Please be patient until our IT-gnomes have managed to process your consent.
+    </OFFICE365_NOT_READY>
+    <OFFICE365_NO_ACCESS>
+        You tried to log in to Office365, but your measly, unprivilegied account does not have access to Office365.
+        Maybe if you had worked a little harder in life, you may have been deemed worthy for this mighty privilege.
+    </OFFICE365_NO_ACCESS>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->
