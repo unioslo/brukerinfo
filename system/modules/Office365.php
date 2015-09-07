@@ -23,6 +23,7 @@ class Office365 extends ModuleGroup {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
         $this->bofh = Init::get('Bofh');
+        $this->user = Init::get('User');
         $this->modules->addGroup($this);
     }
 
@@ -53,23 +54,24 @@ class Office365 extends ModuleGroup {
     public function display($path) {
         /**
          * Page for viewing and modifying user consent for exporting user data
-         * to the Office365-cloud thingamabob.
+         * to Office 365
          *
          * This page is only shown in the menu to users that has access to
          * Office365.
          *
-         * However, if users without permission tries to log in to
-         * Office365, there is no way for Office365 to determine if they don't
+         * However, if users without access tries to log in to
+         * Office 365, there is no way for Office 365 to determine if they don't
          * have access, or simply have not consented to create an account yet,
-         * and they will be redirected here.In this scenario, a page informing
+         * and they will be redirected here. In this scenario, a page informing
          * the users that they do not have permission to create an Office365
-         * account.
+         * account will appear.
          *
          */
 
         $redirected = (strpos($_SERVER['QUERY_STRING'], 'redirected=true') !== false) ? true : false;
 
         $view = Init::get('View');
+        $view->addHead('<script type="text/javascript" src="uio_design/office365.js"></script>');
         $view->addTitle(txt('office365_title'));
 
         if ($this->authz->has_office365()) {
@@ -88,43 +90,67 @@ class Office365 extends ModuleGroup {
     }
 
     public function displayConsentForm($view, $redirected) {
-        $consent_form = new BofhFormUiO('office365');
-        $consent_form->setAttribute('class', 'app-form-big');
-        $consent_button = $consent_form->createElement('checkbox', 'consent', null, txt('office365_consent_text'));
-        $consent_form->addElement($consent_button);
-        $consent_form->addElement('submit', null, txt('office365_confirm_consent_change'));
+        $has_consented = $this->userConsentRegistered();
+        $consentForm = new BofhFormUiO('office365');
+        $consentForm->setAttribute('class', 'app-form-big');
+        $consentBox = $consentForm->createElement('checkbox', 'consent', null, txt('office365_consent_text'), array(
+                'id' => 'consent-checkbox'
+            )
+        );
+
+        if ($has_consented) {
+            $consentBox->setChecked(true);
+        }
+        else {
+            $consentBox->setChecked(false);
+        }
+        $consentForm->addElement($consentBox);
+
+        $buttonText = ($has_consented) ? txt('office365_confirm_revoke_consent') : txt('office365_confirm_give_consent');
+
+        $consentForm->addElement('submit', null, $buttonText, array(
+                'id' => 'consent-submit',
+                'disabled' => 'disabled',
+                'name' => 'submit'
+            )
+        );
 
         $view->addElement('h1', txt('office365_title'));
         $view->addElement('p', txt('office365_intro'));
 
-        if ($consent_form->validate()) {
-            $test = $consent_form->getElement('consent');
-            if ($test->getChecked()) {
-                // Insert bofh-command & error handling to give consent here when it's ready.
-                $view->addElement('p', txt('office365_consent_registered'));
+        if ($consentForm->validate()) {
+            $consentCheckbox = $consentForm->getElement('consent');
+            $consentSubmit = $consentForm->getElement('submit');
+            if ($consentCheckbox->getChecked()) {
+                try {
+                    $this->bofh->run_command('consent_set', 'person:' . $this->user->getUsername(), 'office365');
+                    View::addMessage(txt('office365_consent_registered'));
+                    $consentSubmit->setValue(txt('office365_confirm_revoke_consent'));
+                }
+                catch (Exception $e) {
+                    Bofhcom::viewError($e);
+                }
             }
             else {
-                // Insert bofh-command & error-handling to revoke consent here when it's ready.
-                $view->addElement('p', txt('office365_consent_revoked'));
+                try {
+                    $this->bofh->run_command('consent_unset', 'person:' . $this->user->getUsername(), 'office365');
+                    View::addMessage(txt('office365_consent_revoked'));
+                    $consentSubmit->setValue(txt('office365_confirm_give_consent'));
+                }
+                catch (Exception $e) {
+                    Bofhcom::viewError($e);
+                }
             }
         }
 
         if ($redirected) {
-            // Check if consent is registered in Cerebrum. Put in real check against Cerebrum when it is ready.
-            if (true) {
+            if ($has_consented) {
                 // Show message that it make take a while before everything is synced.
-                $view->addElement('p', txt('office365_not_ready'));
+                View::addMessage(txt('office365_not_ready'));
             }
         }
 
-        $has_consented = true; // Replace with real Bofh-command when ready.
-        if ($has_consented) {
-            $consent_button->setChecked(true);
-        }
-        else {
-            $consent_button->setChecked(false);
-        }
-        $view->addElement($consent_form);
+        $view->addElement($consentForm);
         $view->start();
     }
 
@@ -132,6 +158,23 @@ class Office365 extends ModuleGroup {
         $view->addElement('h1', txt('office365_no_access_title'));
         $view->addElement('p', txt('office365_no_access_text'));
         $view->start();
+    }
+
+    private function userConsentRegistered() {
+        try {
+            $has_consented = false;
+            $consents = $this->bofh->run_command('consent_info', 'person:' . $this->user->getUsername());
+            foreach ($consents as $consent) {
+                if ($consent['consent_name'] == 'office365') {
+                    $has_consented = true;
+                }
+            }
+            return $has_consented;
+        }
+        catch (XML_RPC2_FaultException $e) {
+            // Person has no registered consents at all
+            return false;
+        }
     }
 }
 ?>

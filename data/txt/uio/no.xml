@@ -78,7 +78,7 @@
     <MENU_GUESTS_>Dine trådløskontoer</MENU_GUESTS_>
     <MENU_GUESTS_CREATE>Opprett trådløskonto</MENU_GUESTS_CREATE>
 
-    <MENU_OFFICE365>Office365</MENU_OFFICE365>
+    <MENU_OFFICE365>Office 365</MENU_OFFICE365>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
@@ -686,6 +686,8 @@
     <OFFICE365_NO_ACCESS_TEXT>
         Du har prøvd å logge inn i Office365, men dette har jo ikke du tilgang til. Makan!
     </OFFICE365_NO_ACCESS_TEXT>
+    <OFFICE365_CONFIRM_GIVE_CONSENT>Bekreft samtykke</OFFICE365_CONFIRM_GIVE_CONSENT>
+    <OFFICE365_CONFIRM_REVOKE_CONSENT>Trekk samtykke</OFFICE365_CONFIRM_REVOKE_CONSENT>
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
          -->
