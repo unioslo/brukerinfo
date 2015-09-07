@@ -48,10 +48,6 @@ class Printing extends ModuleGroup {
         );
     }
 
-    public function showInMenu() {
-        return true;
-    }
-
     public function display($path) {
         if (!$path) {
             return $this->index();
