@@ -679,7 +679,6 @@
     <OFFICE365_CONSENT_TEXT>
         Ja, jeg samtykker i at all min e-post og personlige info blir videresendt til Office365.
     </OFFICE365_CONSENT_TEXT>
-    <OFFICE365_CONFIRM_CONSENT_CHANGE>Bekreft</OFFICE365_CONFIRM_CONSENT_CHANGE>
     <OFFICE365_CONSENT_REGISTERED>Samtykke registrert.</OFFICE365_CONSENT_REGISTERED>
     <OFFICE365_CONSENT_REVOKED>Samtykke har blitt trukket.</OFFICE365_CONSENT_REVOKED>
     <OFFICE365_NO_ACCESS_TITLE>Denne brukerkontoen har ikke Office365</OFFICE365_NO_ACCESS_TITLE>

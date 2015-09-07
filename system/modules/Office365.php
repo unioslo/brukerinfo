@@ -125,6 +125,7 @@ class Office365 extends ModuleGroup {
                 try {
                     $this->bofh->run_command('consent_set', 'person:' . $this->user->getUsername(), 'office365');
                     View::addMessage(txt('office365_consent_registered'));
+                    // Text on submit-button is not updated after POST
                     $consentSubmit->setValue(txt('office365_confirm_revoke_consent'));
                 }
                 catch (Exception $e) {
@@ -135,6 +136,7 @@ class Office365 extends ModuleGroup {
                 try {
                     $this->bofh->run_command('consent_unset', 'person:' . $this->user->getUsername(), 'office365');
                     View::addMessage(txt('office365_consent_revoked'));
+                    // Text on submit-button is not updated after POST
                     $consentSubmit->setValue(txt('office365_confirm_give_consent'));
                 }
                 catch (Exception $e) {
