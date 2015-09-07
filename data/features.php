@@ -36,7 +36,7 @@ function get_feature_list() {
     } else {
         $features = array(
             'uio' => array('account', 'email', 'groups', 'guests', 'person', 
-                           'printing', 'reservations', 'office365'),
+                           'reservations', 'office365'),
             'hine'=> array('account', 'email', 'groups', 'person'),
             'tsd' => array('Account_tsd', 'groups')
         );
