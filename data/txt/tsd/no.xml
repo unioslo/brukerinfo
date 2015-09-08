@@ -29,7 +29,7 @@
     <ERROR_BOFH_CONNECTION>Kunne ikke koble til databasen. Prøv igjen senere.</ERROR_BOFH_CONNECTION>
     <ERROR_BOFH_ERROR>Feil i kommunikasjonen med databasen. Prøv igjen senere.</ERROR_BOFH_ERROR>
     <ERROR_BOFH_RESTARTED>Databasen har blitt startet på nytt. Oppdater siden, eller logg inn på nytt.</ERROR_BOFH_RESTARTED>
-    <ERROR_SUBGROUP_NO_ROUTE>Ugyldig URL</ERROR_SUBGROUP_NO_ROUTE>
+    <ERROR_INVALID_URL>Ugyldig URL</ERROR_INVALID_URL>
 
     <!-- Standard notices -->
     <EMPLOYEES_ONLY>Dette er ikke tilgjengelig i denne versjonen.</EMPLOYEES_ONLY>

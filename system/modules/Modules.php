@@ -77,12 +77,18 @@ class Modules {
         if (!isset($this->mapping)) {
             $this->getMapping();
         }
-        $grname = count($parts) > 0 ? $parts[0] :'';
+        $grname = count($parts) > 0 ? $parts[0] : '';
+        if (!array_key_exists($grname, $this->mapping)) {
+            return null;
+        }
         return $this->mapping[$grname];
     }
 
     public function getPage($path) {
         $grp = $this->getCurrentGroup($path);
+        if (!$grp) {
+            View::forward('', txt('error_invalid_url'), $msgType = 6);  // MSG_WARNING
+        }
         $parts = explode("/", $path);
         if (count($parts) < 3) {
             $parts = array('');
@@ -92,7 +98,7 @@ class Modules {
         }
         if ($parts[0] && !in_array($parts[0], $grp->getSubgroups())
                       && !in_array($parts[0], $grp->getHiddenRoutes())) {
-            View::forward('', txt('error_subgroup_no_route'));
+            View::forward('', txt('error_invalid_url'), $msgType = 6);  // MSG_WARNING
         }
         return $grp->display($parts);
     }
