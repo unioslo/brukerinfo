@@ -167,8 +167,8 @@ class View_uio extends ViewTemplate
 
     // A mapping of the message type level to an html class
     protected $message_to_class = array(
-        self::MSG_ERROR     => 'note error',
-        self::MSG_WARNING   => 'note warning',
+        self::MSG_ERROR     => 'error',
+        self::MSG_WARNING   => 'warning',
         self::MSG_NOTICE    => 'note',
     );
 
