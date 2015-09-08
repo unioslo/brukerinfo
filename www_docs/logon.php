@@ -23,7 +23,7 @@ $User->logoff();
 $bofh = Init::get('Bofh');
 $View = Init::get('View');
 
-$logform = new BofhFormUiO('logon');
+$logform = new BofhFormUiO('logon', null, 'logon.php');
 $logform->setAttribute('class', 'app-form-big');
 $logform->addElement('text',     'usi',  txt('logon_form_username'), 'id="usi"');
 $logform->addElement('password', 'pasi', txt('logon_form_password'));

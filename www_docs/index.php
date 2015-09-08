@@ -36,8 +36,8 @@ $View = Init::get('View');
 $Authz = Init::get('Authorization');
 
 $mod = Init::get('Modules');
-
-$mod->getPage($_SERVER['PATH_INFO']);
+$path_info = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '';
+$mod->getPage($path_info);
 
 ?>
 

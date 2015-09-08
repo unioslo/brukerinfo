@@ -159,12 +159,12 @@ class Reservations implements ModuleGroup {
                 "<input type=\"submit\" name=\"$id\" class=\"submit\" value=\"$status\" />",
             ));
         }
-        $resform = new BofhFormUiO('reservations');
+        $resform = new BofhFormUiO('reservations', null, 'reservations/');
         $resform->addElement('html', $flist);
 
         if ($resform->validate()) {
             $resform->process('setReservations');
-            View::forward('index.php/reservations/');
+            View::forward('reservations/');
         }
 
         $view->start();

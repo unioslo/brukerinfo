@@ -199,7 +199,7 @@ class Person implements ModuleGroup {
                 $data[$name] = sprintf('%s (%s)', $name, $row[1]);
             }
             ksort($data);
-            $form = new BofhFormUiO('mod_name');
+            $form = new BofhFormUiO('mod_name', null, 'person/name/');
             $form->addElement('select', 'name', txt('person_name_form_select'), $data);
             $form->addElement('submit', null, txt('person_name_form_submit'));
 
@@ -324,7 +324,7 @@ class Person implements ModuleGroup {
         }
         $bofh = Init::get('Bofh');
         if (!$bofh->isEmployee()) {
-            View::forward('index.php/person/', txt('EMPLOYEES_ONLY'));
+            View::forward('person/', txt('EMPLOYEES_ONLY'));
         }
 
         global $addresses;
@@ -335,7 +335,7 @@ class Person implements ModuleGroup {
         $form = formModName($primary, $name, $addresses);
         if ($form->validate()) {
             $form->process('formModNameProcess');
-            View::forward('index.php/person/');
+            View::forward('person/');
         }
 
         $view = Init::get('View');
@@ -403,7 +403,7 @@ class Person implements ModuleGroup {
         $cache = Init::get('Bofh')->getCache();
         $affs  = $cache['affiliations'];
 
-        $form = new BofhFormUiO('change_primary');
+        $form = new BofhFormUiO('change_primary', null, 'person/primary/');
         $form->setAttribute('class', 'app-form-big');
 
         $radios = array();
@@ -427,9 +427,9 @@ class Person implements ModuleGroup {
 
         if ($form->validate()) {
             if ($form->process('process_set_primary')) {
-                View::forward('index.php/person/primary/', txt('primary_person_updated'));
+                View::forward('person/primary/', txt('primary_person_updated'));
             }
-            View::forward('index.php/person/primary/', txt('error_bofh_error'));
+            View::forward('person/primary/', txt('error_bofh_error'));
         }
 
         $View->start();

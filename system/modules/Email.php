@@ -55,10 +55,10 @@ class Email implements ModuleGroup {
         $ret = array();
         if (INST == 'uio') {
             if ($this->authz->has_imap()) {
-                $ret[] = array('email/tripnote', txt('home_shortcuts_tripnote'));
+                $ret[] = array('email/tripnote/', txt('home_shortcuts_tripnote'));
             }
             if ($this->authz->has_email()) {
-                $ret[] = array('email/spam', txt('home_shortcuts_spam'));
+                $ret[] = array('email/spam/', txt('home_shortcuts_spam'));
             }
         }
         return $ret;
@@ -157,11 +157,11 @@ class Email implements ModuleGroup {
         if (INST == 'uio' && !empty($_GET['del_addr'])) {
 
             if (!in_array($_GET['del_addr'], $primary['deletable'])) {
-                View::forward('index.php/email/', txt('email_del_invalid_addr'));
+                View::forward('email/', txt('email_del_invalid_addr'));
             }
             $addr = htmlspecialchars($_GET['del_addr']);
 
-            $delform = new BofhForm('delete_email_addr', null, "index.php/email/?del_addr=$addr");
+            $delform = new BofhForm('delete_email_addr', null, "email/?del_addr=$addr");
             $delform->addElement('static', 'Test');
             $delform->addGroup(array(
                 $delform->createElement('submit', 'confirm', txt('email_del_submit')),
@@ -169,7 +169,7 @@ class Email implements ModuleGroup {
             ));
 
             if ($delform->validate()) {
-                if (!empty($_POST['cancel'])) View::forward('index.php/email/');
+                if (!empty($_POST['cancel'])) View::forward('email/');
 
                 if (!empty($_POST['confirm'])) {
                     if (delEmailAddress($Bofh, $User, $_GET['del_addr'])) {
@@ -177,7 +177,7 @@ class Email implements ModuleGroup {
                     } else {
                         View::addMessage(txt('email_del_failed', array('address' => $addr)));
                     }
-                    View::forward('index.php/email/');
+                    View::forward('email/');
                 }
             }
 
@@ -219,7 +219,7 @@ class Email implements ModuleGroup {
                 if (!empty($primary['deletable'])) {
                     foreach ($primary['valid_addr'] as $id => $addr) {
                         if (in_array($addr, $primary['deletable'])) {
-                            $primary['valid_addr'][$id] .= " <a href=\"index.php/email/?del_addr=$addr\">"
+                            $primary['valid_addr'][$id] .= " <a href=\"email/?del_addr=$addr\">"
                                 . txt('email_del_actionlink') . '</a>';
                         }
 
@@ -473,7 +473,7 @@ class Email implements ModuleGroup {
         $keeplocal = (isset($forwards['local']) ? true : false);
 
         //make new forward-form
-        $newForm = new BofhFormUiO('addForwarding');
+        $newForm = new BofhFormUiO('addForwarding', null, 'email/forward/');
         $newForm->setAttribute('class', 'app-form-big');
         $newForm->addElement('text', 'address', txt('email_forward_form_address'), array('maxlength' => 255));
         $newForm->addElement('checkbox', 'keep', null, txt('email_forward_form_keep'));
@@ -487,11 +487,11 @@ class Email implements ModuleGroup {
         if ($newForm->validate()) {
             $newForm->freeze();
             $newForm->process('addForward');
-            View::forward('index.php/email/forward/');
+            View::forward('email/forward/');
         }
 
         // Form for making local copy
-        $addLocal = new BofhFormUiO('addLocal');
+        $addLocal = new BofhFormUiO('addLocal', null, 'email/forward/');
         $addLocal->addElement('html', View::createElement('p', txt('email_forward_addlocal')));
         $addLocal->addElement('submit', null, txt('email_forward_addlocal_submit'));
 
@@ -499,7 +499,7 @@ class Email implements ModuleGroup {
             $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
             View::addMessage($res);
             View::addMessage(txt('action_delay_email'));
-            View::forward('index.php/email/forward/');
+            View::forward('email/forward/');
         }
 
         $View->addTitle(txt('email_title'));
@@ -509,26 +509,26 @@ class Email implements ModuleGroup {
         if (!empty($_POST['del'])) {
             if (count($_POST['del']) > 1) {
                 trigger_error('was?', E_USER_WARNING);
-                View::forward('index.php/email/forward/', 'Buggy data, could not continue', View::MSG_ERROR);
+                View::forward('email/forward/', 'Buggy data, could not continue', View::MSG_ERROR);
             }
 
             $del = (is_array($_POST['del']) ? key($_POST['del']) : $_POST['del']);
 
             if(!isset($forwards[$del])) {
-                View::forward('index.php/email/forward', txt('email_forward_delete_unknown'), View::MSG_ERROR);
+                View::forward('email/forward/', txt('email_forward_delete_unknown'), View::MSG_ERROR);
             }
 
-            $confirm = new BofhFormUiO('confirm');
+            $confirm = new BofhFormUiO('confirm', null, 'email/forward/');
             $confirm->addElement('submit', null, txt('email_forward_delete_confirm_submit'), 'class="submit"');
             $confirm->addElement('hidden', 'del', $del);
 
             if ($confirm->validate()) {
                 try {
                     $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), $del);
-                    View::forward('index.php/email/forward/', $res);
+                    View::forward('email/forward/', $res);
                 } catch(Exception $e) {
                     Bofhcom::viewError($e);
-                    View::forward('index.php/email/forward/');
+                    View::forward('email/forward/');
                 }
             }
 
@@ -546,7 +546,7 @@ class Email implements ModuleGroup {
         $View->addElement('p',  txt('EMAIL_FORWARD_INTRO'));
 
         if ($forwards) {
-            $View->addElement('raw', '<form method="post" class="app-form" action="index.php/email/forward/">');
+            $View->addElement('raw', '<form method="post" class="app-form" action="email/forward/">');
             $table = View::createElement('table', null, 'class="app-table"');
 
             foreach ($forwards as $k => $v) {
@@ -765,7 +765,7 @@ class Email implements ModuleGroup {
 
 
 
-        $form = new BofhFormUiO('setSpam');
+        $form = new BofhFormUiO('setSpam', null, 'email/spam/');
         $form->setAttribute('class', 'app-form-big');
 
         //spam level
@@ -828,7 +828,7 @@ class Email implements ModuleGroup {
 
                 View::addMessage($res);
                 View::addMessage($res2);
-                View::forward('index.php/email/spam/');
+                View::forward('email/spam/');
 
             } catch(Exception $e) {
                 Bofhcom::viewError($e);
@@ -846,7 +846,7 @@ class Email implements ModuleGroup {
 
 
         // making form for the filters (additional spam settings)
-        $filterform = new BofhFormUiO('spamfilter');
+        $filterform = new BofhFormUiO('spamfilter', null, 'email/spam/');
 
         $flist = View::createElement('table', null, 'class="app-table"');
 
@@ -870,7 +870,7 @@ class Email implements ModuleGroup {
                 View::addMessage(txt('email_filter_update_success'));
             }
             //if false, this should already be handled and sent to the user by the function
-            View::forward('index.php/email/spam/');
+            View::forward('email/spam/');
 
         }
 
@@ -955,7 +955,7 @@ class Email implements ModuleGroup {
          */
         function formAddTripnote()
         {
-            $form = new BofhFormUiO('addTripnote');
+            $form = new BofhFormUiO('addTripnote', null, 'email/tripnote/');
             $form->addElement('header', null, txt('email_tripnote_form_title'));
             $text = Init::get('Text');
 
@@ -1025,7 +1025,7 @@ class Email implements ModuleGroup {
         $form = formAddTripnote();
         if ($form->validate()) {
             if ($form->process('formAddTripnoteProcess')) {
-                View::forward('index.php/email/tripnote/', txt('email_tripnote_new_success'));
+                View::forward('email/tripnote/', txt('email_tripnote_new_success'));
             }
         }
 
@@ -1042,25 +1042,25 @@ class Email implements ModuleGroup {
         if (!empty($_POST['confirmed_del'])) {
             $del = $_POST['confirmed_del'];
             if (!isset($tripnotes[$del])) {
-                View::forward('index.php/email/tripnote/', 'Found no tripnotes starting at '.htmlspecialchars($del), View::MSG_WARNING);
+                View::forward('email/tripnote/', 'Found no tripnotes starting at '.htmlspecialchars($del), View::MSG_WARNING);
             }
 
             try {
                 $res = $Bofh->run_command('email_remove_tripnote', $User->getUsername(), $del);
-                View::forward('index.php/email/tripnote/', $res);
+                View::forward('email/tripnote/', $res);
             } catch(Exception $e) {
                 Bofhcom::viewError($e);
             }
         }
         if (!empty($_POST['del'])) {
             if (count($_POST['del']) > 1) {
-                View::forward('index.php/email/tripnote/', 'Warning, bad data, could not continue.', View::MSG_ERROR);
+                View::forward('email/tripnote/', 'Warning, bad data, could not continue.', View::MSG_ERROR);
             }
 
             $del = key($_POST['del']);
 
             if (!isset($tripnotes[$del])) {
-                View::forward('index.php/email/tripnote/', 'Unknown out of office message.', View::MSG_WARNING);
+                View::forward('email/tripnote/', 'Unknown out of office message.', View::MSG_WARNING);
             }
 
             $View->addTitle(txt('email_tripnote_delete_title'));
@@ -1074,7 +1074,7 @@ class Email implements ModuleGroup {
             $dl->addData(txt('email_tripnote_message'),    nl2br($tripnotes[$del]['text']));
             $View->addElement($dl);
 
-            $confirm = new BofhFormUiO('confirm');
+            $confirm = new BofhFormUiO('confirm', null, 'email/tripnote/');
             $confirm->addElement('hidden', 'confirmed_del', $del);
             $confirm->addElement('submit', null, txt('email_tripnote_delete_submit'), 'class="submit"');
             $View->addElement($confirm);

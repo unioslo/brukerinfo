@@ -92,7 +92,8 @@ class View_uio extends ViewTemplate
 
         $menu = array(); 
         $mod = Init::get("Modules");
-        $current = $mod->getCurrentGroup($_SERVER['PATH_INFO']);
+        $path_info = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '';
+        $current = $mod->getCurrentGroup($path_info);
         foreach ($mod->listGroups() as $grp) {
             $paths = $grp->getInfoPath();
             if ($grp === $current) {
@@ -102,7 +103,7 @@ class View_uio extends ViewTemplate
             }
             $name = txt('MENU_' . strtoupper($grp->getName()));
             $link = $paths[0];
-            $menu[] = "<a href=\"index.php/$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
+            $menu[] = "<a href=\"$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-mainmenu"');
     }
@@ -116,7 +117,7 @@ class View_uio extends ViewTemplate
             return '';
         }
         $mod = Init::get("Modules");
-        $current = $_SERVER['PATH_INFO'];
+        $current = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '';
         $gr = $mod->getCurrentGroup($current);
         $maindir = $gr->getName();
         $menu = array();
@@ -126,7 +127,7 @@ class View_uio extends ViewTemplate
         foreach($mod->listSubgroups($gr) as $link) {
             $name = txt(strtoupper('MENU_' . $maindir . '_' . $link));
             $active = ($activesub == "$link" ? ' class="active"' : '');
-            $menu[] = "<a href=\"index.php/$maindir/$link\"$active>$name</a>";
+            $menu[] = "<a href=\"$maindir/$link\"$active>$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-submenu"');
     }

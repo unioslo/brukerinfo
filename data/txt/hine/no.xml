@@ -420,7 +420,7 @@
     <GROUPS_GROUP_UNKNOWN>Kunne ikke finne angitt gruppe</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Grupper du kan moderere</GROUPS_MODERATIVE_TITLE>
     <GROUPS_OTHERS_TITLE>Dine gruppemedlemskap</GROUPS_OTHERS_TITLE>
-    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="index.php/groups/personal"&gt;opprette 
+    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="groups/personal/"&gt;opprette 
         den&lt;/a&gt;?</GROUPS_NO_PERSONAL>
 
     <GROUPS_TABLE_GROUPNAME>Gruppe:</GROUPS_TABLE_GROUPNAME>

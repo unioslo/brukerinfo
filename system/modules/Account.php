@@ -50,7 +50,7 @@ class Account implements ModuleGroup {
     }
 
     public function getShortcuts() {
-        return array(array('account/password', txt('home_shortcuts_password')));
+        return array(array('account/password/', txt('home_shortcuts_password')));
     }
 
     public function display($path) {
@@ -178,9 +178,9 @@ class Account implements ModuleGroup {
 
 
         if(isset($_GET['more'])) {
-            $list[1] = View::createElement('a', txt('general_less_details'), 'index.php/account/');
+            $list[1] = View::createElement('a', txt('general_less_details'), 'account/');
         } else {
-            $list[1] = View::createElement('a', txt('general_more_details'), 'index.php/account/?more');
+            $list[1] = View::createElement('a', txt('general_more_details'), 'account/?more');
         }
 
 
@@ -301,13 +301,13 @@ class Account implements ModuleGroup {
             die;
         }
 
-        $form = new BofhFormUiO('change_primary', null, null, null, 'class="app-form-big submitonly"');
+        $form = new BofhFormUiO('change_primary', null, 'account/primary/', null, 'class="app-form-big submitonly"');
         $form->addElement('submit', 'confirm', txt('account_primary_form_submit'), 
             'class="submit"'
         );
         if($form->validate()) {
             if(setPrimary($Bofh)) {
-                View::forward('index.php/account/', txt('account_primary_success'));
+                View::forward('account/', txt('account_primary_success'));
             } else {
                 View::addMessage(txt('account_primary_failed'));
             }
@@ -380,7 +380,7 @@ class Account implements ModuleGroup {
 
 
         // The password change form
-        $form = new BofhFormUiO('changePassword');
+        $form = new BofhFormUiO('changePassword', null, 'account/password/');
         $form->setAttribute('class', 'app-form-big');
 
         $form->addElement('password', 'cur_pass', txt('account_password_form_current'));
@@ -411,7 +411,7 @@ class Account implements ModuleGroup {
                         if(changePassword($Bofh, $form->exportValue('new_pass'), $form->exportValue('cur_pass'), $errmsg)) {
                             View::addMessage(txt('account_password_success'));
                             View::addMessage(txt('action_delay_hour'));
-                            View::forward('index.php/account/');
+                            View::forward('account/');
                         } else {
                             //have to send errors manually to the form, (e.g. check for old passwords)
                             $form->setElementError('new_pass', $errmsg);

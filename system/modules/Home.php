@@ -57,7 +57,7 @@ class Home implements ModuleGroup {
         $sc = array();
         foreach ($this->modules->listShortcuts() as $s) {
             $sc[] = View::createElement(
-                'a', $s[1], "index.php/" . $s[0]
+                'a', $s[1], $s[0]
             );
         }
         $View->addElement('ul', $sc);
