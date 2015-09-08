@@ -102,7 +102,7 @@ class View_uio extends ViewTemplate
                 $active = "";
             }
             $name = txt('MENU_' . strtoupper($grp->getName()));
-            $link = $paths[0];
+            $link = $paths[0] . '/';
             $menu[] = "<a href=\"$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-mainmenu"');
@@ -127,7 +127,11 @@ class View_uio extends ViewTemplate
         foreach($mod->listSubgroups($gr) as $link) {
             $name = txt(strtoupper('MENU_' . $maindir . '_' . $link));
             $active = ($activesub == "$link" ? ' class="active"' : '');
-            $menu[] = "<a href=\"$maindir/$link\"$active>$name</a>";
+            $href = $maindir . '/';
+            if ($link !== '') {
+                $href = $href . $link . '/';
+            }
+            $menu[] = "<a href=\"$href\"$active>$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-submenu"');
     }
