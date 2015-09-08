@@ -56,7 +56,7 @@ class Guest implements ModuleGroup {
     }
 
     public function getHiddenRoutes() {
-        return array();
+        return array('info');
     }
 
     public function display($path) {
@@ -78,9 +78,10 @@ class Guest implements ModuleGroup {
             return $this->index();
         case 'create':
             return $this->create();
+        case 'info':
+            return $this->info();
         }
     }
-
 
     public function index() {
         /**
