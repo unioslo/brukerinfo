@@ -100,7 +100,7 @@ class Authorization_uio extends Authorization
      *
      * @return boolean
      */
-    protected function has_office365()
+    protected function has_office365_permissions()
     {
         $affs = $this->bofh->getCache('affiliations');
         foreach($affs as $aff) {
