@@ -16,7 +16,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
-class Person implements ModuleGroup {
+class Person extends ModuleGroup {
     private $modules;
     private $authz;
     public function __construct($modules) {

@@ -94,6 +94,9 @@ class View_uio extends ViewTemplate
         $mod = Init::get("Modules");
         $current = $mod->getCurrentGroup($_SERVER['PATH_INFO']);
         foreach ($mod->listGroups() as $grp) {
+            if (!$grp->showInMenu()) {
+                continue;
+            }
             $paths = $grp->getInfoPath();
             if ($grp === $current) {
                 $active = ' class="active"';

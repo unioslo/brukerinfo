@@ -95,6 +95,22 @@ class Authorization_uio extends Authorization
 
 
     /**
+     * Check if the user has Office365.
+     * This is done by checking the BofhCom-cache which is populated during user login.
+     *
+     * @return boolean
+     */
+    protected function has_office365_permissions()
+    {
+        $affs = $this->bofh->getCache('affiliations');
+        foreach($affs as $aff) {
+            if ($aff['affiliation'] == 'STUDENT' || $aff['affiliation'] == 'ANSATT')
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * Check if the user has IMAP spread
      *
      * @return boolean
