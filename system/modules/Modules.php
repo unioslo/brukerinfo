@@ -47,6 +47,7 @@ class Modules {
         }
         return $this->mapping;
     }
+
     /* Groups are normally on the pages represented by tabbing look and feel.
      * Return array(name => link)
      */
@@ -71,18 +72,31 @@ class Modules {
         return $shortcuts;
     }
 
-    public function getCurrentGroup($path) {
+    public function getCurrentPath() {
+        return substr($_SERVER['REQUEST_URI'], strlen(BASE_URL_PREFIX));
+    }
+
+    public function getCurrentGroup($path = null) {
+        if ($path === null) {
+            $path = $this->getCurrentPath();
+        }
         $parts = explode("/", $path);
         array_shift($parts);
         if (!isset($this->mapping)) {
             $this->getMapping();
         }
-        $grname = count($parts) > 0 ? $parts[0] :'';
+        $grname = count($parts) > 0 ? $parts[0] : '';
+        if (!array_key_exists($grname, $this->mapping)) {
+            return null;
+        }
         return $this->mapping[$grname];
     }
 
-    public function getPage($path) {
+    public function getPage($path = null) {
         $grp = $this->getCurrentGroup($path);
+        if (!$grp) {
+            View::forward('', txt('error_invalid_url'), $msgType = 6);  // MSG_WARNING
+        }
         $parts = explode("/", $path);
         if (count($parts) < 3) {
             $parts = array('');
@@ -92,7 +106,7 @@ class Modules {
         }
         if ($parts[0] && !in_array($parts[0], $grp->getSubgroups())
                       && !in_array($parts[0], $grp->getHiddenRoutes())) {
-            View::forward('', txt('error_subgroup_no_route'));
+            View::forward('', txt('error_invalid_url'), $msgType = 6);  // MSG_WARNING
         }
         return $grp->display($parts);
     }

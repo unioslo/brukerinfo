@@ -36,7 +36,6 @@ class BofhFormInline extends BofhForm
      * @param boolean   $track      If a hidden element should be used to check if the form has been sent. Here this defaults to true.
      */
     public function __construct($name = null, $method = null, $action = null, $target = null, $attr = null, $track = true) {
-
         parent::__construct($name, $method, $action, $target, $attr, $track);
         $this->setAttribute('class', 'app-form');
     }

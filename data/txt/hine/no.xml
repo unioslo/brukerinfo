@@ -29,7 +29,7 @@
     <ERROR_BOFH_CONNECTION>Kunne ikke koble til databasen. Prøv igjen senere.</ERROR_BOFH_CONNECTION>
     <ERROR_BOFH_ERROR>Feil i kommunikasjonen med databasen. Prøv igjen senere.</ERROR_BOFH_ERROR>
     <ERROR_BOFH_RESTARTED>Databasen har blitt startet på nytt. Oppdater siden, eller logg inn på nytt.</ERROR_BOFH_RESTARTED>
-    <ERROR_SUBGROUP_NO_ROUTE>Ugyldig URL</ERROR_SUBGROUP_NO_ROUTE>
+    <ERROR_INVALID_URL>Ugyldig URL</ERROR_INVALID_URL>
 
     <!-- Standard notices -->
     <EMPLOYEES_ONLY>Det er bare ansatte ved HiNesna som har tilgang til dette.</EMPLOYEES_ONLY>
@@ -420,7 +420,7 @@
     <GROUPS_GROUP_UNKNOWN>Kunne ikke finne angitt gruppe</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Grupper du kan moderere</GROUPS_MODERATIVE_TITLE>
     <GROUPS_OTHERS_TITLE>Dine gruppemedlemskap</GROUPS_OTHERS_TITLE>
-    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="index.php/groups/personal"&gt;opprette 
+    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="groups/personal/"&gt;opprette 
         den&lt;/a&gt;?</GROUPS_NO_PERSONAL>
 
     <GROUPS_TABLE_GROUPNAME>Gruppe:</GROUPS_TABLE_GROUPNAME>

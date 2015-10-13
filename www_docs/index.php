@@ -1,5 +1,5 @@
 <?php
-// Copyright 2009, 2010 University of Oslo, Norway
+// Copyright 2009-2015 University of Oslo, Norway
 // 
 // This file is part of Cerebrum.
 // 
@@ -36,8 +36,7 @@ $View = Init::get('View');
 $Authz = Init::get('Authorization');
 
 $mod = Init::get('Modules');
-
-$mod->getPage($_SERVER['PATH_INFO']);
+$mod->getPage();
 
 ?>
 

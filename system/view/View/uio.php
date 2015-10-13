@@ -92,7 +92,7 @@ class View_uio extends ViewTemplate
 
         $menu = array(); 
         $mod = Init::get("Modules");
-        $current = $mod->getCurrentGroup($_SERVER['PATH_INFO']);
+        $current = $mod->getCurrentGroup();
         foreach ($mod->listGroups() as $grp) {
             if (!$grp->showInMenu()) {
                 continue;
@@ -104,8 +104,8 @@ class View_uio extends ViewTemplate
                 $active = "";
             }
             $name = txt('MENU_' . strtoupper($grp->getName()));
-            $link = $paths[0];
-            $menu[] = "<a href=\"index.php/$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
+            $link = $paths[0] . '/';
+            $menu[] = "<a href=\"$link\"$active style=\"padding-left: 15px; padding-right: 15px;\">$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-mainmenu"');
     }
@@ -119,8 +119,7 @@ class View_uio extends ViewTemplate
             return '';
         }
         $mod = Init::get("Modules");
-        $current = $_SERVER['PATH_INFO'];
-        $gr = $mod->getCurrentGroup($current);
+        $gr = $mod->getCurrentGroup();
         $maindir = $gr->getName();
         $menu = array();
         $path = explode('/', $current);
@@ -129,7 +128,11 @@ class View_uio extends ViewTemplate
         foreach($mod->listSubgroups($gr) as $link) {
             $name = txt(strtoupper('MENU_' . $maindir . '_' . $link));
             $active = ($activesub == "$link" ? ' class="active"' : '');
-            $menu[] = "<a href=\"index.php/$maindir/$link\"$active>$name</a>";
+            $href = $maindir . '/';
+            if ($link !== '') {
+                $href = $href . $link . '/';
+            }
+            $menu[] = "<a href=\"$href\"$active>$name</a>";
         }
         return self::createElement('ul', $menu, 'id="app-submenu"');
     }
@@ -169,8 +172,8 @@ class View_uio extends ViewTemplate
 
     // A mapping of the message type level to an html class
     protected $message_to_class = array(
-        self::MSG_ERROR     => 'note error',
-        self::MSG_WARNING   => 'note warning',
+        self::MSG_ERROR     => 'error',
+        self::MSG_WARNING   => 'warning',
         self::MSG_NOTICE    => 'note',
     );
 

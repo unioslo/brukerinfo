@@ -56,7 +56,7 @@ class Guest extends  ModuleGroup {
     }
 
     public function getHiddenRoutes() {
-        return array();
+        return array('info');
     }
 
     public function display($path) {
@@ -78,9 +78,10 @@ class Guest extends  ModuleGroup {
             return $this->index();
         case 'create':
             return $this->create();
+        case 'info':
+            return $this->info();
         }
     }
-
 
     public function index() {
         /**
@@ -147,7 +148,7 @@ class Guest extends  ModuleGroup {
         // Add guests to table
         foreach ($guests as $i => $guest) {
             $data = array(
-                View::createElement('a', $guest['username'], "index.php/guests/info/?guest=".$guest['username']),
+                View::createElement('a', $guest['username'], "guests/info/?guest=".$guest['username']),
                 $guest['name'],
                 (!empty($guest['expires'])) ? $guest['expires']->format('y-m-d') : '',
             );
@@ -208,7 +209,7 @@ class Guest extends  ModuleGroup {
                 );
             }
             // Create guest form
-            $form = new BofhFormUiO('new_guest');
+            $form = new BofhFormUiO('new_guest', null, 'guests/create/');
             $form->setAttribute('class', 'app-form-big');
 
             /* First and last name */
@@ -283,7 +284,7 @@ class Guest extends  ModuleGroup {
         $guestform = buildForm();
         if ($guestform->validate()) {
             if ($ret = $guestform->process('bofhCreateGuest')) {
-                View::forward('index.php/guests/create/', $ret);
+                View::forward('guests/create/', $ret);
             }
             // else, error. The bofhCreateGuest function should add an error message to
             // the page.
@@ -313,9 +314,9 @@ class Guest extends  ModuleGroup {
          *
          * @return BofhFormInline The form
          */
-        function buildButtonForm($name, $label, array $hidden)
+        function buildButtonForm($name, $label, array $hidden, $action = null)
         {
-            $form = new BofhFormInline($name);
+            $form = new BofhFormInline($name, null, $action);
             foreach ($hidden as $name => $value) {
                 $form->addElement('hidden', $name, $value);
             }
@@ -392,13 +393,13 @@ class Guest extends  ModuleGroup {
 
         // No guest data
         if (empty($guest)) {
-            View::forward('index.php/guests/', txt('guest_no_username'), View::MSG_ERROR);
+            View::forward('guests/', txt('guest_no_username'), View::MSG_ERROR);
         }
 
         // Clean input string (XSS)
         if (!preg_match("/^[-A-Za-z0-9]+$/", $guest)) {
             View::forward(
-                'index.php/guests/',
+                'guests/',
                 txt('guest_unknown_username', array('uname'=>htmlspecialchars($guest))),
                 View::MSG_ERROR
             );
@@ -407,8 +408,8 @@ class Guest extends  ModuleGroup {
         // Create forms (reset password, delete guest account)
         // A hidden field with the guest username, common for both forms
         $hidden = array('g_uname' => $guest);
-        $delform = buildButtonForm('del_guest', txt('guest_btn_deactivate'), $hidden);
-        $passform = buildButtonForm('new_pass', txt('guest_btn_resetpw'), $hidden);
+        $delform = buildButtonForm('del_guest', txt('guest_btn_deactivate'), $hidden, 'guests/info/');
+        $passform = buildButtonForm('new_pass', txt('guest_btn_resetpw'), $hidden, 'guests/info/');
 
         // Try to process POST requests if they validate
         if ($Authz->can_create_guests()) {
@@ -427,7 +428,7 @@ class Guest extends  ModuleGroup {
         $guestdata = $Bofh->getData('guest_info', $guest);
         if (empty($guestdata)) {
             View::forward(
-                'index.php/guests/',
+                'guests/',
                 txt('guest_unknown_username', array('uname'=>$guest)),
                 View::MSG_ERROR
             );
@@ -484,7 +485,7 @@ class Guest extends  ModuleGroup {
         if (!$Bofh->isEmployee()) {
             View::forward('', txt('employees_only'));
         } elseif (empty($guest)) {
-            View::forward('index.php/guests/', txt('guest_no_username'), View::MSG_ERROR);
+            View::forward('guests/', txt('guest_no_username'), View::MSG_ERROR);
         } elseif ($form->validate()) {
             try {
                 $pw = $Bofh->getCachedPassword($guest);
@@ -492,7 +493,7 @@ class Guest extends  ModuleGroup {
                 $pw = false;
             }
             if (!$pw) {
-                View::forward('index.php/guests/', txt('guest_pw_not_cached'), View::MSG_ERROR);
+                View::forward('guests/', txt('guest_pw_not_cached'), View::MSG_ERROR);
             } else {
                 echo txt('guest_pw_letter', array('uname'=>$guest, 'password'=>$pw));
             }
