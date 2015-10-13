@@ -59,27 +59,38 @@ define('INST',                  'uio');
 define('FEATURES',              null);
 
 /**
+ * Path to www_docs. This is the directory where this configuration file is located.
+ */
+define('WWW_DOCS_PATH',         realpath(dirname(__FILE__)));
+
+/**
+ * Calculates the base path, which is one directory up from the location of this file.
+ */
+define('BASE_PATH',             realpath(WWW_DOCS_PATH . '/..'));
+
+/**
  * The location of the system files, that is, the projects' "system/" directory.
  * It is preferred that this directory is not reachable through a web browser, 
  * so place it somewhere else than in www_docs.
  */
-define('LINK_SYSTEM',           '/www/var/virtual/brukerinfo/system');
+define('LINK_SYSTEM',           BASE_PATH . '/system');
+
 
 /**
  * The location of the shared 'phplib/' directory. The phplib directory contains 
  * common classes that are used in different Cerebrum projects, and several 
- * classes depends on this to exist. The directory is located in Cerebrums' svn 
- * tree, at 'trunk/cerebrum/clients/web/phplib/', and can be seen at::
+ * classes depends on this to exist. 
  *
- *  http://cerebrum.svn.sourceforge.net/viewvc/cerebrum/trunk/cerebrum/clients/web/phplib/
+ * https://utv.uio.no/stash/projects/CRB/repos/phplib/browse
+ *
  */
-define('LINK_LIB',              '/www/var/virtual/brukerinfo/system/phplib');
+define('LINK_LIB',              BASE_PATH . '/system/phplib');
 
 /** 
  * The location of the "data/" directory. It is preferred that this directory is 
  * not reachable through a web browser, so place it somewhere else than in www_docs.
  */
-define('LINK_DATA',             '/www/var/virtual/brukerinfo/data');
+define('LINK_DATA',             BASE_PATH . '/data');
 
 /** 
  * The location of the lock-file. If this file contains data (preferrably text), 
@@ -165,7 +176,7 @@ define('ATTEMPTS',              20);
  * Number of minutes a user gets blocked from the site, e.g. by too many logon 
  * attempts.
  */
-define('ATTEMPT_TIME_OUT_MIN',              5);
+define('ATTEMPT_TIME_OUT_MIN',  5);
 
 /** 
  * The charset which the pages is telling the browser that it's using. Be sure 
@@ -190,7 +201,10 @@ define('HTTPS_ONLY',            true);
  *
  * This is e.g. used for redirecting correctly.
  */
-define('BASE_URL',          'https://subdomain.example.com/brukerinfo/');
+$base_url_prefix = substr(WWW_DOCS_PATH, strlen($_SERVER['DOCUMENT_ROOT']));
+define('BASE_URL_PREFIX',       ($base_url_prefix) ? $base_url_prefix : '');
+define('BASE_URL',              'https://' . $_SERVER['HTTP_HOST'] . BASE_URL_PREFIX . '/');
+unset($base_url_prefix);
 
 /** 
  * The prefix in the url (if the project is in a subdir of
