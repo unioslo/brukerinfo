@@ -92,8 +92,7 @@ class View_uio extends ViewTemplate
 
         $menu = array(); 
         $mod = Init::get("Modules");
-        $path_info = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '';
-        $current = $mod->getCurrentGroup($path_info);
+        $current = $mod->getCurrentGroup();
         foreach ($mod->listGroups() as $grp) {
             $paths = $grp->getInfoPath();
             if ($grp === $current) {
@@ -117,8 +116,7 @@ class View_uio extends ViewTemplate
             return '';
         }
         $mod = Init::get("Modules");
-        $current = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '';
-        $gr = $mod->getCurrentGroup($current);
+        $gr = $mod->getCurrentGroup();
         $maindir = $gr->getName();
         $menu = array();
         $path = explode('/', $current);

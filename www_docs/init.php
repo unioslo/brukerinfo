@@ -36,6 +36,14 @@
  *
  */
 
+
+error_reporting(-1);
+#ini_set("error_log", "/www/var/virtual/w3utv-ws02.uio.no_443/htdocs/cerebrum/jbr/php-error.log");
+session_save_path('/www/var/virtual/w3utv-ws02.uio.no_443/htdocs/cerebrum/jbr/tmp-session');
+require_once '/www/var/virtual/w3utv-ws02.uio.no_443/htdocs/cerebrum/jbr/brukerinfo/vendor/autoload.php';
+
+
+
 // Get InitBase before Init, since autoload is not set up yet
 require_once dirname(__FILE__) . '/config.php';
 require_once LINK_LIB . '/controller/InitBase.php';

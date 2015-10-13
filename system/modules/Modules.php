@@ -47,6 +47,7 @@ class Modules {
         }
         return $this->mapping;
     }
+
     /* Groups are normally on the pages represented by tabbing look and feel.
      * Return array(name => link)
      */
@@ -71,7 +72,14 @@ class Modules {
         return $shortcuts;
     }
 
-    public function getCurrentGroup($path) {
+    public function getCurrentPath() {
+        return substr($_SERVER['REQUEST_URI'], strlen(BASE_URL_PREFIX));
+    }
+
+    public function getCurrentGroup($path = null) {
+        if ($path === null) {
+            $path = $this->getCurrentPath();
+        }
         $parts = explode("/", $path);
         array_shift($parts);
         if (!isset($this->mapping)) {
@@ -84,7 +92,7 @@ class Modules {
         return $this->mapping[$grname];
     }
 
-    public function getPage($path) {
+    public function getPage($path = null) {
         $grp = $this->getCurrentGroup($path);
         if (!$grp) {
             View::forward('', txt('error_invalid_url'), $msgType = 6);  // MSG_WARNING
