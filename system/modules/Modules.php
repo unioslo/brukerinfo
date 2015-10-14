@@ -93,6 +93,9 @@ class Modules {
     }
 
     public function getPage($path = null) {
+        if ($path === null) {
+            $path = $this->getCurrentPath();
+        }
         $grp = $this->getCurrentGroup($path);
         if (!$grp) {
             View::forward('', txt('error_invalid_url'), $msgType = 6);  // MSG_WARNING
