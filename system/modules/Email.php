@@ -445,14 +445,14 @@ class Email extends ModuleGroup {
             //setting the local copy on of off
             if (!empty($values['keep']) && !$keeplocal) {
                 try {
-                    $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
+                    $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'on');
                     View::addMessage($res);
                 } catch(Exception $e) {
                     Bofhcom::viewError($e);
                 }
             } elseif (empty($values['keep']) && $keeplocal) {
                 try {
-                    $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), 'local');
+                    $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'off');
                     View::addMessage($res);
                 } catch(Exception $e) {
                     Bofhcom::viewError($e);
@@ -492,11 +492,12 @@ class Email extends ModuleGroup {
 
         // Form for making local copy
         $addLocal = new BofhFormUiO('addLocal', null, 'email/forward/');
+        $addLocal->setAttribute('class', 'app-form-big');
         $addLocal->addElement('html', View::createElement('p', txt('email_forward_addlocal')));
         $addLocal->addElement('submit', null, txt('email_forward_addlocal_submit'));
 
         if ($addLocal->validate()) {
-            $res = $Bofh->run_command('email_add_forward', $User->getUsername(), 'local');
+            $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'on');
             View::addMessage($res);
             View::addMessage(txt('action_delay_email'));
             View::forward('email/forward/');
@@ -519,16 +520,27 @@ class Email extends ModuleGroup {
             }
 
             $confirm = new BofhFormUiO('confirm', null, 'email/forward/');
+            $confirm->setAttribute('class', 'app-form-big');
             $confirm->addElement('submit', null, txt('email_forward_delete_confirm_submit'), 'class="submit"');
             $confirm->addElement('hidden', 'del', $del);
 
             if ($confirm->validate()) {
-                try {
-                    $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), $del);
-                    View::forward('email/forward/', $res);
-                } catch(Exception $e) {
-                    Bofhcom::viewError($e);
-                    View::forward('email/forward/');
+                if ($del === 'local') {
+                    try {
+                        $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'off');
+                        View::forward('email/forward/', $res);
+                    } catch(Exception $e) {
+                        Bofhcom::viewError($e);
+                    }
+                }
+                else {
+                    try {
+                        $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), $del);
+                        View::forward('email/forward/', $res);
+                    } catch(Exception $e) {
+                        Bofhcom::viewError($e);
+                        View::forward('email/forward/');
+                    }
                 }
             }
 
