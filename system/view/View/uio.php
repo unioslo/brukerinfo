@@ -122,7 +122,7 @@ class View_uio extends ViewTemplate
         $gr = $mod->getCurrentGroup();
         $maindir = $gr->getName();
         $menu = array();
-        $path = explode('/', $current);
+        $path = explode('/', $mod->getCurrentPath());
         $activesub = (count($path) >= 3 ? $path[2] : '');
 
         foreach($mod->listSubgroups($gr) as $link) {
