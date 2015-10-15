@@ -525,23 +525,18 @@ class Email extends ModuleGroup {
             $confirm->addElement('hidden', 'del', $del);
 
             if ($confirm->validate()) {
-                if ($del === 'local') {
-                    try {
+                try {
+                    if ($del === 'local') {
                         $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'off');
                         View::forward('email/forward/', $res);
-                    } catch(Exception $e) {
-                        Bofhcom::viewError($e);
-                        View::forward('email/forward/');
                     }
-                }
-                else {
-                    try {
+                    else {
                         $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), $del);
                         View::forward('email/forward/', $res);
-                    } catch(Exception $e) {
-                        Bofhcom::viewError($e);
-                        View::forward('email/forward/');
                     }
+                } catch(Exception $e) {
+                    Bofhcom::viewError($e);
+                    View::forward('email/forward/');
                 }
             }
 
