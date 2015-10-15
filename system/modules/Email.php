@@ -531,6 +531,7 @@ class Email extends ModuleGroup {
                         View::forward('email/forward/', $res);
                     } catch(Exception $e) {
                         Bofhcom::viewError($e);
+                        View::forward('email/forward/');
                     }
                 }
                 else {
