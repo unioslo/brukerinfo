@@ -160,7 +160,7 @@ class View_hine extends ViewTemplate
                 continue;
             }
             $query['chooseLang'] = $l;
-            $languages[] = "<a href=\"{$_SERVER['PHP_SELF']}?" . http_build_query($query) 
+            $languages[] = "<a href=\"" . BASE_URL . "?" . http_build_query($query)
                 . "\">$desc</a>";
         }
         return self::createElement('ul', $languages, 'id="languages"');

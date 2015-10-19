@@ -73,7 +73,8 @@ class Modules {
     }
 
     public function getCurrentPath() {
-        return substr($_SERVER['REQUEST_URI'], strlen(BASE_URL_PREFIX));
+        $url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        return substr($url_path, strlen(BASE_URL_PREFIX));
     }
 
     public function getCurrentGroup($path = null) {
