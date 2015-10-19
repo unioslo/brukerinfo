@@ -38,10 +38,10 @@
 
 
 // Get InitBase before Init, since autoload is not set up yet
-require_once '/www/var/virtual/w3utv-ws02.uio.no_443/htdocs/cerebrum/tgk/phplib/vendor/autoload.php';
 require_once dirname(__FILE__) . '/config.php';
 require_once LINK_LIB . '/controller/InitBase.php';
-session_save_path(realpath(BASE_PATH . '/tmp'));
+
+
 // the page can only work in https!
 // this will hopefully not be seen, as the server is automatic resending users to https
 if(HTTPS_ONLY && $_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
