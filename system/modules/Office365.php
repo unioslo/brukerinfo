@@ -18,6 +18,8 @@
 
 class Office365 extends ModuleGroup {
     private $modules;
+    private $has_consented = false;
+    private $consent_date = null;
 
     public function __construct($modules) {
         $this->modules = $modules;
@@ -75,6 +77,7 @@ class Office365 extends ModuleGroup {
         $view->addTitle(txt('office365_title'));
 
         if ($this->authz->has_office365_permissions()) {
+            $this->getConsentData();
             $this->displayConsentForm($view, $redirected);
             return;
         }
@@ -90,23 +93,23 @@ class Office365 extends ModuleGroup {
     }
 
     public function displayConsentForm($view, $redirected) {
-        $has_consented = $this->userConsentRegistered();
-        $consentForm = new BofhFormUiO('office365');
+        $consentForm = new BofhFormUiO('office365', null, 'office365');
         $consentForm->setAttribute('class', 'app-form-big');
-        $consentBox = $consentForm->createElement('checkbox', 'consent', null, txt('office365_consent_text'), array(
+
+        if ($this->has_consented) {
+            $consent_text = txt('office365_remove_consent_text');
+        }
+        else {
+            $consent_text = txt('office365_give_consent_text');
+        }
+        $consentBox = $consentForm->createElement('checkbox', 'consent', null, $consent_text, array(
                 'id' => 'consent-checkbox'
             )
         );
 
-        if ($has_consented) {
-            $consentBox->setChecked(true);
-        }
-        else {
-            $consentBox->setChecked(false);
-        }
         $consentForm->addElement($consentBox);
 
-        $buttonText = ($has_consented) ? txt('office365_confirm_revoke_consent') : txt('office365_confirm_give_consent');
+        $buttonText = ($this->has_consented) ? txt('office365_confirm_revoke_consent') : txt('office365_confirm_give_consent');
 
         $consentForm->addElement('submit', null, $buttonText, array(
                 'id' => 'consent-submit',
@@ -118,15 +121,21 @@ class Office365 extends ModuleGroup {
         $view->addElement('h1', txt('office365_title'));
         $view->addElement('p', txt('office365_intro'));
 
+        if ($this->consent_date != null) {
+            $view->addElement('p', txt('office365_consent_registered_statustext',
+                                       array('date' => $this->consent_date)));
+        }
+        else {
+            $view->addElement('p', txt('office365_consent_not_registered_statustext'));
+        }
+
         if ($consentForm->validate()) {
             $consentCheckbox = $consentForm->getElement('consent');
-            $consentSubmit = $consentForm->getElement('submit');
-            if ($consentCheckbox->getChecked()) {
+            $consentCheckbox->setChecked(false);
+            if (!$this->has_consented) {
                 try {
                     $this->bofh->run_command('consent_set', 'person:' . $this->user->getUsername(), 'office365');
-                    View::addMessage(txt('office365_consent_registered'));
-                    // Text on submit-button is not updated after POST
-                    $consentSubmit->setValue(txt('office365_confirm_revoke_consent'));
+                    View::forward('office365/', txt('office365_consent_registered'));
                 }
                 catch (Exception $e) {
                     Bofhcom::viewError($e);
@@ -135,9 +144,7 @@ class Office365 extends ModuleGroup {
             else {
                 try {
                     $this->bofh->run_command('consent_unset', 'person:' . $this->user->getUsername(), 'office365');
-                    View::addMessage(txt('office365_consent_revoked'));
-                    // Text on submit-button is not updated after POST
-                    $consentSubmit->setValue(txt('office365_confirm_give_consent'));
+                    View::forward('office365/', txt('office365_consent_revoked'));
                 }
                 catch (Exception $e) {
                     Bofhcom::viewError($e);
@@ -146,9 +153,9 @@ class Office365 extends ModuleGroup {
         }
 
         if ($redirected) {
-            if ($has_consented) {
+            if ($this->has_consented) {
                 // Show message that it make take a while before everything is synced.
-                View::addMessage(txt('office365_not_ready'));
+                View::addMessage(txt('office365_consent_registered'));
             }
         }
 
@@ -162,16 +169,15 @@ class Office365 extends ModuleGroup {
         $view->start();
     }
 
-    private function userConsentRegistered() {
+    private function getConsentData() {
         try {
-            $has_consented = false;
             $consents = $this->bofh->run_command('consent_info', 'person:' . $this->user->getUsername());
             foreach ($consents as $consent) {
                 if ($consent['consent_name'] == 'office365') {
-                    $has_consented = true;
+                    $this->has_consented = true;
+                    $this->consent_date = date_format($consent['consent_time_set'], 'd-m-Y H:i:s');
                 }
             }
-            return $has_consented;
         }
         catch (XML_RPC2_FaultException $e) {
             // Person has no registered consents at all
