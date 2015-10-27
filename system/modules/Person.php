@@ -52,7 +52,7 @@ class Person extends ModuleGroup {
     }
 
     public function getShortcuts() {
-        return array();
+        return array(array('person/name', txt('home_shortcuts_change_pri_email_addr')));
     }
 
     public function display($path) {
