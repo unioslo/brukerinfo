@@ -75,7 +75,7 @@ class Office365 extends ModuleGroup {
         $view->addHead('<script type="text/javascript" src="uio_design/office365.js"></script>');
         $view->addTitle(txt('office365_title'));
 
-        if ($this->authz->has_office365_permissions()) {
+        if ($this->showInMenu()) {
             $this->displayConsentForm($view, $redirected);
             return;
         }
