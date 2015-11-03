@@ -73,22 +73,15 @@ class Authorization_uio extends Authorization
         if (!$this->is_authenticated()) {
             return false;
         }
-        try {
-            // Sigh, this is a bit expensive
-            $memberships = $this->bofh->run_command(
-                'group_memberships', 'account', $this->user->getUsername()
-            );
-            if (empty($memberships)) {
-                return false;  // Cop out if no memberships
+        // Sigh, this is a bit expensive
+        $memberships = $this->bofh->getAccountMemberships();
+        if (empty($memberships)) {
+            return false;  // Cop out if no memberships
+        }
+        foreach ($memberships as $membership) {
+            if ($membership['group'] === $group) {
+                return true;
             }
-            foreach ($memberships as $membership) {
-                if ($membership['group'] === $group) {
-                    return true;
-                }
-            }
-        } catch (XML_RPC2_FaultException $e) {
-            // Maybe the group doesn't exist?
-            trigger_error("Unable to check group memberships: $e", E_USER_WARNING);
         }
         return false;
     }
