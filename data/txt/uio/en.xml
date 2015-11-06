@@ -135,6 +135,9 @@
     <HOME_SHORTCUTS_TRIPNOTE>Set Out of office messages</HOME_SHORTCUTS_TRIPNOTE>
     <HOME_SHORTCUTS_MEMBERS>Add or remove members from your group(s)</HOME_SHORTCUTS_MEMBERS>
     <HOME_SHORTCUTS_GROUP_REQUEST>Request a new group</HOME_SHORTCUTS_GROUP_REQUEST>
+    <HOME_SHORTCUTS_CHANGE_PRI_EMAIL_ADDR>
+        Change your primary email address and display name
+    </HOME_SHORTCUTS_CHANGE_PRI_EMAIL_ADDR>
 
     <HOME_ABOUT_TITLE>About Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>This is a web based user interface
