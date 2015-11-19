@@ -1143,4 +1143,3 @@ class Email extends ModuleGroup {
     }
 }
 ?>
-

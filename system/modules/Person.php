@@ -439,4 +439,3 @@ class Person extends ModuleGroup {
     }
 }
 ?>
-
