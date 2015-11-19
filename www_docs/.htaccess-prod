@@ -1,0 +1,13 @@
+# .htaccess files have no effect in production. The following rewrite rules should
+# be put in the httpd VirtualHost configuration.
+
+<Directory "/var/www/brukerinfo/www_docs">
+
+  <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L,QSA]
+  </IfModule>
+
+</Directory>
