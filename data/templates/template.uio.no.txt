@@ -7,6 +7,7 @@
 
     <!-- UiO profile -->
     <link media="screen" type="text/css" href="uio_design/uio-app-general.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="uio_design/favicon.ico" />
 
     <script type="text/javascript" src="uio_design/jquery.min.js"></script> 
 
