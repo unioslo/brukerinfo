@@ -119,4 +119,3 @@ class Modules {
         $this->groups[] = $group;
     }
 }
-
