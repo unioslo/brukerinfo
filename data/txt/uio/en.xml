@@ -676,6 +676,7 @@
     <OFFICE365_CONSENT_REGISTERED>
         Your consent has been registered. It will take approximately one hour
         from the consent was registered until you can start using Office 365.
+        You will receive an e-mail when your account is ready.
     </OFFICE365_CONSENT_REGISTERED>
     <OFFICE365_CONSENT_REGISTERED_STATUSTEXT>
         &lt;em&gt;Consent was registered at: {{date}}&lt;/em&gt;
@@ -687,7 +688,7 @@
     <OFFICE365_NO_ACCESS_TITLE>Office 365 permission error</OFFICE365_NO_ACCESS_TITLE>
     <OFFICE365_NO_ACCESS_TEXT>
         According to UiO's user system, your accounts are not registered with access to Office 365.
-        If you feel this is incorrect, please contact your local system administrator.
+        If you feel this is incorrect, please contact the local IT staff.
     </OFFICE365_NO_ACCESS_TEXT>
     <OFFICE365_CONFIRM_GIVE_CONSENT>Confirm consent</OFFICE365_CONFIRM_GIVE_CONSENT>
     <OFFICE365_CONFIRM_REVOKE_CONSENT>Revoke consent</OFFICE365_CONFIRM_REVOKE_CONSENT>
