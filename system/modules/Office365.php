@@ -50,7 +50,8 @@ class Office365 extends ModuleGroup {
     }
 
     public function showInMenu() {
-        return $this->authz->has_office365_permissions();
+        return ($this->authz->is_member_of('office365-pilot') and
+                $this->authz->has_office365_permissions());
     }
 
     public function display($path) {
@@ -76,8 +77,7 @@ class Office365 extends ModuleGroup {
         $view->addHead('<script type="text/javascript" src="uio_design/office365.js"></script>');
         $view->addTitle(txt('office365_title'));
 
-        if ($this->authz->has_office365_permissions()) {
-            $this->getConsentData();
+        if ($this->showInMenu()) {
             $this->displayConsentForm($view, $redirected);
             return;
         }

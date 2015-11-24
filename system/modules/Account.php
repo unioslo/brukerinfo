@@ -383,7 +383,7 @@ class Account extends ModuleGroup {
         $form = new BofhFormUiO('changePassword', null, 'account/password/');
         $form->setAttribute('class', 'app-form-big');
 
-        $form->addElement('password', 'cur_pass', txt('account_password_form_current'));
+        $form->addElement('password', 'cur_pass', txt('account_password_form_current'), 'id="cur_pass"');
         $form->addElement('html', '<hr />');
         $form->addElement('password', 'new_pass', txt('account_password_form_new'), 'id="new_pass"');
         $form->addElement('password', 'new_pass2', txt('account_password_form_new2'));

@@ -176,4 +176,3 @@ class Reservations extends ModuleGroup {
     }
 }
 ?>
-

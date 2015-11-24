@@ -1,3 +1,6 @@
+# This crazy set of conditions will rewrite URLs properly even if Brukerinfo
+# is set up in a sub-directory.
+
 DirectoryIndex index.php
 
 <IfModule mod_rewrite.c>

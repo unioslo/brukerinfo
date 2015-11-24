@@ -137,6 +137,9 @@
     <HOME_SHORTCUTS_TRIPNOTE>Legge inn fraværsmelding</HOME_SHORTCUTS_TRIPNOTE>
     <HOME_SHORTCUTS_MEMBERS>Legge til eller fjerne medlemmer i en gruppe</HOME_SHORTCUTS_MEMBERS>
     <HOME_SHORTCUTS_GROUP_REQUEST>Søk om en ny gruppe</HOME_SHORTCUTS_GROUP_REQUEST>
+    <HOME_SHORTCUTS_CHANGE_PRI_EMAIL_ADDR>
+        Skifte primær e-postadresse og visningsnavn
+    </HOME_SHORTCUTS_CHANGE_PRI_EMAIL_ADDR>
 
     <HOME_ABOUT_TITLE>Om Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
