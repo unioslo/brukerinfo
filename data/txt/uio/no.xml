@@ -213,37 +213,20 @@
 
     <ACCOUNT_PASSWORD_TITLE>Skift passord</ACCOUNT_PASSWORD_TITLE>
     <ACCOUNT_PASSWORD_INTRO>
-        &lt;p&gt;Skift passordet til brukerkontoen du er logget inn med
-        brukernavnet og passordet til. Merk deg at passordet er
-        &lt;em&gt;personlig&lt;/em&gt; og at du &lt;em&gt;aldri&lt;/em&gt; skal
-        oppgi det til andre, heller ikke IT-ansatte ved UiO.&lt;/p&gt;
-        &lt;p&gt;Dette er et sammendrag av kravene. Hvis du er i tvil, kan du
-        lese &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/passord.html"&gt;alle
-        krav til passord&lt;/a&gt;.&lt;/p&gt;
-        &lt;p&gt;Et passord &lt;strong&gt;må&lt;/strong&gt;:
-        &lt;ul&gt;
-            &lt;li&gt;være minst &lt;strong&gt;8 tegn&lt;/strong&gt; langt&lt;/li&gt;
-            &lt;li&gt;inneholde tegn fra minst &lt;strong&gt;3 &lt;/strong&gt; av disse 4 kategoriene:
-                &lt;ul&gt;
-                    &lt;li&gt;tall&lt;/li&gt;
-                    &lt;li&gt;små bokstaver&lt;/li&gt;
-                    &lt;li&gt;store bokstaver&lt;/li&gt;
-                    &lt;li&gt;andre tegn&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-        Passordet &lt;strong&gt;må ikke&lt;/strong&gt;:
-        &lt;ul&gt;
-            &lt;li&gt;inneholde æ, ø eller å&lt;/li&gt;
-            &lt;li&gt;inneholde ord som finnes i en ordbok&lt;/li&gt;
-            &lt;li&gt;ligne på et passord du har brukt tidligere&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;/p&gt;
-        &lt;strong&gt;Merk&lt;/strong&gt; at det tar tid før man kan logge med
-        det nye passordet på alle tjenester hos Universitetet. Det anbefales å
-        bytte passord like før man har gått for dagen.
-        &lt;/p&gt;
+        &lt;p&gt;Merk deg at ditt passord er
+        &lt;strong&gt;personlig&lt;/strong&gt; og at du
+        &lt;strong&gt;aldri&lt;/strong&gt; skal oppgi det til andre, heller ikke
+        IT-ansatte ved UiO!&lt;/p&gt;
+
+        &lt;p&gt;Se &lt;a
+        href="https://uio.no/tjenester/it/brukernavn-passord/krav.html"&gt;Krav
+        til passordfraser og passord&lt;/a&gt; for en oversikt over alle reglene
+        rundt hva du kan sette som passord.&lt;/p&gt;
+
+        &lt;strong&gt;Merk&lt;/strong&gt; at det kan ta noen timer før man kan
+        logge inn med det nye passordet i alle IT-tjenester. Vi anbefaler at du
+        bytter passord rett før slutten av arbeidsdagen, så er alt klart til
+        neste arbeidsdag.&lt;/p&gt;
     </ACCOUNT_PASSWORD_INTRO>
 
     <ACCOUNT_PASSWORD_FORM_NEW>Nytt passord:</ACCOUNT_PASSWORD_FORM_NEW>
