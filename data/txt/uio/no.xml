@@ -674,19 +674,33 @@
 
     <!--Office365 pages-->
     <OFFICE365_TITLE>Samtykke for Office 365</OFFICE365_TITLE>
-    <OFFICE365_INTRO>Dette er introteksten for Office365-flappen.</OFFICE365_INTRO>
-    <OFFICE365_NOT_READY>
-        Du har allerede samtykket, men endringene har ikke blitt oppdatert i alle våre systemer riktig ennå.
-        Vennligst vent en liten stund til IT-gnomene våre får prosessert endringene.
-    </OFFICE365_NOT_READY>
-    <OFFICE365_CONSENT_TEXT>
-        Ja, jeg samtykker i at all min e-post og personlige info blir videresendt til Office365.
-    </OFFICE365_CONSENT_TEXT>
-    <OFFICE365_CONSENT_REGISTERED>Samtykke registrert.</OFFICE365_CONSENT_REGISTERED>
+    <OFFICE365_INTRO>
+        For å ta i bruk Office 365 må du avgi samtykke. Det vil ta omlag én time
+        fra samtykket er registrert til du kan ta i bruk Office 365. Du kan når
+        som helst trekke tilbake samtykket.
+    </OFFICE365_INTRO>
+    <OFFICE365_GIVE_CONSENT_TEXT>
+        Ja, jeg samtykker til at mine kontoer skal bli knyttet opp mot Office 365.
+    </OFFICE365_GIVE_CONSENT_TEXT>
+    <OFFICE365_REMOVE_CONSENT_TEXT>
+        Ja, jeg ønsker å trekke tilbake mitt samtykke, og slutte å bruke Office 365.
+    </OFFICE365_REMOVE_CONSENT_TEXT>
+    <OFFICE365_CONSENT_REGISTERED>
+        Ditt samtykke er registrert. Det kan ta opptil en time fra tidspunktet samtykket
+        ble først avgitt til du kan ta i bruk Office 365. Du vil motta en e-post når
+        din konto er klar til bruk.
+    </OFFICE365_CONSENT_REGISTERED>
+    <OFFICE365_CONSENT_REGISTERED_STATUSTEXT>
+        &lt;em&gt;Samtykke ble avgitt: {{date}}&lt;/em&gt;
+    </OFFICE365_CONSENT_REGISTERED_STATUSTEXT>
+    <OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
+        &lt;em&gt;Samtykke er ikke avgitt.&lt;/em&gt;
+    </OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
     <OFFICE365_CONSENT_REVOKED>Samtykke har blitt trukket.</OFFICE365_CONSENT_REVOKED>
-    <OFFICE365_NO_ACCESS_TITLE>Denne brukerkontoen har ikke Office365</OFFICE365_NO_ACCESS_TITLE>
+    <OFFICE365_NO_ACCESS_TITLE>Ingen tilgang til Office365</OFFICE365_NO_ACCESS_TITLE>
     <OFFICE365_NO_ACCESS_TEXT>
-        Du har prøvd å logge inn i Office365, men dette har jo ikke du tilgang til. Makan!
+        Ifølge UiOs brukersystem, er ikke dine kontoer registrert med tilgang til Office 365.
+        Hvis du mener dette er feil, ta kontakt med lokal-IT.
     </OFFICE365_NO_ACCESS_TEXT>
     <OFFICE365_CONFIRM_GIVE_CONSENT>Bekreft samtykke</OFFICE365_CONFIRM_GIVE_CONSENT>
     <OFFICE365_CONFIRM_REVOKE_CONSENT>Trekk samtykke</OFFICE365_CONFIRM_REVOKE_CONSENT>

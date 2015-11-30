@@ -41,7 +41,6 @@
 require_once dirname(__FILE__) . '/config.php';
 require_once LINK_LIB . '/controller/InitBase.php';
 
-
 // the page can only work in https!
 // this will hopefully not be seen, as the server is automatic resending users to https
 if(HTTPS_ONLY && $_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
