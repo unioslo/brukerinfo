@@ -78,6 +78,7 @@ class Office365 extends ModuleGroup {
         $view->addTitle(txt('office365_title'));
 
         if ($this->showInMenu()) {
+            $this->getConsentData();
             $this->displayConsentForm($view, $redirected);
             return;
         }
@@ -89,7 +90,7 @@ class Office365 extends ModuleGroup {
         }
         // If no redirect (user tried to manually enter the route), and user
         // does not have Office365, forward to main page.
-        View::forward('index.php/');
+        View::forward('');
     }
 
     public function displayConsentForm($view, $redirected) {
