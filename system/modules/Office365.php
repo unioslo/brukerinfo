@@ -78,6 +78,7 @@ class Office365 extends ModuleGroup {
         $view->addTitle(txt('office365_title'));
 
         if ($this->showInMenu()) {
+            $this->getConsentData();
             $this->displayConsentForm($view, $redirected);
             return;
         }
