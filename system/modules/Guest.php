@@ -115,7 +115,12 @@ class Guest extends  ModuleGroup {
         $show_expired = isset($_GET['show-expired']);
 
         // Run bofhd-command guest_list <operator>
-        $guests = $Bofh->getData('guest_list');
+        try {
+            $guests = $Bofh->run_command('guest_list');
+        } catch (XML_RPC2_FaultException $e) {
+            // No guest accounts owned by the user
+            $guests = array();
+        }
 
         $View->start();
         $View->addElement('h1', txt('guest_title'));
