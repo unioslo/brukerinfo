@@ -618,7 +618,7 @@ class Groups extends ModuleGroup {
                 foreach ($group as $k => $v) {
                     if (!$v) continue;
                     if ($v instanceof DateTime) {
-                        $v = $v->format('Y-m-d');
+                        $v = $v->format(txt('date_format'));
                     }
                     $dl2->addData(ucfirst($k), $v);
                 }

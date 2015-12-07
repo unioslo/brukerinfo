@@ -150,7 +150,7 @@ class Guest extends  ModuleGroup {
             $data = array(
                 View::createElement('a', $guest['username'], "guests/info/?guest=".$guest['username']),
                 $guest['name'],
-                (!empty($guest['expires'])) ? $guest['expires']->format('y-m-d') : '',
+                (!empty($guest['expires'])) ? $guest['expires']->format(txt('date_format')) : '',
             );
             if ($guest['status'] == 'active') {
                 $active_guests->addData($data);
@@ -444,8 +444,8 @@ class Guest extends  ModuleGroup {
         $infolist->addData(txt('guest_info_username'), $guestinfo['username']);
         $infolist->addData(txt('guest_info_contact'), $guestinfo['contact']);
         $infolist->addData(txt('guest_info_responsible'), $guestinfo['responsible']);
-        $infolist->addData(txt('guest_info_created'), $created->format('Y-m-d'));
-        $infolist->addData(txt('guest_info_expired'), $expires->format('Y-m-d'));
+        $infolist->addData(txt('guest_info_created'), $created->format(txt('date_format')));
+        $infolist->addData(txt('guest_info_expired'), $expires->format(txt('date_format')));
         $infolist->addData(txt('guest_info_status'), txt('guest_status_'.$guestinfo['status']));
         if ($is_active) {
             $infolist->addData(txt('guest_info_days_left'), $expires->diff(new DateTime())->days);
