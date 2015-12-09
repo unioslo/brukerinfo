@@ -982,8 +982,8 @@ class Email extends ModuleGroup {
             //TODO: check dates (add a checkdate rule)
 
             $form->setDefaults(array(
-                'start' => date(txt('date_format'), time()+3600*24*1),
-                'end'   => date(txt('date_format'), time()+3600*24*2),
+                'start' => date('Y-m-d', time()+3600*24*1),
+                'end'   => date('Y-m-d', time()+3600*24*2),
             ));
             return $form;
         }
