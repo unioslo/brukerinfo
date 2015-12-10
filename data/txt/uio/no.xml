@@ -674,6 +674,8 @@
 
     <!--Office365 pages-->
     <OFFICE365_TITLE>Samtykke for Office 365</OFFICE365_TITLE>
+    <OFFICE365_TERMS_OF_AGREEMENT>Vennligst les om hva samtykke innebærer</OFFICE365_TERMS_OF_AGREEMENT>
+    <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/o365/hjelp/samtykke.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
     <OFFICE365_INTRO>
         For å ta i bruk Office 365 må du avgi samtykke. Det vil ta omlag én time
         fra samtykket er registrert til du kan ta i bruk Office 365. Du kan når
