@@ -121,6 +121,7 @@ class Office365 extends ModuleGroup {
 
         $view->addElement('h1', txt('office365_title'));
         $view->addElement('p', txt('office365_intro'));
+        $view->addElement('a', txt('office365_terms_of_agreement'), txt('office365_terms_of_agreement_link'));
 
         if ($this->consent_date != null) {
             $view->addElement('p', txt('office365_consent_registered_statustext',
