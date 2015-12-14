@@ -666,7 +666,7 @@
     <!--Office365 pages-->
     <OFFICE365_TITLE>Consent for Office 365</OFFICE365_TITLE>
     <OFFICE365_TERMS_OF_AGREEMENT>Please read the terms of agreement</OFFICE365_TERMS_OF_AGREEMENT>
-    <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/o365/hjelp/samtykke.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
+    <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/english/services/it/computer/o365/help/agree.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
     <OFFICE365_INTRO>
         In order to use Office 365, you have to give your consent. It will take
         approximately one hour from your consent is registered, until you can
