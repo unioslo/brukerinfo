@@ -124,3 +124,7 @@ some notes:
 - If the `www_docs` needed to be moved to comply with Apache's `DocumentRoot`,
   you also need to set `LINK_SYSTEM` and `LINK_DATA` to the system and data
   directories' absolute paths, respectively.
+
+### Install
+
+TODO: Use composer. See phplib's *README* file for more info.
