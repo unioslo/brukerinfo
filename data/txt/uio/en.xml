@@ -213,34 +213,14 @@
         &lt;p&gt;Change the password of the account you are logged on to. Please
         note that your password is &lt;em&gt;personal&lt;/em&gt; and must
         &lt;em&gt;never&lt;/em&gt; be shared with anyone else, not even the IT
-        staff at UiO.&lt;/p&gt; &lt;p&gt;This is a summary of the requirements,
-        see &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/passord.html"&gt;all
-        password requirements&lt;/a&gt; when in doubt.&lt;/p&gt;
-        &lt;p&gt;A password &lt;strong&gt;must&lt;/strong&gt;:
-        &lt;ul&gt;
-            &lt;li&gt;Be at least &lt;strong&gt;8 characters&lt;/strong&gt; long&lt;/li&gt;
-            &lt;li&gt;Contain characters from at least &lt;strong&gt;3 of 4&lt;/strong&gt; of these categories:
-                &lt;ul&gt;
-                    &lt;li&gt;Numbers&lt;/li&gt;
-                    &lt;li&gt;Lowercase letters&lt;/li&gt;
-                    &lt;li&gt;Uppercase letters&lt;/li&gt;
-                    &lt;li&gt;Other characters&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-        The password &lt;strong&gt;must not&lt;/strong&gt;:
-        &lt;ul&gt;
-            &lt;li&gt;Contain æ, ø or å&lt;/li&gt;
-            &lt;li&gt;Contain words found in a dictionary&lt;/li&gt;
-            &lt;li&gt;Resemble one of your previous set password&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-        &lt;strong&gt;Note&lt;/strong&gt; that it takes time before you can
-        log in with your new password to all services at the University.
-        It is advised to change the password at the very end of the working day.
-        &lt;/p&gt;
+        staff at UiO.&lt;/p&gt;
+
+        &lt;p&gt;See the &lt;a
+        href="https://uio.no/english/services/it/username-password/criterias.html"&gt;password
+        criterias&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;strong&gt;Note&lt;/strong&gt;: It will take some time before your
+        new password has reached all our IT services.&lt;/p&gt;
         </ACCOUNT_PASSWORD_INTRO>
 
     <ACCOUNT_PASSWORD_FORM_NEW>Enter new password:</ACCOUNT_PASSWORD_FORM_NEW>
