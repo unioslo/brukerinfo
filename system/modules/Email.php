@@ -908,7 +908,7 @@ class Email extends ModuleGroup {
             $notes = array();
             foreach ($rawnotes as $note) {
                 if (!$note['start_date'] instanceof DateTime) continue;
-                $id = $note['start_date']->format('Y-m-d');
+                $id = $note['start_date']->format(txt('date_format'));
                 $notes[$id] = $note;
             }
             return $notes;
@@ -1069,8 +1069,8 @@ class Email extends ModuleGroup {
             $View->addElement('p', txt('email_tripnote_delete_confirm'));
 
             $dl = $View->createElement('dl');
-            $dl->addData(txt('email_tripnote_starting'),   ($tripnotes[$del]['start_date']) ? $tripnotes[$del]['start_date']->format('Y-m-d') : '');
-            $dl->addData(txt('email_tripnote_ending'),     ($tripnotes[$del]['end_date']) ? $tripnotes[$del]['end_date']->format('Y-m-d') : '');
+            $dl->addData(txt('email_tripnote_starting'),   ($tripnotes[$del]['start_date']) ? $tripnotes[$del]['start_date']->format(txt('date_format')) : '');
+            $dl->addData(txt('email_tripnote_ending'),     ($tripnotes[$del]['end_date']) ? $tripnotes[$del]['end_date']->format(txt('date_format')) : '');
             $dl->addData(txt('email_tripnote_message'),    nl2br($tripnotes[$del]['text']));
             $View->addElement($dl);
 
@@ -1096,11 +1096,11 @@ class Email extends ModuleGroup {
                 null,
             ));
             foreach ($activenotes as $tnote) {
-                $start = ($tnote['start_date']) ? $tnote['start_date']->format('Y-m-d') : '';
+                $start = ($tnote['start_date']) ? $tnote['start_date']->format(txt('date_format')) : '';
 
                 $data = array();
                 $data[] = View::createElement('td', $start);
-                $data[] = View::createElement('td', ($tnote['end_date']) ? $tnote['end_date']->format('Y-m-d') : '');
+                $data[] = View::createElement('td', ($tnote['end_date']) ? $tnote['end_date']->format(txt('date_format')) : '');
                 $data[] = View::createElement('td', nl2br($tnote['text']));
                 $data[] = View::createElement('td', '<input type="submit" class="submit" name="del['.$start.']" value="'.txt('email_tripnote_list_delete').'">');
 
@@ -1125,8 +1125,8 @@ class Email extends ModuleGroup {
                 null,
             ));
             foreach (array_reverse($oldnotes) as $tnote) {
-                $start = ($tnote['start_date']) ? $tnote['start_date']->format('Y-m-d') : '';
-                $end   = ($tnote['end_date'])   ? $tnote['end_date']->format('Y-m-d')   : '';
+                $start = ($tnote['start_date']) ? $tnote['start_date']->format(txt('date_format')) : '';
+                $end   = ($tnote['end_date'])   ? $tnote['end_date']->format(txt('date_format'))   : '';
 
                 $table->addData(View::createElement('tr', array(
                     $start,
