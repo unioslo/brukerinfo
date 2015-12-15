@@ -17,6 +17,10 @@ php_flag magic_quotes_gpc off
 php_flag magic_quotes_runtime off
 ``` 
 
+Make use of `mod_rewrite` to remove `index.php` from URLs. The webmasters at UiO
+prefer to not read `.htaccess` files but to have this in Apache's config. See
+`www_docs/.htacces-*` for examples.
+
 **PHP5**: The application makes use of some extensions, that are normally
 installed by default:
 
