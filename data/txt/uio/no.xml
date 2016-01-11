@@ -213,20 +213,17 @@
 
     <ACCOUNT_PASSWORD_TITLE>Skift passord</ACCOUNT_PASSWORD_TITLE>
     <ACCOUNT_PASSWORD_INTRO>
-        &lt;p&gt;Merk deg at ditt passord er
-        &lt;strong&gt;personlig&lt;/strong&gt; og at du
-        &lt;strong&gt;aldri&lt;/strong&gt; skal oppgi det til andre, heller ikke
-        IT-ansatte ved UiO!&lt;/p&gt;
+        &lt;p&gt;Skift passordet til brukerkontoen du er logget inn med. Merk
+        deg at passordet er &lt;em&gt;personlig&lt;/em&gt; og at du
+        &lt;em&gt;aldri&lt;/em&gt; skal oppgi det til andre, heller ikke
+        IT-ansatte ved UiO.&lt;/p&gt;
 
         &lt;p&gt;Se &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/krav.html"&gt;Krav
-        til passordfraser og passord&lt;/a&gt; for en oversikt over alle reglene
-        rundt hva du kan sette som passord.&lt;/p&gt;
+        href="https://uio.no/tjenester/it/brukernavn-passord/krav.html"&gt;krav
+        til passord&lt;/a&gt;.&lt;/p&gt;
 
-        &lt;strong&gt;Merk&lt;/strong&gt; at det kan ta noen timer før man kan
-        logge inn med det nye passordet i alle IT-tjenester. Vi anbefaler at du
-        bytter passord rett før slutten av arbeidsdagen, så er alt klart til
-        neste arbeidsdag.&lt;/p&gt;
+        &lt;strong&gt;Merk&lt;/strong&gt;: Det kan ta tid før du kan ta i bruk
+        ditt nye passord i alle IT-tjenester.&lt;/p&gt;
     </ACCOUNT_PASSWORD_INTRO>
 
     <ACCOUNT_PASSWORD_FORM_NEW>Nytt passord:</ACCOUNT_PASSWORD_FORM_NEW>
@@ -657,19 +654,35 @@
 
     <!--Office365 pages-->
     <OFFICE365_TITLE>Samtykke for Office 365</OFFICE365_TITLE>
-    <OFFICE365_INTRO>Dette er introteksten for Office365-flappen.</OFFICE365_INTRO>
-    <OFFICE365_NOT_READY>
-        Du har allerede samtykket, men endringene har ikke blitt oppdatert i alle våre systemer riktig ennå.
-        Vennligst vent en liten stund til IT-gnomene våre får prosessert endringene.
-    </OFFICE365_NOT_READY>
-    <OFFICE365_CONSENT_TEXT>
-        Ja, jeg samtykker i at all min e-post og personlige info blir videresendt til Office365.
-    </OFFICE365_CONSENT_TEXT>
-    <OFFICE365_CONSENT_REGISTERED>Samtykke registrert.</OFFICE365_CONSENT_REGISTERED>
+    <OFFICE365_TERMS_OF_AGREEMENT>Vennligst les om hva samtykke innebærer</OFFICE365_TERMS_OF_AGREEMENT>
+    <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/o365/hjelp/samtykke.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
+    <OFFICE365_INTRO>
+        For å ta i bruk Office 365 må du avgi samtykke. Det vil ta omlag én time
+        fra samtykket er registrert til du kan ta i bruk Office 365. Du kan når
+        som helst trekke tilbake samtykket.
+    </OFFICE365_INTRO>
+    <OFFICE365_GIVE_CONSENT_TEXT>
+        Ja, jeg samtykker til at mine kontoer skal bli knyttet opp mot Office 365.
+    </OFFICE365_GIVE_CONSENT_TEXT>
+    <OFFICE365_REMOVE_CONSENT_TEXT>
+        Ja, jeg ønsker å trekke tilbake mitt samtykke, og slutte å bruke Office 365.
+    </OFFICE365_REMOVE_CONSENT_TEXT>
+    <OFFICE365_CONSENT_REGISTERED>
+        Ditt samtykke er registrert. Det kan ta opptil en time fra tidspunktet samtykket
+        ble først avgitt til du kan ta i bruk Office 365. Du vil motta en e-post når
+        din konto er klar til bruk.
+    </OFFICE365_CONSENT_REGISTERED>
+    <OFFICE365_CONSENT_REGISTERED_STATUSTEXT>
+        &lt;em&gt;Samtykke ble avgitt: {{date}}&lt;/em&gt;
+    </OFFICE365_CONSENT_REGISTERED_STATUSTEXT>
+    <OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
+        &lt;em&gt;Samtykke er ikke avgitt.&lt;/em&gt;
+    </OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
     <OFFICE365_CONSENT_REVOKED>Samtykke har blitt trukket.</OFFICE365_CONSENT_REVOKED>
-    <OFFICE365_NO_ACCESS_TITLE>Denne brukerkontoen har ikke Office365</OFFICE365_NO_ACCESS_TITLE>
+    <OFFICE365_NO_ACCESS_TITLE>Ingen tilgang til Office365</OFFICE365_NO_ACCESS_TITLE>
     <OFFICE365_NO_ACCESS_TEXT>
-        Du har prøvd å logge inn i Office365, men dette har jo ikke du tilgang til. Makan!
+        Ifølge UiOs brukersystem, er ikke dine kontoer registrert med tilgang til Office 365.
+        Hvis du mener dette er feil, ta kontakt med lokal-IT.
     </OFFICE365_NO_ACCESS_TEXT>
     <OFFICE365_CONFIRM_GIVE_CONSENT>Bekreft samtykke</OFFICE365_CONFIRM_GIVE_CONSENT>
     <OFFICE365_CONFIRM_REVOKE_CONSENT>Trekk samtykke</OFFICE365_CONFIRM_REVOKE_CONSENT>
