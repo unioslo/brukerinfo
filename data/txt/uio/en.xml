@@ -234,8 +234,8 @@
     <ACCOUNT_PASSWORD_SUCCESS>Your password has been changed.</ACCOUNT_PASSWORD_SUCCESS>
 
     <ACCOUNT_PASSWORD_MOREINFO>View more information about &lt;a
-        href="https://uio.no/tjenester/it/brukernavn-passord/"&gt;the username
-        and password at UiO&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
+        href="http://www.uio.no/english/services/it/username-password/"&gt;
+        username and password administration at UiO&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
 
     <ACCOUNT_PRIMARY_TITLE>Make account primary</ACCOUNT_PRIMARY_TITLE>
     <ACCOUNT_PRIMARY_INTRO>If you have more than one account at UiO, one of the accounts is the primary
