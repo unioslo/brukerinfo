@@ -59,13 +59,13 @@ Installing
 
 ### Getting the project
 
-The code could be fetched from https://utv.uio.no/stash/projects/CRB/, normally
+The code could be fetched from https://bitbucket.usit.uio.no/stash/projects/CRB/, normally
 by checking it out:
 
 ``` 
-git clone ssh://git@utv.uio.no:7999/crb/brukerinfo.git
-git clone ssh://git@utv.uio.no:7999/crb/phplib.git
-git clone ssh://git@utv.uio.no:7999/crb/phplib2.git
+git clone ssh://git@bitbucket.usit.uio.no:7999/crb/brukerinfo.git
+git clone ssh://git@bitbucket.usit.uio.no:7999/crb/phplib.git
+git clone ssh://git@bitbucket.usit.uio.no:7999/crb/phplib2.git
 ``` 
 
 The `phplib` and `phplib2` are PHP code that is also used by other web

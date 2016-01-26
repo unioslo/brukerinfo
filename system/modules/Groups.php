@@ -1,5 +1,5 @@
 <?php
-// Copyright 2009, 2010 University of Oslo, Norway
+// Copyright 2009-2016 University of Oslo, Norway
 // 
 // This file is part of Cerebrum.
 // 
@@ -785,9 +785,10 @@ class Groups extends ModuleGroup {
             }
 
             try {
-                $ret = $Bofh->run_command('group_request', 
-                    $data['gr_name'],
-                    $data['gr_desc'],
+                $ret = $Bofh->run_command(
+                    'group_request',
+                    iconv(CHARSET, BOFH_CHARSET, $data['gr_name']),
+                    iconv(CHARSET, BOFH_CHARSET, $data['gr_desc']),
                     $data['spreads'],
                     $data['gr_mod']
                 );
