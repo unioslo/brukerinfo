@@ -649,8 +649,8 @@
     <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/english/services/it/computer/o365/help/agree.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
     <OFFICE365_INTRO>
         In order to use Office 365, you have to consent to &lt;a href="{{link}}"&gt;
-        the terms of agreement for Office 365 at the University of Oslo.
-        &lt;/a&gt;&lt;br&gt;
+        the terms of agreement for Office 365 at the University
+        of Oslo.&lt;/a&gt;&lt;br&gt;
         It will take approximately one hour from your consent is registered,
         until you can start using Office 365.&lt;br&gt;
         You may at any time withdraw your consent.
