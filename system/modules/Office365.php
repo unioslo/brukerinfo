@@ -20,7 +20,6 @@ class Office365 extends ModuleGroup {
     private $modules;
     private $has_consented = false;
     private $consent_date = null;
-    private $office365_agreement_link;
 
     public function __construct($modules) {
         $this->modules = $modules;
@@ -150,7 +149,7 @@ class Office365 extends ModuleGroup {
                 try {
                     $this->bofh->run_command('consent_unset', 'person:' . $this->user->getUsername(), 'office365');
                     View::forward('office365/', txt('office365_consent_revoked',
-                                                    array('link' => $this->office365_agreement_link)));
+                                                    array('link' => txt('office365_terms_of_agreement_link'))));
                 }
                 catch (Exception $e) {
                     Bofhcom::viewError($e);
