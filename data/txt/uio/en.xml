@@ -645,7 +645,7 @@
 
     <!--Office365 pages-->
     <OFFICE365_TITLE>Consent for Office 365</OFFICE365_TITLE>
-    <OFFICE365_TERMS_OF_AGREEMENT>Read more about &lt;a href="{{link}}"&gt;what consenting entails.&lt;/a&gt;</OFFICE365_TERMS_OF_AGREEMENT>
+    <OFFICE365_TERMS_OF_AGREEMENT>Read &lt;a href="{{link}}"&gt;the terms of agreement here.&lt;/a&gt;</OFFICE365_TERMS_OF_AGREEMENT>
     <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/english/services/it/computer/o365/help/agree.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
     <OFFICE365_INTRO>
         In order to use Office 365, you have to consent to &lt;a href="{{link}}"&gt;
