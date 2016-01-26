@@ -645,15 +645,18 @@
 
     <!--Office365 pages-->
     <OFFICE365_TITLE>Consent for Office 365</OFFICE365_TITLE>
-    <OFFICE365_TERMS_OF_AGREEMENT>Please read the terms of agreement</OFFICE365_TERMS_OF_AGREEMENT>
+    <OFFICE365_TERMS_OF_AGREEMENT>Read more about &lt;a href="{{link}}"&gt;what consenting entails.&lt;/a&gt;</OFFICE365_TERMS_OF_AGREEMENT>
     <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/english/services/it/computer/o365/help/agree.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
     <OFFICE365_INTRO>
-        In order to use Office 365, you have to give your consent. It will take
-        approximately one hour from your consent is registered, until you can
-        start using Office 365. You may at any time withdraw your consent.
+        In order to use Office 365, you have to consent to &lt;a href="{{link}}"&gt;
+        the terms of agreement for Office 365 at the University of Oslo.
+        &lt;/a&gt;&lt;br&gt;
+        It will take approximately one hour from your consent is registered,
+        until you can start using Office 365.&lt;br&gt;
+        You may at any time withdraw your consent.
     </OFFICE365_INTRO>
     <OFFICE365_GIVE_CONSENT_TEXT>
-        Yes, I consent to use Office 365 with my user accounts.
+        Yes, I consent to the terms of agreement for Office 365 at the University of Oslo.
     </OFFICE365_GIVE_CONSENT_TEXT>
     <OFFICE365_REMOVE_CONSENT_TEXT>
         I wish to withdraw my consent and stop using Office 365.
@@ -669,7 +672,10 @@
     <OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
         &lt;em&gt;No consent registered.&lt;/em&gt;
     </OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
-    <OFFICE365_CONSENT_REVOKED>Consent has been revoked.</OFFICE365_CONSENT_REVOKED>
+    <OFFICE365_CONSENT_REVOKED>
+        Consent has been revoked.
+        Read more about &lt;a href="{{link}}"&gt;what this entails.&lt;/a&gt;
+    </OFFICE365_CONSENT_REVOKED>
     <OFFICE365_NO_ACCESS_TITLE>Office 365 permission error</OFFICE365_NO_ACCESS_TITLE>
     <OFFICE365_NO_ACCESS_TEXT>
         According to UiO's user system, your accounts are not registered with access to Office 365.

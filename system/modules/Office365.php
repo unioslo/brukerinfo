@@ -20,6 +20,7 @@ class Office365 extends ModuleGroup {
     private $modules;
     private $has_consented = false;
     private $consent_date = null;
+    private $office365_agreement_link;
 
     public function __construct($modules) {
         $this->modules = $modules;
@@ -27,6 +28,7 @@ class Office365 extends ModuleGroup {
         $this->bofh = Init::get('Bofh');
         $this->user = Init::get('User');
         $this->modules->addGroup($this);
+        $this->office365_agreement_link = txt('office365_terms_of_agreement_link');
     }
 
     public function getName() {
@@ -120,8 +122,10 @@ class Office365 extends ModuleGroup {
         );
 
         $view->addElement('h1', txt('office365_title'));
-        $view->addElement('p', txt('office365_intro'));
-        $view->addElement('a', txt('office365_terms_of_agreement'), txt('office365_terms_of_agreement_link'));
+        $view->addElement('p', txt('office365_terms_of_agreement',
+                                   array('link' => $this->office365_agreement_link)));
+        $view->addElement('p', txt('office365_intro',
+                                   array('link' => $this->office365_agreement_link)));
 
         if ($this->consent_date != null) {
             $view->addElement('p', txt('office365_consent_registered_statustext',
@@ -146,7 +150,8 @@ class Office365 extends ModuleGroup {
             else {
                 try {
                     $this->bofh->run_command('consent_unset', 'person:' . $this->user->getUsername(), 'office365');
-                    View::forward('office365/', txt('office365_consent_revoked'));
+                    View::forward('office365/', txt('office365_consent_revoked',
+                                                    array('link' => $this->office365_agreement_link)));
                 }
                 catch (Exception $e) {
                     Bofhcom::viewError($e);
