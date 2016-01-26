@@ -28,7 +28,6 @@ class Office365 extends ModuleGroup {
         $this->bofh = Init::get('Bofh');
         $this->user = Init::get('User');
         $this->modules->addGroup($this);
-        $this->office365_agreement_link = txt('office365_terms_of_agreement_link');
     }
 
     public function getName() {
@@ -123,9 +122,9 @@ class Office365 extends ModuleGroup {
 
         $view->addElement('h1', txt('office365_title'));
         $view->addElement('p', txt('office365_terms_of_agreement',
-                                   array('link' => $this->office365_agreement_link)));
+                                   array('link' => txt('office365_terms_of_agreement_link'))));
         $view->addElement('p', txt('office365_intro',
-                                   array('link' => $this->office365_agreement_link)));
+                                   array('link' => txt('office365_terms_of_agreement_link'))));
 
         if ($this->consent_date != null) {
             $view->addElement('p', txt('office365_consent_registered_statustext',
