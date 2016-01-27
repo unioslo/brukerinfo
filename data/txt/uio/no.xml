@@ -530,7 +530,8 @@
     <GROUPS_NEW_FORM_SPREAD_UNKNOWN>Systemet "{{spread}}" er ukjent</GROUPS_NEW_FORM_SPREAD_UNKNOWN>
     <GROUPS_NEW_FORM_MOD_REQUIRED>Trenger en gruppe som skal vere moderator for
         gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
-
+    <LATIN1_ONLY_REQUIRED>Inneholder ulovlige tegn</LATIN1_ONLY_REQUIRED>
+        
     <!-- Guest pages -->
     <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
     <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til UiOs

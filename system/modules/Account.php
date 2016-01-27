@@ -392,7 +392,8 @@ class Account extends ModuleGroup {
 
         // Validation rules
         $form->addRule('new_pass', txt('account_password_rule_new_required'), 'required');
-
+        $form->addRule('new_pass', txt('latin1_only_required'), 'latin1_only');
+        $form->addRule('new_pass2', txt('latin1_only_required'), 'latin1_only');
         // no more rules here, wants to validate the password first, before checking rest
 
         if($form->validate()) {
