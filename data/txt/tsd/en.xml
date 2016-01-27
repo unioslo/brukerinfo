@@ -528,6 +528,7 @@
     <GROUPS_NEW_FORM_DESC_REQUIRED>Need a description of the purpose of the group</GROUPS_NEW_FORM_DESC_REQUIRED>
     <GROUPS_NEW_FORM_SPREAD_UNKNOWN>Spread {{spread}} is unknown</GROUPS_NEW_FORM_SPREAD_UNKNOWN>
     <GROUPS_NEW_FORM_MOD_REQUIRED>Need a group which can moderate the group</GROUPS_NEW_FORM_MOD_REQUIRED>
+    <LATIN1_ONLY_REQUIRED>Contains illegal characters</LATIN1_ONLY_REQUIRED>
 
     <!-- Guest pages -->
     <GUEST_TITLE>Wireless accounts</GUEST_TITLE>

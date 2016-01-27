@@ -1,5 +1,5 @@
 <?php
-// Copyright 2009, 2010 University of Oslo, Norway
+// Copyright 2009-2016 University of Oslo, Norway
 // 
 // This file is part of Cerebrum.
 // 
@@ -785,18 +785,21 @@ class Groups extends ModuleGroup {
             }
 
             try {
-                $ret = $Bofh->run_command('group_request', 
+                $ret = $Bofh->run_command(
+                    'group_request', 
                     $data['gr_name'],
                     $data['gr_desc'],
                     $data['spreads'],
                     $data['gr_mod']
                 );
-                //todo: check how this is returned - exception or string?
+                if ($ret == NULL) {
+                    throw new Exception(
+                        "bofhd error: No request will be sent.");
+                }
             } catch(Exception $e) {
                 Bofhcom::viewError($e);
                 return false;
             }
-
             return $ret;
         }
 
@@ -863,6 +866,8 @@ class Groups extends ModuleGroup {
         $newform->addRule('gr_name', txt('groups_new_form_name_required'), 'required');
         $newform->addRule('gr_desc', txt('groups_new_form_desc_required'), 'required');
         $newform->addRule('gr_mod', txt('groups_new_form_mod_required'), 'required');
+        $newform->addRule('gr_name', txt('latin1_only_required'), 'latin1_only');
+        $newform->addRule('gr_desc', txt('latin1_only_required'), 'latin1_only');
 
         if($newform->validate()) {
             if($ret = $newform->process('request_group')) {
