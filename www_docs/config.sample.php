@@ -277,6 +277,19 @@ define('MAX_LIST_ELEMENTS',         100);
  */
 define('MAX_LIST_ELEMENTS_SPLIT',         25);
 
+
+/**
+ * Should new passwords be validated by sending POST requests to the
+ * forgotten password service?
+ */
+define('REALTIME_PASSWORD_VALIDATION', false);
+
+/**
+ * If so, what's the relative URL to the validation endpoint?
+ */
+define('REALTIME_PASSWORD_VALIDATION_ENDPOINT', "forgotten/password/validator.php");
+
+
 // Test
 
 ?>
