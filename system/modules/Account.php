@@ -1,5 +1,5 @@
 <?php
-// Copyright 2009, 2010 University of Oslo, Norway
+// Copyright 2009-2016 University of Oslo, Norway
 // 
 // This file is part of Cerebrum.
 // 
@@ -375,6 +375,19 @@ class Account extends ModuleGroup {
         $Bofh = new Bofhcom();
 
         $View = Init::get('View');
+
+        $realtime_validation = (defined('REALTIME_PASSWORD_VALIDATION') && REALTIME_PASSWORD_VALIDATION);
+
+        if ($realtime_validation) {
+            $inject = '<script type="text/javascript">password_validation = {"endpoint": "%s", "ok_match": "%s", "error_match": "%s"};</script>';
+            $View->addHead(sprintf(
+                $inject,
+                REALTIME_PASSWORD_VALIDATION_ENDPOINT,
+                txt('account_password_ok_match'),
+                txt('account_password_error_match')));
+            $View->addHead('<script type="text/javascript" src="uio_design/password-validation.js"></script>');
+        }
+
         $View->addTitle('Account');
         $View->addTitle(txt('ACCOUNT_PASSWORD_TITLE'));
 
@@ -382,11 +395,16 @@ class Account extends ModuleGroup {
         // The password change form
         $form = new BofhFormUiO('changePassword', null, 'account/password/');
         $form->setAttribute('class', 'app-form-big');
-
         $form->addElement('password', 'cur_pass', txt('account_password_form_current'), 'id="cur_pass"');
         $form->addElement('html', '<hr />');
         $form->addElement('password', 'new_pass', txt('account_password_form_new'), 'id="new_pass"');
-        $form->addElement('password', 'new_pass2', txt('account_password_form_new2'));
+        if ($realtime_validation) {
+            $form->addElement('html', '<div id="password-feedback" class="password-feedback" style="display: none"></div>');
+        }
+        $form->addElement('password', 'new_pass2', txt('account_password_form_new2'), 'id="new_pass2"');
+        if ($realtime_validation) {
+            $form->addElement('html', '<div id="password-feedback-confirm" class="password-feedback" style="display: none"></div>');
+        }
 
         $form->addElement('submit', null, txt('account_password_form_submit'));
 
@@ -454,12 +472,7 @@ class Account extends ModuleGroup {
         $View->start();
         $View->addElement('h1', txt('ACCOUNT_PASSWORD_TITLE'));
         $View->addElement('raw', txt('ACCOUNT_PASSWORD_INTRO'));
-
-
-        //TODO: add some javascript for checking the password without updating the page
         $View->addElement($form);
-
-
         $View->addElement('p', txt('account_password_moreinfo'), 'class="ekstrainfo"');
     }
 }

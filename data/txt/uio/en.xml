@@ -231,6 +231,7 @@
 
     <ACCOUNT_PASSWORD_ERROR_CURRENT>The current password was incorrect.</ACCOUNT_PASSWORD_ERROR_CURRENT>
     <ACCOUNT_PASSWORD_ERROR_MATCH>The new password does not match with the retype.</ACCOUNT_PASSWORD_ERROR_MATCH>
+    <ACCOUNT_PASSWORD_OK_MATCH>The passwords match.</ACCOUNT_PASSWORD_OK_MATCH>
     <ACCOUNT_PASSWORD_SUCCESS>Your password has been changed.</ACCOUNT_PASSWORD_SUCCESS>
 
     <ACCOUNT_PASSWORD_MOREINFO>View more information about &lt;a

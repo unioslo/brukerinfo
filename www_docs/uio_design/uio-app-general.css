@@ -136,3 +136,20 @@ table#recaptcha_table #recaptcha_image {
     color: gray;
 
 }
+
+
+/* Password validation */
+
+.password-feedback {
+    padding-left: 25px;
+    line-height: 20px;
+    min-height: 20px;
+}
+.password-ok {
+    background: white url(images/checkmark-green.png) no-repeat 0 center;
+    color: green;
+}
+.password-bad {
+    background: white url(images/error-small.png) no-repeat 0 center;
+    color: red;
+}
