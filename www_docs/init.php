@@ -39,6 +39,7 @@
 
 // Get InitBase before Init, since autoload is not set up yet
 require_once dirname(__FILE__) . '/config.php';
+require_once LINK_LIB . '/vendor/autoload.php';
 require_once LINK_LIB . '/controller/InitBase.php';
 
 // the page can only work in https!
