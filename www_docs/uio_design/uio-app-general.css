@@ -12,6 +12,8 @@
 @import url('uio-app-admonitions.css');
 @import url('uio-app-chooser.css');
 @import url('uio-app-navigation.css');
+@import url('../shared_design/css/style.css');
+
 
 img {
   border: 0;

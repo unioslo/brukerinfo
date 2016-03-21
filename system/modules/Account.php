@@ -379,7 +379,7 @@ class Account extends ModuleGroup {
         $realtime_validation = (defined('REALTIME_PASSWORD_VALIDATION') && REALTIME_PASSWORD_VALIDATION);
 
         if ($realtime_validation) {
-            $View->addHead('<script type="text/javascript" src="/forgotten/js/password_validator.js"></script>');
+            $View->addHead('<script type="text/javascript" src="/shared_design/js/password_validator.js"></script>');
         }
 
         $View->addTitle('Account');
@@ -394,7 +394,7 @@ class Account extends ModuleGroup {
         $form->addElement('password', 'password', txt('account_password_form_new'), 'id="password"');
         $form->addElement('password', 'confirm_password', txt('account_password_form_new2'), 'id="confirm-password"');
         $form->addElement('html', '<div id="confirm-password-feedback">' . txt('account_password_error_match') . '</div>');
-        $form->addElement('submit', null, txt('account_password_form_submit'), 'disabled');
+        $form->addElement('submit', null, txt('account_password_form_submit'));
 
         // Validation rules
         $form->addRule('password', txt('account_password_rule_new_required'), 'required');

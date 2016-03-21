@@ -12,6 +12,7 @@
 @import url('admonitions.css');
 /*@import url('chooser.css');*/
 @import url('navigation.css');
+@import url('../shared_design/css/style.css');
 
 /*
  * TODO: Make use of tags like max-width - to make the site available for
@@ -140,4 +141,8 @@ table#recaptcha_table #recaptcha_image {
 .ekstrainfo {
     color: gray;
 
+}
+
+.grid #validation .validation-header {
+    margin-top: 6px;
 }

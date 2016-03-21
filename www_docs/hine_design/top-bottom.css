@@ -76,7 +76,7 @@ body {
 }
 
 #app-content {
-    max-width: 900px;
+    max-width: 955px;
     margin: 0 auto 20px auto;
     text-align: left;
     padding: 0 29px 29px 29px;
@@ -222,7 +222,7 @@ body {
 
 @media handheld,                                    /* various gadgets that likes standards */
        only screen and (max-width: 480px),          /* apples' and blackberries */
-       only screen and (max-device-width: 480px) {  /* buggy android phones */
+       only screen and (max-device-width: 480px),   /* buggy android phones */
        only screen and (max-device-width: 854px) {  /* some larger phones */
     #app-footer div.phone-fax-email {
         padding-right: inherit;
