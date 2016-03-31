@@ -379,7 +379,14 @@ class Account extends ModuleGroup {
         $realtime_validation = (defined('REALTIME_PASSWORD_VALIDATION') && REALTIME_PASSWORD_VALIDATION);
 
         if ($realtime_validation) {
-            $View->addHead('<script type="text/javascript" src="/shared_design/js/password_validator.js"></script>');
+            $inject = '<script type="text/javascript">passwordValidation = {basePath: "%s", language: "%s"};</script>';
+            $View->addHead(sprintf(
+                $inject,
+                FORGOTTEN_PASSWORD_BASE_PATH,
+                $_SESSION['chosenLang']
+            ));
+
+            $View->addHead('<script type="text/javascript" src="' . REALTIME_PASSWORD_JS . '"></script>');
         }
 
         $View->addTitle('Account');
