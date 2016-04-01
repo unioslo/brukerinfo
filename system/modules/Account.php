@@ -379,7 +379,9 @@ class Account extends ModuleGroup {
         $realtime_validation = (defined('REALTIME_PASSWORD_VALIDATION') && REALTIME_PASSWORD_VALIDATION);
 
         if ($realtime_validation) {
-            $inject = '<script type="text/javascript">passwordValidation = {basePath: "%s", language: "%s"};</script>';
+            $inject = '<script type="text/javascript">' .
+                          'passwordValidation = {basePath: "%s", language: "%s", client: "brukerinfo"};' .
+                      '</script>';
             $View->addHead(sprintf(
                 $inject,
                 FORGOTTEN_PASSWORD_BASE_PATH,
