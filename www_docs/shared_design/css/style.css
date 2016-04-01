@@ -27,12 +27,14 @@
 
 #validation p {
     vertical-align: bottom;
+    max-width: 90%;
 }
 
 #validation img {
     height: 24px;
     width: 26px;
     margin-right: 0.5em;
+    vertical-align: top;
 }
 
 #confirm-password-feedback {
