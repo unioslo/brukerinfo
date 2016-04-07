@@ -79,7 +79,7 @@
    <div id="app-footer">
      <div id="app-responsible"> 
        <span class="vrtx-label">Ansvarlig for tjenesten</span> 
-       <span><a href="http://www.usit.uio.no/om/organisasjon/uav/admit/">USIT - Seksjon for administrative IT-tjenester</a></span>
+       <span><a href="http://www.usit.uio.no/om/organisasjon/uav/usitint/">USIT - Seksjon for integrasjon og elektroniske identiteter</a></span>
      </div>
      <div id="contact-info"> 
        <div class="phone-fax-email"> 

@@ -78,7 +78,7 @@
    <div id="app-footer">
      <div id="app-responsible"> 
        <span class="vrtx-label">Responsible for the service</span> 
-       <span><a href="http://www.usit.uio.no/english/about/organisation/bps/admit/">USIT - Department for administrative IT Services</a></span>
+       <span><a href="http://www.usit.uio.no/english/about/organisation/bps/admit/">USIT - Department for System Integration and Identity Management</a></span>
      </div>
      <div id="contact-info"> 
        <div class="phone-fax-email"> 
