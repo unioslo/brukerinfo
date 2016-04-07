@@ -399,6 +399,7 @@ class Account extends ModuleGroup {
         $form = new BofhFormUiO('setPassword', null, 'account/password/');
         $form->setAttribute('class', 'app-form-big');
         $form->addElement('password', 'cur_pass', txt('account_password_form_current'), 'id="cur_pass"');
+        $form->addElement('html', '<div id="current-password-feedback">' . txt('account_password_error_current_empty') . '</div>');
         $form->addElement('html', '<hr />');
         $form->addElement('password', 'password', txt('account_password_form_new'), 'id="password"');
         $form->addElement('password', 'confirm_password', txt('account_password_form_new2'), 'id="confirm-password"');
