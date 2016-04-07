@@ -379,13 +379,16 @@ class Account extends ModuleGroup {
         $realtime_validation = (defined('REALTIME_PASSWORD_VALIDATION') && REALTIME_PASSWORD_VALIDATION);
 
         if ($realtime_validation) {
-            $inject = '<script type="text/javascript">password_validation = {"endpoint": "%s", "ok_match": "%s", "error_match": "%s"};</script>';
+            $inject = '<script type="text/javascript">' .
+                          'passwordValidation = {basePath: "%s", language: "%s", client: "brukerinfo"};' .
+                      '</script>';
             $View->addHead(sprintf(
                 $inject,
-                REALTIME_PASSWORD_VALIDATION_ENDPOINT,
-                txt('account_password_ok_match'),
-                txt('account_password_error_match')));
-            $View->addHead('<script type="text/javascript" src="uio_design/password-validation.js"></script>');
+                FORGOTTEN_PASSWORD_BASE_PATH,
+                $_SESSION['chosenLang']
+            ));
+
+            $View->addHead('<script type="text/javascript" src="' . REALTIME_PASSWORD_JS . '"></script>');
         }
 
         $View->addTitle('Account');
@@ -393,59 +396,53 @@ class Account extends ModuleGroup {
 
 
         // The password change form
-        $form = new BofhFormUiO('changePassword', null, 'account/password/');
+        $form = new BofhFormUiO('setPassword', null, 'account/password/');
         $form->setAttribute('class', 'app-form-big');
         $form->addElement('password', 'cur_pass', txt('account_password_form_current'), 'id="cur_pass"');
         $form->addElement('html', '<hr />');
-        $form->addElement('password', 'new_pass', txt('account_password_form_new'), 'id="new_pass"');
-        if ($realtime_validation) {
-            $form->addElement('html', '<div id="password-feedback" class="password-feedback" style="display: none"></div>');
-        }
-        $form->addElement('password', 'new_pass2', txt('account_password_form_new2'), 'id="new_pass2"');
-        if ($realtime_validation) {
-            $form->addElement('html', '<div id="password-feedback-confirm" class="password-feedback" style="display: none"></div>');
-        }
-
+        $form->addElement('password', 'password', txt('account_password_form_new'), 'id="password"');
+        $form->addElement('password', 'confirm_password', txt('account_password_form_new2'), 'id="confirm-password"');
+        $form->addElement('html', '<div id="confirm-password-feedback">' . txt('account_password_error_match') . '</div>');
         $form->addElement('submit', null, txt('account_password_form_submit'));
 
         // Validation rules
-        $form->addRule('new_pass', txt('account_password_rule_new_required'), 'required');
-        $form->addRule('new_pass', txt('latin1_only_required'), 'latin1_only');
-        $form->addRule('new_pass2', txt('latin1_only_required'), 'latin1_only');
+        $form->addRule('password', txt('account_password_rule_new_required'), 'required');
+        $form->addRule('password', txt('latin1_only_required'), 'latin1_only');
+        $form->addRule('confirm_password', txt('latin1_only_required'), 'latin1_only');
         // no more rules here, wants to validate the password first, before checking rest
 
         if($form->validate()) {
 
-            $pasw_msg = validatePassword($Bofh, $form->exportValue('new_pass'), $errmsg);
+            $pasw_msg = validatePassword($Bofh, $form->exportValue('password'), $errmsg);
             //$pasw_msg now contains either TRUE or a string explaining what is wrong with the password
             if($pasw_msg === true) {
 
                 //the password is valid, now check the rest
 
-                if($form->exportValue('new_pass') == $form->exportValue('new_pass2')) {
+                if($form->exportValue('password') == $form->exportValue('confirm_password')) {
 
                     //check original password
                     if(verifyPassword($Bofh, $form->exportValue('cur_pass'))) {
 
-                        if(changePassword($Bofh, $form->exportValue('new_pass'), $form->exportValue('cur_pass'), $errmsg)) {
+                        if(changePassword($Bofh, $form->exportValue('password'), $form->exportValue('cur_pass'), $errmsg)) {
                             View::addMessage(txt('account_password_success'));
                             View::addMessage(txt('action_delay_hour'));
                             View::forward('account/');
                         } else {
                             //have to send errors manually to the form, (e.g. check for old passwords)
-                            $form->setElementError('new_pass', $errmsg);
+                            $form->setElementError('password', $errmsg);
                         }
 
                     } else {
                         $form->setElementError('cur_pass', txt('account_password_error_current'));
                     }
                 } else {
-                    $form->setElementError('new_pass2', txt('account_password_error_match'));
+                    $form->setElementError('confirm_password', txt('account_password_error_match'));
                 }
 
             } else {
                 // if the new password is wrong
-                $form->setElementError('new_pass', $pasw_msg);
+                $form->setElementError('password', $pasw_msg);
             }
 
 
@@ -453,25 +450,24 @@ class Account extends ModuleGroup {
 
         //TODO: this should be included in the HTML_Quickform_password class, passwords 
         //      should not be written directly in the html!
-        $pa = $form->getElement('new_pass');
+        $pa = $form->getElement('password');
         $pa->setValue(null);
 
-        $pa = $form->getElement('new_pass2');
+        $pa = $form->getElement('confirm_password');
         $pa->setValue(null);
 
         $pa = $form->getElement('cur_pass');
         $pa->setValue(null);
 
 
-
-
-
-
-
         $View->setFocus('#cur_pass');
         $View->start();
         $View->addElement('h1', txt('ACCOUNT_PASSWORD_TITLE'));
         $View->addElement('raw', txt('ACCOUNT_PASSWORD_INTRO'));
+        $View->addElement(
+            'div',
+            '<div class="col-1-3" id="form"></div><div class="col-2-3" id="validation"></div>',
+            'class="grid"');
         $View->addElement($form);
         $View->addElement('p', txt('account_password_moreinfo'), 'class="ekstrainfo"');
     }

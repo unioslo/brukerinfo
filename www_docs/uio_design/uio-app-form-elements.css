@@ -116,9 +116,9 @@
 .app-form input[type="password"],
 .app-form-big input[type="text"],
 .app-form-big input[type="password"] {
-    height: 26px;
+    height: 34px;
     padding: 4px 5px 0 10px;
-    width: 165px;
+    width: 196px;
     margin-bottom: 8px;
 }
 
