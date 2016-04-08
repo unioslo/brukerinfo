@@ -37,7 +37,8 @@
     vertical-align: top;
 }
 
-#confirm-password-feedback {
+#confirm-password-feedback,
+#current-password-feedback {
     color: red;
     display: none;
 }
