@@ -221,8 +221,11 @@
 
         &lt;p&gt;Hint: To create a passphrase, insert a space into the new password.&lt;/p&gt;
 
-        &lt;strong&gt;Note&lt;/strong&gt;: It will take some time before your
-        new password has reached all our IT services.&lt;/p&gt;
+        &lt;strong&gt;Note&lt;/strong&gt;: Remember to log out of
+        machine/UiO-serveces when you change your password. It will
+        take some time before your new password has reached all our IT
+        services. Please update new passwords on mobile, tablet and
+        other devices.&lt;/p&gt;
         </ACCOUNT_PASSWORD_INTRO>
 
     <ACCOUNT_PASSWORD_FORM_NEW>Enter new password:</ACCOUNT_PASSWORD_FORM_NEW>

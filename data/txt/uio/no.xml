@@ -224,8 +224,11 @@
 
         &lt;p&gt;Hint: For å lage en passfrase, sett inn et mellomrom i det nye passordet.&lt;/p&gt;
 
-        &lt;strong&gt;Merk&lt;/strong&gt;: Det kan ta tid før du kan ta i bruk
-        ditt nye passord i alle IT-tjenester.&lt;/p&gt;
+        &lt;strong&gt;Merk&lt;/strong&gt;: Husk på å logge ut av
+        maskinen/UiO-tjenester når du har byttet passord. Det kan ta
+        tid før du kan ta i bruk ditt nye passord i alle
+        IT-tjenester. Husk å oppdatere passord på mobil, nettbrett og
+        andre enheter.&lt;/p&gt;
     </ACCOUNT_PASSWORD_INTRO>
 
     <ACCOUNT_PASSWORD_FORM_NEW>Nytt passord:</ACCOUNT_PASSWORD_FORM_NEW>
