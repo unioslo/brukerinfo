@@ -222,7 +222,14 @@
         href="https://uio.no/tjenester/it/brukernavn-passord/krav.html"&gt;krav
         til passord&lt;/a&gt;.&lt;/p&gt;
 
-        &lt;p&gt;Hint: For å lage en passfrase, sett inn et mellomrom i det nye passordet.&lt;/p&gt;
+        &lt;h3&gt;Kort om passordtyper&lt;/h3&gt;
+        &lt;p&gt;UiO opererer med to passordtyper: Tradisjonelle passord, og passfraser.&lt;/p&gt;
+        &lt;p&gt;En passfrase består av flere ord separert med mellomromtegn, og ved å legge inn ett
+        mellomrom i ditt nye passord, vil passordet automatisk bli vurdert i henhold til disse
+        reglene istedetfor.&lt;/p&gt;
+        &lt;p&gt;Passfraser er sikrere enn tradisjonelle passord, og oppleves i tillegg av folk flest som
+        enklere å huske enn tradisjonelle passord, og vi anbefaler derfor denne passordtypen ved UiO.
+        &lt;/p&gt;
 
         &lt;strong&gt;Merk&lt;/strong&gt;: Husk på å logge ut av
         maskinen/UiO-tjenester når du har byttet passord. Det kan ta
