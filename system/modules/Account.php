@@ -232,10 +232,6 @@ class Account extends ModuleGroup {
             $View->addElement($table);
             $View->addElement('p', txt('account_other_info'), 'class="ekstrainfo"');
 
-            // Remove password in localStorage if redirected from a successful
-            // password change.
-            echo '<script>localStorage.removeItem("newPassword");</script>';
-
         }
     }
 
