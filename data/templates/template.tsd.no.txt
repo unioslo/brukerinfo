@@ -14,7 +14,8 @@
          browsers respects the x-frame-options, though.
          http://en.wikipedia.org/wiki/Framekiller -->
     <script type="text/javascript">
-        if(top != self) top.location.replace(location);        
+        if(top != self) top.location.replace(location);
+        if (window.location.pathname !== "/account/password/") localStorage.removeItem('newPassword');
     </script>
 
     ##HEADERS##
