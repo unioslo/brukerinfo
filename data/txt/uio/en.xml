@@ -538,8 +538,9 @@
 
     <!-- Guest pages -->
     <GUEST_TITLE>Wireless accounts</GUEST_TITLE>
-    <GUEST_INTRO>Create and manage accounts that give guest access to the UiO wireless
-        network. The accounts are time-limited and can only be used to access the wireless
+    <GUEST_INTRO>Create and manage accounts that give guest access to the
+        &lt;a href="https://eduroam.no/"&gt;eduroam&lt;/a&gt; wireless network.
+        The accounts are time-limited and can only be used to access the wireless
         network.</GUEST_INTRO>
     <GUEST_LIST_ACTIVE>Your active accounts</GUEST_LIST_ACTIVE>
     <!--<GUEST_LIST_INACTIVE>Your expired accounts</GUEST_LIST_INACTIVE>-->
@@ -614,8 +615,8 @@
         Lock is not on and that you are typing the password correctly. Problems
         with use of new password are often due to users typing 'O' (letter o)
         instead of '0' (zero) or '1' (number one) instead of 'l' (letter l) or
-        instead of 'I' (letter i). Remember that your new password may not work
-        properly for a few hours!&lt;/i&gt;&lt;/p&gt;
+        instead of 'I' (letter i). Note that it may take up to an hour before
+        your new password works properly.&lt;/i&gt;&lt;/p&gt;
         &lt;p&gt;&lt;ul&gt;
         &lt;li&gt;Your user name: &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;
         &lt;li&gt;Your password: &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;
