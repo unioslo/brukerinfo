@@ -548,9 +548,9 @@
         
     <!-- Guest pages -->
     <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
-    <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til UiOs
-        trådløsnett. Kontoene er tidsbegrenset og gir kun tilgang til det trådløse
-        nettet på UiO.</GUEST_INTRO>
+    <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til
+        trådløsnettet &lt;a href="https://eduroam.no/"&gt;eduroam&lt;/a&gt;.
+        Kontoene er tidsbegrenset og gir kun tilgang til det trådløse nettet.</GUEST_INTRO>
     <GUEST_LIST_ACTIVE>Dine aktive trådløskontoer</GUEST_LIST_ACTIVE>
     <!--<GUEST_LIST_INACTIVE>Dine utgåtte trådløskontoer</GUEST_LIST_INACTIVE>-->
     <GUEST_LIST_ACTIVE_EMPTY>Du har ingen aktive trådløskontoer</GUEST_LIST_ACTIVE_EMPTY>
@@ -583,7 +583,7 @@
     <GUEST_NEW_FORM_DAYS>{{days}} dager</GUEST_NEW_FORM_DAYS>
     <GUEST_NEW_FORM_SEND_SMS>Send passord til mobil:</GUEST_NEW_FORM_SEND_SMS>
     <GUEST_NEW_FORM_NOSMS>Nei – Passordet vises på skjermen, og du vil
-        få muligheten til å skrive en passordside.</GUEST_NEW_FORM_NOSMS>
+        få muligheten til å skrive ut et passordark.</GUEST_NEW_FORM_NOSMS>
     <GUEST_NEW_FORM_SMS>Ja – Passordet blir sendt med SMS til mobilnummeret du
         oppgir.</GUEST_NEW_FORM_SMS>
     <GUEST_NEW_FORM_CONTACT>Mobilnummer:</GUEST_NEW_FORM_CONTACT>
@@ -624,8 +624,8 @@
             du forsikre deg om at du ikke har blandet sammen
             bokstaven 'O' (stor o) og tallet '0' (null) eller
             bokstaven 'l' (liten l) og tallet '1' (tallet ett).
-            Sjekk at Caps Lock ikke er på og merk at det kan gå opp
-            til 8 timer til ditt nye passord fungerer som det
+            Sjekk at Caps Lock ikke er på. Merk at det kan gå opp
+            til en time før ditt nye passord fungerer som det
             skal.&lt;/i&gt;&lt;/p&gt;
         &lt;p&gt;&lt;ul&gt;
         &lt;li&gt;Ditt brukernavn er: &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;
