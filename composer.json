@@ -1,0 +1,22 @@
+{
+    "name": "uio-usit-uait/brukerinfo",
+    "license": "GPL-3.0+",
+    "description": "Brukerinfo web application",
+    "require": {
+        "pear-pear.php.net/HTML_QuickForm2": "~2.0",
+        "uio-usit-uait/phplib": "dev-master@dev"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://bitbucket.usit.uio.no/scm/crb/phplib.git"
+        },
+        {
+            "type": "pear",
+            "url": "https://pear.php.net"
+        }
+    ],
+    "config": {
+        "prepend-autoloader": false
+    }
+}
