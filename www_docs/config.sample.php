@@ -295,5 +295,24 @@ define('FORGOTTEN_PASSWORD_BASE_PATH', "/forgotten/");
  */
 define('REALTIME_PASSWORD_JS', FORGOTTEN_PASSWORD_BASE_PATH . "shared_design/js/password_validator.js");
 
+/**
+ * if set, use statsd.
+ */
+define('USE_STATSD', false);
+
+/**
+ * Host name for STATSD
+ */
+define('STATSD_HOST', 'localhost');
+
+/**
+ * Port for STATSD
+ */
+define('STATSD_PORT', 8125);
+
+/**
+ * Prefix for statsd
+ */
+define('STATSD_PREFIX', 'cerebrum.utv.brukerinfo');
 
 ?>
