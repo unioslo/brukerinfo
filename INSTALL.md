@@ -93,15 +93,15 @@ different access settings::
 ``` 
 # public dir is readable only 
 chown --recursive cerebrum:wwwgroup     www_docs/
-chmod --recursive ug=rX,a=              www_docs/
+chmod --recursive ug=rX,o=              www_docs/
 
 # system code is readable only 
 chown --recursive cerebrum:wwwgroup     system/
-chmod --recursive ug=rX,a=              system/
+chmod --recursive ug=rX,o=              system/
 
 # data dir has to be writable
 chown --recursive cerebrum:wwwgroup     data/
-chmod --recursive ug=rwX,a=             data/
+chmod --recursive ug=rwX,o=             data/
 
 # Make sure that www_docs are publicly reachable:
 mv www_docs/ <DocumentRoot>/
