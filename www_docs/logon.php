@@ -32,7 +32,11 @@ $logform->addElement('submit',   null,   txt('logon_form_submit'));
 
 if ($logform->validate()) {
     try {
-        if ($User->logon($logform->exportValue('usi'), $logform->exportValue('pasi'))) {
+        $username = $logform->exportValue('usi');
+        if (defined('LOGON_USERNAME_TOLOWER') && LOGON_USERNAME_TOLOWER) {
+            $username = strtolower($username);
+        }
+        if ($User->logon($username, $logform->exportValue('pasi'))) {
             if (!empty($_SESSION['UserForward'])) {
                 $base = parse_url(BASE_URL);
                 $url = sprintf('%s://%s%s', $base['scheme'], $base['host'], 
