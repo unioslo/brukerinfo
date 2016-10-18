@@ -295,5 +295,9 @@ define('FORGOTTEN_PASSWORD_BASE_PATH', "/forgotten/");
  */
 define('REALTIME_PASSWORD_JS', FORGOTTEN_PASSWORD_BASE_PATH . "shared_design/js/password_validator.js");
 
+/**
+ * Convert the username at the logon page to lowercase
+ */
+define('LOGON_USERNAME_TOLOWER', false);
 
 ?>
