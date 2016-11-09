@@ -412,6 +412,15 @@ class Account extends ModuleGroup {
         $form->addRule('confirm_password', txt('latin1_only_required'), 'latin1_only');
         // no more rules here, wants to validate the password first, before checking rest
 
+        $statsd = false;
+        if (USE_STATSD) {
+            $statsd = \Beberlei\Metrics\Factory::create('statsd', array(
+                'host' => STATSD_HOST,
+                'port' => STATSD_PORT,
+                'prefix' => STATSD_PREFIX
+            ));
+        }
+
         if($form->validate()) {
 
             $pasw_msg = validatePassword($Bofh, $form->exportValue('password'), $errmsg);
@@ -426,6 +435,15 @@ class Account extends ModuleGroup {
                     if(verifyPassword($Bofh, $form->exportValue('cur_pass'))) {
 
                         if(changePassword($Bofh, $form->exportValue('password'), $form->exportValue('cur_pass'), $errmsg)) {
+                            if (USE_STATSD) {
+                                $statsd->increment('password.set');
+                                if (isset($User->getSessionUserData()['password-change-start'])) {
+                                    $statsd->timing(
+                                        'password.duration',
+                                        time() - $User->getSessionUserData()['password-change-start']);
+                                    unset($User->getSessionUserData()['password-change-start']);
+                                }
+                            }
                             View::addMessage(txt('account_password_success'));
                             View::addMessage(txt('action_delay_hour'));
                             View::forward('account/');
@@ -445,8 +463,11 @@ class Account extends ModuleGroup {
                 // if the new password is wrong
                 $form->setElementError('password', $pasw_msg);
             }
-
-
+        } elseif (!isset($User->getSessionUserData()['password-change-start'])) {
+            $User->getSessionUserData()['password-change-start'] = time();
+            if (USE_STATSD) {
+                $statsd->increment('password.start');
+            }
         }
 
         //TODO: this should be included in the HTML_Quickform_password class, passwords 

@@ -4,7 +4,8 @@
     "description": "Brukerinfo web application",
     "require": {
         "pear-pear.php.net/HTML_QuickForm2": "~2.0",
-        "uio-usit-uait/phplib": "dev-master@dev"
+        "uio-usit-uait/phplib": "dev-master@dev",
+        "beberlei/metrics": "~2.1.0"
     },
     "repositories": [
         {
