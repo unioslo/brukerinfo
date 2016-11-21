@@ -341,7 +341,7 @@
     <EMAIL_SPAM_TITLE>Spaminnstillinger</EMAIL_SPAM_TITLE>
     <EMAIL_SPAM_INTRO>Disse innstillingene brukes på e-posten før den når innboksen din.
         Hvis du vil vite mer, kan du lese &lt;a
-        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/spam.html"&gt;USITs
+        href="http://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/spam.html"&gt;USITs
         side om spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
 
     <EMAIL_SPAM_ACTION_DROPSPAM>Avvis meldinger merket som spam</EMAIL_SPAM_ACTION_DROPSPAM>
@@ -363,7 +363,7 @@
     <EMAIL_FILTER_INTRO>Dette er verktøy du kan bruke til å redusere mengden
         spam enda mer.  Husk også å angi standardinnstillingene mot spam. Hvis
         du vil vite mer, kan du lese &lt;a
-        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/spam.html"&gt;
+        href="http://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/spam.html"&gt;
         USITs side om spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
     <EMAIL_FILTER_UNKNOWN>Ukjent innstilling</EMAIL_FILTER_UNKNOWN>
     <EMAIL_FILTER_UPDATE_SUCCESS>De ekstra spaminnstillingene er oppdatert</EMAIL_FILTER_UPDATE_SUCCESS>
@@ -371,13 +371,13 @@
     <EMAIL_FILTER_DATA_GREYLIST_DESC>Beskrivelse:
         "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt; Du finner informasjon
         om dette på &lt;a
-        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/graalisting.html"&gt;
+        href="http://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/graalisting.html"&gt;
         USITs side om grålisting&lt;/a&gt;.
       </EMAIL_FILTER_DATA_GREYLIST_DESC>
     <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
     <EMAIL_FILTER_DATA_UIOONLY_DESC>Beskrivelse: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
         Du finner informasjon om dette på &lt;a 
-        href="http://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/uioonly.html"&gt;USITs side om UiOonly&lt;/a&gt;.
+        href="http://www.uio.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/uioonly.html"&gt;USITs side om UiOonly&lt;/a&gt;.
       </EMAIL_FILTER_DATA_UIOONLY_DESC>
       <EMAIL_FILTER_ENABLE>Aktiver</EMAIL_FILTER_ENABLE>
       <EMAIL_FILTER_DISABLE>Deaktiver</EMAIL_FILTER_DISABLE>
@@ -391,7 +391,7 @@
         e-postmeldinger brukerkontoen din mottar innenfor en angitt periode.
         Hver avsender mottar fraværsmeldingen kun én gang. Du finner mer
         informasjon på &lt;a
-        href="https://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        href="https://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USITs side om fraværsmeldinger&lt;/a&gt;. Merk at en fraværsmelding
         starter fra og med startdatoen og varer til og med
         utløpsdatoen.</EMAIL_TRIPNOTE_INTRO>
@@ -418,7 +418,7 @@
     <EMAIL_FORWARD_INTRO>Du kan videresende all e-post som kommer til
         brukerkontoen din, til en eller flere andre adresser.  Merk deg at dette
         av sikkerhetshensyn ikke anbefales. Du finner mer informasjon på &lt;a
-        href="https://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        href="https://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USITs side om videresending&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Behold kopi</EMAIL_FORWARD_LOCAL>
     <EMAIL_FORWARD_NEW_TITLE>Opprett regel for videresending</EMAIL_FORWARD_NEW_TITLE>

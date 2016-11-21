@@ -340,7 +340,7 @@
     <EMAIL_SPAM_TITLE>Spam settings</EMAIL_SPAM_TITLE>
     <EMAIL_SPAM_INTRO>These settings are applied before your e-mails are delivered to your mailbox.
         For more information please see &lt;a
-        href="http://www.uio.no/english/services/it/email-calendar-chat/email-calendar/more-about-email-calendar/spam.html"&gt;USIT's
+        href="http://www.uio.no/english/services/it/email-calendar-chat/more-about-email-calendar/spam.html"&gt;USIT's
         page about spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
 
     <!-- 
@@ -367,7 +367,7 @@
     <EMAIL_FILTER_INTRO>Additional spam settings are extra tools for decreasing
         the amount of spam you receive.  Remember to also set your standard spam
         settings. For more information please see &lt;a
-        href="http://www.uio.no/english/services/it/email-calendar-chat/email-calendar/more-about-email-calendar/spam.html"&gt;
+        href="http://www.uio.no/english/services/it/email-calendar-chat/more-about-email-calendar/spam.html"&gt;
         USIT's page about spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
     <EMAIL_FILTER_UPDATE_SUCCESS>Your additional spam settings have been updated</EMAIL_FILTER_UPDATE_SUCCESS>
     <EMAIL_FILTER_UNKNOWN>Unknown setting</EMAIL_FILTER_UNKNOWN>
@@ -387,7 +387,7 @@
         automatic replies to e-mails sent to you in a set period of time.
         Each sender will receive the message only once within a period of 7
         days. For more information please see &lt;a
-        href="https://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        href="https://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USIT's page about out of office messages&lt;/a&gt;.
         Note that messages are active from the start date, and up to and
         including the expire date.
@@ -415,7 +415,7 @@
     <EMAIL_FORWARD_INTRO>You can forward all your incoming e-mails to another
         e-mail address. Please note that for security reasons this is not
         recommended.  For more information please see &lt;a
-        href="https://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        href="https://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USIT's page about forwarding&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Keep a copy</EMAIL_FORWARD_LOCAL>
     <EMAIL_FORWARD_NEW_TITLE>Create forwarding rule</EMAIL_FORWARD_NEW_TITLE>
