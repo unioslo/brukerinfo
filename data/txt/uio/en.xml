@@ -387,7 +387,7 @@
         automatic replies to e-mails sent to you in a set period of time.
         Each sender will receive the message only once within a period of 7
         days. For more information please see &lt;a
-        href="https://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        href="https://www.uio.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USIT's page about out of office messages&lt;/a&gt;.
         Note that messages are active from the start date, and up to and
         including the expire date.
@@ -415,7 +415,7 @@
     <EMAIL_FORWARD_INTRO>You can forward all your incoming e-mails to another
         e-mail address. Please note that for security reasons this is not
         recommended.  For more information please see &lt;a
-        href="https://www.uio.no/tjenester/it/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        href="https://www.uio.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USIT's page about forwarding&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Keep a copy</EMAIL_FORWARD_LOCAL>
     <EMAIL_FORWARD_NEW_TITLE>Create forwarding rule</EMAIL_FORWARD_NEW_TITLE>
