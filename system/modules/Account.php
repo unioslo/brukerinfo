@@ -443,6 +443,7 @@ class Account extends ModuleGroup {
                                         time() - $_SESSION['password-change-start-timing']);
                                     unset($_SESSION['password-change-start-timing']);
                                 }
+                                $statsd->flush();
                             }
                             View::addMessage(txt('account_password_success'));
                             View::addMessage(txt('action_delay_hour'));
@@ -466,6 +467,7 @@ class Account extends ModuleGroup {
         } elseif (USE_STATSD && !isset($_SESSION['password-change-start-timing'])) {
             $_SESSION['password-change-start-timing'] = time();
             $statsd->increment('password.start');
+            $statsd->flush();
         }
 
         //TODO: this should be included in the HTML_Quickform_password class, passwords 
