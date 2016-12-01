@@ -437,12 +437,13 @@ class Account extends ModuleGroup {
                         if(changePassword($Bofh, $form->exportValue('password'), $form->exportValue('cur_pass'), $errmsg)) {
                             if (USE_STATSD) {
                                 $statsd->increment('password.set');
-                                if (isset($User->getSessionUserData()['password-change-start'])) {
+                                if (isset($_SESSION['password-change-start-timing'])) {
                                     $statsd->timing(
                                         'password.duration',
-                                        time() - $User->getSessionUserData()['password-change-start']);
-                                    unset($User->getSessionUserData()['password-change-start']);
+                                        time() - $_SESSION['password-change-start-timing']);
+                                    unset($_SESSION['password-change-start-timing']);
                                 }
+                                $statsd->flush();
                             }
                             View::addMessage(txt('account_password_success'));
                             View::addMessage(txt('action_delay_hour'));
@@ -463,11 +464,10 @@ class Account extends ModuleGroup {
                 // if the new password is wrong
                 $form->setElementError('password', $pasw_msg);
             }
-        } elseif (!isset($User->getSessionUserData()['password-change-start'])) {
-            $User->getSessionUserData()['password-change-start'] = time();
-            if (USE_STATSD) {
-                $statsd->increment('password.start');
-            }
+        } elseif (USE_STATSD && !isset($_SESSION['password-change-start-timing'])) {
+            $_SESSION['password-change-start-timing'] = time();
+            $statsd->increment('password.start');
+            $statsd->flush();
         }
 
         //TODO: this should be included in the HTML_Quickform_password class, passwords 

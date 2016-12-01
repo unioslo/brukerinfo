@@ -40,7 +40,16 @@
 // Get InitBase before Init, since autoload is not set up yet
 require_once dirname(__FILE__) . '/config.php';
 require_once LINK_LIB . '/vendor/autoload.php';
-require_once LINK_LIB . '/controller/InitBase.php';
+// Not needed anymore, as LINK_LIB.'/vendor/autoload.php' will find it
+// require_once LINK_LIB . '/controller/InitBase.php';
+
+// this will load all our classes too, rendering Init's autoload a lame duck
+require_once BASE_PATH . '/vendor/autoload.php';
+
+// TODO: We don't need phplib's composer's autoload, as our composer's autoload does the trick
+// (i.e. remove LINK_LIB.'/vendor/autoload.php', and add versioning for phplib in composer.json)
+// As of now, all of phplib and phplib's dependencies will be found by phplib's composer,
+// as this is earlier in the autoload chain.
 
 // the page can only work in https!
 // this will hopefully not be seen, as the server is automatic resending users to https
