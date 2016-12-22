@@ -87,9 +87,11 @@
         som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
     </LOGON_INTRO>
     <LOGON_OUTRO>
+        &lt;p&gt;På &lt;a href="https://passord.uio.no"&gt;passord.uio.no&lt;/a&gt; kan du:&lt;/p&gt;
         &lt;ul&gt;
-        &lt;li&gt;Glemt passordet ditt? Studenter og ansatte kan &lt;a href="forgotten/password/"&gt;sette nytt passord ved hjelp av SMS&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;Vet du ikke hva &lt;a href="forgotten/username/"&gt;ditt brukernavn ved UiO&lt;/a&gt; er?&lt;/li&gt;
+        &lt;li&gt;Skifte passord ved hjelp av SMS&lt;/li&gt;
+        &lt;li&gt;Skifte passord om du kan ditt nåværende passord&lt;/li&gt;
+        &lt;li&gt;Finne brukernavnet ditt&lt;/li&gt;        
         &lt;/ul&gt;
 
         &lt;p&gt;Les om &lt;a
@@ -633,9 +635,8 @@
         &lt;/ul&gt;&lt;/p&gt;
         &lt;h2&gt;Slik bytter du passord:&lt;/h2&gt;
         &lt;p&gt;&lt;ul&gt;
-            &lt;li&gt;Skriv inn &lt;a href="https://brukerinfo.uio.no/"&gt;https://brukerinfo.uio.no/&lt;/a&gt; i adressefeltet i en nettleser&lt;/li&gt;
+            &lt;li&gt;Skriv inn &lt;a href="https://passord.uio.no/"&gt;https://passord.uio.no/&lt;/a&gt; i adressefeltet i en nettleser&lt;/li&gt;
             &lt;li&gt;Logg inn med brukernavnet og passordet fra dette arket&lt;/li&gt;
-            &lt;li&gt;Velg fanen "Brukerkonto", og fyll ut skjemaet med gammelt og nytt passord&lt;/li&gt;
             &lt;/ul&gt;
 
             Det er strengt forbudt å la andre benytte seg av brukernavnet

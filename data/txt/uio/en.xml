@@ -88,9 +88,11 @@
         University of Oslo.
     </LOGON_INTRO>
     <LOGON_OUTRO>
+        &lt;p&gt;Visit &lt;a href="https://passord.uio.no"&gt;passord.uio.no&lt;/a&gt; to:&lt;/p&gt;
         &lt;ul&gt;
-        &lt;li&gt;Forgotten your password? Students and employees can &lt;a href="forgotten/password/"&gt;set a new password by SMS&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;Don't know &lt;a href="forgotten/username/"&gt;your username at UiO&lt;/a&gt;?&lt;/li&gt;
+        &lt;li&gt;Set a new password by SMS&lt;/li&gt;
+        &lt;li&gt;Set a new password if you know you current one&lt;/li&gt;
+        &lt;li&gt;Find your username&lt;/li&gt;        
         &lt;/ul&gt;
 
         &lt;p&gt;Read about &lt;a
