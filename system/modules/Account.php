@@ -38,8 +38,9 @@ class Account extends ModuleGroup {
     public function getSubgroups() {
         if (INST == 'uio' && $this->authz->can_set_primary_account()
             || Init::get('Bofh')->isPersonal()) {
-
-            return array('', 'primary', 'password');
+            return array('', 'primary');
+        } else if (INST == 'uio') {
+            return array('');
         } else {
             return array('', 'password');
         }
@@ -50,15 +51,25 @@ class Account extends ModuleGroup {
     }
 
     public function getShortcuts() {
-        return array(array('account/password/', txt('home_shortcuts_password')));
+        if (INST == 'uio') {
+            return array(array('https://passord.uio.no', txt('home_shortcuts_password')));
+        } else if (in_array('password', $this->getSubgroups())) {
+            return array(array('account/password/', txt('home_shortcuts_password')));
+        } else {
+            return array();
+        }
     }
 
     public function display($path) {
         if (!$path) {
             return $this->index();
         }
+        // Only allow displaying enabled subgroups
+        if (!in_array($path[0], $this->getSubgroups())) {
+            return $this->index();
+        }
         switch ($path[0]) {
-        case '': case 'index':
+        case '':
             return $this->index();
         case 'primary':
             return $this->primary();
