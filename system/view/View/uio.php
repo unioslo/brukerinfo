@@ -159,12 +159,14 @@ class View_uio extends ViewTemplate
         $text = Init::get('Text');
         $query = $_GET;
         $languages = array();
+        $mod = Init::get("Modules");
+        $path = $mod->getCurrentPath();
         foreach ($text->getAvailableLanguages() as $l => $desc) {
             if ($l == $text->getLanguage()) {
                 continue;
             }
             $query['chooseLang'] = $l;
-            $languages[] = "<a href=\"" . BASE_URL . "?" . http_build_query($query)
+            $languages[] = "<a href=\"" . BASE_URL . substr($path, 1) . "?" . http_build_query($query)
                 . "\">$desc</a>";
         }
         return self::createElement('ul', $languages, 'id="languages"');
