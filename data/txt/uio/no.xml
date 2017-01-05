@@ -550,7 +550,7 @@
     <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
     <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til
         trådløsnettet &lt;a href="https://eduroam.no/"&gt;eduroam&lt;/a&gt;.
-        Kontoene er tidsbegrenset og gir kun tilgang til det trådløse nettet.</GUEST_INTRO>
+        Kontoene er tidsbegrenset og gir kun tilgang til det trådløse nettet. Det kan ta opp til 10 minutter før kontoen er opprettet.</GUEST_INTRO>
     <GUEST_LIST_ACTIVE>Dine aktive trådløskontoer</GUEST_LIST_ACTIVE>
     <!--<GUEST_LIST_INACTIVE>Dine utgåtte trådløskontoer</GUEST_LIST_INACTIVE>-->
     <GUEST_LIST_ACTIVE_EMPTY>Du har ingen aktive trådløskontoer</GUEST_LIST_ACTIVE_EMPTY>
