@@ -568,7 +568,7 @@
     <GUEST_NEW_TITLE>Create new wireless account</GUEST_NEW_TITLE>
     <GUEST_NEW_INTRO>Enter the name and cell phone number (note: only Norwegian
         numbers are allowed). The username and password will be
-        sent to this number. It may take up to two minutes before the account is made available.</GUEST_NEW_INTRO>
+        sent to this number. It may take up to 10 minutes before the account is made available.</GUEST_NEW_INTRO>
     <GUEST_NEW_FORM_FNAME>Given name:</GUEST_NEW_FORM_FNAME>
     <GUEST_NEW_FORM_LNAME>Surname:</GUEST_NEW_FORM_LNAME>
     <GUEST_NEW_FORM_DURATION>Duration:</GUEST_NEW_FORM_DURATION>
