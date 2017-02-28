@@ -1,10 +1,11 @@
+www_docs/.htaccess
 www_docs/config.php
-hine/www_docs/config.php
 www_docs/forgotten
-hine/www_docs/forgotten
 www_docs/postmaster
 data/motd
 stats
 .*.sw?
 *~
 tags
+vendor
+composer.lock

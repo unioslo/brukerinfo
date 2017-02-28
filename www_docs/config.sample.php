@@ -75,17 +75,6 @@ define('BASE_PATH',             realpath(WWW_DOCS_PATH . '/..'));
  */
 define('LINK_SYSTEM',           BASE_PATH . '/system');
 
-
-/**
- * The location of the shared 'phplib/' directory. The phplib directory contains 
- * common classes that are used in different Cerebrum projects, and several 
- * classes depends on this to exist. 
- *
- * https://utv.uio.no/stash/projects/CRB/repos/phplib/browse
- *
- */
-define('LINK_LIB',              BASE_PATH . '/system/phplib');
-
 /** 
  * The location of the "data/" directory. It is preferred that this directory is 
  * not reachable through a web browser, so place it somewhere else than in www_docs.

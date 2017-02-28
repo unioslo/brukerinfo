@@ -122,13 +122,12 @@ Set up Brukerinfo's configuration:
 and start modifying `www_docs/config.php`. Most settings are documented, but
 some notes:
 
-- You could either set the location of the `phplib` directory through the
-  config, in `LINK_LIB`, or you could create a symlink to it at `system/phplib`.
-
 - If the `www_docs` needed to be moved to comply with Apache's `DocumentRoot`,
   you also need to set `LINK_SYSTEM` and `LINK_DATA` to the system and data
   directories' absolute paths, respectively.
 
 ### Install
 
-TODO: Use composer. See phplib's *README* file for more info.
+1. If you do not have Composer installed, fetch it from https://getcomposer.org/download/
+2. From the root of this repo, run ```composer update --ignore-platform-reqs```
+   to download dependencies.

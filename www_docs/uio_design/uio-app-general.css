@@ -140,6 +140,16 @@ table#recaptcha_table #recaptcha_image {
 }
 
 
+#logon-outro {
+    margin-top: 0.5em;
+}
+#logon-outro p {
+    margin-bottom: 0;
+}
+#logon-outro ul {
+    margin-top: 0;
+}
+
 /* Password validation */
 
 .password-feedback {
