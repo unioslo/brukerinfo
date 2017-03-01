@@ -86,7 +86,7 @@
     <LOGON_INTRO>
         &lt;div class="note" style="background-position:left 19px center;padding-top:0;padding-bottom:0;"&gt;
           &lt;h2 style="margin:0.75em 0 0.5em 0"&gt;Changing your password? Forgotten password or user name?&lt;/h2&gt;
-          &lt;p style="margin:1em 0 0.75em 0"&gt;Try our new service at &lt;a href="https://passord.uio.no"&gt;passord.uio.no&lt;/a&gt;.&lt;/p&gt;
+          &lt;p style="margin:1em 0 0.75em 0"&gt;Try our new service at &lt;a href="https://passord.uio.no/intro"&gt;passord.uio.no&lt;/a&gt;.&lt;/p&gt;
         &lt;/div&gt;
 
         &lt;p&gt;This is a web based user interface you can use to view and
