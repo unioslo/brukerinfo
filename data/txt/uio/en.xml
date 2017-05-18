@@ -422,7 +422,8 @@
     <EMAIL_FORWARD_TITLE>Forwarding</EMAIL_FORWARD_TITLE>
     <EMAIL_FORWARD_INTRO>You can forward all your incoming e-mails to another
         e-mail address. Please note that for security reasons this is not
-        recommended.  For more information please see &lt;a
+	recommended. Enabling automatic forwarding of email to external email addresses is
+	strictly forbidden for all UiO employees. For more information please see &lt;a
         href="https://www.uio.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USIT's page about forwarding&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Keep a copy</EMAIL_FORWARD_LOCAL>

@@ -424,8 +424,9 @@
 
     <EMAIL_FORWARD_TITLE>Videresending</EMAIL_FORWARD_TITLE>
     <EMAIL_FORWARD_INTRO>Du kan videresende all e-post som kommer til
-        brukerkontoen din, til en eller flere andre adresser.  Merk deg at dette
-        av sikkerhetshensyn ikke anbefales. Du finner mer informasjon på &lt;a
+        brukerkontoen din, til en eller flere andre adresser. Merk deg at dette
+	av sikkerhetshensyn ikke anbefales. Det er forbudt for alle ansatte ved UiO å aktivere
+	automatisk videresending av e-post til eksterne e-postadresser. Du finner mer informasjon på &lt;a
         href="https://www.uio.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USITs side om videresending&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Behold kopi</EMAIL_FORWARD_LOCAL>
