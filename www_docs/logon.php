@@ -23,12 +23,30 @@ $User->logoff();
 $bofh = Init::get('Bofh');
 $View = Init::get('View');
 
+
+function build_url($parts)
+{
+    $location = '';
+    $location .= isset($parts['scheme']) ? $parts['scheme'] . '://' : '';
+    $location .= isset($parts['host']) ? $parts['host'] : '';
+    $location .= isset($parts['port']) ? ':' . $parts['port'] : '';
+    $user = isset($parts['user']) ? $parts['user'] : '';
+    $pass = isset($parts['pass']) ? ':' . $parts['pass'] : '';
+    $location .= ($user || $pass) ? $user . $pass . '@' : '';
+    $location .= isset($parts['path']) ? $parts['path'] : '';
+    $location .= isset($parts['query']) ? '?' . $parts['query'] : '';
+    $location .= isset($parts['fragment']) ? '#' . $parts['fragment'] : '';
+    return $location;
+}
+
+
 $logform = new BofhFormUiO('logon', null, 'logon.php');
 $logform->setAttribute('class', 'app-form-big');
 $logform->addElement('text',     'usi',  txt('logon_form_username'), 'id="usi"');
 $logform->addElement('password', 'pasi', txt('logon_form_password'));
 $logform->addElement('submit',   null,   txt('logon_form_submit'));
 //TODO: add required-rules (and more)?
+
 
 if ($logform->validate()) {
     try {
@@ -38,13 +56,17 @@ if ($logform->validate()) {
         }
         if ($User->logon($username, $logform->exportValue('pasi'))) {
             if (!empty($_SESSION['UserForward'])) {
-                $base = parse_url(BASE_URL);
-                $url = sprintf('%s://%s%s', $base['scheme'], $base['host'], 
-                    $_SESSION['UserForward']
-                );
+                $url = parse_url(BASE_URL);
+                $forward = parse_url($_SESSION['UserForward']);
+                $url['path'] = $forward['path'];
+                $url['query'] = $forward['query'];
+                $url['fragment'] = $forward['fragment'];
+                $url = build_url($url);
                 $_SESSION['UserForward'] = null;
                 View::forward($url);
             }
+            # TODO: Do we need a separate URL_LOGGED_IN? Can we not just use
+            # BASE_URL?
             View::forward(URL_LOGGED_IN);
         }
         View::addMessage(txt('logon_bad_name_or_password'));
@@ -53,6 +75,8 @@ if ($logform->validate()) {
     } catch (AuthenticateConnectionException $e) {
         View::addMessage(txt('error_bofh_connection'));
     }
+    # TODO: Do we really need the URL_LOGON? Can we not just use
+    # BASE_URL/logon.php?
     View::forward(URL_LOGON);
 }
 
