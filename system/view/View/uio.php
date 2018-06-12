@@ -42,14 +42,17 @@ class View_uio extends ViewTemplate
         header('Pragma: no-cache');
 
         // HTTP Strict Transport Security (HSTS)
-        // Tells browsers to only use https at this domain, and block the user 
-        // from access if a less trusted certificate is found - e.g.  
+        // Tells browsers to only use https at this domain, and block the user
+        // from access if a less trusted certificate is found - e.g.
         // self-signed. Prevents some ssl-stripping man-in-the-middle attacks.
         //
         // http://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-03
         //
         // The max-age are defined in seconds, set to about one year.
-        header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+        if (HTTPS_ONLY) {
+            // TODO: This should maybe be done in apache?
+            header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+        }
 
         // Security tag, preventing site from being included in frames in 
         // browsers that supports this. Prevents some clickjacking attacks.

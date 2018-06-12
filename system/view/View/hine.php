@@ -47,7 +47,10 @@ class View_hine extends ViewTemplate
         // http://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-03
         //
         // The max-age are defined in seconds, set to about one year.
-        header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+        if (HTTPS_ONLY) {
+            // TODO: This should maybe be done in apache?
+            header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+        }
 
         // Security tag, preventing site from being included in frames in 
         // browsers that supports this. Prevents some clickjacking attacks.
