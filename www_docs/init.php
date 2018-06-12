@@ -36,8 +36,11 @@
  *
  */
 
-
-require_once dirname(__FILE__) . '/config.php';
+if (isset($_ENV['WOFH_CONFIG'])) {
+    require_once $_ENV['WOFH_CONFIG'];
+} else {
+    require_once dirname(__FILE__) . '/config.php';
+}
 
 // Autoload dependencies, see INSTALL
 require_once BASE_PATH . '/vendor/autoload.php';
@@ -45,7 +48,7 @@ require_once BASE_PATH . '/vendor/autoload.php';
 
 // the page can only work in https!
 // this will hopefully not be seen, as the server is automatic resending users to https
-if(HTTPS_ONLY && $_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
+if (HTTPS_ONLY && $_SERVER['HTTPS'] != 'on' && empty($_SERVER['argv'])) {
     trigger_error('Someone got to an unsecure page, died badly. Wrong setup in apache?', E_USER_WARNING);
     die('This page will only work in https mode, check your url.');
 }
