@@ -35,8 +35,8 @@ function get_feature_list() {
         return $ret;
     } else {
         $features = array(
-            'uio' => array('account', 'email', 'groups', 'guests', 'person', 
-                           'reservations', 'office365'),
+            'uio' => array('account', 'email', 'groups', 'guests', 'person',
+                           'reservations'),
             'hine'=> array('account', 'email', 'groups', 'person'),
             'tsd' => array('Account_tsd', 'groups')
         );
@@ -53,8 +53,7 @@ function get_feature($feature, $modules) {
         'guests' => 'Guest',
         'person' => 'Person',
         'printing' => 'Printing',
-        'reservations' => 'Reservations',
-        'office365' => 'Office365',
+        'reservations' => 'Reservations'
     );
     if (array_key_exists($feature, $features)) {
         $class = new ReflectionClass($features[$feature]);
