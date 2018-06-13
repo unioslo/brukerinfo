@@ -12,14 +12,16 @@
 #   docker build --rm -f Dockerfile -t brukerinfo .
 #   docker run --rm -it \
 #       -p 8080:80 \
-#       -e WOFH_BOFH_URL=http://host:port/
+#       -e WOFH_BOFH_URL=http://host:port/ \
+#       brukerinfo
 #
 # If you don't want to rebuild on changes:
-#   docker run --rm -it -p 8080:80 \
+#   docker run --rm -it \
 #       -p 8080:80 \
 #       -e WOFH_BOFH_URL=http://host:port/
-#       -v "$(pwd):/usr/local/src/wofh"
-#       -v "$(pwd)/my-config.php:/usr/local/src/wofh.php"
+#       -v "$(pwd):/usr/local/src/wofh" \
+#       -v "$(pwd)/my-config.php:/usr/local/src/wofh.php" \
+#       brukerinfo
 #
 FROM php:5-apache
 
