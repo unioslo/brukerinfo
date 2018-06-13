@@ -45,4 +45,4 @@ RUN rm -f /etc/apache2/sites-enabled/*.conf \
 COPY ./docker/apache-site.conf /etc/apache2/sites-available/wofh.conf
 COPY ./docker/php.ini /usr/local/etc/php/
 COPY ./docker/config.php ${WOFH_CONFIG}
-COPY . /usr/local/src/wofh/
+COPY . wofh/
