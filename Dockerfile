@@ -1,10 +1,10 @@
-# This is a super-hacky Dockerfile that runs a basic brukerinfo installation in
+# This is a super-hacky Dockerfile that runs a basic brukerinfo installation on
 # Apache
 #
 # Note:
 #   Prior to build, you'll have to run composer in the repo root directory to
 #   fecth all dependencies.
-#   This adds an extra step, but also makes it easier to much around with the
+#   This adds an extra step, but also makes it easier to muck around with the
 #   autoloader to e.g. use a local copy of 'phplib'.
 #
 # Get started:
