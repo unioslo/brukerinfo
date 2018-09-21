@@ -712,7 +712,7 @@ class Email extends ModuleGroup {
                     if (isset($active_filters[$filter])) continue;
 
                     try {
-                        $res = $Bofh->run_command('email_spam_add_filter', $filter, $User->getUsername());
+                        $res = $Bofh->run_command('email_spam_filter_add', $filter, $User->getUsername());
                         View::addMessage($res);
                     } catch(Exception $e) {
                         Bofhcom::viewError($e);
@@ -725,7 +725,7 @@ class Email extends ModuleGroup {
                     if (!isset($active_filters[$filter])) continue;
 
                     try {
-                        $res = $Bofh->run_command('email_spam_remove_filter', $filter, $User->getUsername());
+                        $res = $Bofh->run_command('email_spam_filter_remove', $filter, $User->getUsername());
                         View::addMessage($res);
                     } catch(Exception $e) {
                         Bofhcom::viewError($e);
