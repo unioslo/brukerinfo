@@ -130,7 +130,7 @@ class Email extends ModuleGroup {
         function delEmailAddress($Bofh, $User, $address)
         {
             try {
-                $ret = $Bofh->run_command('email_remove_address', $User->getUsername(), $address);
+                $ret = $Bofh->run_command('email_address_remove', $User->getUsername(), $address);
                 // finished with an update, just to be sure
                 $Bofh->run_command('email_update', $User->getUsername());
                 return $ret;
@@ -431,7 +431,7 @@ class Email extends ModuleGroup {
 
             if (!empty($values['address'])) {
                 try {
-                    $res = $Bofh->run_command('email_add_forward', $User->getUsername(), $values['address']);
+                    $res = $Bofh->run_command('email_forward_add', $User->getUsername(), $values['address']);
                     View::addMessage($res);
                     View::addMessage(txt('action_delay_email'));
                 } catch(Exception $e) {
@@ -445,14 +445,14 @@ class Email extends ModuleGroup {
             //setting the local copy on of off
             if (!empty($values['keep']) && !$keeplocal) {
                 try {
-                    $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'on');
+                    $res = $Bofh->run_command('email_forward_local_delivery', $User->getUsername(), 'on');
                     View::addMessage($res);
                 } catch(Exception $e) {
                     Bofhcom::viewError($e);
                 }
             } elseif (empty($values['keep']) && $keeplocal) {
                 try {
-                    $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'off');
+                    $res = $Bofh->run_command('email_forward_local_delivery', $User->getUsername(), 'off');
                     View::addMessage($res);
                 } catch(Exception $e) {
                     Bofhcom::viewError($e);
@@ -497,7 +497,7 @@ class Email extends ModuleGroup {
         $addLocal->addElement('submit', null, txt('email_forward_addlocal_submit'));
 
         if ($addLocal->validate()) {
-            $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'on');
+            $res = $Bofh->run_command('email_forward_local_delivery', $User->getUsername(), 'on');
             View::addMessage($res);
             View::addMessage(txt('action_delay_email'));
             View::forward('email/forward/');
@@ -527,11 +527,11 @@ class Email extends ModuleGroup {
             if ($confirm->validate()) {
                 try {
                     if ($del === 'local') {
-                        $res = $Bofh->run_command('email_local_delivery', $User->getUsername(), 'off');
+                        $res = $Bofh->run_command('email_forward_local_delivery', $User->getUsername(), 'off');
                         View::forward('email/forward/', $res);
                     }
                     else {
-                        $res = $Bofh->run_command('email_remove_forward', $User->getUsername(), $del);
+                        $res = $Bofh->run_command('email_forward_remove', $User->getUsername(), $del);
                         View::forward('email/forward/', $res);
                     }
                 } catch(Exception $e) {
@@ -712,7 +712,7 @@ class Email extends ModuleGroup {
                     if (isset($active_filters[$filter])) continue;
 
                     try {
-                        $res = $Bofh->run_command('email_add_filter', $filter, $User->getUsername());
+                        $res = $Bofh->run_command('email_spam_filter_add', $filter, $User->getUsername());
                         View::addMessage($res);
                     } catch(Exception $e) {
                         Bofhcom::viewError($e);
@@ -725,7 +725,7 @@ class Email extends ModuleGroup {
                     if (!isset($active_filters[$filter])) continue;
 
                     try {
-                        $res = $Bofh->run_command('email_remove_filter', $filter, $User->getUsername());
+                        $res = $Bofh->run_command('email_spam_filter_remove', $filter, $User->getUsername());
                         View::addMessage($res);
                     } catch(Exception $e) {
                         Bofhcom::viewError($e);
@@ -1011,7 +1011,7 @@ class Email extends ModuleGroup {
                 $start['d'], $end['Y'], $end['M'], $end['d']
             );
             try {
-                return $bofh->run_command('email_add_tripnote', $user->getUsername(), 
+                return $bofh->run_command('email_tripnote_add', $user->getUsername(),
                 $input['message'], $datestring
             );
             } catch(Exception $e) {
@@ -1054,7 +1054,7 @@ class Email extends ModuleGroup {
             }
 
             try {
-                $res = $Bofh->run_command('email_remove_tripnote', $User->getUsername(), $del);
+                $res = $Bofh->run_command('email_tripnote_remove', $User->getUsername(), $del);
                 View::forward('email/tripnote/', $res);
             } catch(Exception $e) {
                 Bofhcom::viewError($e);
