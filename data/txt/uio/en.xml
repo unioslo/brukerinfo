@@ -705,26 +705,6 @@
     <CONSENT_STATUS_GIVEN>Consented</CONSENT_STATUS_GIVEN>
     <CONSENT_EDIT_BUTTON>Change</CONSENT_EDIT_BUTTON>
 
-    <!--Office365 consent -->
-    <OFFICE365_NAME>Office 365</OFFICE365_NAME>
-    <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/english/services/it/computer/o365/help/agree.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
-    <OFFICE365_TABLE_DESC>Consent for using Office 365</OFFICE365_TABLE_DESC>
-    <OFFICE365_INTRO>
-        In order to use Office 365, you have to consent to &lt;a href="{{link}}"&gt;
-        the terms of agreement for Office 365 at the University
-        of Oslo.&lt;/a&gt;&lt;br&gt;
-        It will take approximately one hour from your consent is registered,
-        until you can start using Office 365.&lt;br&gt;
-        You may at any time withdraw your consent.
-    </OFFICE365_INTRO>
-    <OFFICE365_CONSENT_REGISTERED>
-        Your consent has been registered. It will take approximately one hour
-        from the consent was registered until you can start using Office 365.
-        You will receive an e-mail when your account is ready.
-    </OFFICE365_CONSENT_REGISTERED>
-    <OFFICE365_CONSENT_REVOKED>
-        Consent has been revoked. Read more about &lt;a href="{{link}}"&gt;what this entails.&lt;/a&gt;
-    </OFFICE365_CONSENT_REVOKED>
 
     <!--GSuite consent -->
     <GSUITE_NAME>GSuite for Education</GSUITE_NAME>

@@ -700,6 +700,10 @@
         Ifølge UiOs brukersystem, er ikke dine kontoer registrert med tilgang til {{name}}.
         Hvis du mener dette er feil, ta kontakt med lokal-IT.
     </CONSENT_NO_ACCESS_TEXT>
+    <CONSENT_NO_ACCESS_ANY_TEXT>
+        Ifølge UiOs brukersystem, er ikke dine kontoer registrert med tilgang til noen systemer som krever samtykke.
+        Hvis du mener dette er feil, ta kontakt med lokal-IT.
+    </CONSENT_NO_ACCESS_ANY_TEXT>
     <CONSENT_TABLEHEAD_NAME>Navn</CONSENT_TABLEHEAD_NAME>
     <CONSENT_TABLEHEAD_DESC>Beskrivelse</CONSENT_TABLEHEAD_DESC>
     <CONSENT_TABLEHEAD_STATUS>Status</CONSENT_TABLEHEAD_STATUS>
@@ -708,30 +712,6 @@
     <CONSENT_STATUS_NOT_GIVEN>Ikke samtykket</CONSENT_STATUS_NOT_GIVEN>
     <CONSENT_STATUS_GIVEN>Samtykket</CONSENT_STATUS_GIVEN>
     <CONSENT_EDIT_BUTTON>Endre</CONSENT_EDIT_BUTTON>
-
-
-    <!--Office365 consent -->
-    <OFFICE365_NAME>Office 365</OFFICE365_NAME>
-    <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/o365/hjelp/samtykke.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
-    <OFFICE365_TABLE_DESC>Samtykke for bruk av Office 365</OFFICE365_TABLE_DESC>
-    <OFFICE365_INTRO>
-        For å ta i bruk Office 365 må du avgi samtykke til
-        &lt;a href="{{link}}"&gt;
-        bruksvilkårene for Office 365 på UiO.&lt;/a&gt;&lt;br&gt;
-        Det vil ta omlag én time fra samtykket er registrert til du kan
-        ta i bruk Office 365.&lt;br&gt;
-        Du kan når som helst trekke tilbake samtykket.
-    </OFFICE365_INTRO>
-    <OFFICE365_CONSENT_REGISTERED>
-        Ditt samtykke er registrert. Det kan ta opptil en time fra tidspunktet samtykket
-        ble avgitt til du kan ta i bruk Office 365. Du vil motta en e-post når
-        din konto er klar til bruk.
-    </OFFICE365_CONSENT_REGISTERED>
-    <OFFICE365_CONSENT_REVOKED>
-        Samtykket har blitt trukket. Les mer om &lt;a href="{{link}}"&gt;hva dette innebærer.&lt;/a&gt;
-    </OFFICE365_CONSENT_REVOKED>
-
-
 
     <!--GSuite consent -->
     <GSUITE_NAME>GSuite for Education</GSUITE_NAME>
@@ -748,7 +728,6 @@
         Det vil ta omlag én time fra samtykket er registrert til du kan
         ta i bruk GSuite for Education.&lt;br&gt;
         Du kan når som helst trekke tilbake samtykket.
-
     </GSUITE_INTRO>
     <GSUITE_CONSENT_REGISTERED>
         Ditt samtykke er registrert. Det kan ta opptil en time fra tidspunktet samtykket

@@ -142,7 +142,7 @@ class Authorization_uio extends Authorization
      */
     protected function has_consent_page()
     {
-        return $this->has_office365_permissions() || $this->has_gsuite_permissions();
+        return $this->has_gsuite_permissions();
     }
 
 

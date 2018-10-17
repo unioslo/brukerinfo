@@ -28,6 +28,7 @@ define('FEATURES', isset($_ENV['WOFH_FEATURES']) ? $_ENV['WOFH_FEATURES'] : null
  */
 define('BOFH_URL', $_ENV['WOFH_BOFH_URL']);
 
+
 /* ReCaptcha, if used */
 define('RECAPTCHA_PUBLIC_KEY', '');
 define('RECAPTCHA_PRIVATE_KEY', '');
