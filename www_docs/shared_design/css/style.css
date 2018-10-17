@@ -263,3 +263,11 @@ body {
 .push-1-12 {
     margin-left: 8.33%
 }
+
+#consent tr:hover {
+    background-color: #dbdee2;
+}
+
+#consent td:hover {
+    cursor: pointer;
+}
