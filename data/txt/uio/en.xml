@@ -705,7 +705,6 @@
     <CONSENT_STATUS_GIVEN>Consented</CONSENT_STATUS_GIVEN>
     <CONSENT_EDIT_BUTTON>Change</CONSENT_EDIT_BUTTON>
 
-
     <!--GSuite consent -->
     <GSUITE_NAME>GSuite for Education</GSUITE_NAME>
     <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/engish/TODO</GSUITE_TERMS_OF_AGREEMENT_LINK>
@@ -719,7 +718,7 @@
         You may at any time withdraw your consent.
     </GSUITE_INTRO>
     <GSUITE_CONSENT_REGISTERED>
-        (TODO: Stemmer teksen her?) Your consent has been registered. It will take approximately one hour
+        Your consent has been registered. It will take approximately one hour
         from the consent was registered until you can start using GSuite for Education.
     </GSUITE_CONSENT_REGISTERED>
     <GSUITE_CONSENT_REVOKED>
