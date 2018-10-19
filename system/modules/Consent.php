@@ -134,7 +134,6 @@ class Consent extends ModuleGroup {
 
         $view->addHead('<script type="text/javascript" src="uio_design/consent.js"></script>');
         
-        // TODO check for each consent
         if ($this->showInMenu()) {
             $this->getConsentData();
             if (array_key_exists($consent_type, $this->consentData)) {
@@ -233,8 +232,6 @@ class Consent extends ModuleGroup {
     }
 
     public function displayErrorPage($view, $consent_name) {
-        // TODO general consent error?
-
         if ($consent_name == null) {
             $view->addElement('h1', txt('consent_no_access_title'));
             $view->addElement('p', txt('consent_no_access_any_text'));
