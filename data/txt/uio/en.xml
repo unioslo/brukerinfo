@@ -707,7 +707,7 @@
 
     <!--GSuite consent -->
     <GSUITE_NAME>GSuite for Education</GSUITE_NAME>
-    <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/engish/TODO</GSUITE_TERMS_OF_AGREEMENT_LINK>
+    <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/gsuite/hjelp/vilkaar.html</GSUITE_TERMS_OF_AGREEMENT_LINK>
     <GSUITE_TABLE_DESC>Consent for using GSuite for Education</GSUITE_TABLE_DESC>
     <GSUITE_INTRO>
         In order to use GSuite for Education, you have to consent to &lt;a href="{{link}}"&gt;

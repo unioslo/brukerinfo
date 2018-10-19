@@ -223,7 +223,7 @@ class Consent extends ModuleGroup {
                 try {
                     $this->bofh->run_command('consent_unset', 'person:' . $this->user->getUsername(), $name);
                     View::forward('consent/', txt($this->createTxtName($name, 'consent_revoked'), 
-                        array('link' => txt($this->createTxtName($name, '/terms_of_agreement_link')))));
+                        array('link' => txt($this->createTxtName($name, 'terms_of_agreement_link')))));
                 } catch (Exception $e) {
                     Bofhcom::viewError($e);
                 }
