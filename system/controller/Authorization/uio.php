@@ -86,6 +86,75 @@ class Authorization_uio extends Authorization
         return false;
     }
 
+
+    /**
+     * Check if the user should see a given consent type
+     */
+    protected function has_consent_permissions($consent_type)
+    {
+        if (!$this->is_authenticated()) {
+            return false;
+        }
+
+        if ($consent_type == 'gsuite') {
+            return $this->has_gsuite_permissions();
+        } elseif ($consent_type == 'office365'){
+            /* No consent for Office365 */
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Check if the user should see the gsuite consent
+     */
+    protected function has_gsuite_permissions() {
+
+        if (!$this->is_authenticated()) {
+            return false;
+        }
+
+        // Limit the use to only INT + karinefu for now
+        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje',  'hmo',  'jbr', 'jokim', 'jsama', 'raymonm', 'sgs', 'skh', 'karinefu');
+        $username = $this->user->getUsername();
+        if (in_array($username, $allowed_users)) {
+            return true;
+        } else {
+            return false;
+        }
+
+        $affs = $this->bofh->getCache('affiliations');
+        foreach($affs as $aff) {
+
+            /* 'STUDENT' affs are always allowed */
+            if ($aff['affiliation'] == 'STUDENT'){
+                return true;
+            } elseif ($aff['affiliation'] == 'ANSATT' || $aff['affiliation'] == 'TILKNYTTET'){
+                /**
+                 * 'ANSATT' and 'TILKNYTTET' affs only from UiO OUs
+                 * To achieve this we do not allow any OUs starting with 7.
+                 * OU 700000 contains all external units.
+                 */
+                if (substr($aff['stedkode'], 0, 1) !== '7' ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Only display the consents page if the user has acces to any of the consents.
+     */
+    protected function has_consent_page()
+    {
+        return $this->has_gsuite_permissions();
+    }
+
+
     /**
      * Check if the user has IMAP spread
      *
