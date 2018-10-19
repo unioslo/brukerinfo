@@ -116,6 +116,15 @@ class Authorization_uio extends Authorization
             return false;
         }
 
+        // Limit the use to only INT + karinefu for now
+        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje',  'hmo',  'jbr', 'jokim', 'jsama', 'raymonm', 'sgs', 'skh', 'karinefu');
+        $username = $this->user->getUsername();
+        if (in_array($username, $allowed_users)) {
+            return true;
+        } else {
+            return false;
+        }
+
         $affs = $this->bofh->getCache('affiliations');
         foreach($affs as $aff) {
 
