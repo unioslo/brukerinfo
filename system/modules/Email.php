@@ -641,11 +641,18 @@ class Email extends ModuleGroup {
             $text = Init::get('Text');
 
             $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
+            $hidden_filters = array('internalonly');
 
             //sorting the filters
             $filters = array();
             foreach ($filters_raw as $f) {
                 $id = $f['code_str'];
+
+                if (in_array($id, $hidden_filters)) {
+                    // Skipp hidden filter
+                    continue;
+                }
+
                 $txtkey_name = 'email_filter_data_'.$id;
                 $txtkey_desc = 'email_filter_data_'.$id.'_desc';
 
