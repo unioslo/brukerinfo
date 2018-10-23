@@ -90,20 +90,43 @@ class Authorization_uio extends Authorization
     /**
      * Check if the user should see a given consent type
      */
-    protected function has_consent_permissions($consent_type)
-    {
+    protected function has_consent_permissions($consent_type) {
         if (!$this->is_authenticated()) {
             return false;
         }
 
         if ($consent_type == 'gsuite') {
             return $this->has_gsuite_permissions();
-        } elseif ($consent_type == 'office365'){
-            /* No consent for Office365 */
-            return false;
+        } elseif ($consent_type == 'cristin') {
+            return $this->has_cristin_permissions();
         } else {
             return false;
         }
+    }
+
+    /**
+     * Check if the user should se the Cristin consent
+     */
+    protected function has_cristin_permissions() {
+        if (!$this->is_authenticated()) {
+            return false;
+        }
+
+        // Feature toggle. Limit the use to INT + hermas
+        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje',  'hmo',  'jbr', 'jokim', 'jsama', 'raymonm', 'sgs', 'hermas');
+        $username = $this->user->getUsername();
+        if (in_array($username, $allowed_users)) {
+            return true;
+        } else {
+            return false;
+        }
+        $affs = $this->bofh->getCache('affiliations');
+        foreach($affs as $aff) {
+            if ($aff['affiliation'] == 'ANSATT' && $aff['status'] == 'tekadm') {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -116,8 +139,8 @@ class Authorization_uio extends Authorization
             return false;
         }
 
-        // Limit the use to only INT + karinefu for now
-        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje',  'hmo',  'jbr', 'jokim', 'jsama', 'raymonm', 'sgs', 'skh', 'karinefu');
+        // Feature toggle. Limit the use to only INT + karinefu for now
+        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje',  'hmo',  'jbr', 'jokim', 'jsama', 'raymonm', 'sgs', 'karinefu');
         $username = $this->user->getUsername();
         if (in_array($username, $allowed_users)) {
             return true;
@@ -151,7 +174,7 @@ class Authorization_uio extends Authorization
      */
     protected function has_consent_page()
     {
-        return $this->has_gsuite_permissions();
+        return $this->has_gsuite_permissions() || $this->has_cristin_permissions();
     }
 
 

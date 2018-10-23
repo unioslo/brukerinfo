@@ -668,16 +668,10 @@
     <HELP_TITLE>Help</HELP_TITLE>
     <HELP_LINK>https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/</HELP_LINK>
 
-    <!--Consent pages common -->
+    <!-- Consent pages common -->
     <CONSENT_PAGE_TITLE>Consent for services at UiO</CONSENT_PAGE_TITLE>
     <CONSENT_TITLE>Consent for {{name}}</CONSENT_TITLE>
     <CONSENT_TERMS_OF_AGREEMENT>Read &lt;a href="{{link}}"&gt;the terms of agreement here.&lt;/a&gt;</CONSENT_TERMS_OF_AGREEMENT>
-    <CONSENT_GIVE_CONSENT_TEXT>
-        Yes, I consent to the terms of agreement for {{name}} at the University of Oslo.
-    </CONSENT_GIVE_CONSENT_TEXT>
-    <CONSENT_REMOVE_CONSENT_TEXT>
-        I wish to withdraw my consent and stop using {{name}}.
-    </CONSENT_REMOVE_CONSENT_TEXT>
     <CONSENT_CONFIRM_GIVE>Confirm consent</CONSENT_CONFIRM_GIVE>
     <CONSENT_CONFIRM_REVOKE>Revoke consent</CONSENT_CONFIRM_REVOKE>
     <CONSENT_REGISTERED_STATUSTEXT>
@@ -695,17 +689,15 @@
         According to UiO's user system, your accounts are not registered with access any system that require consent.
         If you feel this is incorrect, please contact the local IT staff.
     </CONSENT_NO_ACCESS_ANY_TEXT>
-
     <CONSENT_TABLEHEAD_NAME>Consent</CONSENT_TABLEHEAD_NAME>
     <CONSENT_TABLEHEAD_DESC>Description</CONSENT_TABLEHEAD_DESC>
     <CONSENT_TABLEHEAD_STATUS>Status</CONSENT_TABLEHEAD_STATUS>
     <CONSENT_TABLEHEAD_ADMIN>Change</CONSENT_TABLEHEAD_ADMIN>
-
     <CONSENT_STATUS_NOT_GIVEN>Not consented</CONSENT_STATUS_NOT_GIVEN>
     <CONSENT_STATUS_GIVEN>Consented</CONSENT_STATUS_GIVEN>
     <CONSENT_EDIT_BUTTON>Change</CONSENT_EDIT_BUTTON>
 
-    <!--GSuite consent -->
+    <!-- GSuite consent -->
     <GSUITE_NAME>GSuite for Education</GSUITE_NAME>
     <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/gsuite/hjelp/vilkaar.html</GSUITE_TERMS_OF_AGREEMENT_LINK>
     <GSUITE_TABLE_DESC>Consent for using GSuite for Education</GSUITE_TABLE_DESC>
@@ -724,6 +716,69 @@
     <GSUITE_CONSENT_REVOKED>
         Consent has been revoked. Read more about &lt;a href="{{link}}"&gt;what this entails.&lt;/a&gt;
     </GSUITE_CONSENT_REVOKED>
+    <GSUITE_GIVE_CONSENT_TEXT>
+        Yes, I consent to the terms of agreement for {{name}} at the University of Oslo.
+    </GSUITE_GIVE_CONSENT_TEXT>
+    <GSUITE_REMOVE_CONSENT_TEXT>
+        I wish to withdraw my consent and stop using {{name}}.
+    </GSUITE_REMOVE_CONSENT_TEXT>
+
+    <!-- Cristin Consent -->
+    <CRISTIN_NAME>Cristin</CRISTIN_NAME>
+    <CRISTIN_INFO_LINK>https://www.cristin.no/om-cristin/</CRISTIN_INFO_LINK>
+    <CRISTIN_TABLE_DESC>Consent for export to Cristin</CRISTIN_TABLE_DESC>
+    <CRISTIN_INTRO>
+        In order to use Cristin, you must consent to having your personal data exported to Cristin.&lt;br&gt;
+        Employee in scientific positions are automatically exported and do not need to consent.&lt;br&gt;&lt;br&gt;
+
+        By consenting you agree to have read and understand what personal data that will be&lt;br&gt;
+        transferred to Cristin.&lt;br&gt;&lt;br&gt;
+
+        The Cristin system is provided by &#x1f517;&lt;a href="{{link}}"&gt;Unit - The Norwegian Directorate of ICT and Joint Services&lt;br&gt;
+        in Higher Education and Research.&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+        The following personal data is transferred to Cristin.
+
+        &lt;ul type="disc"&gt;
+        &lt;li&gt;Full name&lt;/li&gt;
+        &lt;li&gt;Norwegian national identity number&lt;/li&gt;
+        &lt;li&gt;Primary UiO email address&lt;/li&gt;
+        &lt;li&gt;Primary UiO username&lt;/li&gt;
+        &lt;li&gt;How you are affiliated to UiO1
+            &lt;ul type="disc"&gt;
+                &lt;li&gt;Your roles. (Employee/guest)&lt;/li&gt;
+                &lt;li&gt;At what organisational unit you are affiliated&lt;/li&gt;
+                &lt;li&gt;Job title&lt;/li&gt;
+                &lt;li&gt;Percentage of employment&lt;/li&gt;
+                &lt;li&gt;Job code (SKO)&lt;/li&gt;
+                &lt;li&gt;Start and end date of affiliation&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;/ul&gt;
+
+        It will take approximately one day from your consent is registered, &lt;br&gt;
+        until you can start using Cristin. &lt;br&gt;&lt;br&gt;
+
+        You may at any time withdraw your consent.&lt;br&gt;
+        Withdrawing your consent means that UiO will stop exporting your personal data to Cristin.&lt;br&gt;
+
+        Contact &#x1f517;&lt;a href="{{link}}"&gt;Cristin&lt;/a&gt; directly for inquiries on data deletion.
+
+    </CRISTIN_INTRO>
+    <CRISTIN_CONSENT_REGISTERED>
+        Your consent has been registered. It will take approximately one day
+        from the consent was registered until you can start using Cristin.
+    </CRISTIN_CONSENT_REGISTERED>
+    <CRISTIN_CONSENT_REVOKED>
+        Consent has been revoked.
+    </CRISTIN_CONSENT_REVOKED>
+    <CRISTIN_GIVE_CONSENT_TEXT>
+        Yes, I consent to exporting my personal data to Cristin.
+    </CRISTIN_GIVE_CONSENT_TEXT>
+    <CRISTIN_REMOVE_CONSENT_TEXT>
+        I wish to withdraw my consent.
+    </CRISTIN_REMOVE_CONSENT_TEXT>
+
 
     <!-- GENERAL TEXT
          Text that is meant to be global - used on many pages.
