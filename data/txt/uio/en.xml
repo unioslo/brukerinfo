@@ -697,21 +697,21 @@
     <CONSENT_STATUS_GIVEN>Consented</CONSENT_STATUS_GIVEN>
     <CONSENT_EDIT_BUTTON>Change</CONSENT_EDIT_BUTTON>
 
-    <!-- GSuite consent -->
-    <GSUITE_NAME>GSuite for Education</GSUITE_NAME>
+    <!-- G Suite consent -->
+    <GSUITE_NAME>G Suite for Education</GSUITE_NAME>
     <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/gsuite/hjelp/vilkaar.html</GSUITE_TERMS_OF_AGREEMENT_LINK>
-    <GSUITE_TABLE_DESC>Consent for using GSuite for Education</GSUITE_TABLE_DESC>
+    <GSUITE_TABLE_DESC>Consent for using G Suite for Education</GSUITE_TABLE_DESC>
     <GSUITE_INTRO>
-        In order to use GSuite for Education, you have to consent to &lt;a href="{{link}}"&gt;
-        the terms of agreement for GSuite for Education at the University
+        In order to use G Suite for Education, you have to consent to &lt;a href="{{link}}"&gt;
+        the terms of agreement for G Suite for Education at the University
         of Oslo.&lt;/a&gt;&lt;br&gt;
         It will take approximately one hour from your consent is registered,
-        until you can start using GSuite for Education.&lt;br&gt;
+        until you can start using G Suite for Education.&lt;br&gt;
         You may at any time withdraw your consent.
     </GSUITE_INTRO>
     <GSUITE_CONSENT_REGISTERED>
         Your consent has been registered. It will take approximately one hour
-        from the consent was registered until you can start using GSuite for Education.
+        from the consent was registered until you can start using G Suite for Education.
     </GSUITE_CONSENT_REGISTERED>
     <GSUITE_CONSENT_REVOKED>
         Consent has been revoked. Read more about &lt;a href="{{link}}"&gt;what this entails.&lt;/a&gt;
