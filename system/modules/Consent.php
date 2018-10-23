@@ -160,18 +160,15 @@ class Consent extends ModuleGroup {
 
 
     public function createConsentForm($view, $redirected, $consent) {
-
         $name = $consent['consent_name'];
-
         $consentForm = new BofhFormUiO('consent-' . $name, null, 'consent/' . $name);
         $consentForm->setAttribute('class', 'app-form-big');
-
         $name_long = txt($this->createTxtName($name, 'name'));
 
         if ($consent['has_consented']) {
-            $consent_text = txt('consent_remove_consent_text', array('name' => $name_long));
+            $consent_text = txt($this->createTxtName($name, 'remove_consent_text'), array('name' => $name_long));
         } else {
-            $consent_text = txt('consent_give_consent_text', array('name' => $name_long));
+            $consent_text = txt($this->createTxtName($name, 'give_consent_text'), array('name' => $name_long));
         }
         $consentBox = $consentForm->createElement('checkbox', 'consent-' . $name , null, $consent_text, array(
                 'id' => 'consent-' . $name . '-checkbox',
@@ -189,16 +186,24 @@ class Consent extends ModuleGroup {
         );
 
         return $consentForm;
-
     }
 
     public function showConsentForm($view, $redirected, $consent){
         $name = $consent['consent_name'];
         $view->addElement('h1', txt($this->createTxtName($name, 'name')));
-        $view->addElement('p', txt('consent_terms_of_agreement',
-                                   array('link' => txt($this->createTxtName($name, 'terms_of_agreement_link')))));
-        $view->addElement('p', txt($this->createTxtName($name, 'intro'),
-                                   array('link' => txt($this->createTxtName($name, 'terms_of_agreement_link')))));
+
+        if ($this->isTermsOfAgreementTypePage($name)){
+            // Simple terms of agreemment page
+            $view->addElement('p', txt('consent_terms_of_agreement',
+                              array('link' => txt($this->createTxtName($name, 'terms_of_agreement_link')))));
+            $view->addElement('p', txt($this->createTxtName($name, 'intro'),
+                              array('link' => txt($this->createTxtName($name, 'terms_of_agreement_link')))));
+        } else {
+            // More detailed consent page
+            $view->addElement('div', txt($this->createTxtName($name, 'intro'),
+                              array('link' => txt($this->createTxtName($name, 'info_link')))));
+        }
+
         if ($consent['consent_date'] != null) {
             $view->addElement('p', txt('consent_registered_statustext', array('date' => $consent['consent_date'])));
         } else {
@@ -272,6 +277,15 @@ class Consent extends ModuleGroup {
         }
         catch (XML_RPC2_FaultException $e) {
             // Person has no registered consents at all
+            return false;
+        }
+    }
+
+    // Terms of agreement or consent type page
+    private function isTermsOfAgreementTypePage($consentName) {
+        if ($consentName == 'gsuite') {
+            return true;
+        } else {
             return false;
         }
     }

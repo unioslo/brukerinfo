@@ -681,12 +681,6 @@
     <CONSENT_PAGE_TITLE>Samtykke for tjenester på UiO</CONSENT_PAGE_TITLE>
     <CONSENT_TITLE>Samtykke for {{name}}</CONSENT_TITLE>
     <CONSENT_TERMS_OF_AGREEMENT>Les mer om  &lt;a href="{{link}}"&gt;hva samtykke innebærer.&lt;/a&gt;</CONSENT_TERMS_OF_AGREEMENT>
-    <CONSENT_GIVE_CONSENT_TEXT>
-        Ja, jeg samtykker til bruksvilkårene for {{name}} på UiO.
-    </CONSENT_GIVE_CONSENT_TEXT>
-    <CONSENT_REMOVE_CONSENT_TEXT>
-        Ja, jeg ønsker å trekke tilbake mitt samtykke, og slutte å bruke {{name}}.
-    </CONSENT_REMOVE_CONSENT_TEXT>
     <CONSENT_CONFIRM_GIVE>Avgi samtykke</CONSENT_CONFIRM_GIVE>
     <CONSENT_CONFIRM_REVOKE>Trekk tilbake samtykke</CONSENT_CONFIRM_REVOKE>
     <CONSENT_REGISTERED_STATUSTEXT>
@@ -708,7 +702,6 @@
     <CONSENT_TABLEHEAD_DESC>Beskrivelse</CONSENT_TABLEHEAD_DESC>
     <CONSENT_TABLEHEAD_STATUS>Status</CONSENT_TABLEHEAD_STATUS>
     <CONSENT_TABLEHEAD_ADMIN>Endre</CONSENT_TABLEHEAD_ADMIN>
-
     <CONSENT_STATUS_NOT_GIVEN>Ikke samtykket</CONSENT_STATUS_NOT_GIVEN>
     <CONSENT_STATUS_GIVEN>Samtykket</CONSENT_STATUS_GIVEN>
     <CONSENT_EDIT_BUTTON>Endre</CONSENT_EDIT_BUTTON>
@@ -736,7 +729,69 @@
     <GSUITE_CONSENT_REVOKED>
         Samtykket har blitt trukket. Les mer om &lt;a href="{{link}}"&gt;hva dette innebærer.&lt;/a&gt;
     </GSUITE_CONSENT_REVOKED>
+    <GSUITE_GIVE_CONSENT_TEXT>
+        Ja, jeg samtykker til bruksvilkårene for {{name}} på UiO.
+    </GSUITE_GIVE_CONSENT_TEXT>
+    <GSUITE_REMOVE_CONSENT_TEXT>
+        Ja, jeg ønsker å trekke tilbake mitt samtykke, og slutte å bruke {{name}}.
+    </GSUITE_REMOVE_CONSENT_TEXT>
 
+
+    <!-- Cristin consent -->
+    <CRISTIN_NAME>Cristin</CRISTIN_NAME>
+    <CRISTIN_INFO_LINK>https://www.cristin.no/om-cristin/personvern/</CRISTIN_INFO_LINK>
+    <CRISTIN_TABLE_DESC>Samtykke for eksport til Cristin</CRISTIN_TABLE_DESC>
+    <CRISTIN_INTRO>
+        Før du kan bli eksportert til Cristin må du avgi samtykke til at din personinformasjon&lt;br&gt;
+        kan overføres fra UiO til Cristin. Vitenskapelig ansatte blir automatisk overført til Cristin og &lt;br&gt;
+        trenger ikke å samtykke.&lt;br&gt;&lt;br&gt;
+
+
+        Dette innebærer at du som bruker har lest og forstått hvilke personopplysninger&lt;br&gt;
+        som overføres til Cristin. &lt;br&gt;&lt;br&gt;
+
+        Cristin eies av &#x1f517;&lt;a href="{{link}}"&gt;Unit - Direktoratet for IKT og fellestjenester i høyere utdanning&lt;br&gt;
+        og forskning.&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+        Følgende informasjon overføres til Cristin:
+        &lt;ul type="disc"&gt;
+        &lt;li&gt;Fullt navn&lt;/li&gt;
+        &lt;li&gt;Fødselsnummer&lt;/li&gt;
+        &lt;li&gt;Primære UiO e-postadresse&lt;/li&gt;
+        &lt;li&gt;Primære UiO brukernavn&lt;/li&gt;
+        &lt;li&gt;Hvilken tilknytning du har til UiO.
+            &lt;ul type="disc"&gt;
+                &lt;li&gt;Hvilke roller du har. (Ansatt/Gjest)&lt;/li&gt;
+                &lt;li&gt;Hvilken enhet du jobber ved&lt;/li&gt;
+                &lt;li&gt;Stillingstittel&lt;/li&gt;
+                &lt;li&gt;Stillingsprosent&lt;/li&gt;
+                &lt;li&gt;Stillingskode (SKO)&lt;/li&gt;
+                &lt;li&gt;Start og sluttdato&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;/ul&gt;
+
+        Det kan ta inntil et døgn fra samtykket er registrert til du kan ta i bruk Cristin.&lt;br&gt;&lt;br&gt;
+
+        Du kan når som helst trekke tilbake samtykket.&lt;br&gt;
+        Å trekke sammtykket innebærer at UiO slutter å overføre data til Cristin.&lt;br&gt;
+
+        For spørsmål relatert til sletting av data i Cristin ta kontakt med &#x1f517;&lt;a href="{{link}}"&gt;Cristin&lt;/a&gt; direkte.
+
+    </CRISTIN_INTRO>
+    <CRISTIN_CONSENT_REGISTERED>
+        Ditt samtykke er registrert. Det kan ta opptil et døgn fra tidspunktet samtykket
+        ble avgitt til du kan ta i bruk Cristin.
+    </CRISTIN_CONSENT_REGISTERED>
+    <CRISTIN_CONSENT_REVOKED>
+        Samtykket har blitt trukket.
+    </CRISTIN_CONSENT_REVOKED>
+    <CRISTIN_GIVE_CONSENT_TEXT>
+        Ja, jeg samtykker til at personinformasjon overføres til Cristin.
+    </CRISTIN_GIVE_CONSENT_TEXT>
+    <CRISTIN_REMOVE_CONSENT_TEXT>
+        Ja, jeg ønsker å trekke tilbake mitt samtykke.
+    </CRISTIN_REMOVE_CONSENT_TEXT>
 
 
     <!-- GENERAL TEXT
