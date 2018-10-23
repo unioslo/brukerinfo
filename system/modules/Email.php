@@ -641,6 +641,9 @@ class Email extends ModuleGroup {
             $text = Init::get('Text');
 
             $filters_raw = $Bofh->getData('get_constant_description', 'EmailTargetFilter');
+
+            // Array of filters names. These filters will not be displayed to the user.
+            // TODO: Move this to the config file.
             $hidden_filters = array('internalonly');
 
             //sorting the filters
@@ -649,7 +652,7 @@ class Email extends ModuleGroup {
                 $id = $f['code_str'];
 
                 if (in_array($id, $hidden_filters)) {
-                    // Skipp hidden filter
+                    // Skip hidden filter
                     continue;
                 }
 
