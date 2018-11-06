@@ -531,6 +531,21 @@
     <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: personer fungerer bare for grupper
         brukt for Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
 
+    <GROUPS_DELETE_TITLE>Sletting av gruppe</GROUPS_DELETE_TITLE>
+    <GROUPS_DELETE_TEXT>
+    Hvis du ønsker å slette gruppen kan du markere den for slettet her.&lt;br&gt;
+    Gruppen blir da automatisk slettet etter 30 dager.&lt;br&gt;
+    Du kan når som helst i denne periode fjerne markeringen.
+    &lt;br&gt;&lt;br&gt;
+    Merk at det er ikke er mulig å slette personlige filgrupper.
+    </GROUPS_DELETE_TEXT>
+    <GROUPS_DELETE_EXPIRED_TEXT>
+    Gruppen er lagt til sletting, og vil automatisk bli fjernet etter 30 dager.&lt;br&gt;
+    Hvis du ikke ønsker at gruppen skal slettes, kan du selv fjerne markeringen.
+    </GROUPS_DELETE_EXPIRED_TEXT>
+    <GROUPS_DELETE_BUTTON_TEXT>Slett gruppen</GROUPS_DELETE_BUTTON_TEXT>
+    <GROUPS_DELETE_UNDELETE_BUTTON_TEXT>Fjern markering</GROUPS_DELETE_UNDELETE_BUTTON_TEXT>
+
     <GROUPS_NEW_TITLE>Søk om ny gruppe</GROUPS_NEW_TITLE>
     <GROUPS_NEW_INTRO>&lt;p&gt;Søk om en ny gruppe til bruk i IT-systemene ved UiO.
         Søknaden vil bli behandlet av brukeradministrasjonen ved
