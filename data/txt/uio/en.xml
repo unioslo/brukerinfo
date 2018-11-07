@@ -525,7 +525,7 @@
 
     <GROUPS_DELETE_TITLE>Group deletion</GROUPS_DELETE_TITLE>
     <GROUPS_DELETE_TEXT>
-    Mark the group for deletion. The group will be automatically deleted after 30 days.
+    Remove the group from all IT systems. The group will be permanently deleted after 30 days.
     &lt;br&gt;
     You can undo the deletion at any time during these 30 days.
     &lt;br&gt;&lt;br&gt;
