@@ -601,6 +601,10 @@ class Groups extends ModuleGroup {
             }
             unset($group['description']);
 
+            if (isset($group['expire_date'])){
+                $dl->addData('Status:', '<font color="red">' . txt('groups_delete_status') . '</font>');
+            }
+
             $dl->addData(txt('group_create_date'), ($group['create_date']) ? $group['create_date']->format(txt('date_format')) : '');
             unset($group['create_date']);
 
