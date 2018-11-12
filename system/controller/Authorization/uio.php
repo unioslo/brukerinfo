@@ -112,16 +112,6 @@ class Authorization_uio extends Authorization
             return false;
         }
 
-        // Feature toggle. Limit the use to INT + hermas
-        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje', 'hmo',
-                               'jbr', 'jokim', 'jsama', 'raymonm', 'sgs',
-                               'hermas', 'margaref', 'btftroll', 'juliannk');
-        $username = $this->user->getUsername();
-        if (in_array($username, $allowed_users)) {
-            return true;
-        } else {
-            return false;
-        }
         $affs = $this->bofh->getCache('affiliations');
         foreach($affs as $aff) {
             if ($aff['affiliation'] == 'ANSATT' && $aff['status'] == 'tekadm') {
