@@ -458,6 +458,26 @@ class Groups extends ModuleGroup {
             }
         }
 
+        /**
+         * Process the deletion or undeleting the group
+         */
+        function formDeleteGroupProcess($input){
+            global $groupname;
+            $bofh = Init::get('Bofh');
+            try {
+                if (isset($input['okReactivateConfirm'])) {
+                    $res = $bofh->run_command('group_set_expire', $groupname);
+                } else {
+                    $res = $bofh->run_command('group_delete', $groupname);
+                }
+                View::addMessage($res);
+                return true;
+            } catch(Exception $e) {
+                Bofhcom::viewError($e);
+                return false;
+            }
+        }
+
         // getting the users groups
         $adm_groups = getAdmGroups();
         $normal_groups = getGroups();
@@ -556,6 +576,17 @@ class Groups extends ModuleGroup {
                     $delform->process('formDeleteMembersProcess');
                     View::forward('groups/?group='.$groupname);
                 }
+
+                // form for deleting a group.
+                $delGroupForm = new BofhFormUiO('delGroup', null, 'groups/?group='.$groupname);
+                $delGroupForm->setAttribute('class', 'app-form-big');
+
+                if ($delGroupForm->validate()) {
+                    // delete and undelete the group
+                    $delGroupForm->process('formDeleteGroupProcess');
+
+                    View::forward('groups/?group='.$groupname);
+                }
             }
 
             $View->start();
@@ -569,6 +600,10 @@ class Groups extends ModuleGroup {
                 $dl->addData(txt('group_description'), ($group['description']));
             }
             unset($group['description']);
+
+            if (isset($group['expire_date'])){
+                $dl->addData('Status:', '<font color="red">' . txt('groups_delete_status') . '</font>');
+            }
 
             $dl->addData(txt('group_create_date'), ($group['create_date']) ? $group['create_date']->format(txt('date_format')) : '');
             unset($group['create_date']);
@@ -684,6 +719,22 @@ class Groups extends ModuleGroup {
                 } catch (XML_RPC2_FaultException $e) {
                     $View->addElement('p', txt('groups_members_too_many'));
                     $View->addElement(getFormDeleteMembers($groupname));
+                }
+            }
+            // If moderated, enable group deletion
+            if ($moderator) {
+                $View->addElement('h2', txt('groups_delete_title'));
+
+                if (isset($group['expire_date'])) {
+                    $View->addElement('p', txt('groups_delete_expired_text'));
+                    $delGroupForm->addElement('hidden', 'okReactivateConfirm', true);
+                    $delGroupForm->addElement('submit', null, txt('groups_delete_undelete_button_text'));
+                    $View->addElement($delGroupForm);
+                } else {
+                    $View->addElement('p', txt('groups_delete_text'));
+                    $delGroupForm->addElement('hidden', 'okDeleteConfirm', true);
+                    $delGroupForm->addElement('submit', null, txt('groups_delete_button_text'));
+                    $View->addElement($delGroupForm);
                 }
             }
             die;
