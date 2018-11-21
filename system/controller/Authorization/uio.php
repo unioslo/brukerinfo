@@ -116,7 +116,7 @@ class Authorization_uio extends Authorization
         foreach($affs as $aff) {
             if ($aff['affiliation'] == 'ANSATT' && $aff['status'] == 'tekadm') {
                 return true;
-            } elseif ($aff['affiliation'] == 'TILKNYTTET' && $aff['status'] == 'emeritus') {
+            } elseif ($aff['affiliation'] == 'TILKNYTTET' && $aff['source_system'] == 'SAP') {
                 return true;
             }
         }
