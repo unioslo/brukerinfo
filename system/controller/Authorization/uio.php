@@ -134,7 +134,7 @@ class Authorization_uio extends Authorization
         }
 
         // Feature toggle. Limit the use to only INT + karinefu for now
-        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje',  'hmo',  'jbr', 'jokim', 'jsama', 'raymonm', 'sgs', 'karinefu');
+        $allowed_users = array('skh', 'ae', 'fhl', 'hanskfje',  'hmo',  'jbr', 'jokim', 'jsama', 'raymonm', 'sgs', 'karinefu', 'marbrenn');
         $username = $this->user->getUsername();
         if (in_array($username, $allowed_users)) {
             return true;
