@@ -682,7 +682,7 @@
 
     <!-- Help pages -->
     <HELP_TITLE>Help</HELP_TITLE>
-    <HELP_LINK>https://www.uio.no/english/services/it/computer/gsuite/help/terms.html</HELP_LINK>
+    <HELP_LINK>https://uio.no/tjenester/it/brukernavn-passord/brukerinfo/</HELP_LINK>
 
     <!-- Consent pages common -->
     <CONSENT_PAGE_TITLE>Consent for services at UiO</CONSENT_PAGE_TITLE>
@@ -715,7 +715,7 @@
 
     <!-- G Suite consent -->
     <GSUITE_NAME>G Suite for Education</GSUITE_NAME>
-    <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/gsuite/hjelp/vilkaar.html</GSUITE_TERMS_OF_AGREEMENT_LINK>
+    <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/english/services/it/computer/gsuite/help/terms.html</GSUITE_TERMS_OF_AGREEMENT_LINK>
     <GSUITE_TABLE_DESC>Consent for using G Suite for Education</GSUITE_TABLE_DESC>
     <GSUITE_INTRO>
         In order to use G Suite for Education, you have to consent to &lt;a href="{{link}}"&gt;
