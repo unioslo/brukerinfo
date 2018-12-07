@@ -721,12 +721,12 @@
         In order to use G Suite for Education, you have to consent to &lt;a href="{{link}}"&gt;
         the terms of agreement for G Suite for Education at the University
         of Oslo.&lt;/a&gt;&lt;br&gt;
-        It will take approximately one hour from your consent is registered,
+        It will take approximately 15 minutes from your consent is registered,
         until you can start using G Suite for Education.&lt;br&gt;
         You may at any time withdraw your consent.
     </GSUITE_INTRO>
     <GSUITE_CONSENT_REGISTERED>
-        Your consent has been registered. It will take approximately one hour
+        Your consent has been registered. It will take approximately 15 minutes
         from the consent was registered until you can start using G Suite for Education.
     </GSUITE_CONSENT_REGISTERED>
     <GSUITE_CONSENT_REVOKED>
