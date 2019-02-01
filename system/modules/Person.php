@@ -78,8 +78,9 @@ class Person extends ModuleGroup {
          */
         function getPersonInfo() {
 
+            $userName = Init::get('User')->getUserName();
             $Bofh = Init::get("Bofh");
-            $p = $Bofh->getDataClean('person_info', Init::get('User')->getUsername());
+            $p = $Bofh->getDataClean('person_info', $userName);
 
             //all the values should come in arrays:
             foreach($p as $k=>$v) {
@@ -106,6 +107,17 @@ class Person extends ModuleGroup {
                 }
 
                 unset($p['source_system_1']);
+            }
+
+            //get fnr from bofh using person_get_id
+            if(!empty($p['extid'])) {
+                foreach($p['extid'] as $k=>$f) {
+                    if($f == 'NO_BIRTHNO') {
+                        $fnr = $Bofh->getDataClean('person_get_id', $userName, $f, $p['extid_src'][$k]);
+                        $p['fnr'][$k] = $fnr['ext_id_value'];
+                        $p['fnr_src'][$k] = $fnr['source_system'];
+                    }
+                }
             }
 
             return $p;
