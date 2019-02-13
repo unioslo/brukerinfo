@@ -1,18 +1,18 @@
 <?php
 // Copyright 2013, 2014 University of Oslo, Norway
-// 
+//
 // This file is part of Cerebrum.
-// 
+//
 // Cerebrum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // Cerebrum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
@@ -53,14 +53,14 @@ class Authorization_uio extends Authorization
      * If the user is owned by a person.
      *
      * @return bool
-     */ 
+     */
     protected function is_personal()
     {
         return (   $this->is_authenticated()
                 && $this->bofh->isPersonal());
     }
 
-    /** 
+    /**
      * If the user is member of a given group
      * NOTE: This call can be expensive.
      *
@@ -112,11 +112,10 @@ class Authorization_uio extends Authorization
             return false;
         }
 
+
         $affs = $this->bofh->getCache('affiliations');
         foreach($affs as $aff) {
-            if ($aff['affiliation'] == 'ANSATT' && $aff['status'] == 'tekadm') {
-                return true;
-            } elseif ($aff['affiliation'] == 'TILKNYTTET' && $aff['source_system'] == 'SAP') {
+            if (($aff['affiliation'] == 'ANSATT' || $aff['affiliation'] == 'TILKNYTTET') && $aff['source_system'] == 'SAP')  {
                 return true;
             }
         }
@@ -170,7 +169,7 @@ class Authorization_uio extends Authorization
      */
     protected function has_imap()
     {
-        return (   $this->is_authenticated() 
+        return (   $this->is_authenticated()
                 && $this->bofh->hasSpreads('IMAP@uio'));
     }
 
@@ -182,7 +181,7 @@ class Authorization_uio extends Authorization
      */
     protected function has_exchange()
     {
-        return (   $this->is_authenticated() 
+        return (   $this->is_authenticated()
                 && $this->bofh->hasSpreads('exchange_acc@uio'));
     }
 
