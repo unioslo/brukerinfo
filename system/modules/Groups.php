@@ -50,7 +50,7 @@ class Groups extends ModuleGroup {
     }
 
     public function getShortcuts() {
-        if (INST == 'uio') {
+        if (INST == 'uio' && $this->authz->can_create_groups()) {
             return array(
                 array('groups/', txt('home_shortcuts_members')),
                 array('groups/new/', txt('home_shortcuts_group_request'))
