@@ -616,7 +616,7 @@
         more than {{max}} characters.</GUEST_NEW_FORM_NAME_FMT>
 
     <GUEST_CREATED_SMS>Created new wireless account: &lt;ul&gt;&lt;li&gt;Username:
-        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; SMS with the
+        &lt;b&gt;{{uname}}@uio.no&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; SMS with the
         username and password was sent to
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
     <GUEST_DEACTIVATED>Wireless account with the username &lt;b&gt;{{uname}}
