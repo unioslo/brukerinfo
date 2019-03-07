@@ -698,7 +698,7 @@ class Groups extends ModuleGroup {
                         }
 
                         $table = View::createElement('table', null, 'class="app-table"');
-                        $table->setHead(null, txt('group_members_table_name'), txt('group_members_table_type'));
+                        $table->setHead(null, txt('group_members_table_user_name'), txt('group_members_table_full_name'), txt('group_members_table_type'));
 
                         //TODO: make a class for this kind of forms...
                         $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="app-form">'); 
@@ -707,7 +707,8 @@ class Groups extends ModuleGroup {
                         for ($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
                             $table->addData(array(
                                 View::createElement('td', '<input type="checkbox" name="del['.$members[$i]['type'].']['.$members[$i]['id'].']" value="'.$members[$i]['name'].'" id="mem'.$members[$i]['id'].'">', 'class="less"'),
-                                '<label for="mem'.$members[$i]['id'].'">' . $members[$i]['name'] . '</label>', 
+                                '<label for="mem'.$members[$i]['id'].'">' . $members[$i]['user_name'] .'</label>',
+                                $members[$i]['full_name'],
                                 $members[$i]['type']
                             ));
                         }
