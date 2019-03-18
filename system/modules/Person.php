@@ -52,7 +52,12 @@ class Person extends ModuleGroup {
     }
 
     public function getShortcuts() {
-        return array(array('person/name', txt('home_shortcuts_change_pri_email_addr')));
+        if($this->authz->can_set_display_name()){
+            return array(array('person/name', txt('home_shortcuts_change_pri_email_addr')));
+        } else{
+            return array();
+        }
+        
     }
 
     public function display($path) {
