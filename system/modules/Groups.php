@@ -22,8 +22,9 @@ class Groups extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if (INST != 'uio' || !$this->authz->is_guest())
+        if (!($this->checkInstance(INST) && $this->authz->is_guest())){
             $modules->addGroup($this);
+        }
     }
 
     public function getName() {
@@ -35,14 +36,12 @@ class Groups extends ModuleGroup {
     }
 
     public function getSubgroups() {
-        if (INST == 'uio') {
-            $ret = array('');
-            if ($this->authz->can_create_groups()) {
+        $ret = array();
+        if ( INST == 'uio' && $this->authz->can_create_groups()) {
+                $ret[] = '';
                 $ret[] = 'new';
-            }
-            return $ret;
         }
-        return array();
+        return $ret;
     }
 
     public function getHiddenRoutes() {
@@ -55,6 +54,8 @@ class Groups extends ModuleGroup {
                 array('groups/', txt('home_shortcuts_members')),
                 array('groups/new/', txt('home_shortcuts_group_request'))
             );
+        } elseif (INST == 'uit'){
+            return array();
         }
         return array(
             array('groups/', txt('home_shortcuts_members')),
@@ -747,7 +748,9 @@ class Groups extends ModuleGroup {
         $View->addElement('h1', txt('GROUPS_TITLE'));
 
         // admin groups
-        $View->addElement('h2', txt('groups_moderative_title'));
+        if (INST != 'uit') {
+            $View->addElement('h2', txt('groups_moderative_title'));
+        }
 
         if ($adm_groups == -1) {
             $View->addElement('p', txt('groups_too_many'));
@@ -766,11 +769,15 @@ class Groups extends ModuleGroup {
             );
             $View->addElement($table);
         } else {
-            $View->addElement('p', txt('groups_empty_mod_list'));
+            if (INST != 'uit') {
+                $View->addElement('p', txt('groups_empty_mod_list'));
+            }
         }
 
         if ($normal_groups) {
-            $View->addElement('h2', txt('groups_others_title'));
+            if (INST != 'uit') {
+                $View->addElement('h2', txt('groups_others_title'));
+            }
             $othtable = View::createElement('table', null, 'class="app-table"');
             $othtable->setHead(
                 txt('groups_table_groupname'),

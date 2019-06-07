@@ -29,5 +29,9 @@ abstract class ModuleGroup {
     public function showInMenu() {
         return true;
     }
+
+    public function checkInstance($instance) {
+        return ($instance == 'uit' || $instance == 'uio');
+    }
 }
 ?>
