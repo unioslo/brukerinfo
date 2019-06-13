@@ -22,7 +22,7 @@ class Account extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if (!($this->checkInstance(INST) && $this->authz->is_guest())) {
+        if (!($this->isUioOrUit(INST) && $this->authz->is_guest())) {
             $modules->addGroup($this);
         }
     }
@@ -36,10 +36,10 @@ class Account extends ModuleGroup {
     }
 
     public function getSubgroups() {
-        if (($this->checkInstance(INST)) && $this->authz->can_set_primary_account()
+        if (($this->isUioOrUit(INST)) && $this->authz->can_set_primary_account()
             || Init::get('Bofh')->isPersonal()) {
             return array('', 'primary');
-        } else if ($this->checkInstance(INST)) {
+        } else if ($this->isUioOrUit(INST)) {
             return array('');
         } else {
             return array('', 'password');

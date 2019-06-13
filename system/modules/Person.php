@@ -22,7 +22,7 @@ class Person extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if ($this->checkInstance(INST) && $this->authz->is_personal()
+        if ($this->isUioOrUit(INST) && $this->authz->is_personal()
             || INST == 'hine' && Init::get('Bofh')->isPersonal()) {
             $modules->addGroup($this);
         }

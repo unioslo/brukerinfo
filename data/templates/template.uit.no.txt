@@ -39,19 +39,8 @@
         <li><a href="#app-footer">Hopp til kontaktinformasjonen</a></li>
     </ul>
 
-    <!--
-    <form class="searchform" method="get" action='/'> 
-      <fieldset> 
-	<label for="searchstring" class="searchstringlabel">Søk i WebID</label> 
-        <input type="hidden" name="vrtx" value="search"/> 
-	<input type="text" class="searchstring" name="query" value="" /> 
-        <button type="submit" class="searchsubmit"><span>S&oslash;k</span></button> 
-      </fieldset> 
-    </form>
-    -->
-
-    <div id="head-menu"> 
-        ##LANGUAGES##        
+    <div id="head-menu">
+        ##LANGUAGES##
     </div>
     <div id="head-submenu">
         <span class="head-help"><a href="https://uit.no/om/orakelet/frag?p_document_id=539109">Hjelp</a></span>
@@ -94,11 +83,6 @@
    </div> 
 </div>
 <!-- Page footer end -->
-
-<!-- IE fixes -->
-<!--[if IE]>
-    <script type="text/javascript" src="uio_design/uio-ie-fixes.js"></script> 
-<![endif]-->
 
 </body>
 </html>

@@ -30,7 +30,7 @@ abstract class ModuleGroup {
         return true;
     }
 
-    public function checkInstance($instance) {
+    public function isUioOrUit($instance) {
         return ($instance == 'uit' || $instance == 'uio');
     }
 }

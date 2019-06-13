@@ -22,7 +22,7 @@ class Email extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get("Authorization");
-        if (!$this->checkInstance(INST) || $this->authz->has_email()) {
+        if (!$this->isUioOrUit(INST) || $this->authz->has_email()) {
             $modules->addGroup($this);
         }
     }
@@ -163,7 +163,7 @@ class Email extends ModuleGroup {
         }
         unset($primary['account']);
 
-        if ( $this->checkInstance(INST) && !empty($_GET['del_addr'])) {
+        if ( $this->isUioOrUit(INST) && !empty($_GET['del_addr'])) {
 
             if (!in_array($_GET['del_addr'], $primary['deletable'])) {
                 View::forward('email/', txt('email_del_invalid_addr'));
@@ -223,7 +223,7 @@ class Email extends ModuleGroup {
         }
 
         // valid addresses
-        if ($this->checkInstance(INST)) {
+        if ($this->isUioOrUit(INST)) {
             if (isset($primary['valid_addr'])) {
                 if (!empty($primary['deletable'])) {
                     foreach ($primary['valid_addr'] as $id => $addr) {
@@ -327,7 +327,7 @@ class Email extends ModuleGroup {
             }
 
             $prilist->addData(txt('email_info_filters'), $filters);
-        } elseif ($this->checkInstance(INST)) {
+        } elseif ($this->isUioOrUit(INST)) {
             $prilist->addData(txt('email_info_filters'), null);
         }
         unset($primary['filters']);

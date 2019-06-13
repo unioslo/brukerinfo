@@ -22,7 +22,7 @@ class Groups extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if (!($this->checkInstance(INST) && $this->authz->is_guest())){
+        if (!($this->isUioOrUit(INST) && $this->authz->is_guest())){
             $modules->addGroup($this);
         }
     }
