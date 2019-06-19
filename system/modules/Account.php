@@ -22,7 +22,7 @@ class Account extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if (INST != 'uio' || !$this->authz->is_guest()) {
+        if (!($this->isUioOrUit(INST) && $this->authz->is_guest())) {
             $modules->addGroup($this);
         }
     }
@@ -36,10 +36,10 @@ class Account extends ModuleGroup {
     }
 
     public function getSubgroups() {
-        if (INST == 'uio' && $this->authz->can_set_primary_account()
+        if (($this->isUioOrUit(INST)) && $this->authz->can_set_primary_account()
             || Init::get('Bofh')->isPersonal()) {
             return array('', 'primary');
-        } else if (INST == 'uio') {
+        } else if ($this->isUioOrUit(INST)) {
             return array('');
         } else {
             return array('', 'password');
@@ -53,7 +53,9 @@ class Account extends ModuleGroup {
     public function getShortcuts() {
         if (INST == 'uio') {
             return array(array('https://passord.uio.no', txt('home_shortcuts_password')));
-        } else if (in_array('password', $this->getSubgroups())) {
+        } elseif (INST == 'uit') {
+            return array(array('https://passord.uit.no', txt('home_shortcuts_password')));
+        } elseif (in_array('password', $this->getSubgroups())) {
             return array(array('account/password/', txt('home_shortcuts_password')));
         } else {
             return array();

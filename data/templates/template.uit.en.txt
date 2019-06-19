@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>##TITLE##</title>
+
+    <base href="##BASEURL##" />
+
+    <!-- UiT profile -->
+    <link media="screen" type="text/css" href="uit_design/uit-app-general.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="uio_design/favicon.ico" />
+
+    <script type="text/javascript" src="uio_design/jquery.min.js"></script> 
+
+    <!-- Framebusting: Prevent clickjacking by avoiding frames. Modern
+         browsers respects the x-frame-options, though.
+         http://en.wikipedia.org/wiki/Framekiller -->
+    <script type="text/javascript">
+        if(top != self) top.location.replace(location);
+        if (window.location.pathname !== "/account/password/") localStorage.removeItem('newPassword');
+    </script>
+
+    ##HEADERS##
+</head>
+<body>
+
+<!-- Page header starts -->
+<div id="app-head-wrapper"> 
+  <div id="line-top"><div id="uitlogo" class="english-uitlogo"><a href="https://uit.no/english/">Arctic University of Norway</a></div></div>
+  <div id="app-head">
+    <div id="app-name">
+       <a href="##APPLIKASJONSLINK##">##APPLIKASJONSNAVN##</a> 
+       <span id="tagline">##TAGLINE##</span>
+    </div>
+
+    <!-- Skip to content is recommended to go right after the logo. -->
+    <ul class="hidnav">
+        <li><a href="#app-mainmenu">Jump to main menu</a></li>
+        <li><a href="#app-content">Jump to main content</a></li>
+        <li><a href="#app-footer">Jump to contact information</a></li>
+    </ul>
+
+    <div id="head-menu">
+        ##LANGUAGES##
+    </div>
+    <div id="head-submenu">
+        <span class="head-help"><a href="https://uit.no/om/orakelet/frag?p_document_id=539109">Help</a></span>
+        ##STATUSLOGON##
+    </div>
+  </div> 
+</div> 
+<!-- Page header end -->
+
+##MAINMENU##
+
+<!-- Page content starts -->
+<div id="app-content">
+
+##SUBMENU##
+
+##MESSAGES##
+
+##BODY##
+
+</div>
+<!-- Page content end -->
+
+<!-- Page footer starts -->
+<div id="app-footer-wrapper"> 
+   <div id="app-footer">
+     <div id="app-responsible"> 
+       <span class="vrtx-label">Responsible for the service</span> 
+       <span><a href="http://www.uit.no/ita">ITA - Department of Information Technology</a></span>
+     </div>
+     <div id="contact-info"> 
+       <div class="phone-fax-email"> 
+         <span class="vrtx-label">Contact information</span>
+         <span class="email">E-mail: <a href="mailto:orakel@uit.no">orakel@uit.no</a></span>  
+         <span class="tel">Tlf: (776) 44544</span>  
+       </div> 
+     </div>
+     <div id="app-footer-extras">
+     </div>
+   </div> 
+</div>
+<!-- Page footer end -->
+
+</body>
+</html>

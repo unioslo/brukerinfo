@@ -1,0 +1,336 @@
+/*
+ *
+ *  UiT design - Apps - Form elements
+ *
+ */
+
+/**
+ * To let forms comply with the uit profile and work with the most used
+ * browsers (IE, I curse you!), the following html code should be used:
+ *
+ * <form class="app-form" ... >
+ *
+ *      <!-- Normal form entry -->
+ *      <div>
+ *          <label for="username">Username:</label>
+ *          <input type="text" name="name" id="username" />
+ *      </div>
+ *
+ *      <!-- If the input was invalid, you can return it like: -->
+ *      <div class="app-form-error">
+ *          <label for="username">Username:</label>
+ *          <input type="text" name="name" id="username" />
+ *          <p>Error message</p>
+ *      </div>
+ *
+ *      ...
+ *
+ * </form> 
+ *
+ * Bigger app forms, which doesn't have many input fields in them, can be added
+ * to the class "app-form-big" instead.
+ *
+ */
+
+.app-form, .app-form fieldset, .app-form input, .app-form button,
+.app-form-big, .app-form-big fieldset, .app-form-big input, .app-form-big button {
+    margin: 0;
+    padding: 0;
+}
+
+.app-form > div, .app-form-big > div {
+    clear: both;
+}
+
+.app-form > div > label, .app-form-big > div > label {
+    font-size: 1.23em;
+    display: block;
+    margin: .3em 1em 1em 0;
+    white-space: nowrap;
+}
+.app-form > div > label {
+    text-align: right;
+    float: left;    
+    width: 10em;    
+}
+.app-form-big > div > label {
+    margin-bottom: .8em;
+    margin-top: 1.0em;
+}
+
+/** 
+ * Form-text: 
+ * Various text that goes in between form elements.
+ */
+.app-form .form-text, .app-form-big .form-text {
+    display: block;
+    margin: .5em 0 1.5em 0;
+    font-size: 1.1em;
+    line-height: 1.5em;
+}
+.app-form .form-text {
+    margin-left: 12.5em;
+}
+
+/**
+ * Required fields can be marked by putting the label in the 'required' class.
+ *
+ *  <label for="username" class="required">Username:</label>
+ *  <input type="text" name="username" id="username" />
+ *
+ * Which would add a red star in the label, like: Username: *
+ */
+.app-form .required:after, .app-form-big .required:after {
+    color: #ed1c24;
+    content: "*";
+    font-size: smaller;
+    vertical-align: super;
+}
+
+.app-form input, .app-form button, .app-form select,
+.app-form-big input, .app-form-big button, .app-form-big select {
+    border: 1px solid #888;
+    padding: 2px 4px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.app-form button, .app-form input[type="submit"],
+.app-form-big button, .app-form-big input[type="submit"] {
+    background: url(images/button-background.png) repeat-x 0 0;
+    margin: 0 1em 0 0;
+    padding: 6px 10px 6px 12px;
+    font: normal 1.1em/1.2em Arial, sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.app-form button:hover, .app-form input[type="submit"]:hover,
+.app-form-big button:hover, .app-form-big input[type="submit"]:hover,
+.app-form button:focus, .app-form input[type="submit"]:focus,
+.app-form-big button:focus, .app-form-big input[type="submit"]:focus {
+    background: url(images/button-background-darker.png) repeat-x 0 0;
+}
+
+.app-form input[type="text"],
+.app-form input[type="password"],
+.app-form-big input[type="text"],
+.app-form-big input[type="password"] {
+    height: 34px;
+    padding: 4px 5px 0 10px;
+    width: 196px;
+    margin-bottom: 8px;
+}
+
+.app-form input[type="radio"],
+.app-form input[type="checkbox"],
+.app-form-big input[type="radio"],
+.app-form-big input[type="checkbox"] { 
+    margin: 5px 5px 5px 0;
+    border: none;
+    vertical-align: middle;
+}
+
+/* labels following a single checkbox should be inlined */
+.app-form-big input[type="checkbox"] + label {
+    display: inline;
+}
+
+.app-form textarea, .app-form-big textarea {
+    border: 1px solid #888;
+    padding: 10px;
+    margin-bottom: 1em;
+    width: 50%;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+/* Aligning text input after radio buttons: */
+.app-form input[type="radio"] + label, .app-form-big input[type="radio"] + label {
+    /*width: 11.7em;*/
+    display: inline-block;
+}
+
+/** Errors */
+
+.app-form-error input,
+.app-form-error textarea,
+.app-form-error checkbox,
+.app-form-error radio,
+.app-form-error select
+{
+    border-color: red;
+}
+.app-form .app-form-error p,
+.app-form-big .app-form-error p {
+    color: red;
+}
+.app-form .app-form-error p {
+    clear: both;
+    margin-left: 14em;
+}
+
+/* Single errors */
+.app-form .error, .app-form-big .error {
+    color: red;
+}
+
+/** Fieldsets */
+
+.app-form fieldset, .app-form-big fieldset {
+    background: transparent;
+    border: none;
+}
+
+.app-form fieldset.group, .app-form-big fieldset.group {
+  border: none;
+  padding: 0;
+  margin: 10px 0;
+  clear: both;
+  margin-left: 13.5em;
+}
+
+.app-form fieldset.group label, .app-form-big fieldset.group label {
+  font-size: 1em;
+  display: inline;
+  width: auto;
+  margin-right: 10px;
+  margin-top: 0px;
+  clear: none;
+}
+
+.app-form fieldset.group legend, .app-form-big fieldset.group legend {
+  display: none !important;
+}
+
+.app-form fieldset.group .legend, .app-form-big fieldset.group .legend {
+  font-size: 1.23em;
+  padding-bottom: 10px;
+  float: left;
+  margin-right: 1em;
+  text-align: right;
+  display: block;
+  width: 10em;
+  margin-left: -11em;
+}
+
+
+.app-form hr, .app-form-big hr {
+  border: none;
+  border-top: 1px solid #e4e4e4;
+  margin: 15px 0;
+  clear: both;
+}
+
+/** 
+ * app-form-group
+ * For grouping many elements, e.g. the radio buttons or checkboxes for the same
+ * theme.
+ */
+.app-form .app-form-group, .app-form-big .app-form-group {
+    float: left;
+    margin: 5px 0 1em 0;
+}
+.app-form .app-form-group label,
+.app-form-big .app-form-group label {
+    clear: none;
+    width: auto;
+    text-align: left;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+
+/* Searchform */
+
+.searchform {
+  font-size: 0.92em;
+}
+
+.searchform {
+  background: url(images/uit-app-form-input.png) no-repeat 0 0;
+  height: 23px;
+  padding-left: 10px;
+  padding-top: 2px;
+  width: 223px;
+}
+
+.searchform label {
+  position: absolute;
+  left: -9999px;
+  top: -1000px;
+  clear: none;
+}
+
+.searchform fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.searchform button {
+  background: transparent url(images/uit-app-button-small-right.png) no-repeat 100% 0;
+  height: 25px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: -3px;
+}
+
+.searchform button span {
+  background: url(images/uit-app-button-small-left.png) no-repeat 0 0;
+  height: 20px;
+  padding: 5px 10px 0 12px;
+}
+
+/* ^ Searchform */
+
+
+/* Mozilla hacks */
+
+.app-form::-moz-focus-inner,
+.app-form button::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+
+/* ^ Mozilla hacks */
+
+/* IE 6 hacks */
+
+* html .searchform input {
+  border: 0 !important;
+  margin-top: 3px;
+  width: 165px;
+}
+
+* html .searchform input:focus {
+  outline: 0;
+}
+
+* html .searchform {
+  background-image: url(images/uit-app-form-input.gif);
+}
+
+/* ^ IE 6 hacks */
+
+/* iPhone hacks */
+
+@media only screen and (max-device-width: 480px) {
+
+  form.app-form button span {
+  	margin-right:-6px;
+  }
+
+  /* iPhone reset */
+  input[type="text"] {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+  }
+
+}
+
+/* ^ iPhone hacks */
+
+/* ^ UiT design - Apps - Form elements */

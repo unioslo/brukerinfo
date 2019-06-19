@@ -22,7 +22,7 @@ class Person extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if (INST == 'uio' && $this->authz->is_personal()
+        if ($this->isUioOrUit(INST) && $this->authz->is_personal()
             || INST == 'hine' && Init::get('Bofh')->isPersonal()) {
             $modules->addGroup($this);
         }
@@ -44,6 +44,9 @@ class Person extends ModuleGroup {
                 return array('', 'primary');
             }
         }
+        elseif (INST == 'uit') {
+                return array('', 'primary');
+        }
         return array();
     }
 
@@ -52,7 +55,9 @@ class Person extends ModuleGroup {
     }
 
     public function getShortcuts() {
-        if($this->authz->can_set_display_name()){
+        if(INST == 'uit') {
+            return array(array('person/primary', txt('home_shortcuts_change_pri_affiliation')));
+        } elseif ($this->authz->can_set_display_name()) {
             return array(array('person/name', txt('home_shortcuts_change_pri_email_addr')));
         } else{
             return array();

@@ -1,0 +1,758 @@
+<txt>
+<meta>
+    <lang>en</lang>
+    <inst>uit</inst>
+</meta>
+<data>
+
+    <!-- The format for dates -->
+    <DATE_FORMAT>Y-m-d</DATE_FORMAT>
+    <!-- The format of the decimal point (normally ',' or '.') -->
+    <DEC_FORMAT>.</DEC_FORMAT>
+
+    <!-- The browsers window title -->
+    <PAGETITLE>Brukerinfo - The Arctic University of Norway</PAGETITLE>
+    <HEADER>Brukerinfo</HEADER>
+    <TAGLINE>Simple user administration at the Arctic University of Norway</TAGLINE>
+    <FOOTER>Brukerinfo - simple user administration at the Arctic University of Norway</FOOTER>
+
+    <!-- The title of the page if it is locked because of a restart 
+         of bofhd or the site is being updated -->
+    <LOCKED_TITLE>Down for maintenance</LOCKED_TITLE>
+
+    <!-- All pages with action-commands with system delay ends with this text -->
+    <ACTION_DELAY_MIN>Changes will be applied within {{delay_min}} minutes.</ACTION_DELAY_MIN>
+    <ACTION_DELAY_HOUR>Changes will be applied within {{delay_hour}} hours.</ACTION_DELAY_HOUR>
+    <ACTION_DELAY_EMAIL>Changes will be applied within {{delay_email}} minutes.</ACTION_DELAY_EMAIL>
+
+    <!-- Errors -->
+    <ERROR_BOFH_CONNECTION>Could not connect to the database, please try again later.</ERROR_BOFH_CONNECTION>
+    <ERROR_BOFH_ERROR>Error in the communication with the database, please try again later.</ERROR_BOFH_ERROR>
+    <ERROR_BOFH_RESTARTED>The database has been restarted, please update the page or log on again.</ERROR_BOFH_RESTARTED>
+    <ERROR_INVALID_URL>Invalid URL</ERROR_INVALID_URL>
+
+    <!-- Standard notices -->
+    <EMPLOYEES_ONLY>Only employees at UiT are allowed to do this.</EMPLOYEES_ONLY>
+
+    <!-- Standard form messages -->
+    <FORM_REQUIRED>This is required</FORM_REQUIRED>
+
+    <!-- The top menu -->
+    <LOGOUT>Log out</LOGOUT>
+
+    <!-- The main menu -->
+    <MENU_HOME>Main</MENU_HOME>
+
+    <MENU_PERSON>Person</MENU_PERSON>
+    <MENU_PERSON_>Person</MENU_PERSON_>
+    <MENU_PERSON_PRIMARY>Primary affiliation</MENU_PERSON_PRIMARY>
+    <MENU_PERSON_NAME>Name</MENU_PERSON_NAME>
+
+    <MENU_ACCOUNT>Account</MENU_ACCOUNT>
+    <MENU_ACCOUNT_>Your account</MENU_ACCOUNT_>
+    <MENU_ACCOUNT_PASSWORD>Change password</MENU_ACCOUNT_PASSWORD>
+    <MENU_ACCOUNT_PRIMARY>Primary account</MENU_ACCOUNT_PRIMARY>
+
+    <MENU_PRINTING>Printing</MENU_PRINTING>
+    <MENU_PRINTING_>Printing overview</MENU_PRINTING_>
+    <MENU_PRINTING_HISTORY>Print quota history</MENU_PRINTING_HISTORY>
+
+    <MENU_EMAIL>E-mail</MENU_EMAIL>
+    <MENU_EMAIL_>E-mail overview</MENU_EMAIL_>
+    <MENU_EMAIL_SPAM>Spam settings</MENU_EMAIL_SPAM>
+    <MENU_EMAIL_FILTERS>Additional spam settings</MENU_EMAIL_FILTERS>
+    <MENU_EMAIL_TRIPNOTE>Out of office messages</MENU_EMAIL_TRIPNOTE>
+    <MENU_EMAIL_FORWARD>Forwarding</MENU_EMAIL_FORWARD>
+
+    <MENU_GROUPS>Groups</MENU_GROUPS>
+    <MENU_GROUPS_>Groups</MENU_GROUPS_>
+    <MENU_GROUPS_NEW>New group</MENU_GROUPS_NEW>
+
+    <MENU_RESERVATIONS>Reservations</MENU_RESERVATIONS>
+    <MENU_RESERVATIONS_>Reservations</MENU_RESERVATIONS_>
+
+    <MENU_GUEST_INFO>Account info</MENU_GUEST_INFO>
+    <MENU_GUEST_PASSWORD>Change password</MENU_GUEST_PASSWORD>
+
+    <MENU_GUESTS>Wireless accounts</MENU_GUESTS>
+    <MENU_GUESTS_>Your wireless accounts</MENU_GUESTS_>
+    <MENU_GUESTS_CREATE>Create wireless account</MENU_GUESTS_CREATE>
+
+    <MENU_OFFICE365>Office 365</MENU_OFFICE365>
+
+    <!-- Logon and logout -->
+    <!-- TODO: not all these are implemented right now... -->
+    <LOGON_TITLE>Log on</LOGON_TITLE>
+    <LOGON_INTRO>&lt;p&gt;This is a web based user interface you can use to view and
+        modify some of the information concerning your web identity and account at the 
+        Arctic University of Norway.
+    </LOGON_INTRO>
+    <LOGON_OUTRO>
+        &lt;p&gt;Visit &lt;a href="https://passord.uit.no"&gt;passord.uit.no&lt;/a&gt; to:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;Set a new password by SMS&lt;/li&gt;
+        &lt;li&gt;Set a new password if you know you current one&lt;/li&gt;
+        &lt;li&gt;Find your username&lt;/li&gt;        
+        &lt;li&gt;Activate your Account&lt;/li&gt;        
+        &lt;/ul&gt;
+        </LOGON_OUTRO>
+
+    <LOGON_FORM_USERNAME>Username:</LOGON_FORM_USERNAME>
+    <LOGON_FORM_PASSWORD>Password:</LOGON_FORM_PASSWORD>
+    <LOGON_FORM_SUBMIT>Log on</LOGON_FORM_SUBMIT>
+
+    <LOGON_SUCCESS>Welcome {{full_name}}</LOGON_SUCCESS>
+    <LOGON_BAD_NAME_OR_PASSWORD>Wrong username or password</LOGON_BAD_NAME_OR_PASSWORD>
+    <LOGON_LOGGED_OUT>You are now logged out</LOGON_LOGGED_OUT>
+
+    <LOGON_BLOCKED>Too many logon attempts, you have been temporary blocked from this site</LOGON_BLOCKED>
+    <LOGON_TIMED_OUT>This session has timed out after a period of inactivity. Please log on again.</LOGON_TIMED_OUT>
+    <LOGON_CONTROL_FAILED>Due to safety reasons, you have to log on again.</LOGON_CONTROL_FAILED>
+
+    <LOGOUT_SECURITY>Due to safety reasons, you have been logged out. Please try
+        again.</LOGOUT_SECURITY>
+
+    <!-- THE PAGES -->
+    <!-- Text for specific pages. 
+         The first part of the key is what main category the page is in, the second is the page-name.
+         The rest of the key name is the function of the text (what it tries to tell the user).
+         -->
+
+    <!-- Home - the start page -->
+    <HOME_TITLE>Welcome</HOME_TITLE> <!-- wofh -->
+    <HOME_INTRO></HOME_INTRO>
+    <HOME_SPECIFIC_ACCOUNT>
+        Please note that you can only make changes to the account &lt;em&gt;{{username}}&lt;/em&gt;.
+        If you need to make changes to another account, please log on with the appropriate username and password.
+    </HOME_SPECIFIC_ACCOUNT>
+
+    <HOME_SHORTCUTS_TITLE>Shortcuts</HOME_SHORTCUTS_TITLE>
+    <HOME_SHORTCUTS_PASSWORD>Change your password</HOME_SHORTCUTS_PASSWORD>
+    <HOME_SHORTCUTS_PRINTING>View printing status</HOME_SHORTCUTS_PRINTING>
+    <HOME_SHORTCUTS_PRINTING_HISTORY>View printing history</HOME_SHORTCUTS_PRINTING_HISTORY>
+    <HOME_SHORTCUTS_SPAM>Change spam settings</HOME_SHORTCUTS_SPAM>
+    <HOME_SHORTCUTS_TRIPNOTE>Set Out of office messages</HOME_SHORTCUTS_TRIPNOTE>
+    <HOME_SHORTCUTS_MEMBERS>Add or remove members from your group(s)</HOME_SHORTCUTS_MEMBERS>
+    <HOME_SHORTCUTS_GROUP_REQUEST>Request a new group</HOME_SHORTCUTS_GROUP_REQUEST>
+    <HOME_SHORTCUTS_CHANGE_PRI_EMAIL_ADDR>Change your primary email address and display name</HOME_SHORTCUTS_CHANGE_PRI_EMAIL_ADDR>
+    <HOME_SHORTCUTS_CHANGE_PRI_AFFILIATION>Change your primary affiliation</HOME_SHORTCUTS_CHANGE_PRI_AFFILIATION>
+
+    <HOME_ABOUT_TITLE>About Brukerinfo</HOME_ABOUT_TITLE>
+    <HOME_ABOUT>This is a web based user interface
+        you can use to view and modify some of the information concerning your electronic identity at the 
+        Arctic University of Norway. For more information and help about data systems at UiT, please see
+        &lt;a href="https://uit.no/om/orakelet"&gt;Orakel service at UiT&lt;/a&gt;.</HOME_ABOUT>
+
+    <!-- Person page texts -->
+    <PERSON_TITLE>Personal information</PERSON_TITLE>
+    <PERSON_HOWTO_CHANGE>
+        &lt;p class="ekstrainfo"&gt;
+        If the information provided on this page is incorrect, please use the
+        guide at &lt;a href="https://uit.no/om/orakelet/frag?p_document_id=328317"&gt;
+        https://uit.no/om/orakelet/frag?p_document_id=328317"&lt;/a&gt;
+    </PERSON_HOWTO_CHANGE>
+
+    <!-- Person primary affiliation -->
+    <PRIMARY_PERSON_TITLE>Primary affiliation</PRIMARY_PERSON_TITLE>
+    <PRIMARY_PERSON_INTRO>Here you can set what should be your primary
+        affiliations at the person presentations at
+        uit.no.</PRIMARY_PERSON_INTRO>
+    <PRIMARY_PERSON_CHOICE>Choose primary affiliation</PRIMARY_PERSON_CHOICE>
+    <PRIMARY_PERSON_UPDATED>Your primary affiliation is updated. The change
+        will be applied within a few hours.</PRIMARY_PERSON_UPDATED>
+    <PRIMARY_PERSON_SUBMIT>Update your primary affiliation</PRIMARY_PERSON_SUBMIT>
+
+    <!-- Person name page -->
+    <PERSON_NAME_TITLE>Choose your display name</PERSON_NAME_TITLE>
+    <PERSON_NAME_INTRO>Choose what of your registered names that should be shown
+        in different systems at UiT, e.g. the personal presentation at &lt;a
+        href="https://uit.no"&gt;uit.no&lt;/a&gt;. Note that your primary e-mail
+        address might change due to this.</PERSON_NAME_INTRO>
+    <PERSON_NAME_CURRENT>Your current name is
+        &lt;strong&gt;{{name}}&lt;/strong&gt; and your primary address is:
+        &lt;strong&gt;{{email}}&lt;/strong&gt;.</PERSON_NAME_CURRENT>
+    <PERSON_NAME_FORM_SUBMIT>Choose name</PERSON_NAME_FORM_SUBMIT>
+    <PERSON_NAME_FORM_SELECT>Select name</PERSON_NAME_FORM_SELECT>
+    <PERSON_NAME_SUCCESS>Your name has been updated</PERSON_NAME_SUCCESS>
+
+    <!-- Reservation page -->
+    <RESERVATIONS_TITLE>Reservations</RESERVATIONS_TITLE>
+    <RESERVATIONS_INTRO>Opt-out from different services.</RESERVATIONS_INTRO>
+    <RESERVATIONS_ACTION_RESERVE>Add reservation</RESERVATIONS_ACTION_RESERVE>
+    <RESERVATIONS_ACTION_UNRESERVE>Remove reservation</RESERVATIONS_ACTION_UNRESERVE>
+    <RESERVATION_UPDATE_SUCCESS_SET>Set reservation for {{type}}</RESERVATION_UPDATE_SUCCESS_SET>
+    <RESERVATION_UPDATE_SUCCESS_DEL>Removed reservation for {{type}}</RESERVATION_UPDATE_SUCCESS_DEL>
+
+    <RESERVATIONS_TABLEHEAD_NAME>Reservation type</RESERVATIONS_TABLEHEAD_NAME>
+    <RESERVATIONS_TABLEHEAD_DESC>Description</RESERVATIONS_TABLEHEAD_DESC>
+    <RESERVATIONS_TABLEHEAD_ACTION></RESERVATIONS_TABLEHEAD_ACTION>
+
+
+    <RESERVATION_TYPE_RESERVE_PASSW>SMS-password</RESERVATION_TYPE_RESERVE_PASSW>
+
+    <!-- Account text -->
+    <ACCOUNT_TITLE>Your account</ACCOUNT_TITLE>
+    <ACCOUNT_AFFS_EMPTY>No affiliation(s) set</ACCOUNT_AFFS_EMPTY>
+    <ACCOUNT_SPREADS_EMPTY>No systems</ACCOUNT_SPREADS_EMPTY>
+
+    <ACCOUNT_NAME_PRIMARY>{{username}} (primary)</ACCOUNT_NAME_PRIMARY>
+    <ACCOUNT_NAME_NORMAL>{{username}}</ACCOUNT_NAME_NORMAL>
+    <ACCOUNT_NAME_DELETED>{{username}} (deleted)</ACCOUNT_NAME_DELETED>
+
+
+    <ACCOUNT_OTHER_TITLE>Your other accounts</ACCOUNT_OTHER_TITLE>
+    <ACCOUNT_OTHER_INFO>For information about your other accounts, please log on with the appropiate username and password.</ACCOUNT_OTHER_INFO>
+    <ACCOUNT_OTHER_TABLE_NAME>Name:</ACCOUNT_OTHER_TABLE_NAME>
+    <ACCOUNT_OTHER_TABLE_EXPIRE>Expire:</ACCOUNT_OTHER_TABLE_EXPIRE>
+    <ACCOUNT_OTHER_EXPIRE_NOT_SET>(not set)</ACCOUNT_OTHER_EXPIRE_NOT_SET>
+
+    <ACCOUNT_PASSWORD_TITLE>Change password</ACCOUNT_PASSWORD_TITLE>
+    <ACCOUNT_PASSWORD_INTRO>
+        &lt;p&gt;Change the password of the account you are logged on to. Please
+        note that your password is &lt;em&gt;personal&lt;/em&gt; and must
+        &lt;em&gt;never&lt;/em&gt; be shared with anyone else, not even the IT
+        staff at UiT.&lt;/p&gt;
+
+        &lt;p&gt;See the &lt;a
+        href="https://en.uit.no/om/orakelet/frag?p_document_id=534768"&gt;password
+        criterias&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;h3&gt;About password types&lt;/h3&gt;
+        &lt;p&gt;UiT operates with two password types: Traditional passwords, and passphrases.&lt;/p&gt;
+        &lt;p&gt;A passphrase consists of several words separated by spaces, and by entering a space in
+        your new password, it will automatically be validated against the passphrase rules instead.&lt;/p&gt;
+        &lt;p&gt;Passphrases are more secure than traditional passwords, and is deemed as much
+        easier to remember by most users. We therefore recommend using this password type when changing your
+        password.&lt;/p&gt;
+
+        &lt;strong&gt;Note&lt;/strong&gt;: Remember to log out of
+        machine/UiT-services when you change your password. It will
+        take some time before your new password has reached all our IT
+        services. Please update new passwords on mobile, tablet and
+        other devices.&lt;/p&gt;
+        </ACCOUNT_PASSWORD_INTRO>
+
+    <ACCOUNT_PASSWORD_FORM_NEW>Enter new password:</ACCOUNT_PASSWORD_FORM_NEW>
+    <ACCOUNT_PASSWORD_FORM_NEW2>Confirm new password:</ACCOUNT_PASSWORD_FORM_NEW2>
+    <ACCOUNT_PASSWORD_FORM_CURRENT>Current password:</ACCOUNT_PASSWORD_FORM_CURRENT>
+    <ACCOUNT_PASSWORD_FORM_SUBMIT>Change password</ACCOUNT_PASSWORD_FORM_SUBMIT>
+    <ACCOUNT_PASSWORD_RULE_NEW_REQUIRED>Please enter the new password</ACCOUNT_PASSWORD_RULE_NEW_REQUIRED>
+
+    <ACCOUNT_PASSWORD_ERROR_CURRENT>The current password was incorrect.</ACCOUNT_PASSWORD_ERROR_CURRENT>
+    <ACCOUNT_PASSWORD_ERROR_CURRENT_EMPTY>Current password must be stated.</ACCOUNT_PASSWORD_ERROR_CURRENT_EMPTY>
+    <ACCOUNT_PASSWORD_ERROR_MATCH>The new password does not match with the retype.</ACCOUNT_PASSWORD_ERROR_MATCH>
+    <ACCOUNT_PASSWORD_OK_MATCH>The passwords match.</ACCOUNT_PASSWORD_OK_MATCH>
+    <ACCOUNT_PASSWORD_SUCCESS>Your password has been changed.</ACCOUNT_PASSWORD_SUCCESS>
+
+    <ACCOUNT_PASSWORD_MOREINFO>View more information about &lt;a
+        href="https://en.uit.no/om/orakelet/frag?p_document_id=319392"&gt;
+        username and password administration at UiT&lt;/a&gt;.</ACCOUNT_PASSWORD_MOREINFO>
+
+    <ACCOUNT_PRIMARY_TITLE>Make account primary</ACCOUNT_PRIMARY_TITLE>
+    <ACCOUNT_PRIMARY_INTRO>If you have more than one account at UiT, one of the accounts is the primary
+        account. Please be aware of the following:
+        &lt;ul&gt;
+        &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; accepts only your primary account&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; (blyant.uio.no) accepts only your primary account&lt;/li&gt;
+        &lt;/ul&gt;
+    </ACCOUNT_PRIMARY_INTRO>
+    <ACCOUNT_PRIMARY_ALREADY>The active account ({{username}}) is already your primary account.&lt;br&gt;
+        To make another account the primary, please log on with that account.</ACCOUNT_PRIMARY_ALREADY>
+    <ACCOUNT_PRIMARY_FORM_SUBMIT>Make {{username}} my primary account</ACCOUNT_PRIMARY_FORM_SUBMIT>
+    <ACCOUNT_PRIMARY_SUCCESS>Your account {{username}} is now your primary account. It normally takes up to up to 2 hours 
+        before changes are applied.</ACCOUNT_PRIMARY_SUCCESS>
+    <ACCOUNT_PRIMARY_FAILED>The system could not change your primary account, please contact your 
+        local IT support service or Houston</ACCOUNT_PRIMARY_FAILED>
+
+    <!-- Printing text -->
+    <PRINTING_TITLE>Printing overview</PRINTING_TITLE>
+    <PRINTING_TABLE_FREE>Free prints:</PRINTING_TABLE_FREE>
+    <PRINTING_TABLE_PAID>Paid prints:</PRINTING_TABLE_PAID>
+    <PRINTING_TABLE_PAID_VALUE>({{kroner}} NOK)</PRINTING_TABLE_PAID_VALUE>
+    <PRINTING_TABLE_TOTAL>Total prints available:</PRINTING_TABLE_TOTAL>
+
+    <PRINTING_MOREINFO_PAY>To pay for more prints, please log on to 
+        &lt;a href="https://studweb.uio.no"&gt;StudentWeb at UiT&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
+    <PRINTING_MOREINFO_PRICES>For more information about the printout prices,
+        see &lt;a href="http://www.uio.no/english/studies/admin/printouts/"&gt;
+        copy fee at UiT&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
+    <PRINTING_MOREINFO_PRINTING>For more information about printing and printers, please visit the page for 
+        &lt;a href="https://uio.no/english/services/it/printing/"&gt;printing services at UiT&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
+
+
+    <PRINTING_HISTORY_TITLE>Print quota history</PRINTING_HISTORY_TITLE>
+    <PRINTING_HISTORY_FORM_DAYS>last {{length}} days</PRINTING_HISTORY_FORM_DAYS>
+    <PRINTING_HISTORY_FORM_UNLIMITED>unlimited</PRINTING_HISTORY_FORM_UNLIMITED>
+    <PRINTING_HISTORY_FORM_DEFAULT>(default)</PRINTING_HISTORY_FORM_DEFAULT>
+    <PRINTING_HISTORY_FORM_WHEN>Show:</PRINTING_HISTORY_FORM_WHEN>
+    <!-- "Details:" are now blank to make the form smaller -->
+    <PRINTING_HISTORY_FORM_DETAILS></PRINTING_HISTORY_FORM_DETAILS>
+    <PRINTING_HISTORY_FORM_DETAILS_BUTTON>details</PRINTING_HISTORY_FORM_DETAILS_BUTTON>
+    <PRINTING_HISTORY_FORM_SUBMIT>Update</PRINTING_HISTORY_FORM_SUBMIT>
+
+    <PRINTING_HISTORY_LIST_JOBID>JobId</PRINTING_HISTORY_LIST_JOBID>
+    <PRINTING_HISTORY_LIST_TIME>Time</PRINTING_HISTORY_LIST_TIME>
+    <PRINTING_HISTORY_LIST_PRINTER>Printer</PRINTING_HISTORY_LIST_PRINTER>
+    <PRINTING_HISTORY_LIST_INFO>Info</PRINTING_HISTORY_LIST_INFO>
+    <PRINTING_HISTORY_LIST_IN>In</PRINTING_HISTORY_LIST_IN>
+    <PRINTING_HISTORY_LIST_OUT>Out</PRINTING_HISTORY_LIST_OUT>
+
+    <PRINTING_HISTORY_EMPTY>Found no quota history for given period. You may need to extend the range.</PRINTING_HISTORY_EMPTY>
+
+    <!-- Email text -->
+    <EMAIL_TITLE>E-mail</EMAIL_TITLE>
+    
+    <EMAIL_INFO_TITLE>E-mail overview</EMAIL_INFO_TITLE>
+    <EMAIL_INFO_NO_ACCOUNT>This user account does not have an email account</EMAIL_INFO_NO_ACCOUNT>
+    <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
+    <EMAIL_INFO_VALID_ADDR>Valid addresses:</EMAIL_INFO_VALID_ADDR>
+    <EMAIL_INFO_QUOTA>Quota:</EMAIL_INFO_QUOTA>
+    <EMAIL_INFO_QUOTA_INFO>{{quota_used}} MiB of {{quota_max}} MiB used (warning at {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO>
+    <EMAIL_INFO_QUOTA_INFO_NO_USAGE>{{quota_max}} MiB (warning at {{quota_warn}}%)</EMAIL_INFO_QUOTA_INFO_NO_USAGE>
+    <EMAIL_INFO_SPAM_LEVEL>Spam level:</EMAIL_INFO_SPAM_LEVEL>
+    <EMAIL_INFO_SPAM_ACTION>Spam action:</EMAIL_INFO_SPAM_ACTION>
+    <EMAIL_INFO_FORWARD>Forwarding:</EMAIL_INFO_FORWARD>
+    <EMAIL_INFO_SERVER>Email server:</EMAIL_INFO_SERVER>
+    <EMAIL_INFO_FILTERS>Filtering:</EMAIL_INFO_FILTERS>
+    <EMAIL_INFO_TARGETTYPE>Status:</EMAIL_INFO_TARGETTYPE>
+
+    <EMAIL_OTHER_TITLE>Your other mailboxes</EMAIL_OTHER_TITLE>
+    <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>
+
+    <EMAIL_INFO_MORE_INFO>For more information about UiTs e-mail system please see
+        &lt;a href="https://en.uit.no/om/orakelet/frag?p_document_id=318209"&gt;the e-mail help pages&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
+
+    <EMAIL_DEL_TITLE>Confirm deletion of e-mail address</EMAIL_DEL_TITLE>
+    <EMAIL_DEL_INTRO>Are you sure you want to delete the address
+        &lt;em&gt;{{address}}&lt;/em&gt;? You will not be able to receive e-mail
+        sent to this address anymore.</EMAIL_DEL_INTRO>
+    <EMAIL_DEL_ACTIONLINK>(delete)</EMAIL_DEL_ACTIONLINK>
+    <EMAIL_DEL_SUBMIT>Confirm</EMAIL_DEL_SUBMIT>
+    <EMAIL_DEL_CANCEL>Cancel</EMAIL_DEL_CANCEL>
+    <EMAIL_DEL_INVALID_ADDR>The given address could not be deleted</EMAIL_DEL_INVALID_ADDR>
+    <EMAIL_DEL_SUCCESS>The e-mail address {{address}} was successfully
+        deleted</EMAIL_DEL_SUCCESS>
+    <EMAIL_DEL_FAILED>The e-mail address {{address}} could not be
+        deleted</EMAIL_DEL_FAILED>
+
+    <EMAIL_SPAM_TITLE>Spam settings</EMAIL_SPAM_TITLE>
+    <EMAIL_SPAM_INTRO>These settings are applied before your e-mails are delivered to your mailbox.
+        For more information please see &lt;a
+        href="http://www.uio.no/english/services/it/email-calendar-chat/more-about-email-calendar/spam.html"&gt;USIT's
+        page about spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
+
+    <!-- 
+        The following spam descriptions aren't used in English, as we prefer
+        the descriptions from bofhd. 
+    -->
+    <EMAIL_SPAM_ACTION_DROPSPAM>Reject messages classified as spam</EMAIL_SPAM_ACTION_DROPSPAM>
+    <EMAIL_SPAM_ACTION_SPAMFOLDER>Deliver spam to a separate folder</EMAIL_SPAM_ACTION_SPAMFOLDER>
+    <EMAIL_SPAM_ACTION_NOACTION>Deliver spam just like legitimate email</EMAIL_SPAM_ACTION_NOACTION>
+
+    <EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>Filter everything that resembles spam</EMAIL_SPAM_LEVEL_AGGRESSIVE_SPAM>
+    <EMAIL_SPAM_LEVEL_MOST_SPAM>Filter most emails that looks like spam</EMAIL_SPAM_LEVEL_MOST_SPAM>
+    <EMAIL_SPAM_LEVEL_STANDARD_SPAM>Only filter email that obviously is spam</EMAIL_SPAM_LEVEL_STANDARD_SPAM>
+    <EMAIL_SPAM_LEVEL_NO_FILTER>No email will be filtered as spam</EMAIL_SPAM_LEVEL_NO_FILTER>
+
+    <EMAIL_SPAM_FORM_LEVEL>Spam level:</EMAIL_SPAM_FORM_LEVEL>
+    <EMAIL_SPAM_FORM_ACTION>Spam action:</EMAIL_SPAM_FORM_ACTION>
+    <EMAIL_SPAM_FORM_SUBMIT>Update spam settings</EMAIL_SPAM_FORM_SUBMIT>
+    <EMAIL_SPAM_RULE_LEVEL_REQUIRED>Please choose a spam level</EMAIL_SPAM_RULE_LEVEL_REQUIRED>
+    <EMAIL_SPAM_RULE_ACTION_REQUIRED>Please choose what to do with your spam</EMAIL_SPAM_RULE_ACTION_REQUIRED>
+
+
+    <EMAIL_FILTER_TITLE>Additional spam settings</EMAIL_FILTER_TITLE>
+    <EMAIL_FILTER_INTRO>Additional spam settings are extra tools for decreasing
+        the amount of spam you receive.  Remember to also set your standard spam
+        settings. For more information please see &lt;a
+        href="http://www.uit.no/english/services/it/email-calendar-chat/more-about-email-calendar/spam.html"&gt;
+        USIT's page about spam&lt;/a&gt;.</EMAIL_FILTER_INTRO>
+    <EMAIL_FILTER_UPDATE_SUCCESS>Your additional spam settings have been updated</EMAIL_FILTER_UPDATE_SUCCESS>
+    <EMAIL_FILTER_UNKNOWN>Unknown setting</EMAIL_FILTER_UNKNOWN>
+    <EMAIL_FILTER_DATA_GREYLIST>Greylisting</EMAIL_FILTER_DATA_GREYLIST>
+    <EMAIL_FILTER_DATA_GREYLIST_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"</EMAIL_FILTER_DATA_GREYLIST_DESC>
+    <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
+    <EMAIL_FILTER_DATA_UIOONLY_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"</EMAIL_FILTER_DATA_UIOONLY_DESC>
+    <EMAIL_FILTER_ENABLE>Enable</EMAIL_FILTER_ENABLE>
+    <EMAIL_FILTER_DISABLE>Disable</EMAIL_FILTER_DISABLE>
+    <EMAIL_FILTER_ON>{{filter}} on</EMAIL_FILTER_ON>
+    <EMAIL_FILTER_OFF>{{filter}} off</EMAIL_FILTER_OFF>
+    <EMAIL_FILTER_RULE_REQUIRED>Please select a choice for {{filter}}</EMAIL_FILTER_RULE_REQUIRED>
+    <EMAIL_FILTER_SUBMIT>Update</EMAIL_FILTER_SUBMIT>
+
+    <EMAIL_TRIPNOTE_TITLE>Out of office messages</EMAIL_TRIPNOTE_TITLE>
+    <EMAIL_TRIPNOTE_INTRO>Out of office messages (vacation messages) are
+        automatic replies to e-mails sent to you in a set period of time.
+        Each sender will receive the message only once within a period of 7
+        days. For more information please see &lt;a
+        href="https://www.uit.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
+        USIT's page about out of office messages&lt;/a&gt;.
+        Note that messages are active from the start date, and up to and
+        including the expire date.
+    </EMAIL_TRIPNOTE_INTRO>
+    <EMAIL_TRIPNOTE_NEW_SUCCESS>New Out of office message added</EMAIL_TRIPNOTE_NEW_SUCCESS>
+
+    <EMAIL_TRIPNOTE_ACTIVE_TITLE>Active Out of office messages</EMAIL_TRIPNOTE_ACTIVE_TITLE>
+    <EMAIL_TRIPNOTE_LIST_DELETE>Delete</EMAIL_TRIPNOTE_LIST_DELETE>
+    <EMAIL_TRIPNOTE_STARTING>Starting:</EMAIL_TRIPNOTE_STARTING>
+    <EMAIL_TRIPNOTE_ENDING>Expires:</EMAIL_TRIPNOTE_ENDING>
+    <EMAIL_TRIPNOTE_MESSAGE>Message:</EMAIL_TRIPNOTE_MESSAGE>
+    <EMAIL_TRIPNOTE_STATUS>Status:</EMAIL_TRIPNOTE_STATUS>
+
+    <EMAIL_TRIPNOTE_FORM_TITLE>New Out of office message</EMAIL_TRIPNOTE_FORM_TITLE>
+    <EMAIL_TRIPNOTE_FORM_SUBMIT>Create Out of office message</EMAIL_TRIPNOTE_FORM_SUBMIT>
+
+    <EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>Please enter your message</EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>
+
+    <EMAIL_TRIPNOTE_OLD_TITLE>Old Out of office messages</EMAIL_TRIPNOTE_OLD_TITLE>
+    <EMAIL_TRIPNOTE_DELETE_TITLE>Confirm deleting</EMAIL_TRIPNOTE_DELETE_TITLE>
+    <EMAIL_TRIPNOTE_DELETE_CONFIRM>Are you sure you want to delete the following Out of office message?</EMAIL_TRIPNOTE_DELETE_CONFIRM>
+    <EMAIL_TRIPNOTE_DELETE_SUBMIT>Confirm deleting</EMAIL_TRIPNOTE_DELETE_SUBMIT>
+
+    <EMAIL_FORWARD_TITLE>Forwarding</EMAIL_FORWARD_TITLE>
+    <EMAIL_FORWARD_INTRO>You can forward all your incoming e-mails to another
+        e-mail address. Please note that for security reasons this is not
+        recommended.  For more information please see &lt;a
+        href="https://en.uit.no/om/orakelet/frag?p_document_id=318495"&gt;
+        UIT's page about forwarding&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
+    <EMAIL_FORWARD_LOCAL>Keep a copy</EMAIL_FORWARD_LOCAL>
+    <EMAIL_FORWARD_NEW_TITLE>Create forwarding rule</EMAIL_FORWARD_NEW_TITLE>
+    <EMAIL_FORWARD_NEW_OK>A new forwarding has been made. It normally takes up to 2 hours before changes are applied.</EMAIL_FORWARD_NEW_OK>
+
+    <EMAIL_FORWARD_DELETE_SUBMIT>Delete</EMAIL_FORWARD_DELETE_SUBMIT>
+
+    <EMAIL_FORWARD_DELETE_CONFIRM_TITLE>Confirm deletion of forwarding rule</EMAIL_FORWARD_DELETE_CONFIRM_TITLE>
+    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Are you sure you want to delete your forwarding to 
+        &lt;strong&gt;{{target}}&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
+    <EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>Delete</EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>
+    <EMAIL_FORWARD_DELETE_UNKNOWN>Unknown forwarding address</EMAIL_FORWARD_DELETE_UNKNOWN>
+
+    <EMAIL_FORWARD_ADDLOCAL_TITLE>Keep a copy</EMAIL_FORWARD_ADDLOCAL_TITLE>
+    <EMAIL_FORWARD_ADDLOCAL>Your account is now forwarding all your emails to another email address. Do you want to keep a copy of these
+        emails in this UiT email account?</EMAIL_FORWARD_ADDLOCAL>
+    <EMAIL_FORWARD_ADDLOCAL_SUBMIT>Keep a copy</EMAIL_FORWARD_ADDLOCAL_SUBMIT>
+
+    <EMAIL_FORWARD_FORM_ADDRESS>Forward all e-mails to this address:</EMAIL_FORWARD_FORM_ADDRESS>
+    <EMAIL_FORWARD_FORM_KEEP>Keep a copy of all e-mails in your UiT mailbox</EMAIL_FORWARD_FORM_KEEP>
+    <EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>Please enter the email address to forward to.</EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>
+
+    <EMAIL_FORWARD_FORM_SUBMIT>Create rule</EMAIL_FORWARD_FORM_SUBMIT>
+
+
+    <!-- Groups pages -->
+    <GROUPS_TITLE>Your groups</GROUPS_TITLE>
+    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate, but you can make 
+        &lt;a href="groups/personal/"&gt;your own personal group&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
+    <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load. 
+        Please use the command line interface
+        &lt;a href="https://uit.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt;
+        instead.</GROUPS_TOO_MANY>
+    <GROUPS_GROUP_UNKNOWN>Could not find specified group</GROUPS_GROUP_UNKNOWN>
+    <GROUPS_MODERATIVE_TITLE>Groups you can moderate</GROUPS_MODERATIVE_TITLE>
+    <GROUPS_OTHERS_TITLE>Your group memberships</GROUPS_OTHERS_TITLE>
+    <GROUPS_NO_PERSONAL>You do not have a personal group. Do you want to &lt;a href="groups/personal/"&gt;create it&lt;/a&gt;?</GROUPS_NO_PERSONAL>
+
+    <GROUPS_TABLE_GROUPNAME>Group:</GROUPS_TABLE_GROUPNAME>
+    <GROUPS_TABLE_DESCRIPTION>Description:</GROUPS_TABLE_DESCRIPTION>
+
+
+    <GROUPS_PERSONAL_TITLE>Create personal group</GROUPS_PERSONAL_TITLE>
+    <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user 
+        account (in this case {{username}}). You are the administrator of the group and decide who should 
+        be members with access to e.g. shared documents or allow execution of scripts.
+    </GROUPS_PERSONAL_INFO>
+    <GROUPS_PERSONAL_ALREADY>It looks like you already have a personal group</GROUPS_PERSONAL_ALREADY>
+    <GROUPS_PERSONAL_SUCCESS>Created your personal group. It normally takes up to 2 hours before changes are applied.</GROUPS_PERSONAL_SUCCESS>
+    <GROUPS_PERSONAL_SUBMIT>Create personal group</GROUPS_PERSONAL_SUBMIT>
+
+    <GROUP_TITLE>Group: {{groupname}}</GROUP_TITLE>
+    <GROUP_DESCRIPTION>Description:</GROUP_DESCRIPTION>
+    <GROUP_DESCRIPTION_SUBMIT>Change description</GROUP_DESCRIPTION_SUBMIT>
+    <GROUP_CREATE_DATE>Created:</GROUP_CREATE_DATE>
+    <GROUP_SPREAD>Access:</GROUP_SPREAD>
+    <GROUP_OWNER>Owner:</GROUP_OWNER>
+    <GROUP_MEMBERS>Members:</GROUP_MEMBERS>
+    <GROUP_MEMBERS_GROUPS>{{number}} groups</GROUP_MEMBERS_GROUPS>
+    <GROUP_MEMBERS_ACCOUNTS>{{number}} accounts</GROUP_MEMBERS_ACCOUNTS>
+    <GROUP_MEMBERS_PERSONS>{{number}} persons</GROUP_MEMBERS_PERSONS>
+
+    <GROUP_MEMBERS_TABLE_NAME>Name:</GROUP_MEMBERS_TABLE_NAME>
+    <GROUP_MEMBERS_TABLE_TYPE>Type:</GROUP_MEMBERS_TABLE_TYPE>
+
+    <GROUPS_MEMBERS_DEL_TITLE>Confirm removal of members</GROUPS_MEMBERS_DEL_TITLE>
+    <GROUPS_MEMBERS_DEL_CONFIRM>Are you sure you want to remove the following members from the group &lt;strong&gt;{{groupname}}&lt;/strong&gt;?</GROUPS_MEMBERS_DEL_CONFIRM>
+    <GROUPS_MEMBERS_DEL_GROUPS>Groups:</GROUPS_MEMBERS_DEL_GROUPS>
+    <GROUPS_MEMBERS_DEL_PERSONS>Persons:</GROUPS_MEMBERS_DEL_PERSONS>
+    <GROUPS_MEMBERS_DEL_ACCOUNTS>Accounts:</GROUPS_MEMBERS_DEL_ACCOUNTS>
+    <GROUPS_MEMBERS_DEL_SUBMIT>Remove members</GROUPS_MEMBERS_DEL_SUBMIT>
+    <GROUPS_MEMBERS_DEL_CANCEL>Cancel</GROUPS_MEMBERS_DEL_CANCEL>
+
+    <GROUPS_MEMBERS_REMOVED_SUCCESS>Removed {{no_members}}
+        members</GROUPS_MEMBERS_REMOVED_SUCCESS>
+
+    <GROUPS_MEMBERS_FORM_DEL_ACCOUNT>Remove account:</GROUPS_MEMBERS_FORM_DEL_ACCOUNT>
+    <GROUPS_MEMBERS_FORM_DEL_GROUP>Remove group:</GROUPS_MEMBERS_FORM_DEL_GROUP>
+    <GROUPS_MEMBERS_FORM_DEL_PERSON>Remove person:</GROUPS_MEMBERS_FORM_DEL_PERSON>
+
+    <GROUPS_MEMBERS_TITLE>Membership management</GROUPS_MEMBERS_TITLE>
+    <GROUPS_MEMBERS_CHOOSE>Which group do you want to manage?</GROUPS_MEMBERS_CHOOSE>
+    <GROUPS_MEMBERS_ADDED_SUCCESS>Added {{no_members}} new members to the group</GROUPS_MEMBERS_ADDED_SUCCESS>
+    <GROUPS_MEMBERS_NEWMEMBERS_TITLE>Add new members</GROUPS_MEMBERS_NEWMEMBERS_TITLE>
+    <GROUPS_MEMBERS_FORM_ACCOUNT>New account(s):</GROUPS_MEMBERS_FORM_ACCOUNT>
+    <GROUPS_MEMBERS_FORM_GROUP>New group(s):</GROUPS_MEMBERS_FORM_GROUP>
+    <GROUPS_MEMBERS_FORM_PERSON>New person(s):</GROUPS_MEMBERS_FORM_PERSON>
+    <GROUPS_MEMBERS_FORM_SUBMIT>Add members</GROUPS_MEMBERS_FORM_SUBMIT>
+    <GROUPS_MEMBERS_LIST_TITLE>Members</GROUPS_MEMBERS_LIST_TITLE>
+    <GROUPS_MEMBERS_LIST_EMPTY>This group has currently no members</GROUPS_MEMBERS_LIST_EMPTY>
+    <GROUPS_MEMBERS_TOO_MANY>This group has too many members to be shown here.
+        If you know the usernames you could remove them explicitly, or contact
+        your local IT-service.</GROUPS_MEMBERS_TOO_MANY>
+    <GROUPS_MEMBERS_MORE>To add more members, separate them with spaces and/or commas.</GROUPS_MEMBERS_MORE>
+    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: persons are only usable in groups
+        for the system Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
+
+    <GROUPS_NEW_TITLE>Request new group</GROUPS_NEW_TITLE>
+    <GROUPS_NEW_INTRO>&lt;p&gt;Request a new group for use in IT systems at UiT.
+        The form will be sent to the user administration at UiT,
+        which will decide if the group can be created. You will then be answered 
+        by e-mail.&lt;/p&gt;
+
+        &lt;p&gt;
+        Before filling out this form, please read &lt;a
+        href="https://uit.no/tjenester/it/brukernavn-passord/brukeradministrasjon/hjelp/grupper/oppretting/"&gt;
+        the guidelines&lt;/a&gt; and the &lt;a
+        href="https://uit.no/tjenester/it/brukernavn-passord/brukerinfo/hjelp/grupper/oppretting.html"&gt;help
+        for creating groups&lt;/a&gt;.&lt;/p&gt;</GROUPS_NEW_INTRO>
+    <GROUPS_NEW_FORM_NAME>Group name:</GROUPS_NEW_FORM_NAME>
+    <GROUPS_NEW_FORM_DESC>Description:</GROUPS_NEW_FORM_DESC>
+    <GROUPS_NEW_FORM_SPREADS>Spreads:</GROUPS_NEW_FORM_SPREADS>
+    <GROUPS_NEW_FORM_MODERATOR>Moderator group:</GROUPS_NEW_FORM_MODERATOR>
+    <GROUPS_NEW_FORM_SUBMIT>Request new group</GROUPS_NEW_FORM_SUBMIT>
+    <GROUPS_NEW_FORM_NAME_REQUIRED>Group name is required</GROUPS_NEW_FORM_NAME_REQUIRED>
+    <GROUPS_NEW_FORM_DESC_REQUIRED>Need a description of the purpose of the group</GROUPS_NEW_FORM_DESC_REQUIRED>
+    <GROUPS_NEW_FORM_SPREAD_UNKNOWN>Spread {{spread}} is unknown</GROUPS_NEW_FORM_SPREAD_UNKNOWN>
+    <GROUPS_NEW_FORM_MOD_REQUIRED>Need a group which can moderate the group</GROUPS_NEW_FORM_MOD_REQUIRED>
+    <LATIN1_ONLY_REQUIRED>Contains illegal characters</LATIN1_ONLY_REQUIRED>
+
+    <!-- Guest pages -->
+    <GUEST_TITLE>Wireless accounts</GUEST_TITLE>
+    <GUEST_INTRO>Create and manage accounts that give guest access to the
+        &lt;a href="https://eduroam.no/"&gt;eduroam&lt;/a&gt; wireless network.
+        The accounts are time-limited and can only be used to access the wireless
+        network.</GUEST_INTRO>
+    <GUEST_LIST_ACTIVE>Your active accounts</GUEST_LIST_ACTIVE>
+    <!--<GUEST_LIST_INACTIVE>Your expired accounts</GUEST_LIST_INACTIVE>-->
+    <GUEST_LIST_ACTIVE_EMPTY>You don't have any active wireless accounts</GUEST_LIST_ACTIVE_EMPTY>
+    <!--<GUEST_LIST_INACTIVE_EMPTY>You don't have any expired wireless accounts</GUEST_LIST_INACTIVE_EMPTY>-->
+    <!--<GUEST_LIST_SHOW_INACTIVE>Show expired accounts</GUEST_LIST_SHOW_INACTIVE>-->
+
+    <GUEST_LIST_COL_USERNAME>Username</GUEST_LIST_COL_USERNAME>
+    <GUEST_LIST_COL_NAME>Full name</GUEST_LIST_COL_NAME>
+    <GUEST_LIST_COL_END_DATE>Expires</GUEST_LIST_COL_END_DATE>
+
+    <GUEST_STATUS_ACTIVE>Active</GUEST_STATUS_ACTIVE>
+    <GUEST_STATUS_EXPIRED>Closed</GUEST_STATUS_EXPIRED>
+
+    <GUEST_INFO_TOP>{{str}}</GUEST_INFO_TOP>
+    <GUEST_INFO_USERNAME>Username:</GUEST_INFO_USERNAME>
+    <GUEST_INFO_NAME>Full name:</GUEST_INFO_NAME>
+    <GUEST_INFO_CONTACT>Contact:</GUEST_INFO_CONTACT>
+    <GUEST_INFO_RESPONSIBLE>Responsible:</GUEST_INFO_RESPONSIBLE>
+    <GUEST_INFO_CREATED>Created:</GUEST_INFO_CREATED>
+    <GUEST_INFO_EXPIRED>Expires:</GUEST_INFO_EXPIRED>
+    <GUEST_INFO_STATUS>Status:</GUEST_INFO_STATUS>
+    <GUEST_INFO_DAYS_LEFT>Days left:</GUEST_INFO_DAYS_LEFT>
+
+    <GUEST_NEW_TITLE>Create new wireless account</GUEST_NEW_TITLE>
+    <GUEST_NEW_INTRO>Enter the name and cell phone number (note: only Norwegian
+        numbers are allowed). The username and password will be
+        sent to this number. It may take up to 10 minutes before the account is made available.</GUEST_NEW_INTRO>
+    <GUEST_NEW_FORM_FNAME>Given name:</GUEST_NEW_FORM_FNAME>
+    <GUEST_NEW_FORM_LNAME>Surname:</GUEST_NEW_FORM_LNAME>
+    <GUEST_NEW_FORM_DURATION>Duration:</GUEST_NEW_FORM_DURATION>
+    <GUEST_NEW_FORM_DAYS>{{days}} days</GUEST_NEW_FORM_DAYS>
+    <GUEST_NEW_FORM_SEND_SMS>Send password to mobile phone:</GUEST_NEW_FORM_SEND_SMS>
+    <GUEST_NEW_FORM_NOSMS>No – The password will be shown on screen, and you
+        will have the option to print a password page.</GUEST_NEW_FORM_NOSMS>
+    <GUEST_NEW_FORM_SMS>Yes – The password will be sent to the cell phone
+        number you supply.</GUEST_NEW_FORM_SMS>
+    <GUEST_NEW_FORM_CONTACT>Mobile phone number:</GUEST_NEW_FORM_CONTACT>
+    <GUEST_NEW_FORM_SUBMIT>Create</GUEST_NEW_FORM_SUBMIT>
+    <GUEST_NEW_FORM_FNAME_REQ>Given name is required.</GUEST_NEW_FORM_FNAME_REQ>
+    <GUEST_NEW_FORM_LNAME_REQ>Surname is required.</GUEST_NEW_FORM_LNAME_REQ>
+    <GUEST_NEW_FORM_DURATION_REQ>Duration is required.</GUEST_NEW_FORM_DURATION_REQ>
+    <GUEST_NEW_FORM_CONTACT_REQ>Mobile phone number is required.</GUEST_NEW_FORM_CONTACT_REQ>
+    <GUEST_NEW_FORM_CONTACT_FMT>Mobile phone number must be eight digits (only
+        Norwegian phone numbers allowed).</GUEST_NEW_FORM_CONTACT_FMT>
+    <GUEST_NEW_FORM_NAME_FMT>Name must be at least {{min}} characters, and no
+        more than {{max}} characters.</GUEST_NEW_FORM_NAME_FMT>
+
+    <GUEST_CREATED_SMS>Created new wireless account: &lt;ul&gt;&lt;li&gt;Username:
+        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; SMS with the
+        username and password was sent to
+        &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
+    <GUEST_DEACTIVATED>Wireless account with the username &lt;b&gt;{{uname}}
+        &lt;/b&gt; successfully closed</GUEST_DEACTIVATED>
+    <GUEST_NEW_PASSWORD>Password changed for wireless account
+        &lt;b&gt;{{uname}}&lt;/b&gt; – notified &lt;b&gt;{{mobile}}&lt;/b&gt;
+        with the new password</GUEST_NEW_PASSWORD>
+
+    <GUEST_BTN_DEACTIVATE>Close account</GUEST_BTN_DEACTIVATE>
+    <GUEST_BTN_RESETPW>Set new password</GUEST_BTN_RESETPW>
+
+    <GUEST_PW_NOT_CACHED>Unable to display password</GUEST_PW_NOT_CACHED>
+    <GUEST_PW_LETTER_BUTTON>Password page for printing</GUEST_PW_LETTER_BUTTON>
+    <GUEST_PW_LETTER>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Password page&lt;/title&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;You have now received a new password&lt;/h1&gt; 
+        &lt;p&gt;&lt;i&gt;If you are unable to login please make sure that Caps
+        Lock is not on and that you are typing the password correctly. Problems
+        with use of new password are often due to users typing 'O' (letter o)
+        instead of '0' (zero) or '1' (number one) instead of 'l' (letter l) or
+        instead of 'I' (letter i). Note that it may take up to an hour before
+        your new password works properly.&lt;/i&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;ul&gt;
+        &lt;li&gt;Your user name: &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;Your password: &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;
+        &lt;/ul&gt;&lt;/p&gt;
+        &lt;h2&gt;To change your password:&lt;/h2&gt;
+        &lt;p&gt;&lt;ul&gt;
+            &lt;li&gt;Type &lt;a href="https://brukerinfo.uit.no/"&gt;https://brukerinfo.uit.no/&lt;/a&gt; in the address field of an internet browser&lt;/li&gt;
+            &lt;li&gt;Log in with the user name and password from this sheet&lt;/li&gt;
+            &lt;li&gt;Go to the tab "Account", and fill out the form with your old and new passords&lt;/li&gt;
+            &lt;/ul&gt;
+
+            Your user name and password are strictly personal. You must not allow
+            others to gain access to your password. Violation of these rules will
+            lead to the loss of access to the IT resources at the University of
+            Oslo.&lt;/p&gt;
+
+        &lt;p&gt;As a user of the IT services provided by the University of Oslo, you
+            have a duty to familiarise yourself with, and abide by the rules
+            and provisions as laid down by the IT Regulations. IT Regulations
+            are available on the World Wide Web, see:
+            &lt;a href="https://uit.no/tjenester/it/brukernavn-passord/reglement/english.html"&gt;https://uit.no/tjenester/it/brukernavn-passord/reglement/english.html&lt;/a&gt;&lt;/p&gt;
+
+
+        &lt;p&gt;If you experience problems accessing IT services at the University of Oslo
+            please contact local IT support (check 
+            &lt;a href="https://uit.no/english/services/it/contact/"&gt;https://uit.no/english/services/it/contact/&lt;/a&gt;)
+            or call the helpdesk services at the University of Oslo at
+            22 84 00 04.&lt;/p&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</GUEST_PW_LETTER>
+
+    <GUEST_NO_USERNAME>No username given</GUEST_NO_USERNAME>
+    <GUEST_UNKNOWN_USERNAME>No wireless account found with the username
+        {{uname}}.</GUEST_UNKNOWN_USERNAME>
+    <GUEST_CREATE_NO_ACCESS>Only employees have access to create guest
+        users.</GUEST_CREATE_NO_ACCESS>
+
+    <!-- Help pages -->
+    <HELP_TITLE>Help</HELP_TITLE>
+    <HELP_LINK>https://uit.no/tjenester/it/brukernavn-passord/brukerinfo/</HELP_LINK>
+
+    <!--Office365 pages-->
+    <OFFICE365_TITLE>Consent for Office 365</OFFICE365_TITLE>
+    <OFFICE365_TERMS_OF_AGREEMENT>Read &lt;a href="{{link}}"&gt;the terms of agreement here.&lt;/a&gt;</OFFICE365_TERMS_OF_AGREEMENT>
+    <OFFICE365_TERMS_OF_AGREEMENT_LINK>https://www.uit.no/english/services/it/computer/o365/help/agree.html</OFFICE365_TERMS_OF_AGREEMENT_LINK>
+    <OFFICE365_INTRO>
+        In order to use Office 365, you have to consent to &lt;a href="{{link}}"&gt;
+        the terms of agreement for Office 365 at the University
+        of Oslo.&lt;/a&gt;&lt;br&gt;
+        It will take approximately one hour from your consent is registered,
+        until you can start using Office 365.&lt;br&gt;
+        You may at any time withdraw your consent.
+    </OFFICE365_INTRO>
+    <OFFICE365_GIVE_CONSENT_TEXT>
+        Yes, I consent to the terms of agreement for Office 365 at the University of Oslo.
+    </OFFICE365_GIVE_CONSENT_TEXT>
+    <OFFICE365_REMOVE_CONSENT_TEXT>
+        I wish to withdraw my consent and stop using Office 365.
+    </OFFICE365_REMOVE_CONSENT_TEXT>
+    <OFFICE365_CONSENT_REGISTERED>
+        Your consent has been registered. It will take approximately one hour
+        from the consent was registered until you can start using Office 365.
+        You will receive an e-mail when your account is ready.
+    </OFFICE365_CONSENT_REGISTERED>
+    <OFFICE365_CONSENT_REGISTERED_STATUSTEXT>
+        &lt;em&gt;Consent was registered at: {{date}}&lt;/em&gt;
+    </OFFICE365_CONSENT_REGISTERED_STATUSTEXT>
+    <OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
+        &lt;em&gt;No consent registered.&lt;/em&gt;
+    </OFFICE365_CONSENT_NOT_REGISTERED_STATUSTEXT>
+    <OFFICE365_CONSENT_REVOKED>
+        Consent has been revoked.
+        Read more about &lt;a href="{{link}}"&gt;what this entails.&lt;/a&gt;
+    </OFFICE365_CONSENT_REVOKED>
+    <OFFICE365_NO_ACCESS_TITLE>Office 365 permission error</OFFICE365_NO_ACCESS_TITLE>
+    <OFFICE365_NO_ACCESS_TEXT>
+        According to UiT's user system, your accounts are not registered with access to Office 365.
+        If you feel this is incorrect, please contact the local IT staff.
+    </OFFICE365_NO_ACCESS_TEXT>
+    <OFFICE365_CONFIRM_GIVE_CONSENT>Confirm consent</OFFICE365_CONFIRM_GIVE_CONSENT>
+    <OFFICE365_CONFIRM_REVOKE_CONSENT>Revoke consent</OFFICE365_CONFIRM_REVOKE_CONSENT>
+    <!-- GENERAL TEXT
+         Text that is meant to be global - used on many pages.
+         -->
+
+    <!-- Short text in links, to tell that clicking on this makes you see more information -->
+    <GENERAL_MORE_DETAILS>Show details</GENERAL_MORE_DETAILS>
+    <GENERAL_LESS_DETAILS>Hide details</GENERAL_LESS_DETAILS>
+
+    <GENERAL_TIMEINTERVAL_DAY>{{num}} day</GENERAL_TIMEINTERVAL_DAY>
+    <GENERAL_TIMEINTERVAL_DAYS>{{num}} days</GENERAL_TIMEINTERVAL_DAYS>
+    <GENERAL_TIMEINTERVAL_WEEK>{{num}} week</GENERAL_TIMEINTERVAL_WEEK>
+    <GENERAL_TIMEINTERVAL_WEEKS>{{num}} weeks</GENERAL_TIMEINTERVAL_WEEKS>
+    <GENERAL_TIMEINTERVAL_MONTH>{{num}} month</GENERAL_TIMEINTERVAL_MONTH>
+    <GENERAL_TIMEINTERVAL_MONTHS>{{num}} months</GENERAL_TIMEINTERVAL_MONTHS>
+    <GENERAL_TIMEINTERVAL_YEAR>{{num}} year</GENERAL_TIMEINTERVAL_YEAR>
+    <GENERAL_TIMEINTERVAL_YEARS>{{num}} years</GENERAL_TIMEINTERVAL_YEARS>
+
+    <!-- Navigation text - Text in the navigation on different pages.  -->
+    <NAVIGATION_FIRST>&lt;&lt; first</NAVIGATION_FIRST>
+    <NAVIGATION_PREVIOUS>&lt; previous</NAVIGATION_PREVIOUS>
+    <NAVIGATION_NEXT>next &gt;</NAVIGATION_NEXT>
+    <NAVIGATION_LAST>last &gt;&gt;</NAVIGATION_LAST>
+
+    <!-- Bofh text - standard names on different bofh terms -->
+    <BOFH_INFO_NAME>Display name:</BOFH_INFO_NAME>
+    <BOFH_INFO_BIRTH>Birth:</BOFH_INFO_BIRTH>
+    <BOFH_INFO_AFFILIATIONS>Your account has the following affiliation(s):</BOFH_INFO_AFFILIATIONS>
+    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
+        at &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>
+    <BOFH_INFO_PERSON_AFFILIATIONS>Your person has the following affiliation(s):</BOFH_INFO_PERSON_AFFILIATIONS>
+    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Affiliation in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: 
+        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt; 
+        &lt;dfn title="{{status_desc}}"&gt;{{status}}&lt;/dfn&gt;
+        at {{stedkode_desc}} ({{stedkode}})</BOFH_INFO_PERSON_AFFILIATION_VALUE>
+    <BOFH_INFO_NAMES>Names:</BOFH_INFO_NAMES>
+    <BOFH_INFO_NAME_VALUE>Name registered in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        {{name}}</BOFH_INFO_NAME_VALUE>
+    <BOFH_INFO_FNR>National ID number:</BOFH_INFO_FNR>
+    <BOFH_INFO_FNR_VALUE>Number registered in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        {{fnr}}</BOFH_INFO_FNR_VALUE>
+    <BOFH_INFO_CONTACT>Contact information</BOFH_INFO_CONTACT>
+    <BOFH_INFO_CONTACT_VALUE>Kontaktinfo {{type}} registrert i &lt;dfn
+        title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: {{contact}}</BOFH_INFO_CONTACT_VALUE>
+    <BOFH_INFO_SPREADS>Your account is active in the following system(s):</BOFH_INFO_SPREADS>
+    <BOFH_INFO_EXPIRE>expires</BOFH_INFO_EXPIRE>
+
+    <BOFH_INFO_HOME>home</BOFH_INFO_HOME>
+    <BOFH_INFO_SHELL>Shell</BOFH_INFO_SHELL>
+    <BOFH_INFO_DFG_NAME>default group</BOFH_INFO_DFG_NAME>
+    <BOFH_INFO_DFG_POSIX_GID>Default Group ID</BOFH_INFO_DFG_POSIX_GID>
+    <BOFH_INFO_OWNER_DESC>description</BOFH_INFO_OWNER_DESC>
+    <BOFH_INFO_HOME_STATUS>home status</BOFH_INFO_HOME_STATUS>
+    <BOFH_INFO_UID>User ID</BOFH_INFO_UID>
+    <BOFH_INFO_GECOS>Gecos</BOFH_INFO_GECOS>
+    <BOFH_INFO_QUARANTINED>Quarantine</BOFH_INFO_QUARANTINED>
+
+    <BOFH_INFO_STEDKODE>stedkode</BOFH_INFO_STEDKODE>
+
+</data>
+</txt>

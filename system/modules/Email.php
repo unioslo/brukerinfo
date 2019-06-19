@@ -22,7 +22,7 @@ class Email extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get("Authorization");
-        if (INST != 'uio' || $this->authz->has_email()) {
+        if (!$this->isUioOrUit(INST) || $this->authz->has_email()) {
             $modules->addGroup($this);
         }
     }
@@ -44,6 +44,12 @@ class Email extends ModuleGroup {
             return $ret;
         } elseif (INST == 'hine') {
             return array('');
+        } elseif (INST == 'uit'){
+            $ret = array('', 'forward');
+            if ($this->authz->has_imap()) {
+                $ret[] = 'tripnote';
+            }
+            return $ret;
         }
     }
 
@@ -60,9 +66,12 @@ class Email extends ModuleGroup {
             if ($this->authz->has_email()) {
                 $ret[] = array('email/spam/', txt('home_shortcuts_spam'));
             }
+        } elseif (INST == 'uit' && $this->authz->has_imap()) {
+                $ret[] = array('email/tripnote/', txt('home_shortcuts_tripnote'));
         }
         return $ret;
     }
+
 
     public function display($path) {
         if (!$path) {
@@ -154,7 +163,7 @@ class Email extends ModuleGroup {
         }
         unset($primary['account']);
 
-        if (INST == 'uio' && !empty($_GET['del_addr'])) {
+        if ( $this->isUioOrUit(INST) && !empty($_GET['del_addr'])) {
 
             if (!in_array($_GET['del_addr'], $primary['deletable'])) {
                 View::forward('email/', txt('email_del_invalid_addr'));
@@ -214,7 +223,7 @@ class Email extends ModuleGroup {
         }
 
         // valid addresses
-        if (INST == 'uio') {
+        if ($this->isUioOrUit(INST)) {
             if (isset($primary['valid_addr'])) {
                 if (!empty($primary['deletable'])) {
                     foreach ($primary['valid_addr'] as $id => $addr) {
@@ -318,7 +327,7 @@ class Email extends ModuleGroup {
             }
 
             $prilist->addData(txt('email_info_filters'), $filters);
-        } elseif (INST == 'uio') {
+        } elseif ($this->isUioOrUit(INST)) {
             $prilist->addData(txt('email_info_filters'), null);
         }
         unset($primary['filters']);
@@ -476,7 +485,9 @@ class Email extends ModuleGroup {
         $newForm = new BofhFormUiO('addForwarding', null, 'email/forward/');
         $newForm->setAttribute('class', 'app-form-big');
         $newForm->addElement('text', 'address', txt('email_forward_form_address'), array('maxlength' => 255));
-        $newForm->addElement('checkbox', 'keep', null, txt('email_forward_form_keep'));
+        if (INST != 'uit'){
+            $newForm->addElement('checkbox', 'keep', null, txt('email_forward_form_keep'));
+        }
         $newForm->addElement('submit', null, txt('email_forward_form_submit'));
 
         // Define filters and validation rules

@@ -1,0 +1,42 @@
+/*
+ *
+ *  UiT design - Apps
+ * // SIMPLEFIX BY Mark Stenersen, Result | UiT
+ *
+ */
+
+#app-head-wrapper {
+  background: #fff url(images/uit-app-head-white-grey-border.png) repeat-x left bottom!important; /* Changed */ 
+}
+
+#app-footer {
+  background: url(images/uit_logo_norsk_pos.png) no-repeat 860px 25px!important; /* Changed – New logo for UiT */
+  padding: 24px 15px 44px 15px!important;
+}
+
+#app-head-wrapper #line-top {
+  height: 53px!important; /* Changed */
+}
+
+#app-head-wrapper #line-top #uiologo a {
+  background: url(images/uit_navnetrekk_norsk.svg) no-repeat 0 0!important; /* Changed */
+  top: 13px!important; /* Changed */
+  height: 30px!important; /* Changed */
+}
+
+#app-head-wrapper #line-top #uiologo.english-uitlogo a {
+  background-image: url(images/uit_navnetrekk_engelsk.svg)!important; /* Changed */
+  height: 18px; /* Changed */
+}
+
+#app-footer #contact-info,
+#app-footer #app-responsible {
+  width: 20%!important; /* Changed */
+  float: left!important; /* Changed */
+}
+
+#app-footer #app-footer-extras {
+  display: inline-block!important; /* Changed */
+  /** Removed **/ /* clear: right;*/
+  /** Removed **/ /*float: right;*/
+}
