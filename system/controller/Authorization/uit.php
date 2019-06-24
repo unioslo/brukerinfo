@@ -154,12 +154,13 @@ class Authorization_uit extends Authorization
     /**
      * Check if the user can create groups.
      *
+     * Currently UiT users are not allowed to create groups.
+     *
      * @return boolean
      */
     protected function can_create_groups()
     {
-        return (   $this->is_authenticated()
-                && $this->bofh->isEmployee());
+        return false;
     }
 
 
