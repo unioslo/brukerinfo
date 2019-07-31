@@ -617,13 +617,13 @@
         more than {{max}} characters.</GUEST_NEW_FORM_NAME_FMT>
 
     <GUEST_CREATED_SMS>Created new wireless account: &lt;ul&gt;&lt;li&gt;Username:
-        &lt;b&gt;{{uname}}@uio.no&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; SMS with the
+        &lt;b&gt;{{uname}}&lt;/b&gt;@uio.no&lt;/li&gt;&lt;/ul&gt; SMS with the
         username and password was sent to
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
     <GUEST_DEACTIVATED>Wireless account with the username &lt;b&gt;{{uname}}
         &lt;/b&gt; successfully closed</GUEST_DEACTIVATED>
     <GUEST_NEW_PASSWORD>Password changed for wireless account
-        &lt;b&gt;{{uname}}&lt;/b&gt; – notified &lt;b&gt;{{mobile}}&lt;/b&gt;
+        &lt;b&gt;{{uname}}&lt;/b&gt;@uio.no – notified &lt;b&gt;{{mobile}}&lt;/b&gt;
         with the new password</GUEST_NEW_PASSWORD>
 
     <GUEST_BTN_DEACTIVATE>Close account</GUEST_BTN_DEACTIVATE>
@@ -645,7 +645,7 @@
         instead of 'I' (letter i). Note that it may take up to an hour before
         your new password works properly.&lt;/i&gt;&lt;/p&gt;
         &lt;p&gt;&lt;ul&gt;
-        &lt;li&gt;Your user name: &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;Your user name: &lt;b&gt;{{uname}}&lt;/b&gt;@uio.no&lt;/li&gt;
         &lt;li&gt;Your password: &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;
         &lt;/ul&gt;&lt;/p&gt;
         &lt;h2&gt;To change your password:&lt;/h2&gt;
