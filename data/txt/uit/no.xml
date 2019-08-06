@@ -255,7 +255,6 @@
     <ACCOUNT_PRIMARY_INTRO>Hvis du har flere brukerkontoer ved UiT, er én av brukerkontoene primærkontoen din. Merk deg følgende:
         &lt;ul&gt;
         &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; godtar kun pålogging med primærkontoen&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; (blyant.uit.no) godtar kun pålogging med primærkontoen&lt;/li&gt;
         &lt;/ul&gt;
     </ACCOUNT_PRIMARY_INTRO>
     <ACCOUNT_PRIMARY_ALREADY>Den aktive brukerkontoen ({{username}}) er allerede primærkontoen din.&lt;br&gt;

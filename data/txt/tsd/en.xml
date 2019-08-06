@@ -252,7 +252,6 @@
         account. Please be aware of the following:
         &lt;ul&gt;
         &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; accepts only your primary account&lt;/li&gt;
-        &lt;li&gt;&lt;strong&gt;Fronter&lt;/strong&gt; (blyant.uio.no) accepts only your primary account&lt;/li&gt;
         &lt;/ul&gt;
     </ACCOUNT_PRIMARY_INTRO>
     <ACCOUNT_PRIMARY_ALREADY>The active account ({{username}}) is already your primary account.&lt;br&gt;
