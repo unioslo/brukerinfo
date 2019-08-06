@@ -625,13 +625,13 @@
         {{max}} tegn.</GUEST_NEW_FORM_NAME_FMT>
 
     <GUEST_CREATED_SMS>Ny trådløskonto opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
-        &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt; En SMS med
+        &lt;b&gt;{{uname}}&lt;/b&gt;@uio.no&lt;/li&gt;&lt;/ul&gt; En SMS med
         brukernavn og passord ble sendt til
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
     <GUEST_DEACTIVATED>Trådløskonto med brukernavn &lt;b&gt;{{uname}}&lt;/b&gt;
         avsluttet</GUEST_DEACTIVATED>
     <GUEST_NEW_PASSWORD>Passord endret for trådløskonto
-        &lt;b&gt;{{uname}}&lt;/b&gt; – nytt passord sendt til
+        &lt;b&gt;{{uname}}&lt;/b&gt;@uio.no – nytt passord sendt til
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_NEW_PASSWORD>
 
     <GUEST_BTN_DEACTIVATE>Avslutt konto</GUEST_BTN_DEACTIVATE>
@@ -655,7 +655,7 @@
             til en time før ditt nye passord fungerer som det
             skal.&lt;/i&gt;&lt;/p&gt;
         &lt;p&gt;&lt;ul&gt;
-        &lt;li&gt;Ditt brukernavn er: &lt;b&gt;{{uname}}&lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;Ditt brukernavn er: &lt;b&gt;{{uname}}&lt;/b&gt;@uio.no&lt;/li&gt;
         &lt;li&gt;Ditt passord er: &lt;b&gt;{{password}}&lt;/b&gt;&lt;/li&gt;
         &lt;/ul&gt;&lt;/p&gt;
         &lt;h2&gt;Slik bytter du passord:&lt;/h2&gt;
