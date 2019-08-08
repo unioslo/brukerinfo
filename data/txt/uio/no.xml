@@ -267,8 +267,11 @@
     <ACCOUNT_PRIMARY_TITLE>Gjør brukerkontoen til primærkonto</ACCOUNT_PRIMARY_TITLE>
     <ACCOUNT_PRIMARY_INTRO>Hvis du har flere brukerkontoer ved UiO, er én av brukerkontoene primærkontoen din. Merk deg følgende:
         &lt;ul&gt;
-        &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; godtar kun pålogging med primærkontoen&lt;/li&gt;
+        &lt;li&gt;Mange tjenester godtar kun pålogging med primærkontoen din – dette inkluderer Feide og alle tjenester som bruker Feide-innlogging&lt;/li&gt;
+        &lt;li&gt;E-postadresser flyttes ikke, og må eventuelt overføres ved å kontakte lokal IT eller Houston&lt;/li&gt;
+        &lt;li&gt;SAP/HR-portalen godtar kun pålogging med det som var primærkontoen din da du ble ansatt – for å endre dette, ta kontakt med lokal IT eller Houston&lt;/li&gt;
         &lt;/ul&gt;
+        Det kan også være andre konsekvenser. Ikke bytt primærkonto med mindre du vet hva du gjør.
     </ACCOUNT_PRIMARY_INTRO>
     <ACCOUNT_PRIMARY_ALREADY>Den aktive brukerkontoen ({{username}}) er allerede primærkontoen din.&lt;br&gt;
         Hvis du vil gjøre en annen brukerkonto til primærkonto, logger du inn med brukernavnet og passordet til den brukerkontoen.</ACCOUNT_PRIMARY_ALREADY>
