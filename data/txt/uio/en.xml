@@ -263,8 +263,11 @@
     <ACCOUNT_PRIMARY_INTRO>If you have more than one account at UiO, one of the accounts is the primary
         account. Please be aware of the following:
         &lt;ul&gt;
-        &lt;li&gt;&lt;strong&gt;Feide&lt;/strong&gt; accepts only your primary account&lt;/li&gt;
+        &lt;li&gt;Many services only accept your primary account – this includes Feide and all services that use Feide&lt;/li&gt;
+        &lt;li&gt;E-mail addresses will not be moved between accounts, and can be transferred by contacting Houston or your local IT support&lt;/li&gt;
+        &lt;li&gt;SAP/HR Portal only accept the account that was your primary account when you were hired – to change this, contact Houston or your local IT support&lt;/li&gt;
         &lt;/ul&gt;
+        There may be other consequences as well. Don't change primary account unless you know what you're doing.
     </ACCOUNT_PRIMARY_INTRO>
     <ACCOUNT_PRIMARY_ALREADY>The active account ({{username}}) is already your primary account.&lt;br&gt;
         To make another account the primary, please log on with that account.</ACCOUNT_PRIMARY_ALREADY>
