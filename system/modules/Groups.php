@@ -964,6 +964,13 @@ class Groups extends ModuleGroup {
         $User = Init::get('User');
         $Bofh = new Bofhcom();
 
+        /**
+        If not allowed to create groups, redirect back to groups/
+        */
+        if (!$this->authz->can_create_groups()) {
+            View::forward('groups/', null);
+        }
+
         if (hasPersonal()) {
             View::forward('groups/', txt('groups_personal_already'));
         }
