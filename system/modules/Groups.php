@@ -459,6 +459,29 @@ class Groups extends ModuleGroup {
             }
         }
 
+        function formExpires($groupname, $expiredate)
+        {
+            $form = new BofhFormInline('setExpire', null, 'groups/?group='.$groupname);
+            $form->addElement('static', null, null, $expiredate);
+            $form->addElement('submit', null, txt('group_expires_submit'));
+            return $form;
+        }
+
+        function formExpiresProcess($groupname)
+        {
+            global $groupname;
+            $bofh = Init::get('Bofh');
+            $one_year = date('Y-m-d', strtotime('+1 years'));
+            try {
+                $res = $bofh->run_command('group_set_expire', $groupname, $one_year);
+                View::addMessage($res);
+                return true;
+            } catch(Exception $e) {
+                Bofhcom::viewError($e);
+                return false;
+            }
+        }
+
         /**
          * Process the deletion or undeleting the group
          */
@@ -588,6 +611,18 @@ class Groups extends ModuleGroup {
 
                     View::forward('groups/?group='.$groupname);
                 }
+
+                $expire_date = htmlspecialchars("<not set>");
+                if (isset($group['expire_date'])) {
+                    $date = $group['expire_date'];
+                    $expire_date = $date->format('Y-m-d');
+                }
+
+                $expireForm = formExpires($groupname, $expire_date);
+                if ($expireForm->validate()) {
+                    $expireForm->process('formExpiresProcess');
+                    View::forward('groups/?group='.$groupname);
+                }
             }
 
             $View->start();
@@ -603,7 +638,9 @@ class Groups extends ModuleGroup {
             unset($group['description']);
 
             if (isset($group['expire_date'])){
-                $dl->addData('Status:', '<font color="red">' . txt('groups_delete_status') . '</font>');
+                if ($group['expire_date'] < new DateTime()) {
+                    $dl->addData('Status:', '<font color="red">' . txt('groups_delete_status') . '</font>');
+                }
             }
 
             $dl->addData(txt('group_create_date'), ($group['create_date']) ? $group['create_date']->format(txt('date_format')) : '');
@@ -616,6 +653,10 @@ class Groups extends ModuleGroup {
             unset($group['owner']);
             unset($group['owner_type']);
             unset($group['opset']);
+
+            if ($moderator && isset($group['expire_date'])) {
+                $dl->addData(txt('group_expires'), $expireForm);
+            }
 
             if (!empty($group['members'])) {
                 $dl->addData(txt('group_members'), $group['members']);
