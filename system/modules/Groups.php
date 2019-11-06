@@ -807,7 +807,7 @@ class Groups extends ModuleGroup {
             $table->setHead(
                 txt('groups_table_groupname'),
                 txt('groups_table_description'),
-                txt('group_expires')
+                txt('groups_table_expires')
                 //'Action:'
             );
             $View->addElement($table);
