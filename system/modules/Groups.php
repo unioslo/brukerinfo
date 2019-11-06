@@ -798,14 +798,16 @@ class Groups extends ModuleGroup {
         } elseif ($adm_groups) {
             $table = View::createElement('table', null, 'class="app-table"');
             foreach ($adm_groups as $name => $description) {
+                $group = $Bofh->getDataClean('group_info', $name);
                 $table->addData(array(
                     View::createElement('a', $name, "groups/?group=$name", 'title="Click for more info about this group"'),
-                    $description,
+                    $description, $group['expire_date'] ? $group['expire_date']->format('Y-m-d') : 'Not set',
                 ));
             }
             $table->setHead(
                 txt('groups_table_groupname'),
-                txt('groups_table_description')
+                txt('groups_table_description'),
+                txt('group_expires')
                 //'Action:'
             );
             $View->addElement($table);
