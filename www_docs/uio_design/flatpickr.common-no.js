@@ -1,9 +1,7 @@
 $(document).ready(function() {
     $(function() {
-        //$("#demo-pick").flatpickr();
         flatpickr("#groupDatePicker", {
-            altInput: true,
-            altFormat: "F j, Y",
+            "locale": "no",
             'maxDate': new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
         });
     });

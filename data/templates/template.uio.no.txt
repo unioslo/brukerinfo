@@ -12,6 +12,7 @@
 
     <script type="text/javascript" src="uio_design/jquery.min.js"></script> 
     <script type="text/javascript" src="uio_design/flatpickr.min.js"></script>
+    <script type="text/javascript" src="uio_design/flatpickr.no.js"></script>
 
     <!-- Framebusting: Prevent clickjacking by avoiding frames. Modern
          browsers respects the x-frame-options, though.
@@ -75,7 +76,7 @@
 ##BODY##
 
 </div>
-<script type="text/javascript" src="uio_design/common.js"></script>
+<script type="text/javascript" src="uio_design/flatpickr.common-no.js"></script>
 <!-- Page content end -->
 
 <!-- Page footer starts -->
