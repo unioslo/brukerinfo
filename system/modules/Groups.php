@@ -462,18 +462,26 @@ class Groups extends ModuleGroup {
         function formExpires($groupname, $expiredate)
         {
             $form = new BofhFormInline('setExpire', null, 'groups/?group='.$groupname);
-            $form->addElement('static', null, null, $expiredate);
-            $form->addElement('submit', null, txt('group_expires_submit'));
+            $form->addElement('static', null, '<input class="flatpickr flatpickr-input" type="text" id="groupDatePicker" value="'.$expiredate.'">');
+            $form->addElement('submit', 'datepicker-subm', txt('group_expires_submit'));
             return $form;
         }
 
-        function formExpiresProcess($groupname)
+        function formExpiresProcess($input)
         {
             global $groupname;
             $bofh = Init::get('Bofh');
+            $input_date = date('Y-m-d');
             $one_year = date('Y-m-d', strtotime('+1 years'));
+            if (isset($_POST["_qf__setExpire"])) {
+                $input_date = date('Y-m-d', strtotime($_POST["_qf__setExpire"]));
+            }
+            if ($input_date > $one_year || $input_date < date('Y-m-d')) {
+                View::addMessage('Max one year into the future');
+                return false;
+            }
             try {
-                $res = $bofh->run_command('group_set_expire', $groupname, $one_year);
+                $res = $bofh->run_command('group_set_expire', $groupname, $input_date);
                 View::addMessage($res);
                 return true;
             } catch(Exception $e) {

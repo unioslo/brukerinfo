@@ -7,9 +7,11 @@
 
     <!-- UiO profile -->
     <link media="screen" type="text/css" href="uio_design/uio-app-general.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="uio_design/flatpickr.min.css">
     <link rel="shortcut icon" href="uio_design/favicon.ico" />
 
     <script type="text/javascript" src="uio_design/jquery.min.js"></script> 
+    <script type="text/javascript" src="uio_design/flatpickr.min.js"></script>
 
     <!-- Framebusting: Prevent clickjacking by avoiding frames. Modern
          browsers respects the x-frame-options, though.
@@ -73,6 +75,7 @@
 ##BODY##
 
 </div>
+<script type="text/javascript" src="uio_design/common.js"></script>
 <!-- Page content end -->
 
 <!-- Page footer starts -->
