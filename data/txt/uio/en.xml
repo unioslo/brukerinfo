@@ -469,7 +469,11 @@
     <GROUPS_TABLE_GROUPNAME>Group</GROUPS_TABLE_GROUPNAME>
     <GROUPS_TABLE_DESCRIPTION>Description</GROUPS_TABLE_DESCRIPTION>
     <GROUPS_TABLE_EXPIRES>Expires</GROUPS_TABLE_EXPIRES>
-
+    <GROUPS_TABLE_OTHER_INFO>Manually created groups expires one year from the
+        the last sign of moderator activity. The expire date can also be set
+        manually above. All moderators recieve an email when the expire date
+        approaches.
+    </GROUPS_TABLE_OTHER_INFO>
 
     <GROUPS_PERSONAL_TITLE>Create personal group</GROUPS_PERSONAL_TITLE>
     <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user 

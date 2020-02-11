@@ -474,7 +474,10 @@
     <GROUPS_TABLE_GROUPNAME>Gruppe</GROUPS_TABLE_GROUPNAME>
     <GROUPS_TABLE_DESCRIPTION>Beskrivelse</GROUPS_TABLE_DESCRIPTION>
     <GROUPS_TABLE_EXPIRES>Utløper</GROUPS_TABLE_EXPIRES>
-
+    <GROUPS_TABLE_OTHER_INFO>Manuelt opprettede grupper utløper ett etter siste
+        tegn til moderatoraktivitet. Utløpsdato kan også settes manuelt over.
+        Alle gruppas moderatorer mottar en epost når utløpsdato nærmer seg.
+    </GROUPS_TABLE_OTHER_INFO>
 
     <GROUPS_PERSONAL_TITLE>Opprett personlig gruppe</GROUPS_PERSONAL_TITLE>
     <GROUPS_PERSONAL_INFO>Den personlige gruppen er en gruppe med samme navn som brukerkontoen din (i dette 
