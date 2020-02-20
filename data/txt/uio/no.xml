@@ -476,6 +476,9 @@
     <GROUPS_TABLE_DESCRIPTION>Beskrivelse</GROUPS_TABLE_DESCRIPTION>
     <GROUPS_TABLE_EXPIRES>Utløper</GROUPS_TABLE_EXPIRES>
 
+    <GROUPS_MANUAL_CONTACT>For hjelp med å melde deg ut av manuelle grupper, ta kontakt med
+        &lt;a href="mailto:it-support@uio.no"&gt;it-support@uio.no&lt;/a&gt;.
+    </GROUPS_MANUAL_CONTACT>
 
     <GROUPS_PERSONAL_TITLE>Opprett personlig gruppe</GROUPS_PERSONAL_TITLE>
     <GROUPS_PERSONAL_INFO>Den personlige gruppen er en gruppe med samme navn som brukerkontoen din (i dette

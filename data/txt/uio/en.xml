@@ -471,6 +471,9 @@
     <GROUPS_TABLE_DESCRIPTION>Description</GROUPS_TABLE_DESCRIPTION>
     <GROUPS_TABLE_EXPIRES>Expires</GROUPS_TABLE_EXPIRES>
 
+    <GROUPS_MANUAL_CONTACT>Please contact &lt;a href="mailto:it-support@uio.no"&gt;it-support@uio.no&lt;/a&gt;
+        if you need help with unsubscribing from a manual group.
+    </GROUPS_MANUAL_CONTACT>
 
     <GROUPS_PERSONAL_TITLE>Create personal group</GROUPS_PERSONAL_TITLE>
     <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user

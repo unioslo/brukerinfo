@@ -892,6 +892,7 @@ class Groups extends ModuleGroup {
             if (INST != 'uit') {
                 $View->addElement('h2', txt('groups_title_manual'));
             }
+            $View->addElement('p', txt('groups_manual_contact'));
             $table = View::createElement('table', null, 'class="app-table"');
             $table->setHead(
                 txt('groups_table_groupname'),
