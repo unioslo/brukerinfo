@@ -16,7 +16,7 @@
     <TAGLINE>Simple user administration at UiO</TAGLINE>
     <FOOTER>Brukerinfo - simple user administration at UiO</FOOTER>
 
-    <!-- The title of the page if it is locked because of a restart 
+    <!-- The title of the page if it is locked because of a restart
          of bofhd or the site is being updated -->
     <LOCKED_TITLE>Down for maintenance</LOCKED_TITLE>
 
@@ -91,7 +91,7 @@
         &lt;/div&gt;
 
         &lt;p&gt;This is a web based user interface you can use to view and
-        modify some of the information concerning your web identity and account at the 
+        modify some of the information concerning your web identity and account at the
         University of Oslo.
     </LOGON_INTRO>
     <LOGON_OUTRO>
@@ -99,7 +99,7 @@
         &lt;ul&gt;
         &lt;li&gt;Set a new password by SMS&lt;/li&gt;
         &lt;li&gt;Set a new password if you know you current one&lt;/li&gt;
-        &lt;li&gt;Find your username&lt;/li&gt;        
+        &lt;li&gt;Find your username&lt;/li&gt;
         &lt;/ul&gt;
 
         &lt;p&gt;Read about &lt;a
@@ -123,7 +123,7 @@
         again.</LOGOUT_SECURITY>
 
     <!-- THE PAGES -->
-    <!-- Text for specific pages. 
+    <!-- Text for specific pages.
          The first part of the key is what main category the page is in, the second is the page-name.
          The rest of the key name is the function of the text (what it tries to tell the user).
          -->
@@ -150,7 +150,7 @@
 
     <HOME_ABOUT_TITLE>About Brukerinfo</HOME_ABOUT_TITLE>
     <HOME_ABOUT>This is a web based user interface
-        you can use to view and modify some of the information concerning your electronic identity at the 
+        you can use to view and modify some of the information concerning your electronic identity at the
         University of Oslo. For more information and help about data systems at UiO, please see
         &lt;a href="https://uio.no/tjenester/it/"&gt;IT-services at UiO&lt;/a&gt;.</HOME_ABOUT>
 
@@ -272,9 +272,9 @@
     <ACCOUNT_PRIMARY_ALREADY>The active account ({{username}}) is already your primary account.&lt;br&gt;
         To make another account the primary, please log on with that account.</ACCOUNT_PRIMARY_ALREADY>
     <ACCOUNT_PRIMARY_FORM_SUBMIT>Make {{username}} my primary account</ACCOUNT_PRIMARY_FORM_SUBMIT>
-    <ACCOUNT_PRIMARY_SUCCESS>Your account {{username}} is now your primary account. It normally takes up to up to 2 hours 
+    <ACCOUNT_PRIMARY_SUCCESS>Your account {{username}} is now your primary account. It normally takes up to up to 2 hours
         before changes are applied.</ACCOUNT_PRIMARY_SUCCESS>
-    <ACCOUNT_PRIMARY_FAILED>The system could not change your primary account, please contact your 
+    <ACCOUNT_PRIMARY_FAILED>The system could not change your primary account, please contact your
         local IT support service or Houston</ACCOUNT_PRIMARY_FAILED>
 
     <!-- Printing text -->
@@ -284,12 +284,12 @@
     <PRINTING_TABLE_PAID_VALUE>({{kroner}} NOK)</PRINTING_TABLE_PAID_VALUE>
     <PRINTING_TABLE_TOTAL>Total prints available:</PRINTING_TABLE_TOTAL>
 
-    <PRINTING_MOREINFO_PAY>To pay for more prints, please log on to 
+    <PRINTING_MOREINFO_PAY>To pay for more prints, please log on to
         &lt;a href="https://studweb.uio.no"&gt;StudentWeb at UiO&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
     <PRINTING_MOREINFO_PRICES>For more information about the printout prices,
         see &lt;a href="http://www.uio.no/english/studies/admin/printouts/"&gt;
         copy fee at UiO&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
-    <PRINTING_MOREINFO_PRINTING>For more information about printing and printers, please visit the page for 
+    <PRINTING_MOREINFO_PRINTING>For more information about printing and printers, please visit the page for
         &lt;a href="https://uio.no/english/services/it/printing/"&gt;printing services at UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
 
 
@@ -314,7 +314,7 @@
 
     <!-- Email text -->
     <EMAIL_TITLE>E-mail</EMAIL_TITLE>
-    
+
     <EMAIL_INFO_TITLE>E-mail overview</EMAIL_INFO_TITLE>
     <EMAIL_INFO_NO_ACCOUNT>This user account does not have an email account</EMAIL_INFO_NO_ACCOUNT>
     <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
@@ -354,9 +354,9 @@
         href="http://www.uio.no/english/services/it/email-calendar-chat/more-about-email-calendar/spam.html"&gt;USIT's
         page about spam&lt;/a&gt;.</EMAIL_SPAM_INTRO>
 
-    <!-- 
+    <!--
         The following spam descriptions aren't used in English, as we prefer
-        the descriptions from bofhd. 
+        the descriptions from bofhd.
     -->
     <EMAIL_SPAM_ACTION_DROPSPAM>Reject messages classified as spam</EMAIL_SPAM_ACTION_DROPSPAM>
     <EMAIL_SPAM_ACTION_SPAMFOLDER>Deliver spam to a separate folder</EMAIL_SPAM_ACTION_SPAMFOLDER>
@@ -436,7 +436,7 @@
     <EMAIL_FORWARD_DELETE_SUBMIT>Delete</EMAIL_FORWARD_DELETE_SUBMIT>
 
     <EMAIL_FORWARD_DELETE_CONFIRM_TITLE>Confirm deletion of forwarding rule</EMAIL_FORWARD_DELETE_CONFIRM_TITLE>
-    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Are you sure you want to delete your forwarding to 
+    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Are you sure you want to delete your forwarding to
         &lt;strong&gt;{{target}}&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
     <EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>Delete</EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>
     <EMAIL_FORWARD_DELETE_UNKNOWN>Unknown forwarding address</EMAIL_FORWARD_DELETE_UNKNOWN>
@@ -455,15 +455,16 @@
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Your groups</GROUPS_TITLE>
-    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate, but you can make 
+    <GROUPS_TITLE_AUTOMATIC>Your automatic group memberships</GROUPS_TITLE_AUTOMATIC>
+    <GROUPS_TITLE_MANUAL>Your manual group memberships</GROUPS_TITLE_MANUAL>
+    <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate, but you can make
         &lt;a href="groups/personal/"&gt;your own personal group&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
-    <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load. 
+    <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load.
         Please use the command line interface
         &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt;
         instead.</GROUPS_TOO_MANY>
     <GROUPS_GROUP_UNKNOWN>Could not find specified group</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Groups you can moderate</GROUPS_MODERATIVE_TITLE>
-    <GROUPS_OTHERS_TITLE>Your group memberships</GROUPS_OTHERS_TITLE>
     <GROUPS_NO_PERSONAL>You do not have a personal group. Do you want to &lt;a href="groups/personal/"&gt;create it&lt;/a&gt;?</GROUPS_NO_PERSONAL>
 
     <GROUPS_TABLE_GROUPNAME>Group</GROUPS_TABLE_GROUPNAME>
@@ -472,8 +473,8 @@
 
 
     <GROUPS_PERSONAL_TITLE>Create personal group</GROUPS_PERSONAL_TITLE>
-    <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user 
-        account (in this case {{username}}). You are the administrator of the group and decide who should 
+    <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user
+        account (in this case {{username}}). You are the administrator of the group and decide who should
         be members with access to e.g. shared documents or allow execution of scripts.
     </GROUPS_PERSONAL_INFO>
     <GROUPS_PERSONAL_ALREADY>It looks like you already have a personal group</GROUPS_PERSONAL_ALREADY>
@@ -486,6 +487,7 @@
     <GROUP_CREATE_DATE>Created:</GROUP_CREATE_DATE>
     <GROUP_SPREAD>Access:</GROUP_SPREAD>
     <GROUP_OWNER>Owner:</GROUP_OWNER>
+    <GROUP_EXPIRE_NOT_SET>Not set</GROUP_EXPIRE_NOT_SET>
     <GROUP_EXPIRES>Expires:</GROUP_EXPIRES>
     <GROUP_EXPIRES_SUBMIT>Set new date</GROUP_EXPIRES_SUBMIT>
     <GROUP_MEMBERS>Members:</GROUP_MEMBERS>
@@ -548,7 +550,7 @@
     <GROUPS_NEW_TITLE>Request new group</GROUPS_NEW_TITLE>
     <GROUPS_NEW_INTRO>&lt;p&gt;Request a new group for use in IT systems at UiO.
         The form will be sent to the user administration at UiO,
-        which will decide if the group can be created. You will then be answered 
+        which will decide if the group can be created. You will then be answered
         by e-mail.&lt;/p&gt;
 
         &lt;p&gt;
@@ -642,7 +644,7 @@
         &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;h1&gt;You have now received a new password&lt;/h1&gt; 
+        &lt;h1&gt;You have now received a new password&lt;/h1&gt;
         &lt;p&gt;&lt;i&gt;If you are unable to login please make sure that Caps
         Lock is not on and that you are typing the password correctly. Problems
         with use of new password are often due to users typing 'O' (letter o)
@@ -673,7 +675,7 @@
 
 
         &lt;p&gt;If you experience problems accessing IT services at the University of Oslo
-            please contact local IT support (check 
+            please contact local IT support (check
             &lt;a href="https://uio.no/english/services/it/contact/"&gt;https://uio.no/english/services/it/contact/&lt;/a&gt;)
             or call the helpdesk services at the University of Oslo at
             22 84 00 04.&lt;/p&gt;
@@ -829,11 +831,11 @@
     <BOFH_INFO_NAME>Display name:</BOFH_INFO_NAME>
     <BOFH_INFO_BIRTH>Birth:</BOFH_INFO_BIRTH>
     <BOFH_INFO_AFFILIATIONS>Your account has the following affiliation(s):</BOFH_INFO_AFFILIATIONS>
-    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
+    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt;
         at &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>
     <BOFH_INFO_PERSON_AFFILIATIONS>Your person has the following affiliation(s):</BOFH_INFO_PERSON_AFFILIATIONS>
-    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Affiliation in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: 
-        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt; 
+    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Affiliation in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt;
         &lt;dfn title="{{status_desc}}"&gt;{{status}}&lt;/dfn&gt;
         at {{stedkode_desc}} ({{stedkode}})</BOFH_INFO_PERSON_AFFILIATION_VALUE>
     <BOFH_INFO_NAMES>Names:</BOFH_INFO_NAMES>

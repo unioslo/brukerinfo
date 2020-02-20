@@ -1,18 +1,18 @@
 <?php
 // Copyright 2009-2016 University of Oslo, Norway
-// 
+//
 // This file is part of Cerebrum.
-// 
+//
 // Cerebrum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // Cerebrum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with Cerebrum. If not, see <http://www.gnu.org/licenses/>.
 
@@ -111,22 +111,65 @@ class Groups extends ModuleGroup {
         /**
          * Gets, and sort, all the groups a user is in.
          *
-         * @return  Array   Normal array with just the group names
+         * @return  Array   Normal array with groups info dicts
          */
-        function getGroups() {
-
+        function getGroups()
+        {
             global $User;
             global $Bofh;
-
-            $raw = $Bofh->getData('group_memberships', 'account', $User->getUsername());
+            $raw = $Bofh->getData('group_all_account_memberships', $User->getUsername());
 
             $groups = array();
             foreach ($raw as $g) {
-                $groups[$g['group']] = $g['description'];
+                $groups[$g['group']] = $g;
             }
 
             return $groups;
+        }
 
+        /**
+         * Helper function used to filter groups on a there group type.
+         *
+         * @param groups    Array of groups.
+         * @param types     Array of one or more groupe type strings.
+         */
+        function filter_groups_on_types($groups, $types)
+        {
+            $filtered_groups = array_filter(
+                $groups, function($group) use ($types){
+                    return in_array($group['group_type'], $types);
+                }
+            );
+
+            # sort by keys (groupname)
+            ksort($filtered_groups);
+            return $filtered_groups;
+        }
+
+        /**
+         * Filters a array of groups on automatic group types.
+         *
+         * Groups with type 'lms-group' are removed as well.
+         *
+         * @param groups    Array of groups.
+         * @return Array    Array with only automatic groups.
+         */
+        function getAutomaticGroups($groups)
+        {
+            $automatic_group_types = ['affiliation-group', 'virtual-group'];
+            return filter_groups_on_types($groups, $automatic_group_types);
+        }
+
+        /**
+         * Filters a array of groups on manual group types.
+         *
+         * @param groups    Array of groups.
+         * @return Array    Array with only manual groups.
+         */
+         function getManualGroups($groups)
+        {
+            $manual_group_types = ['internal-group', 'personal-group', 'unknown-group', 'manual-group'];
+            return filter_groups_on_types($groups, $manual_group_types);
         }
 
         /**
@@ -146,7 +189,7 @@ class Groups extends ModuleGroup {
 
             $groups = array();
             foreach ($raw as $g) {
-                $groups[$g['entity_name']] = $g['description'];
+                $groups[$g['entity_name']] = $g;
             }
             // sort by keys (groupname)
             ksort($groups);
@@ -163,7 +206,7 @@ class Groups extends ModuleGroup {
             $Bofh = Init::get('Bofh');
 
             //using group_list for now, as it separates the type
-            //of members. group_list_expanded lists indirect members too, 
+            //of members. group_list_expanded lists indirect members too,
             //which is not what we want
             $raw = $Bofh->run_command('group_list', $group);
             $ret = array();
@@ -219,7 +262,7 @@ class Groups extends ModuleGroup {
          * @param  String    $type       The type of members (person, account, group)
          * @param  Array     $members    An array of members to add
          *
-         * @return int                   Number of members that got added. Those who 
+         * @return int                   Number of members that got added. Those who
          *                               weren't added triggers a View message.
          */
         function addMembers($group, $type, $members)
@@ -291,6 +334,8 @@ class Groups extends ModuleGroup {
                 txt('groups_members_person_or_account'),
             )));
             $newMember->addElement('submit', null, txt('groups_members_form_submit'));
+
+
             return $newMember;
         }
 
@@ -327,7 +372,7 @@ class Groups extends ModuleGroup {
         }
 
         /**
-         * Return a form for deleting members by giving explicit usernames. Used if a group 
+         * Return a form for deleting members by giving explicit usernames. Used if a group
          * is too large to list all members.
          */
         function getFormDeleteMembers($groupname)
@@ -341,7 +386,7 @@ class Groups extends ModuleGroup {
         }
 
         /**
-         * Process a delete members form by trying to remove all the members from the 
+         * Process a delete members form by trying to remove all the members from the
          * group.
          */
         function formDeleteMembersProcess($input)
@@ -376,12 +421,12 @@ class Groups extends ModuleGroup {
         /**
          * Create a form for confirming the deletion of group members.
          *
-         * TODO: the function makes use of $_POST directly, (should be changed), and 
+         * TODO: the function makes use of $_POST directly, (should be changed), and
          * is on the form:
          *  $_POST[member_type][member_id] = member_name
          *
-         * Note that the function doesn't check if the given members actually are 
-         * members of the group, or that the user is allowed to moderate the group.  
+         * Note that the function doesn't check if the given members actually are
+         * members of the group, or that the user is allowed to moderate the group.
          * That is up to the code that calls this function, and the authorisation in
          * bofhd.
          *
@@ -391,7 +436,7 @@ class Groups extends ModuleGroup {
         function formConfirmDelMembers($groupname, $members = null)
         {
             $form = new BofhFormUiO('confirmDelMembers', null, 'groups/?group='.$groupname);
-            $form->addElement('html', View::createElement('p', 
+            $form->addElement('html', View::createElement('p',
                 txt('groups_members_del_confirm', array('groupname' => $groupname))
             ));
 
@@ -511,8 +556,10 @@ class Groups extends ModuleGroup {
         }
 
         // getting the users groups
+        $all_groups = getGroups();
+        $automatic_groups = getAutomaticGroups($all_groups);
+        $manual_groups = getManualGroups($all_groups);
         $adm_groups = getAdmGroups();
-        $normal_groups = getGroups();
 
         // the group types which are handled here, other types (e.g. hosts) are ignored
         $acceptable_group_types = array('group', 'account', 'person');
@@ -521,7 +568,7 @@ class Groups extends ModuleGroup {
         $View->addTitle(txt('GROUPS_TITLE'));
 
         if (!empty($_GET['group'])) { // SHOW A SPECIFIC GROUP
-            if (!isset($normal_groups[$_GET['group']]) && !isset($adm_groups[$_GET['group']])) {
+            if (!isset($manual_groups[$_GET['group']]) && !isset($adm_groups[$_GET['group']])) {
                 View::forward('groups/', txt('groups_group_unknown'), View::MSG_WARNING);
             }
             $group = $Bofh->getDataClean('group_info', $_GET['group']);
@@ -566,7 +613,7 @@ class Groups extends ModuleGroup {
                     //     )
                     // )
 
-                    $delConfirm = formConfirmDelMembers($groupname); 
+                    $delConfirm = formConfirmDelMembers($groupname);
 
                     // confirmation:
                     if ($delConfirm->validate()) {
@@ -751,7 +798,7 @@ class Groups extends ModuleGroup {
                         $table->setHead(null, txt('group_members_table_user_name'), txt('group_members_table_full_name'), txt('group_members_table_type'));
 
                         //TODO: make a class for this kind of forms...
-                        $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="app-form">'); 
+                        $View->addElement('raw', '<form method="post" action="groups/?group='.$groupname.'" class="app-form">');
 
 
                         for ($i = $page*MAX_LIST_ELEMENTS_SPLIT; ($i < count($members)) && ($i < $page*MAX_LIST_ELEMENTS_SPLIT+MAX_LIST_ELEMENTS_SPLIT) ; $i++) {
@@ -805,11 +852,10 @@ class Groups extends ModuleGroup {
             $View->addElement('p', txt('groups_too_many'));
         } elseif ($adm_groups) {
             $table = View::createElement('table', null, 'class="app-table"');
-            foreach ($adm_groups as $name => $description) {
-                $group = $Bofh->getDataClean('group_info', $name);
+            foreach ($adm_groups as $name => $group) {
                 $table->addData(array(
                     View::createElement('a', $name, "groups/?group=$name", 'title="Click for more info about this group"'),
-                    $description, $group['expire_date'] ? $group['expire_date']->format('Y-m-d') : 'Not set',
+                    $group['description'], $group['expire_date'] ? $group['expire_date']->format('Y-m-d') : 'Not set',
                 ));
             }
             $table->setHead(
@@ -825,27 +871,40 @@ class Groups extends ModuleGroup {
             }
         }
 
-        if ($normal_groups) {
-            if (INST != 'uit') {
-                $View->addElement('h2', txt('groups_others_title'));
-            }
-            $othtable = View::createElement('table', null, 'class="app-table"');
-            $othtable->setHead(
+        if ($automatic_groups) {
+            $View->addElement('h2', txt('groups_title_automatic'));
+            $table = View::createElement('table', null, 'class="app-table"');
+            $table->setHead(
                 txt('groups_table_groupname'),
                 txt('groups_table_description')
             );
 
-            foreach ($normal_groups as $name => $description) {
-                // TODO: should we skip class-groups (e.g. uio:mn:ifi:inf1000:gruppe2) or not?
-                if (is_numeric(strpos($name, ':'))) {
-                    continue;
-                }
-                $othtable->addData(View::createElement('tr', array(
+            foreach ($automatic_groups as $name => $group) {
+                $table->addData(View::createElement('tr', array(
                     $name,
-                    $description,
+                    $group['description']
                 )));
             }
-            $View->addElement($othtable);
+            $View->addElement($table);
+        }
+
+        if ($manual_groups) {
+            if (INST != 'uit') {
+                $View->addElement('h2', txt('groups_title_manual'));
+            }
+            $table = View::createElement('table', null, 'class="app-table"');
+            $table->setHead(
+                txt('groups_table_groupname'),
+                txt('groups_table_description')
+            );
+
+            foreach ($manual_groups as $name => $group) {
+                $table->addData(View::createElement('tr', array(
+                    $name,
+                    $group['description']
+                )));
+            }
+            $View->addElement($table);
         }
 
         // recommending a personal group
@@ -866,7 +925,7 @@ class Groups extends ModuleGroup {
          * is therefore in an array.
          */
 
-        function request_group($data) { 
+        function request_group($data) {
             $Bofh = Init::get("Bofh");
             global $spreads;
 
@@ -884,8 +943,8 @@ class Groups extends ModuleGroup {
             if (!empty($data['gr_spreads'])) {
                 foreach ($data['gr_spreads'] as $key => $sp) {
                     if (!isset($spreads[$key])) {
-                        View::addMessage(txt('groups_new_form_spread_unknown', 
-                            array('spread'=>$key)), 
+                        View::addMessage(txt('groups_new_form_spread_unknown',
+                            array('spread'=>$key)),
                         View::MSG_WARNING);
                         return false;
                     }
@@ -896,7 +955,7 @@ class Groups extends ModuleGroup {
 
             try {
                 $ret = $Bofh->run_command(
-                    'group_request', 
+                    'group_request',
                     $data['gr_name'],
                     $data['gr_desc'],
                     $data['spreads'],
@@ -904,7 +963,7 @@ class Groups extends ModuleGroup {
                 );
                 if ($ret == NULL) {
                     throw new Exception(
-                        "bofhd error: No request will be sent.");
+                        "bofhd emrror: No request will be sent.");
                 }
             } catch(Exception $e) {
                 Bofhcom::viewError($e);
@@ -965,10 +1024,10 @@ class Groups extends ModuleGroup {
 
         $choosespreads = array();
         foreach($spreads as $spread => $description) {
-            $choosespreads[] = HTML_Quickform::createElement('checkbox', $spread, null, 
+            $choosespreads[] = HTML_Quickform::createElement('checkbox', $spread, null,
                 "$spread <span class=\"ekstrainfo\">- $description</span>");
         }
-        $newform->addGroup($choosespreads, 'gr_spreads', 
+        $newform->addGroup($choosespreads, 'gr_spreads',
             txt('groups_new_form_spreads'), "<br />\n");
 
         $newform->addElement('submit', null, txt('groups_new_form_submit'));
