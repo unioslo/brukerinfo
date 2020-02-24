@@ -819,7 +819,10 @@ class Groups extends ModuleGroup {
                 //'Action:'
             );
             $View->addElement($table);
-            $View->addElement('p', txt('groups_table_other_info'), 'class="ekstrainfo"');
+            if (INST == 'uio') {
+                $View->addElement(
+                    'p', txt('groups_table_other_info'), 'class="ekstrainfo"');
+            }
         } else {
             if (INST != 'uit') {
                 $View->addElement('p', txt('groups_empty_mod_list'));
