@@ -423,7 +423,6 @@
         instead.</GROUPS_TOO_MANY>
     <GROUPS_GROUP_UNKNOWN>Could not find specified group</GROUPS_GROUP_UNKNOWN>
     <GROUPS_MODERATIVE_TITLE>Groups you can moderate</GROUPS_MODERATIVE_TITLE>
-    <GROUPS_OTHERS_TITLE>Your group memberships</GROUPS_OTHERS_TITLE>
     <GROUPS_NO_PERSONAL>You do not have a personal group. Do you want to &lt;a href="groups/personal/"&gt;create it&lt;/a&gt;?</GROUPS_NO_PERSONAL>
 
     <GROUPS_TABLE_GROUPNAME>Group:</GROUPS_TABLE_GROUPNAME>
