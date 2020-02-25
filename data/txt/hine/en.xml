@@ -16,7 +16,7 @@
     <TAGLINE>Simple user administration at HiNesna</TAGLINE>
     <FOOTER>Brukerinfo - simple user administration at HiNesna</FOOTER>
 
-    <!-- The title of the page if it is locked because of a restart 
+    <!-- The title of the page if it is locked because of a restart
          of bofhd or the site is being updated -->
     <LOCKED_TITLE>Down for maintenance</LOCKED_TITLE>
 
@@ -95,7 +95,7 @@
         again.</LOGOUT_SECURITY>
 
     <!-- THE PAGES -->
-    <!-- Text for specific pages. 
+    <!-- Text for specific pages.
          The first part of the key is what main category the page is in, the second is the page-name.
          The rest of the key name is the function of the text (what it tries to tell the user).
          -->
@@ -229,9 +229,9 @@
     <ACCOUNT_PRIMARY_ALREADY>The active account ({{username}}) is already your primary account.&lt;br&gt;
         To make another account the primary, please log on with that account.</ACCOUNT_PRIMARY_ALREADY>
     <ACCOUNT_PRIMARY_FORM_SUBMIT>Make {{username}} my primary account</ACCOUNT_PRIMARY_FORM_SUBMIT>
-    <ACCOUNT_PRIMARY_SUCCESS>Your account {{username}} is now your primary account. It normally takes up to up to 2 hours 
+    <ACCOUNT_PRIMARY_SUCCESS>Your account {{username}} is now your primary account. It normally takes up to up to 2 hours
         before changes are applied.</ACCOUNT_PRIMARY_SUCCESS>
-    <ACCOUNT_PRIMARY_FAILED>The system could not change your primary account, please contact your 
+    <ACCOUNT_PRIMARY_FAILED>The system could not change your primary account, please contact your
         local IT support service or Houston</ACCOUNT_PRIMARY_FAILED>
 
     <!-- Printing text -->
@@ -241,12 +241,12 @@
     <PRINTING_TABLE_PAID_VALUE>({{kroner}} NOK)</PRINTING_TABLE_PAID_VALUE>
     <PRINTING_TABLE_TOTAL>Total prints available:</PRINTING_TABLE_TOTAL>
 
-    <PRINTING_MOREINFO_PAY>To pay for more prints, please log on to 
+    <PRINTING_MOREINFO_PAY>To pay for more prints, please log on to
         &lt;a href="https://studweb.uio.no"&gt;StudentWeb at HiNesna&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
     <PRINTING_MOREINFO_PRICES>For more information about the printout prices,
         see &lt;a href="https://uio.no/tjenester/it/utskrift/hjelp/utskriftsbetaling.html"&gt;
         copy fee at HiNesna&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
-    <PRINTING_MOREINFO_PRINTING>For more information about printing and printers, please visit the page for 
+    <PRINTING_MOREINFO_PRINTING>For more information about printing and printers, please visit the page for
         &lt;a href="https://uio.no/tjenester/it/utskrift/"&gt;printing services at HiNesna&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
 
 
@@ -271,7 +271,7 @@
 
     <!-- Email text -->
     <EMAIL_TITLE>E-mail</EMAIL_TITLE>
-    
+
     <EMAIL_INFO_TITLE>E-mail overview</EMAIL_INFO_TITLE>
     <EMAIL_INFO_NO_ACCOUNT>This user account does not have an e-mail account</EMAIL_INFO_NO_ACCOUNT>
     <EMAIL_INFO_PRIMARY_ADDR>Primary address:</EMAIL_INFO_PRIMARY_ADDR>
@@ -307,9 +307,9 @@
     <EMAIL_SPAM_INTRO>These settings are applied before your e-mails are
         delivered to your mailbox.</EMAIL_SPAM_INTRO>
 
-    <!-- 
+    <!--
         The following spam descriptions aren't used in English, as we prefer
-        the descriptions from bofhd. 
+        the descriptions from bofhd.
     -->
     <EMAIL_SPAM_ACTION_DROPSPAM>Reject messages classified as spam</EMAIL_SPAM_ACTION_DROPSPAM>
     <EMAIL_SPAM_ACTION_SPAMFOLDER>Deliver spam to a separate IMAP folder</EMAIL_SPAM_ACTION_SPAMFOLDER>
@@ -344,7 +344,7 @@
     <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
     <EMAIL_FILTER_DATA_UIOONLY_DESC>Description: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
         Please see &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/uioonly/"&gt;USIT's page about 
+        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/uioonly/"&gt;USIT's page about
         UiOonly&lt;/a&gt; for more information.</EMAIL_FILTER_DATA_UIOONLY_DESC>
     <EMAIL_FILTER_ENABLE>Enable</EMAIL_FILTER_ENABLE>
     <EMAIL_FILTER_DISABLE>Disable</EMAIL_FILTER_DISABLE>
@@ -395,7 +395,7 @@
     <EMAIL_FORWARD_DELETE_SUBMIT>Delete</EMAIL_FORWARD_DELETE_SUBMIT>
 
     <EMAIL_FORWARD_DELETE_CONFIRM_TITLE>Confirm deletion of forwarding rule</EMAIL_FORWARD_DELETE_CONFIRM_TITLE>
-    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Are you sure you want to delete your forwarding to 
+    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Are you sure you want to delete your forwarding to
         &lt;strong&gt;{{target}}&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
     <EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>Delete</EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>
     <EMAIL_FORWARD_DELETE_UNKNOWN>Unknown forwarding address</EMAIL_FORWARD_DELETE_UNKNOWN>
@@ -415,7 +415,9 @@
     <!-- Groups pages -->
     <GROUPS_TITLE>Your groups</GROUPS_TITLE>
     <GROUPS_EMPTY_MOD_LIST>You have no groups to moderate.</GROUPS_EMPTY_MOD_LIST>
-    <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load. 
+    <GROUPS_TITLE_AUTOMATIC>Your automatic group memberships</GROUPS_TITLE_AUTOMATIC>
+    <GROUPS_TITLE_MANUAL>Your manual group memberships</GROUPS_TITLE_MANUAL>
+    <GROUPS_TOO_MANY>You are a moderator of too many groups, which would take too long time to load.
         Please use the command line interface
         &lt;a href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt;
         instead.</GROUPS_TOO_MANY>
@@ -429,8 +431,8 @@
 
 
     <GROUPS_PERSONAL_TITLE>Create personal group</GROUPS_PERSONAL_TITLE>
-    <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user 
-        account (in this case {{username}}). You are the administrator of the group and decide who should 
+    <GROUPS_PERSONAL_INFO>The personal group is a group with the same name as your user
+        account (in this case {{username}}). You are the administrator of the group and decide who should
         be members with access to e.g. shared documents or allow execution of scripts.
     </GROUPS_PERSONAL_INFO>
     <GROUPS_PERSONAL_ALREADY>It looks like you already have a personal group</GROUPS_PERSONAL_ALREADY>
@@ -488,7 +490,7 @@
     <GROUPS_NEW_INTRO>&lt;p&gt;Request a new group for use in IT systems at
         HiNesna.
         The form will be sent to the user administration at HiNesna,
-        which will decide if the group can be created. You will then be answered 
+        which will decide if the group can be created. You will then be answered
         by e-mail.&lt;/p&gt;
 
         &lt;p&gt;
@@ -530,11 +532,11 @@
     <BOFH_INFO_NAME>Display name:</BOFH_INFO_NAME>
     <BOFH_INFO_BIRTH>Birth:</BOFH_INFO_BIRTH>
     <BOFH_INFO_AFFILIATIONS>Your account has the following affiliation(s):</BOFH_INFO_AFFILIATIONS>
-    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
+    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt;
         at &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>
     <BOFH_INFO_PERSON_AFFILIATIONS>Your person has the following affiliation(s):</BOFH_INFO_PERSON_AFFILIATIONS>
-    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Affiliation in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: 
-        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt; 
+    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Affiliation in &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt;
         &lt;dfn title="{{status_desc}}"&gt;{{status}}&lt;/dfn&gt;
         at {{stedkode_desc}} ({{stedkode}})</BOFH_INFO_PERSON_AFFILIATION_VALUE>
     <BOFH_INFO_NAMES>Names:</BOFH_INFO_NAMES>
