@@ -1024,7 +1024,7 @@ class Groups extends ModuleGroup {
 
 
         $View = Init::get('View');
-        $View->addTitle('Mine grupper!!');
+        $View->addTitle(txt('groups_title_memberships'));
         $View->start();
 
         $View->addElement('h1', txt('groups_title_memberships'));
