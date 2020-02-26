@@ -65,7 +65,8 @@
     <MENU_EMAIL_FORWARD>Videresending</MENU_EMAIL_FORWARD>
 
     <MENU_GROUPS>Grupper</MENU_GROUPS>
-    <MENU_GROUPS_>Grupper</MENU_GROUPS_>
+    <MENU_GROUPS_>Administrer grupper</MENU_GROUPS_>
+    <MENU_GROUPS_MEMBERSHIPS>Dine gruppemedlemskap</MENU_GROUPS_MEMBERSHIPS>
     <MENU_GROUPS_NEW>Ny gruppe</MENU_GROUPS_NEW>
 
     <MENU_RESERVATIONS>Reservasjoner</MENU_RESERVATIONS>
@@ -459,16 +460,16 @@
 
 
     <!-- Groups pages -->
-    <GROUPS_TITLE>Dine grupper</GROUPS_TITLE>
+    <GROUPS_TITLE>Grupper du kan administere</GROUPS_TITLE>
     <GROUPS_TITLE_AUTOMATIC>Dine automatiske gruppemedlemskap</GROUPS_TITLE_AUTOMATIC>
     <GROUPS_TITLE_MANUAL>Dine manuelle gruppemedlemskap</GROUPS_TITLE_MANUAL>
+    <GROUPS_TITLE_MEMBERSHIPS>Dine gruppemedlemskap</GROUPS_TITLE_MEMBERSHIPS>
     <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere, men du kan opprette en &lt;a
         href="groups/personal/"&gt;personlig gruppe&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
     <GROUPS_TOO_MANY>Du er moderator for svært mange grupper, så visningen vil ta for lang tid.
         Bruk kommandolinjegrensesnittet &lt;a
         href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt; i stedet.</GROUPS_TOO_MANY>
     <GROUPS_GROUP_UNKNOWN>Kunne ikke finne angitt gruppe</GROUPS_GROUP_UNKNOWN>
-    <GROUPS_MODERATIVE_TITLE>Grupper du kan moderere</GROUPS_MODERATIVE_TITLE>
     <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="groups/personal/"&gt;opprette
         den&lt;/a&gt;?</GROUPS_NO_PERSONAL>
 

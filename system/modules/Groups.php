@@ -39,6 +39,7 @@ class Groups extends ModuleGroup {
         $ret = array();
         if ( INST == 'uio' && $this->authz->can_create_groups()) {
                 $ret[] = '';
+                $ret[] = 'memberships';
                 $ret[] = 'new';
         }
         return $ret;
@@ -71,6 +72,8 @@ class Groups extends ModuleGroup {
             return $this->index();
         case 'new':
             return $this->newgrp();
+        case 'memberships':
+            return $this->group_memberships();
         case 'personal':
             return $this->personal();
         }
@@ -106,70 +109,6 @@ class Groups extends ModuleGroup {
             $ret['name'] = $group;
             return $ret;
 
-        }
-
-        /**
-         * Gets, and sort, all the groups a user is in.
-         *
-         * @return  Array   Normal array with groups info dicts
-         */
-        function getGroups()
-        {
-            global $User;
-            global $Bofh;
-            $raw = $Bofh->getData('group_all_account_memberships', $User->getUsername());
-
-            $groups = array();
-            foreach ($raw as $g) {
-                $groups[$g['group']] = $g;
-            }
-
-            return $groups;
-        }
-
-        /**
-         * Helper function used to filter groups on a there group type.
-         *
-         * @param groups    Array of groups.
-         * @param types     Array of one or more groupe type strings.
-         */
-        function filter_groups_on_types($groups, $types)
-        {
-            $filtered_groups = array_filter(
-                $groups, function($group) use ($types){
-                    return in_array($group['group_type'], $types);
-                }
-            );
-
-            # sort by keys (groupname)
-            ksort($filtered_groups);
-            return $filtered_groups;
-        }
-
-        /**
-         * Filters a array of groups on automatic group types.
-         *
-         * Groups with type 'lms-group' are removed as well.
-         *
-         * @param groups    Array of groups.
-         * @return Array    Array with only automatic groups.
-         */
-        function getAutomaticGroups($groups)
-        {
-            $automatic_group_types = ['affiliation-group', 'virtual-group'];
-            return filter_groups_on_types($groups, $automatic_group_types);
-        }
-
-        /**
-         * Filters a array of groups on manual group types.
-         *
-         * @param groups    Array of groups.
-         * @return Array    Array with only manual groups.
-         */
-         function getManualGroups($groups)
-        {
-            $manual_group_types = ['internal-group', 'personal-group', 'unknown-group', 'manual-group'];
-            return filter_groups_on_types($groups, $manual_group_types);
         }
 
         /**
@@ -555,10 +494,6 @@ class Groups extends ModuleGroup {
             }
         }
 
-        // getting the users groups
-        $all_groups = getGroups();
-        $automatic_groups = getAutomaticGroups($all_groups);
-        $manual_groups = getManualGroups($all_groups);
         $adm_groups = getAdmGroups();
 
         // the group types which are handled here, other types (e.g. hosts) are ignored
@@ -843,11 +778,6 @@ class Groups extends ModuleGroup {
         $View->start();
         $View->addElement('h1', txt('GROUPS_TITLE'));
 
-        // admin groups
-        if (INST != 'uit') {
-            $View->addElement('h2', txt('groups_moderative_title'));
-        }
-
         if ($adm_groups == -1) {
             $View->addElement('p', txt('groups_too_many'));
         } elseif ($adm_groups) {
@@ -869,43 +799,6 @@ class Groups extends ModuleGroup {
             if (INST != 'uit') {
                 $View->addElement('p', txt('groups_empty_mod_list'));
             }
-        }
-
-        if ($automatic_groups) {
-            $View->addElement('h2', txt('groups_title_automatic'));
-            $table = View::createElement('table', null, 'class="app-table"');
-            $table->setHead(
-                txt('groups_table_groupname'),
-                txt('groups_table_description')
-            );
-
-            foreach ($automatic_groups as $name => $group) {
-                $table->addData(View::createElement('tr', array(
-                    $name,
-                    $group['description']
-                )));
-            }
-            $View->addElement($table);
-        }
-
-        if ($manual_groups) {
-            if (INST != 'uit') {
-                $View->addElement('h2', txt('groups_title_manual'));
-            }
-            $View->addElement('p', txt('groups_manual_contact'));
-            $table = View::createElement('table', null, 'class="app-table"');
-            $table->setHead(
-                txt('groups_table_groupname'),
-                txt('groups_table_description')
-            );
-
-            foreach ($manual_groups as $name => $group) {
-                $table->addData(View::createElement('tr', array(
-                    $name,
-                    $group['description']
-                )));
-            }
-            $View->addElement($table);
         }
 
         // recommending a personal group
@@ -1051,6 +944,128 @@ class Groups extends ModuleGroup {
         $View->addElement('h1', txt('groups_new_title'));
         $View->addElement('p', txt('groups_new_intro'));
         $View->addElement($newform);
+    }
+
+
+    public function group_memberships() {
+
+        $User = Init::get('User');
+        $Bofh = new Bofhcom();
+
+        /**
+         * Gets, and sort, all the groups a user is in.
+         *
+         * @return  Array   Normal array with groups info dicts
+         */
+        function getGroups()
+        {
+            global $User;
+            global $Bofh;
+            $raw = $Bofh->getData('wofh_all_group_memberships', $User->getUsername());
+
+            $groups = array();
+            foreach ($raw as $g) {
+                $groups[$g['group']] = $g;
+            }
+
+            return $groups;
+        }
+
+        /**
+         * Helper function used to filter groups on a there group type.
+         *
+         * @param groups    Array of groups.
+         * @param types     Array of one or more groupe type strings.
+         */
+        function filter_groups_on_types($groups, $types)
+        {
+            $filtered_groups = array_filter(
+                $groups, function($group) use ($types){
+                    return in_array($group['group_type'], $types);
+                }
+            );
+
+            # sort by keys (groupname)
+            ksort($filtered_groups);
+            return $filtered_groups;
+        }
+
+        /**
+         * Filters a array of groups on automatic group types.
+         *
+         * Groups with type 'lms-group' are removed as well.
+         *
+         * @param groups    Array of groups.
+         * @return Array    Array with only automatic groups.
+         */
+        function getAutomaticGroups($groups)
+        {
+            $automatic_group_types = ['affiliation-group', 'virtual-group'];
+            return filter_groups_on_types($groups, $automatic_group_types);
+        }
+
+        /**
+         * Filters a array of groups on manual group types.
+         *
+         * @param groups    Array of groups.
+         * @return Array    Array with only manual groups.
+         */
+         function getManualGroups($groups)
+        {
+            $manual_group_types = ['internal-group', 'personal-group', 'unknown-group', 'manual-group'];
+            return filter_groups_on_types($groups, $manual_group_types);
+        }
+
+
+        // getting the users groups
+        $all_groups = getGroups();
+        $automatic_groups = getAutomaticGroups($all_groups);
+        $manual_groups = getManualGroups($all_groups);
+
+
+        $View = Init::get('View');
+        $View->addTitle('Mine grupper!!');
+        $View->start();
+
+        $View->addElement('h1', txt('groups_title_memberships'));
+
+        if ($automatic_groups) {
+            $View->addElement('h2', txt('groups_title_automatic'));
+            $table = View::createElement('table', null, 'class="app-table"');
+            $table->setHead(
+                txt('groups_table_groupname'),
+                txt('groups_table_description')
+            );
+
+            foreach ($automatic_groups as $name => $group) {
+                $table->addData(View::createElement('tr', array(
+                    $name,
+                    $group['description']
+                )));
+            }
+            $View->addElement($table);
+        }
+
+        if ($manual_groups) {
+            if (INST != 'uit') {
+                $View->addElement('h2', txt('groups_title_manual'));
+            }
+            $View->addElement('p', txt('groups_manual_contact'), 'class="ekstrainfo"');
+            $table = View::createElement('table', null, 'class="app-table"');
+            $table->setHead(
+                txt('groups_table_groupname'),
+                txt('groups_table_description')
+            );
+
+            foreach ($manual_groups as $name => $group) {
+                $table->addData(View::createElement('tr', array(
+                    $name,
+                    $group['description']
+                )));
+            }
+            $View->addElement($table);
+        }
+
     }
 
     public function personal() {
