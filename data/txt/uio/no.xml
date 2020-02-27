@@ -16,7 +16,7 @@
     <TAGLINE>Enkel brukeradministrasjon ved UiO</TAGLINE>
     <FOOTER>Brukerinfo - enkel brukeradministrasjon ved UiO</FOOTER>
 
-    <!-- The title of the page if it is locked because of a restart 
+    <!-- The title of the page if it is locked because of a restart
          of bofhd or the site is being updated -->
     <LOCKED_TITLE>Nede for vedlikehold</LOCKED_TITLE>
 
@@ -65,7 +65,8 @@
     <MENU_EMAIL_FORWARD>Videresending</MENU_EMAIL_FORWARD>
 
     <MENU_GROUPS>Grupper</MENU_GROUPS>
-    <MENU_GROUPS_>Grupper</MENU_GROUPS_>
+    <MENU_GROUPS_>Administrer grupper</MENU_GROUPS_>
+    <MENU_GROUPS_MEMBERSHIPS>Dine gruppemedlemskap</MENU_GROUPS_MEMBERSHIPS>
     <MENU_GROUPS_NEW>Ny gruppe</MENU_GROUPS_NEW>
 
     <MENU_RESERVATIONS>Reservasjoner</MENU_RESERVATIONS>
@@ -91,15 +92,15 @@
           &lt;p style="margin:1em 0 0.75em 0"&gt;Prøv vår nye tjeneste på &lt;a href="https://passord.uio.no"&gt;passord.uio.no&lt;/a&gt;.&lt;/p&gt;
         &lt;/div&gt;
 
-        &lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen 
-        som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo. 
+        &lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen
+        som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo.
     </LOGON_INTRO>
     <LOGON_OUTRO>
         &lt;p&gt;På &lt;a href="https://passord.uio.no"&gt;passord.uio.no&lt;/a&gt; kan du:&lt;/p&gt;
         &lt;ul&gt;
         &lt;li&gt;Skifte passord ved hjelp av SMS&lt;/li&gt;
         &lt;li&gt;Skifte passord om du kan ditt nåværende passord&lt;/li&gt;
-        &lt;li&gt;Finne brukernavnet ditt&lt;/li&gt;        
+        &lt;li&gt;Finne brukernavnet ditt&lt;/li&gt;
         &lt;/ul&gt;
 
         &lt;p&gt;Les om &lt;a
@@ -126,7 +127,7 @@
         igjen.</LOGOUT_SECURITY>
 
     <!-- THE PAGES -->
-    <!-- Text for specific pages. 
+    <!-- Text for specific pages.
          The first part of the key is what main category the page is in, the second is the page-name.
          The rest of the key name is the function of the text (what it tries to tell the user).
          -->
@@ -152,8 +153,8 @@
     </HOME_SHORTCUTS_CHANGE_PRI_EMAIL_ADDR>
 
     <HOME_ABOUT_TITLE>Om Brukerinfo</HOME_ABOUT_TITLE>
-    <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som 
-        er tilknyttet den elektroniske identiteten din ved Universitetet i Oslo. Hvis du trenger mer 
+    <HOME_ABOUT>Dette er en tjeneste som gir deg tilgang til å vise og endre noe av informasjonen som
+        er tilknyttet den elektroniske identiteten din ved Universitetet i Oslo. Hvis du trenger mer
         informasjon eller hjelp i forbindelse med datasystemene ved UiO, kan du gå til
         &lt;a href="https://uio.no/tjenester/it/"&gt;nettstedet for IT-tjenester ved UiO&lt;/a&gt;.</HOME_ABOUT>
 
@@ -215,7 +216,7 @@
     <ACCOUNT_NAME_DELETED>{{username}} (avviklet)</ACCOUNT_NAME_DELETED>
 
     <ACCOUNT_OTHER_TITLE>Andre brukerkontoer</ACCOUNT_OTHER_TITLE>
-    <ACCOUNT_OTHER_INFO>Hvis du vil ha informasjon for en annen brukerkonto som er din, logger du inn 
+    <ACCOUNT_OTHER_INFO>Hvis du vil ha informasjon for en annen brukerkonto som er din, logger du inn
         med brukernavn og passord til den brukerkontoen.</ACCOUNT_OTHER_INFO>
     <ACCOUNT_OTHER_TABLE_NAME>Navn:</ACCOUNT_OTHER_TABLE_NAME>
     <ACCOUNT_OTHER_TABLE_EXPIRE>Utløper:</ACCOUNT_OTHER_TABLE_EXPIRE>
@@ -286,12 +287,12 @@
     <PRINTING_TABLE_PAID_VALUE>(kr {{kroner}})</PRINTING_TABLE_PAID_VALUE>
     <PRINTING_TABLE_TOTAL>Totalt antall tilgjengelige utskrifter:</PRINTING_TABLE_TOTAL>
 
-    <PRINTING_MOREINFO_PAY>Hvis du skal betale for flere utskrifter, logger du inn på 
+    <PRINTING_MOREINFO_PAY>Hvis du skal betale for flere utskrifter, logger du inn på
         &lt;a href="https://studweb.uio.no"&gt;StudentWeb ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PAY>
-    <PRINTING_MOREINFO_PRICES>Hvis du vil vite mer om utskriftspriser, kan du lese om 
+    <PRINTING_MOREINFO_PRICES>Hvis du vil vite mer om utskriftspriser, kan du lese om
         &lt;a href="https://uio.no/tjenester/it/utskrift/hjelp/utskriftsbetaling.html"&gt;
         kopiavgiften ved UiO&lt;/a&gt;.</PRINTING_MOREINFO_PRICES>
-    <PRINTING_MOREINFO_PRINTING>Hvis du vil vite mer om utskrift og skrivere, kan du gå til siden for 
+    <PRINTING_MOREINFO_PRINTING>Hvis du vil vite mer om utskrift og skrivere, kan du gå til siden for
         &lt;a href="https://uio.no/tjenester/it/utskrift/"&gt;utskriftstjenester ved UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
 
 
@@ -334,7 +335,7 @@
     <EMAIL_OTHER_TITLE>Dine andre e-postkontoer</EMAIL_OTHER_TITLE>
     <EMAIL_OTHER_INTRO></EMAIL_OTHER_INTRO>
 
-    <EMAIL_INFO_MORE_INFO>Hvis du vil vite mer om e-postsystemet ved UiO, kan du lese 
+    <EMAIL_INFO_MORE_INFO>Hvis du vil vite mer om e-postsystemet ved UiO, kan du lese
         &lt;a href="https://uio.no/tjenester/it/e-post-kalender/"&gt;hjelpesidene for e-post&lt;/a&gt;.</EMAIL_INFO_MORE_INFO>
 
     <EMAIL_DEL_TITLE>Bekreft sletting av e-postadresse</EMAIL_DEL_TITLE>
@@ -388,7 +389,7 @@
       </EMAIL_FILTER_DATA_GREYLIST_DESC>
     <EMAIL_FILTER_DATA_UIOONLY>UiOonly</EMAIL_FILTER_DATA_UIOONLY>
     <EMAIL_FILTER_DATA_UIOONLY_DESC>Beskrivelse: "&lt;em&gt;{{bofh_desc}}&lt;/em&gt;"&lt;br /&gt;
-        Du finner informasjon om dette på &lt;a 
+        Du finner informasjon om dette på &lt;a
         href="http://www.uio.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/uioonly.html"&gt;USITs side om UiOonly&lt;/a&gt;.
       </EMAIL_FILTER_DATA_UIOONLY_DESC>
       <EMAIL_FILTER_ENABLE>Aktiver</EMAIL_FILTER_ENABLE>
@@ -435,19 +436,19 @@
         USITs side om videresending&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Behold kopi</EMAIL_FORWARD_LOCAL>
     <EMAIL_FORWARD_NEW_TITLE>Opprett regel for videresending</EMAIL_FORWARD_NEW_TITLE>
-    <EMAIL_FORWARD_NEW_OK>Du har opprettet en ny regel for videresending. Det tar vanligvis opptil 2 timer 
+    <EMAIL_FORWARD_NEW_OK>Du har opprettet en ny regel for videresending. Det tar vanligvis opptil 2 timer
         før endringene trer i kraft.</EMAIL_FORWARD_NEW_OK>
 
     <EMAIL_FORWARD_DELETE_SUBMIT>Slett</EMAIL_FORWARD_DELETE_SUBMIT>
 
     <EMAIL_FORWARD_DELETE_CONFIRM_TITLE>Bekreft sletting av regel for videresending</EMAIL_FORWARD_DELETE_CONFIRM_TITLE>
-    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Er du sikker på at du vil slette videresendingen til 
+    <EMAIL_FORWARD_DELETE_CONFIRM_INTRO>Er du sikker på at du vil slette videresendingen til
         &lt;strong&gt;{{target}}&lt;/strong&gt;?</EMAIL_FORWARD_DELETE_CONFIRM_INTRO>
     <EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>Slett</EMAIL_FORWARD_DELETE_CONFIRM_SUBMIT>
     <EMAIL_FORWARD_DELETE_UNKNOWN>Ukjent adresse for videresending</EMAIL_FORWARD_DELETE_UNKNOWN>
 
     <EMAIL_FORWARD_ADDLOCAL_TITLE>Behold en kopi</EMAIL_FORWARD_ADDLOCAL_TITLE>
-    <EMAIL_FORWARD_ADDLOCAL>Kontoen din videresender nå all e-post som er adressert til din UiO-adresse, 
+    <EMAIL_FORWARD_ADDLOCAL>Kontoen din videresender nå all e-post som er adressert til din UiO-adresse,
         til en annen adresse. Vil du beholde en kopi av meldingene som videresendes, i UiO-kontoen din?
       </EMAIL_FORWARD_ADDLOCAL>
     <EMAIL_FORWARD_ADDLOCAL_SUBMIT>Behold en kopi</EMAIL_FORWARD_ADDLOCAL_SUBMIT>
@@ -459,29 +460,33 @@
 
 
     <!-- Groups pages -->
-    <GROUPS_TITLE>Dine grupper</GROUPS_TITLE>
-    <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere, men du kan opprette en &lt;a 
+    <GROUPS_TITLE>Grupper du kan administere</GROUPS_TITLE>
+    <GROUPS_TITLE_AUTOMATIC>Dine automatiske gruppemedlemskap</GROUPS_TITLE_AUTOMATIC>
+    <GROUPS_TITLE_MANUAL>Dine manuelle gruppemedlemskap</GROUPS_TITLE_MANUAL>
+    <GROUPS_TITLE_MEMBERSHIPS>Dine gruppemedlemskap</GROUPS_TITLE_MEMBERSHIPS>
+    <GROUPS_EMPTY_MOD_LIST>Du har ingen grupper å moderere, men du kan opprette en &lt;a
         href="groups/personal/"&gt;personlig gruppe&lt;/a&gt;.</GROUPS_EMPTY_MOD_LIST>
-    <GROUPS_TOO_MANY>Du er moderator for svært mange grupper, så visningen vil ta for lang tid. 
+    <GROUPS_TOO_MANY>Du er moderator for svært mange grupper, så visningen vil ta for lang tid.
         Bruk kommandolinjegrensesnittet &lt;a
         href="https://uio.no/tjenester/it/brukernavn-passord/bofh/"&gt;jbofh&lt;/a&gt; i stedet.</GROUPS_TOO_MANY>
     <GROUPS_GROUP_UNKNOWN>Kunne ikke finne angitt gruppe</GROUPS_GROUP_UNKNOWN>
-    <GROUPS_MODERATIVE_TITLE>Grupper du kan moderere</GROUPS_MODERATIVE_TITLE>
-    <GROUPS_OTHERS_TITLE>Dine gruppemedlemskap</GROUPS_OTHERS_TITLE>
-    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="groups/personal/"&gt;opprette 
+    <GROUPS_NO_PERSONAL>Du har ingen personlig gruppe. Vil du &lt;a href="groups/personal/"&gt;opprette
         den&lt;/a&gt;?</GROUPS_NO_PERSONAL>
 
     <GROUPS_TABLE_GROUPNAME>Gruppe</GROUPS_TABLE_GROUPNAME>
     <GROUPS_TABLE_DESCRIPTION>Beskrivelse</GROUPS_TABLE_DESCRIPTION>
     <GROUPS_TABLE_EXPIRES>Utløper</GROUPS_TABLE_EXPIRES>
 
+    <GROUPS_MANUAL_CONTACT>For hjelp med å melde deg ut av manuelle grupper, ta kontakt med
+        &lt;a href="mailto:it-support@uio.no"&gt;it-support@uio.no&lt;/a&gt;.
+    </GROUPS_MANUAL_CONTACT>
 
     <GROUPS_PERSONAL_TITLE>Opprett personlig gruppe</GROUPS_PERSONAL_TITLE>
-    <GROUPS_PERSONAL_INFO>Den personlige gruppen er en gruppe med samme navn som brukerkontoen din (i dette 
-        tilfellet {{username}}). Du administrerer gruppen og avgjør hvem som skal være medlemmer med tilgang til f.eks. 
+    <GROUPS_PERSONAL_INFO>Den personlige gruppen er en gruppe med samme navn som brukerkontoen din (i dette
+        tilfellet {{username}}). Du administrerer gruppen og avgjør hvem som skal være medlemmer med tilgang til f.eks.
         delte dokumenter og mulighet til å utføre skript.</GROUPS_PERSONAL_INFO>
     <GROUPS_PERSONAL_ALREADY>Det ser ut til at du allerede har en personlig gruppe</GROUPS_PERSONAL_ALREADY>
-    <GROUPS_PERSONAL_SUCCESS>Din personlige gruppe er opprettet. Det tar vanligvis opptil 2 timer før endringene 
+    <GROUPS_PERSONAL_SUCCESS>Din personlige gruppe er opprettet. Det tar vanligvis opptil 2 timer før endringene
         trer i kraft.</GROUPS_PERSONAL_SUCCESS>
     <GROUPS_PERSONAL_SUBMIT>Opprett personlig gruppe</GROUPS_PERSONAL_SUBMIT>
 
@@ -491,6 +496,7 @@
     <GROUP_CREATE_DATE>Opprettet:</GROUP_CREATE_DATE>
     <GROUP_SPREAD>Tilgang:</GROUP_SPREAD>
     <GROUP_OWNER>Eier:</GROUP_OWNER>
+    <GROUP_EXPIRE_NOT_SET>Ikke satt</GROUP_EXPIRE_NOT_SET>
     <GROUP_EXPIRES>Utløper:</GROUP_EXPIRES>
     <GROUP_EXPIRES_SUBMIT>Sett ny dato</GROUP_EXPIRES_SUBMIT>
     <GROUP_MEMBERS>Medlemmer:</GROUP_MEMBERS>
@@ -503,7 +509,7 @@
     <GROUP_MEMBERS_TABLE_TYPE>Type:</GROUP_MEMBERS_TABLE_TYPE>
 
     <GROUPS_MEMBERS_DEL_TITLE>Bekreft fjerning av medlemmer</GROUPS_MEMBERS_DEL_TITLE>
-    <GROUPS_MEMBERS_DEL_CONFIRM>Er du sikker på at du vil fjerne følgende medlemmer fra gruppen 
+    <GROUPS_MEMBERS_DEL_CONFIRM>Er du sikker på at du vil fjerne følgende medlemmer fra gruppen
         &lt;strong&gt;{{groupname}}&lt;/strong&gt;?</GROUPS_MEMBERS_DEL_CONFIRM>
     <GROUPS_MEMBERS_DEL_GROUPS>Grupper:</GROUPS_MEMBERS_DEL_GROUPS>
     <GROUPS_MEMBERS_DEL_PERSONS>Personer:</GROUPS_MEMBERS_DEL_PERSONS>
@@ -532,7 +538,7 @@
         kan vises her. Om du kjenner brukernavnene kan du legge de inn her,
         eventuelt kan du kontakte din lokale
         IT-avdeling.</GROUPS_MEMBERS_TOO_MANY>
-    <GROUPS_MEMBERS_MORE>Hvis du skal legge til flere medlemmer samtidig, skriver du dem inn atskilt med komma 
+    <GROUPS_MEMBERS_MORE>Hvis du skal legge til flere medlemmer samtidig, skriver du dem inn atskilt med komma
         og/eller mellomrom.</GROUPS_MEMBERS_MORE>
     <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: personer fungerer bare for grupper
         brukt for Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
@@ -578,7 +584,7 @@
     <GROUPS_NEW_FORM_MOD_REQUIRED>Trenger en gruppe som skal vere moderator for
         gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
     <LATIN1_ONLY_REQUIRED>Inneholder ulovlige tegn</LATIN1_ONLY_REQUIRED>
-        
+
     <!-- Guest pages -->
     <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
     <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til
@@ -630,7 +636,7 @@
     <GUEST_NEW_FORM_NAME_FMT>Navn må være minimum {{min}} tegn og maksimum
         {{max}} tegn.</GUEST_NEW_FORM_NAME_FMT>
 
-    <GUEST_CREATED_SMS>Ny trådløskonto opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn: 
+    <GUEST_CREATED_SMS>Ny trådløskonto opprettet: &lt;ul&gt;&lt;li&gt;Brukernavn:
         &lt;b&gt;{{uname}}&lt;/b&gt;@uio.no&lt;/li&gt;&lt;/ul&gt; En SMS med
         brukernavn og passord ble sendt til
         &lt;b&gt;{{mobile}}&lt;/b&gt;</GUEST_CREATED_SMS>
@@ -652,7 +658,7 @@
         &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;h1&gt;Din trådløskonto&lt;/h1&gt; 
+        &lt;h1&gt;Din trådløskonto&lt;/h1&gt;
         &lt;p&gt;&lt;i&gt;Dersom du ikke får logget inn med det nye passordet bør
             du forsikre deg om at du ikke har blandet sammen
             bokstaven 'O' (stor o) og tallet '0' (null) eller
@@ -683,7 +689,7 @@
         &lt;p&gt;Ta kontakt med IT-ansvarlig ved din enhet dersom du har
             problemer med tilgang til IT-tjenester etter gjennomført
             passordskifte. En oversikt over IT-ansvarlige finner du på
-            &lt;a href="https://uio.no/tjenester/it/kontakt/"&gt;https://uio.no/tjenester/it/kontakt/&lt;/a&gt;. 
+            &lt;a href="https://uio.no/tjenester/it/kontakt/"&gt;https://uio.no/tjenester/it/kontakt/&lt;/a&gt;.
             Har du ikke tilgang til Internett kan du ringe
             universitetets helpdesktjeneste på 22 84 00 04.&lt;/p&gt;
     &lt;/body&gt;
@@ -843,11 +849,11 @@
     <BOFH_INFO_NAME>Visningsnavn:</BOFH_INFO_NAME>
     <BOFH_INFO_BIRTH>Fødselsdato:</BOFH_INFO_BIRTH>
     <BOFH_INFO_AFFILIATIONS>Kontoen din har følgende tilknytning(er):</BOFH_INFO_AFFILIATIONS>
-    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt; 
+    <BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>&lt;dfn title="{{aff_desc}}"&gt;{{aff}}&lt;/dfn&gt;
         ved &lt;dfn title="Stedkode: {{stedkode}}"&gt;{{stedkode_desc}}&lt;/dfn&gt;</BOFH_INFO_ACCOUNT_AFFILIATION_VALUE>
     <BOFH_INFO_PERSON_AFFILIATIONS>Du som person har følgende tilknytning(er):</BOFH_INFO_PERSON_AFFILIATIONS>
-    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Tilknytning i &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;: 
-        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt; 
+    <BOFH_INFO_PERSON_AFFILIATION_VALUE>Tilknytning i &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
+        &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt;
         &lt;dfn title="{{status_desc}}"&gt;{{status}}&lt;/dfn&gt;
         ved {{stedkode_desc}} ({{stedkode}})</BOFH_INFO_PERSON_AFFILIATION_VALUE>
     <BOFH_INFO_NAMES>Navn:</BOFH_INFO_NAMES>
