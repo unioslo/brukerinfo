@@ -295,7 +295,6 @@
     <PRINTING_MOREINFO_PRINTING>Hvis du vil vite mer om utskrift og skrivere, kan du gå til siden for
         &lt;a href="https://uio.no/tjenester/it/utskrift/"&gt;utskriftstjenester ved UiO&lt;/a&gt;</PRINTING_MOREINFO_PRINTING>
 
-
     <PRINTING_HISTORY_TITLE>Logg over utskriftskvote</PRINTING_HISTORY_TITLE>
     <PRINTING_HISTORY_FORM_DAYS>siste {{length}} dager</PRINTING_HISTORY_FORM_DAYS>
     <PRINTING_HISTORY_FORM_UNLIMITED>ubegrenset</PRINTING_HISTORY_FORM_UNLIMITED>
@@ -430,8 +429,8 @@
     <EMAIL_FORWARD_TITLE>Videresending</EMAIL_FORWARD_TITLE>
     <EMAIL_FORWARD_INTRO>Du kan videresende all e-post som kommer til
         brukerkontoen din, til en eller flere andre adresser. Merk deg at dette
-	av sikkerhetshensyn ikke anbefales. Det er forbudt for alle ansatte ved UiO å aktivere
-	automatisk videresending av e-post til eksterne e-postadresser. Du finner mer informasjon på &lt;a
+        av sikkerhetshensyn ikke anbefales. Det er forbudt for alle ansatte ved UiO å aktivere
+        automatisk videresending av e-post til eksterne e-postadresser. Du finner mer informasjon på &lt;a
         href="https://www.uio.no/tjenester/it/e-post-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
         USITs side om videresending&lt;/a&gt;.</EMAIL_FORWARD_INTRO>
     <EMAIL_FORWARD_LOCAL>Behold kopi</EMAIL_FORWARD_LOCAL>
@@ -476,11 +475,13 @@
     <GROUPS_TABLE_GROUPNAME>Gruppe</GROUPS_TABLE_GROUPNAME>
     <GROUPS_TABLE_DESCRIPTION>Beskrivelse</GROUPS_TABLE_DESCRIPTION>
     <GROUPS_TABLE_EXPIRES>Utløper</GROUPS_TABLE_EXPIRES>
-
+    <GROUPS_TABLE_OTHER_INFO>Manuelt opprettede grupper utløper ett år etter siste
+        tegn til moderatoraktivitet. Utløpsdato kan også settes manuelt over.
+        Alle gruppas moderatorer mottar en epost når utløpsdato nærmer seg.
+    </GROUPS_TABLE_OTHER_INFO>
     <GROUPS_MANUAL_CONTACT>For hjelp med å melde deg ut av manuelle grupper, ta kontakt med
         &lt;a href="mailto:it-support@uio.no"&gt;it-support@uio.no&lt;/a&gt;.
     </GROUPS_MANUAL_CONTACT>
-
     <GROUPS_PERSONAL_TITLE>Opprett personlig gruppe</GROUPS_PERSONAL_TITLE>
     <GROUPS_PERSONAL_INFO>Den personlige gruppen er en gruppe med samme navn som brukerkontoen din (i dette
         tilfellet {{username}}). Du administrerer gruppen og avgjør hvem som skal være medlemmer med tilgang til f.eks.

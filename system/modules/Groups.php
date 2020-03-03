@@ -795,12 +795,37 @@ class Groups extends ModuleGroup {
                 //'Action:'
             );
             $View->addElement($table);
+            if (INST == 'uio') {
+                $View->addElement(
+                    'p', txt('groups_table_other_info'), 'class="ekstrainfo"');
+            }
         } else {
             if (INST != 'uit') {
                 $View->addElement('p', txt('groups_empty_mod_list'));
             }
         }
+        if ($normal_groups) {
+            if (INST != 'uit') {
+                $View->addElement('h2', txt('groups_others_title'));
+            }
+            $othtable = View::createElement('table', null, 'class="app-table"');
+            $othtable->setHead(
+                txt('groups_table_groupname'),
+                txt('groups_table_description')
+            );
 
+            foreach ($normal_groups as $name => $description) {
+                // TODO: should we skip class-groups (e.g. uio:mn:ifi:inf1000:gruppe2) or not?
+                if (is_numeric(strpos($name, ':'))) {
+                    continue;
+                }
+                $othtable->addData(View::createElement('tr', array(
+                    $name,
+                    $description,
+                )));
+            }
+            $View->addElement($othtable);
+        }
         // recommending a personal group
         if (INST == 'uio' && !isset($adm_groups[$User->getUsername()])) {
             try {
