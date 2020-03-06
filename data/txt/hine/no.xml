@@ -544,6 +544,7 @@
         &lt;dfn title="{{affiliation_desc}}"&gt;{{affiliation}}&lt;/dfn&gt;
         &lt;dfn title="{{status_desc}}"&gt;{{status}}&lt;/dfn&gt;
         ved {{stedkode_desc}} ({{stedkode}})</BOFH_INFO_PERSON_AFFILIATION_VALUE>
+    <BOFH_INFO_PERSON_NO_AFFILIATIONS>Ingen tilknytninger er registrert</BOFH_INFO_PERSON_NO_AFFILIATIONS>
     <BOFH_INFO_NAMES>Navn:</BOFH_INFO_NAMES>
     <BOFH_INFO_NAME_VALUE>Navn registrert i &lt;dfn title="{{source_system_desc}}"&gt;{{source_system}}&lt;/dfn&gt;:
         {{name}}</BOFH_INFO_NAME_VALUE>

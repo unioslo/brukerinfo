@@ -147,16 +147,32 @@ class Person extends ModuleGroup {
         $dl->addData(txt('bofh_info_birth'), $personinfo['birth']);
 
         //affiliations
-        if(!empty($cache['affiliations'])) {
+        /* An empty affiliation is an array containing one dictionary.
+
+        [{"affiliation":"<none>","status":null,"stedkode":false,
+        "stedkode_desc":false,"source_system":"<nowhere>"}]
+
+        Therefore !empty doesnt work and we need a custom check.
+        Using &lt; and &gt; when comparing, checking on '<none>' won't work.
+        */
+        // Get the affiliation value in the first element of the array
+        $affval = reset($cache['affiliations'])['affiliation'];
+        if($affval != '&lt;none&gt;') {
+            // Has affiliations
             $affs = array();
             foreach($cache['affiliations'] as $key=>$aff) {
-                //adding descriptions
+                //adding descriptions if aff is not empty
                 $aff['source_system_desc'] = $source_system_descs[$aff['source_system']];
                 $aff['affiliation_desc']   = $aff_descs[$aff['affiliation']];
                 $aff['status_desc']        = $aff_descs[$aff['affiliation'].'/'.$aff['status']];
                 $affs[] = txt('bofh_info_person_affiliation_value', $aff);
             }
             $dl->addData(txt('bofh_info_person_affiliations'), View::createElement('ul', $affs));
+        }
+        else{
+            // No affiliations
+            $dl->addData(txt('bofh_info_person_affiliations'),
+            View::createElement('ul', array(txt('bofh_info_person_no_affiliations'))));
         }
 
 
