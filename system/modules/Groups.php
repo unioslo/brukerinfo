@@ -754,7 +754,6 @@ class Groups extends ModuleGroup {
                     $View->addElement(getFormDeleteMembers($groupname));
                 }
             }
-            // If moderated, enable group deletion
             die;
         }
 
