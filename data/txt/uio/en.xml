@@ -561,6 +561,8 @@
     <GROUPS_NEW_FORM_MOD_REQUIRED>Need a group which can moderate the group</GROUPS_NEW_FORM_MOD_REQUIRED>
     <LATIN1_ONLY_REQUIRED>Contains illegal characters</LATIN1_ONLY_REQUIRED>
 
+    <GROUPS_DELETE_STATUS>Deleted</GROUPS_DELETE_STATUS>
+
     <!-- Guest pages -->
     <GUEST_TITLE>Wireless accounts</GUEST_TITLE>
     <GUEST_INTRO>Create and manage accounts that give guest access to the
