@@ -569,6 +569,8 @@
         gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
     <LATIN1_ONLY_REQUIRED>Inneholder ulovlige tegn</LATIN1_ONLY_REQUIRED>
 
+    <GROUPS_DELETE_STATUS>Deleted</GROUPS_DELETE_STATUS>
+
     <!-- Guest pages -->
     <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
     <GUEST_INTRO>Opprett og administrer kontoer som gir besøkende tilgang til
