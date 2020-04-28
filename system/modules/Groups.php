@@ -754,22 +754,6 @@ class Groups extends ModuleGroup {
                     $View->addElement(getFormDeleteMembers($groupname));
                 }
             }
-            // If moderated, enable group deletion
-            if ($moderator) {
-                $View->addElement('h2', txt('groups_delete_title'));
-
-                if (isset($group['expire_date'])) {
-                    $View->addElement('p', txt('groups_delete_expired_text'));
-                    $delGroupForm->addElement('hidden', 'okReactivateConfirm', true);
-                    $delGroupForm->addElement('submit', null, txt('groups_delete_undelete_button_text'));
-                    $View->addElement($delGroupForm);
-                } else {
-                    $View->addElement('p', txt('groups_delete_text'));
-                    $delGroupForm->addElement('hidden', 'okDeleteConfirm', true);
-                    $delGroupForm->addElement('submit', null, txt('groups_delete_button_text'));
-                    $View->addElement($delGroupForm);
-                }
-            }
             die;
         }
 
