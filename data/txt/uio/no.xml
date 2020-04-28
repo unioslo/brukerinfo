@@ -569,7 +569,7 @@
         gruppen.</GROUPS_NEW_FORM_MOD_REQUIRED>
     <LATIN1_ONLY_REQUIRED>Inneholder ulovlige tegn</LATIN1_ONLY_REQUIRED>
 
-    <GROUPS_DELETE_STATUS>Deleted</GROUPS_DELETE_STATUS>
+    <GROUPS_DELETE_STATUS>Slettet</GROUPS_DELETE_STATUS>
 
     <!-- Guest pages -->
     <GUEST_TITLE>Trådløskontoer</GUEST_TITLE>
