@@ -639,10 +639,22 @@ class Groups extends ModuleGroup {
             $dl->addData(txt('group_spread'), addHelpSpread(explode(',', $group['spread'])));
             unset($group['spread']);
 
-            $dl->addData(txt('group_owner'), $group['owner']);
-            unset($group['owner']);
-            unset($group['owner_type']);
+            $dl->addData(txt('group_owner'), ($group['admin'] . " (" . $group['admin_type'] . ")" ));
+            unset($group['admin']);
+            unset($group['admin_type']);
             unset($group['opset']);
+
+            $mod_string = [];
+            if (!empty($group['mod'])) {
+                // Create an array of "moderator (moderator_type) strings
+                $mod_strings = array_map(
+                    function ($mod, $mod_type) {
+                        return $mod . ' (' . $mod_type . ')';
+                    }, $group['mod'], $group['mod_type']);
+                unset($group['mod']);
+                unset($group['mod_type']);
+            }
+            $dl->addData(txt('group_moderator'), $mod_strings);
 
             if ($moderator && isset($group['expire_date'])) {
                 $dl->addData(txt('group_expires'), $expireForm);
