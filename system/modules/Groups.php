@@ -639,22 +639,32 @@ class Groups extends ModuleGroup {
             $dl->addData(txt('group_spread'), addHelpSpread(explode(',', $group['spread'])));
             unset($group['spread']);
 
-            $dl->addData(txt('group_owner'), ($group['admin'] . " (" . $group['admin_type'] . ")" ));
+            if (is_array($group['admin'])) {
+                // Multiple admins. Create an array of "admin (admin_type)" strings
+                $adm_strings = array_map(
+                    function ($admin, $admin_type) {
+                        return $admin . ' (' . $admin_type . ')';
+                    }, $group['admin'], $group['admin_type']);
+                $dl->addData(txt('group_owner'), $adm_strings);
+            } else {
+                $dl->addData(txt('group_owner'), ($group['admin'] . " (" . $group['admin_type'] . ")" ));
+            }
             unset($group['admin']);
             unset($group['admin_type']);
             unset($group['opset']);
 
-            $mod_string = [];
-            if (!empty($group['mod'])) {
-                // Create an array of "moderator (moderator_type) strings
+            if (is_array($group['mod'])) {
+                // Multiple moderators. Create an array of "moderator (moderator_type)" strings
                 $mod_strings = array_map(
                     function ($mod, $mod_type) {
                         return $mod . ' (' . $mod_type . ')';
                     }, $group['mod'], $group['mod_type']);
-                unset($group['mod']);
-                unset($group['mod_type']);
+                    $dl->addData(txt('group_moderator'), $mod_strings);
+            } else {
+                $dl->addData(txt('group_moderator'), ($group['mod'] . " (" . $group['mod_type'] . ")" ));
             }
-            $dl->addData(txt('group_moderator'), $mod_strings);
+            unset($group['mod']);
+            unset($group['mod_type']);
 
             if ($moderator && isset($group['expire_date'])) {
                 $dl->addData(txt('group_expires'), $expireForm);
