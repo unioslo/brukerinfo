@@ -61,7 +61,6 @@
     <MENU_EMAIL_>E-mail overview</MENU_EMAIL_>
     <MENU_EMAIL_SPAM>Spam settings</MENU_EMAIL_SPAM>
     <MENU_EMAIL_FILTERS>Additional spam settings</MENU_EMAIL_FILTERS>
-    <MENU_EMAIL_TRIPNOTE>Out of office messages</MENU_EMAIL_TRIPNOTE>
     <MENU_EMAIL_FORWARD>Forwarding</MENU_EMAIL_FORWARD>
 
     <MENU_GROUPS>Groups</MENU_GROUPS>
@@ -124,7 +123,6 @@
     <HOME_SHORTCUTS_PRINTING>View printing status</HOME_SHORTCUTS_PRINTING>
     <HOME_SHORTCUTS_PRINTING_HISTORY>View printing history</HOME_SHORTCUTS_PRINTING_HISTORY>
     <HOME_SHORTCUTS_SPAM>Change spam settings</HOME_SHORTCUTS_SPAM>
-    <HOME_SHORTCUTS_TRIPNOTE>Set Out of office messages</HOME_SHORTCUTS_TRIPNOTE>
     <HOME_SHORTCUTS_MEMBERS>Add or remove members from your group(s)</HOME_SHORTCUTS_MEMBERS>
     <HOME_SHORTCUTS_GROUP_REQUEST>Request a new group</HOME_SHORTCUTS_GROUP_REQUEST>
 
@@ -377,35 +375,6 @@
     <EMAIL_FILTER_OFF>{{filter}} off</EMAIL_FILTER_OFF>
     <EMAIL_FILTER_RULE_REQUIRED>Please select a choice for {{filter}}</EMAIL_FILTER_RULE_REQUIRED>
     <EMAIL_FILTER_SUBMIT>Update</EMAIL_FILTER_SUBMIT>
-
-    <EMAIL_TRIPNOTE_TITLE>Out of office messages</EMAIL_TRIPNOTE_TITLE>
-    <EMAIL_TRIPNOTE_INTRO>Out of office messages (vacation messages) are
-        automatic replies to e-mails sent to you in a set period of time.
-        Each sender will receive the message only once within a period of 7
-        days. For more information please see &lt;a
-        href="https://www.uio.no/tjenester/it/e-post-kalender/epost-kalender/mer-om-epost-og-kalender/fravarsmelding.html"&gt;
-        USIT's page about out of office messages&lt;/a&gt;.
-        Note that messages are active from the start date, and up to and
-        including the expire date.
-    </EMAIL_TRIPNOTE_INTRO>
-    <EMAIL_TRIPNOTE_NEW_SUCCESS>New Out of office message added</EMAIL_TRIPNOTE_NEW_SUCCESS>
-
-    <EMAIL_TRIPNOTE_ACTIVE_TITLE>Active Out of office messages</EMAIL_TRIPNOTE_ACTIVE_TITLE>
-    <EMAIL_TRIPNOTE_LIST_DELETE>Delete</EMAIL_TRIPNOTE_LIST_DELETE>
-    <EMAIL_TRIPNOTE_STARTING>Starting:</EMAIL_TRIPNOTE_STARTING>
-    <EMAIL_TRIPNOTE_ENDING>Expires:</EMAIL_TRIPNOTE_ENDING>
-    <EMAIL_TRIPNOTE_MESSAGE>Message:</EMAIL_TRIPNOTE_MESSAGE>
-    <EMAIL_TRIPNOTE_STATUS>Status:</EMAIL_TRIPNOTE_STATUS>
-
-    <EMAIL_TRIPNOTE_FORM_TITLE>New Out of office message</EMAIL_TRIPNOTE_FORM_TITLE>
-    <EMAIL_TRIPNOTE_FORM_SUBMIT>Create Out of office message</EMAIL_TRIPNOTE_FORM_SUBMIT>
-
-    <EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>Please enter your message</EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>
-
-    <EMAIL_TRIPNOTE_OLD_TITLE>Old Out of office messages</EMAIL_TRIPNOTE_OLD_TITLE>
-    <EMAIL_TRIPNOTE_DELETE_TITLE>Confirm deleting</EMAIL_TRIPNOTE_DELETE_TITLE>
-    <EMAIL_TRIPNOTE_DELETE_CONFIRM>Are you sure you want to delete the following Out of office message?</EMAIL_TRIPNOTE_DELETE_CONFIRM>
-    <EMAIL_TRIPNOTE_DELETE_SUBMIT>Confirm deleting</EMAIL_TRIPNOTE_DELETE_SUBMIT>
 
     <EMAIL_FORWARD_TITLE>Forwarding</EMAIL_FORWARD_TITLE>
     <EMAIL_FORWARD_INTRO>You can forward all your incoming e-mails to another

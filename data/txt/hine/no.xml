@@ -61,7 +61,6 @@
     <MENU_EMAIL_>E-post</MENU_EMAIL_>
     <MENU_EMAIL_SPAM>Spaminnstillinger</MENU_EMAIL_SPAM>
     <MENU_EMAIL_FILTERS>Ekstra spaminnstillinger</MENU_EMAIL_FILTERS>
-    <MENU_EMAIL_TRIPNOTE>Fraværsmeldinger</MENU_EMAIL_TRIPNOTE>
     <MENU_EMAIL_FORWARD>Videresending</MENU_EMAIL_FORWARD>
 
     <MENU_GROUPS>Grupper</MENU_GROUPS>
@@ -117,7 +116,6 @@
     <HOME_SHORTCUTS_PRINTING>Vise utskriftsstatus</HOME_SHORTCUTS_PRINTING>
     <HOME_SHORTCUTS_PRINTING_HISTORY>Vise utskriftslogg</HOME_SHORTCUTS_PRINTING_HISTORY>
     <HOME_SHORTCUTS_SPAM>Angi spaminnstillinger</HOME_SHORTCUTS_SPAM>
-    <HOME_SHORTCUTS_TRIPNOTE>Legge inn fraværsmelding</HOME_SHORTCUTS_TRIPNOTE>
     <HOME_SHORTCUTS_MEMBERS>Legge til eller fjerne medlemmer i en gruppe</HOME_SHORTCUTS_MEMBERS>
     <HOME_SHORTCUTS_GROUP_REQUEST>Søk om en ny gruppe</HOME_SHORTCUTS_GROUP_REQUEST>
 
@@ -353,34 +351,6 @@
       <EMAIL_FILTER_OFF>{{filter}} av</EMAIL_FILTER_OFF>
       <EMAIL_FILTER_RULE_REQUIRED>Angi et valg for {{filter}}</EMAIL_FILTER_RULE_REQUIRED>
     <EMAIL_FILTER_SUBMIT>Oppdater</EMAIL_FILTER_SUBMIT>
-
-    <EMAIL_TRIPNOTE_TITLE>Fraværsmeldinger</EMAIL_TRIPNOTE_TITLE>
-    <EMAIL_TRIPNOTE_INTRO>Fraværsmeldinger er svar som sendes automatisk til
-        e-postmeldinger brukerkontoen din mottar innenfor en angitt periode.
-        Hver avsender mottar fraværsmeldingen kun én gang. Du finner mer
-        informasjon på &lt;a
-        href="https://uio.no/tjenester/it/e-post-kalender/e-post/tips-og-triks-fra-postmaster/fravarsmelding/"&gt;
-        USITs side om fraværsmeldinger&lt;/a&gt;. Merk at en fraværsmelding
-        starter fra og med startdatoen og varer til og med
-        utløpsdatoen.</EMAIL_TRIPNOTE_INTRO>
-    <EMAIL_TRIPNOTE_NEW_SUCCESS>Ny fraværsmelding er lagt til</EMAIL_TRIPNOTE_NEW_SUCCESS>
-
-    <EMAIL_TRIPNOTE_ACTIVE_TITLE>Aktive fraværsmeldinger</EMAIL_TRIPNOTE_ACTIVE_TITLE>
-    <EMAIL_TRIPNOTE_LIST_DELETE>Slett</EMAIL_TRIPNOTE_LIST_DELETE>
-    <EMAIL_TRIPNOTE_STARTING>Starter:</EMAIL_TRIPNOTE_STARTING>
-    <EMAIL_TRIPNOTE_ENDING>Utløper:</EMAIL_TRIPNOTE_ENDING>
-    <EMAIL_TRIPNOTE_MESSAGE>Melding:</EMAIL_TRIPNOTE_MESSAGE>
-    <EMAIL_TRIPNOTE_STATUS>Status:</EMAIL_TRIPNOTE_STATUS>
-
-    <EMAIL_TRIPNOTE_FORM_TITLE>Ny fraværsmelding</EMAIL_TRIPNOTE_FORM_TITLE>
-    <EMAIL_TRIPNOTE_FORM_SUBMIT>Opprett fraværsmelding</EMAIL_TRIPNOTE_FORM_SUBMIT>
-
-    <EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>Skriv inn meldingen</EMAIL_TRIPNOTE_RULE_MESSAGE_REQUIRED>
-
-    <EMAIL_TRIPNOTE_OLD_TITLE>Gamle fraværsmeldinger</EMAIL_TRIPNOTE_OLD_TITLE>
-    <EMAIL_TRIPNOTE_DELETE_TITLE>Bekreft sletting</EMAIL_TRIPNOTE_DELETE_TITLE>
-    <EMAIL_TRIPNOTE_DELETE_CONFIRM>Er du sikker på at du vil slette følgende fraværsmelding?</EMAIL_TRIPNOTE_DELETE_CONFIRM>
-    <EMAIL_TRIPNOTE_DELETE_SUBMIT>Bekreft sletting</EMAIL_TRIPNOTE_DELETE_SUBMIT>
 
     <EMAIL_FORWARD_TITLE>Videresending</EMAIL_FORWARD_TITLE>
     <EMAIL_FORWARD_INTRO>Du kan videresende all e-post som kommer til
