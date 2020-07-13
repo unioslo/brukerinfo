@@ -23,7 +23,7 @@
 #       -v "$(pwd)/my-config.php:/usr/local/src/wofh.php" \
 #       brukerinfo
 #
-FROM php:5-apache
+FROM php:7-apache
 
 # Build required php exts and enable mod_rewrite
 RUN apt-get update \

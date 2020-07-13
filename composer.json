@@ -4,13 +4,17 @@
     "description": "Brukerinfo web application",
     "require": {
         "pear-pear.php.net/html_quickform2": "~2.0",
-        "uio-usit-uait/phplib": "dev-master@dev",
+        "uio-usit-uait/phplib": "v1.0.7",
         "beberlei/metrics": "~2.1.0"
     },
     "repositories": [
         {
             "type": "git",
             "url": "https://bitbucket.usit.uio.no/scm/crb/phplib.git"
+        },
+        {
+            "type": "git",
+            "url": "https://bitbucket.usit.uio.no/scm/crb/html_quickform.git"
         },
         {
             "type": "pear",
