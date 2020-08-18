@@ -70,6 +70,8 @@ class Reports extends ModuleGroup {
         if ($this->showInMenu()) {
             $this->getGuestsData();
             $view->addElement('h1', txt('report_guests_page_title'));
+            $view->addElement(
+                'p', txt('report_guests_other_info'), 'class="ekstrainfo"');
 
             if (sizeof($this->guests_data) == 0) {
                 $view->addElement('p', txt('report_guests_no_guests'));
