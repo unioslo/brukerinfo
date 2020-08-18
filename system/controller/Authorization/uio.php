@@ -154,13 +154,21 @@ class Authorization_uio extends Authorization
 
 
     /**
-     * Only display the consents page if the user has acces to any of the consents.
+     * Only display the consents page if the user has access to any of the consents.
      */
     protected function has_consent_page()
     {
         return $this->has_gsuite_permissions() || $this->has_cristin_permissions();
     }
 
+    /**
+     * Only display the report page to employees.
+     */
+    protected function has_report_page()
+    {
+        return (   $this->is_authenticated()
+                && $this->bofh->isEmployee());
+    }
 
     /**
      * Check if the user has IMAP spread
