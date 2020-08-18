@@ -82,7 +82,7 @@
 
     <MENU_CONSENT>Samtykker</MENU_CONSENT>
 
-    <MENU_REPORTS>Rapporter</MENU_REPORTS>
+    <MENU_REPORTS>Gjester</MENU_REPORTS>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
