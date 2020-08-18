@@ -81,7 +81,7 @@
     <MENU_OFFICE365>Office 365</MENU_OFFICE365>
     <MENU_CONSENT>Consent</MENU_CONSENT>
 
-    <MENU_REPORTS>Reports</MENU_REPORTS>
+    <MENU_REPORTS>Guests</MENU_REPORTS>
 
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
