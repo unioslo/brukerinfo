@@ -832,6 +832,14 @@
     <REPORT_GUESTS_PAGE_TITLE>Guest(s) at my department(s)</REPORT_GUESTS_PAGE_TITLE>
     <REPORT_GUESTS_NO_ACCESS_TITLE>No access</REPORT_GUESTS_NO_ACCESS_TITLE>
     <REPORT_GUESTS_NO_GUESTS>No guests registered.</REPORT_GUESTS_NO_GUESTS>
+    <REPORT_GUESTS_OTHER_INFO>
+    The table below lists persons registered as a guest in SAPUiO at your department.&lt;br&gt;
+    For more information: &#x1f517;&lt;a href="https://www.uio.no/english/for-employees/support/sap/guest.html"&gt;Registration as guest in SAPUiO&lt;/a&gt;
+    &lt;br&gt;&lt;br&gt;
+
+    End date is only set when the registration is deleted. Deleted registrations will remain visible for 30 days and are marked in red.
+
+    </REPORT_GUESTS_OTHER_INFO>
     <REPORT_GUESTS_TABLE_HEADER_END_DATE>End date</REPORT_GUESTS_TABLE_HEADER_END_DATE>
     <REPORT_GUESTS_TABLE_HEADER_NAME>Name</REPORT_GUESTS_TABLE_HEADER_NAME>
     <REPORT_GUESTS_TABLE_HEADER_START_DATE>Start date</REPORT_GUESTS_TABLE_HEADER_START_DATE>

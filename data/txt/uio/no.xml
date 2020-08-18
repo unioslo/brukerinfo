@@ -844,6 +844,13 @@
     <REPORT_GUESTS_PAGE_TITLE>Gjester ved min(e) enhet(er)</REPORT_GUESTS_PAGE_TITLE>
     <REPORT_GUESTS_NO_ACCESS_TITLE>Ingen tilgang</REPORT_GUESTS_NO_ACCESS_TITLE>
     <REPORT_GUESTS_NO_GUESTS>Ingen registrerte gjester.</REPORT_GUESTS_NO_GUESTS>
+    <REPORT_GUESTS_OTHER_INFO>
+    Listen under viser personer som har midlertidig brukerkonto ved UiO, gjennom å være registrert som gjest ved din enhet i SAPUiO.&lt;br&gt;
+    For mer informasjon: &#x1f517;&lt;a href="https://www.uio.no/for-ansatte/arbeidsstotte/sap/gjest.html"&gt;Registrering som gjest i SAPUiO&lt;/a&gt;
+    &lt;br&gt;&lt;br&gt;
+
+    Sluttdato er kun satt for slettede registeringer. Registreringene er synlige i 30 dager etter sletting og markeres i rødt.
+    </REPORT_GUESTS_OTHER_INFO>
     <REPORT_GUESTS_TABLE_HEADER_END_DATE>Sluttdato</REPORT_GUESTS_TABLE_HEADER_END_DATE>
     <REPORT_GUESTS_TABLE_HEADER_NAME>Navn</REPORT_GUESTS_TABLE_HEADER_NAME>
     <REPORT_GUESTS_TABLE_HEADER_START_DATE>Startdato</REPORT_GUESTS_TABLE_HEADER_START_DATE>
