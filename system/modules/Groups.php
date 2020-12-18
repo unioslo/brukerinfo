@@ -266,14 +266,8 @@ class Groups extends ModuleGroup {
             $newMember = new BofhFormUiO('newMember', null, 'groups/?group='.$groupname);
             $newMember->addElement('text', 'acc', txt('groups_members_form_account'));
             $newMember->addElement('text', 'grp', txt('groups_members_form_group'));
-            $newMember->addElement('text', 'per', txt('groups_members_form_person'));
 
-            $view = Init::get('View');
-            $newMember->addElement('html', $view->createElement('ul', array(
-                txt('groups_members_person_or_account'),
-            )));
             $newMember->addElement('submit', null, txt('groups_members_form_submit'));
-
 
             return $newMember;
         }
@@ -291,10 +285,6 @@ class Groups extends ModuleGroup {
                 return;
             }
             $added = 0;
-            if ($input['per']) {
-                $newper = preg_split('/[\s,]+/', $input['per']);
-                $added += addMembers($groupname, 'person', $newper);
-            }
             if ($input['acc']) {
                 $newacc = preg_split('/[\s,]+/', $input['acc']);
                 $added += addMembers($groupname, 'account', $newacc);

@@ -504,7 +504,6 @@
     <GROUPS_MEMBERS_NEWMEMBERS_TITLE>Legg til nye medlemmer</GROUPS_MEMBERS_NEWMEMBERS_TITLE>
     <GROUPS_MEMBERS_FORM_ACCOUNT>Ny(e) brukerkonto(er):</GROUPS_MEMBERS_FORM_ACCOUNT>
     <GROUPS_MEMBERS_FORM_GROUP>Ny(e) gruppe(er):</GROUPS_MEMBERS_FORM_GROUP>
-    <GROUPS_MEMBERS_FORM_PERSON>Ny(e) person(er):</GROUPS_MEMBERS_FORM_PERSON>
     <GROUPS_MEMBERS_FORM_SUBMIT>Legg til medlemmer</GROUPS_MEMBERS_FORM_SUBMIT>
     <GROUPS_MEMBERS_LIST_TITLE>Medlemmer</GROUPS_MEMBERS_LIST_TITLE>
     <GROUPS_MEMBERS_LIST_EMPTY>Denne gruppen har ingen medlemmer</GROUPS_MEMBERS_LIST_EMPTY>
@@ -514,8 +513,6 @@
         IT-avdeling.</GROUPS_MEMBERS_TOO_MANY>
     <GROUPS_MEMBERS_MORE>Hvis du skal legge til flere medlemmer samtidig, skriver du dem inn atskilt med komma
         og/eller mellomrom.</GROUPS_MEMBERS_MORE>
-    <GROUPS_MEMBERS_PERSON_OR_ACCOUNT>Obs: personer fungerer bare for grupper
-        brukt for Styringskart.</GROUPS_MEMBERS_PERSON_OR_ACCOUNT>
     <GROUPS_NEW_TITLE>Søk om ny gruppe</GROUPS_NEW_TITLE>
     <GROUPS_NEW_INTRO>&lt;p&gt;Søk om en ny gruppe til bruk i IT-systemene ved UiO.
         Søknaden vil bli behandlet av brukeradministrasjonen ved
