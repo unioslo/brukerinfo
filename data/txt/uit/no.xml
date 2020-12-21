@@ -410,7 +410,7 @@
     <EMAIL_FORWARD_FORM_KEEP>Behold en kopi av meldingene i UiT-kontoen</EMAIL_FORWARD_FORM_KEEP>
     <EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>Skriv inn adressen du vil videresende all e-post til.</EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>
     <EMAIL_FORWARD_FORM_SUBMIT>Opprett regel</EMAIL_FORWARD_FORM_SUBMIT>
-
+    <EMAIL_FORWARD_UIT_WARNING>For ansatte ved UiT vil videresending kun fungere til UNN.</EMAIL_FORWARD_UIT_WARNING>
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Grupper du kan administere</GROUPS_TITLE>

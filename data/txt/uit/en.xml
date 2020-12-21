@@ -406,7 +406,7 @@
     <EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>Please enter the email address to forward to.</EMAIL_FORWARD_FORM_ADDRESS_REQUIRED>
 
     <EMAIL_FORWARD_FORM_SUBMIT>Create rule</EMAIL_FORWARD_FORM_SUBMIT>
-
+    <EMAIL_FORWARD_UIT_WARNING>UiT employees can only forward their email to UNN.</EMAIL_FORWARD_UIT_WARNING>
 
     <!-- Groups pages -->
     <GROUPS_TITLE>Groups you can administrate</GROUPS_TITLE>

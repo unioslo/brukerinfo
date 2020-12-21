@@ -575,6 +575,9 @@ class Email extends ModuleGroup {
         }
 
         $View->addElement('h2', txt('email_forward_new_title'));
+        if (INST == 'uit') {
+            $View->addElement('p', txt('email_forward_uit_warning'));
+        }
         $View->addElement($newForm);
 
         if (!$keeplocal && $forwards) {
