@@ -46,7 +46,7 @@
     <MENU_PERSON>Person</MENU_PERSON>
     <MENU_PERSON_>Person</MENU_PERSON_>
     <MENU_PERSON_PRIMARY>Primærtilknytning</MENU_PERSON_PRIMARY>
-    <MENU_PERSON_NAME>Navn</MENU_PERSON_NAME>
+    <MENU_PERSON_NAME>Visningsnavn</MENU_PERSON_NAME>
 
     <MENU_ACCOUNT>Brukerkonto</MENU_ACCOUNT>
     <MENU_ACCOUNT_>Kontooversikt</MENU_ACCOUNT_>
@@ -184,11 +184,17 @@
         href="https://uio.no"&gt;uio.no&lt;/a&gt;. Merk deg at din primære
         e-postadresse kan forandre seg som en konsekvens av valget.
     </PERSON_NAME_INTRO>
+    <PERSON_NAME_CLEAR>Overstyring av visningsnavn fjernet.</PERSON_NAME_CLEAR>
+    <PERSON_NAME_CLEAR_SUBMIT>Fjern visningsnavn</PERSON_NAME_CLEAR_SUBMIT>
     <PERSON_NAME_CURRENT>Ditt nåværende navn er
         &lt;strong&gt;{{name}}&lt;/strong&gt; og din primære e-postadresse er:
         &lt;strong&gt;{{email}}&lt;/strong&gt;.</PERSON_NAME_CURRENT>
     <PERSON_NAME_FORM_SUBMIT>Velg navn</PERSON_NAME_FORM_SUBMIT>
     <PERSON_NAME_FORM_SELECT>Velg navn</PERSON_NAME_FORM_SELECT>
+    <PERSON_NAME_NO_OVERRIDE>Du har ikke satt ett visningsnavn. Navneendringer i SAP eller FS vil føre til at ditt navn endres i UiOs systemer.</PERSON_NAME_NO_OVERRIDE>
+    <PERSON_NAME_OVERRIDE>&lt;p&gt;Du har satt ett visningsnavn. Navneendringer i SAP eller FS vil ikke føre til endringer i ditt visningsnavn.
+        Hvis du ønsker at ditt navn automatisk skal oppdateres, må du fjerne visningsnavnet.&lt;/p&gt;
+    </PERSON_NAME_OVERRIDE>
     <PERSON_NAME_SUCCESS>Ditt navn har blitt oppdatert</PERSON_NAME_SUCCESS>
 
 

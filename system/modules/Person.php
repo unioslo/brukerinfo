@@ -360,6 +360,42 @@ class Person extends ModuleGroup {
                 }
             }
         }
+
+        function getOverrideName()
+        {
+            $bofh = Init::get('Bofh');
+            $raw = $bofh->getData('person_info', $bofh->getUsername());
+            foreach ($raw as $row) {
+                if (!empty($row['names']) && $row['name_src'] == 'Override') {
+                    return $row['names'];
+                }
+            }
+            return null;
+        }
+
+
+        function clearOverrideName()
+        {
+            $bofh = Init::get('Bofh');
+            $user = Init::get('User');
+            try {
+                $ret = $bofh->run_command('person_clear_name', 'id:'.$bofh->getCache('person_id'), 'Override');
+            } catch (XML_RPC2_FaultException $e) {
+                $bofh->viewError($e);
+                return;
+            }
+            View::addMessage(txt('person_name_clear'));
+        }
+
+        function formClearOverrideName()
+        {
+            $form = new BofhFormUiO('clear_override_name', null, 'person/name/');
+            $form->addElement('submit', null, txt('person_name_clear_submit'));
+            $form->setDefaults(array('name' => $current_name));
+            return $form;
+        }
+
+
         $bofh = Init::get('Bofh');
         if (!$bofh->isEmployee()) {
             View::forward('person/', txt('EMPLOYEES_ONLY'));
@@ -369,6 +405,8 @@ class Person extends ModuleGroup {
         $addresses = getAddresses();
         $name = getName();
         $primary = getPrimaryAddress();
+        $override = getOverrideName();
+        $override_form = formClearOverrideName();
 
         $form = formModName($primary, $name, $addresses);
         if ($form->validate()) {
@@ -376,12 +414,26 @@ class Person extends ModuleGroup {
             View::forward('person/');
         }
 
+        if ($override_form->validate()) {
+            $override_form->process('clearOverrideName');
+            View::forward('person/');
+        }
+
+
         $view = Init::get('View');
         $view->start();
         $view->addElement('h1', txt('person_name_title'));
         $view->addElement('p', txt('person_name_intro')); 
 
+        if ($override != null) {
+            $view->addElement('p', txt('person_name_override'));
+            $view->addElement($override_form);
+        } else {
+            $view->addElement('p', txt('person_name_no_override'));
+        }
+
         $view->addElement('p', txt('person_name_current', array('name'=>$name, 'email'=>$primary))); 
+
         $view->addElement($form);
     }
 
