@@ -22,6 +22,9 @@
         }
     ],
     "config": {
-        "prepend-autoloader": false
+        "prepend-autoloader": false,
+        "platform": {
+            "php": "5.4.16"
+        }
     }
 }
