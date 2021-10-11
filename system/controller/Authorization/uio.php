@@ -115,7 +115,10 @@ class Authorization_uio extends Authorization
 
         $affs = $this->bofh->getCache('affiliations');
         foreach($affs as $aff) {
-            if (($aff['affiliation'] == 'ANSATT' || $aff['affiliation'] == 'TILKNYTTET') && $aff['source_system'] == 'DFO_SAP')  {
+            if (
+                (($aff['affiliation'] == 'ANSATT' || $aff['affiliation'] == 'TILKNYTTET') && $aff['source_system'] == 'DFO_SAP')
+                || ($aff['affiliation'] == 'TILKNYTTET' && $aff['source_system'] == 'Manual')
+            ) {
                 return true;
             }
         }
