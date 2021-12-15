@@ -2,9 +2,11 @@
     "name": "uio-usit-uait/brukerinfo",
     "license": "GPL-3.0+",
     "description": "Brukerinfo web application",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "pear-pear.php.net/html_quickform2": "~2.0",
-        "uio-usit-uait/phplib": "v1.0.8",
+        "pear/html_quickform2": "~2.0",
+        "uio-usit-uait/phplib": "dev-master",
         "beberlei/metrics": "~2.1.0"
     },
     "repositories": [
@@ -15,10 +17,6 @@
         {
             "type": "git",
             "url": "https://bitbucket.usit.uio.no/scm/crb/html_quickform.git"
-        },
-        {
-            "type": "pear",
-            "url": "https://pear.php.net"
         }
     ],
     "config": {
