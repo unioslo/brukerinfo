@@ -17,7 +17,12 @@
         {
             "type": "git",
             "url": "https://bitbucket.usit.uio.no/scm/crb/html_quickform.git"
+        },
+        {
+            "type": "git",
+            "url": "https://bitbucket.usit.uio.no/scm/crb/html_common.git"
         }
+
     ],
     "config": {
         "prepend-autoloader": false,
