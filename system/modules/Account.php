@@ -198,11 +198,48 @@ class Account extends ModuleGroup {
 
 
         //extra info
+            
+        function formModShell($current_shell) {
+            $viable_shells = array(
+                'bash' => 'bash', 
+                'csh'  => 'csh',
+                'sh'   => 'sh',
+                'tcsh' => 'tcsh',
+                'zsh'  => 'zsh',
+            );
+            
+            $form = new BofhFormUiO('mod_shell', null, 'account/?more');
+            $form->addElement('select', 'shell', txt('BOFH_INFO_SHELL_FORM_SELECT'), $viable_shells);
+            $form->addElement('submit', null, txt('BOFH_INFO_SHELL_FORM_SUBMIT'));
+            $form->addRule('shell', txt('FORM_REQUIRED'), 'required');
+            $form->setDefaults(array('shell' => $current_shell));
+            return $form;
+        }
 
+        function formModShellProcess($input) {
+            $bofh = Init::get('Bofh');
+            $user = Init::get('User');
+            try {
+                $bofh->run_command('user_shell', $user->getUsername(), $input['shell']);
+            } catch (XML_RPC2_FaultException $e) { 
+                $bofh->viewError($e);
+                return;
+            }
+            View::addMessage(sprintf('%s %s.', txt('BOFH_INFO_SHELL_SUCCESS'), $input['shell']));
+        }
+    
         if(isset($_GET['more'])) {
             $list[2] = View::createElement('dl', null, 'class="complicated"');
-            //ksort($userinfo);
             foreach($userinfo as $k=>$v) {
+                if($k == 'shell' && INST == 'uio' && $Bofh->isEmployee()) {
+                    $shell_form = formModShell($v);
+                    if ($shell_form->validate()) {
+                        $shell_form->process('formModShellProcess');
+                        View::forward('account/?more');
+                    }
+                    $list[2]->addData(ucfirst(txt('BOFH_INFO_SHELL')).':', $shell_form);
+                    continue;
+                }
                 if(!$titl = @txt('bofh_info_'.$k)) { // @ prevents warnings, as data may change
                     $titl = $k; // if no given translation, just output variable name
                 }
