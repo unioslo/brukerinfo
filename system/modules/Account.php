@@ -200,6 +200,7 @@ class Account extends ModuleGroup {
         //extra info
             
         function formModShell($current_shell) {
+            global $viable_shells;
             $viable_shells = array(
                 'bash' => 'bash', 
                 'csh'  => 'csh',
@@ -207,6 +208,8 @@ class Account extends ModuleGroup {
                 'tcsh' => 'tcsh',
                 'zsh'  => 'zsh',
             );
+            $viable_shells[$current_shell] = $current_shell;
+            ksort($viable_shells);
             
             $form = new BofhFormUiO('mod_shell', null, 'account/?more');
             $form->addElement('select', 'shell', txt('BOFH_INFO_SHELL_FORM_SELECT'), $viable_shells);
@@ -217,6 +220,12 @@ class Account extends ModuleGroup {
         }
 
         function formModShellProcess($input) {
+            global $viable_shells;
+            if (empty($viable_shells[$input['shell']])) {
+                View::addMessage('Illegal input');
+                return;
+            }
+            
             $bofh = Init::get('Bofh');
             $user = Init::get('User');
             try {
