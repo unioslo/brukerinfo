@@ -198,7 +198,7 @@ class Account extends ModuleGroup {
 
 
         //extra info
-            
+
         function formModShell($current_shell) {
             global $viable_shells;
             $viable_shells = array(
@@ -208,9 +208,11 @@ class Account extends ModuleGroup {
                 'tcsh' => 'tcsh',
                 'zsh'  => 'zsh',
             );
-            $viable_shells[$current_shell] = $current_shell;
-            ksort($viable_shells);
-            
+            if (empty($viable_shells[$current_shell])) {
+                $viable_shells[$current_shell] = $current_shell;
+                ksort($viable_shells);
+            }
+
             $form = new BofhFormUiO('mod_shell', null, 'account/?more');
             $form->addElement('select', 'shell', txt('BOFH_INFO_SHELL_FORM_SELECT'), $viable_shells);
             $form->addElement('submit', null, txt('BOFH_INFO_SHELL_FORM_SUBMIT'));
@@ -237,10 +239,14 @@ class Account extends ModuleGroup {
             View::addMessage(sprintf('%s %s.', txt('BOFH_INFO_SHELL_SUCCESS'), $input['shell']));
         }
     
-        if(isset($_GET['more'])) {
+        if (isset($_GET['more'])) {
             $list[2] = View::createElement('dl', null, 'class="complicated"');
             foreach($userinfo as $k=>$v) {
-                if($k == 'shell' && INST == 'uio' && $Bofh->isEmployee()) {
+                if ($k == 'shell'
+                    && INST == 'uio'
+                    && $Bofh->isEmployee()
+                    && $userinfo['quarantined'] != 'active'
+                ) {
                     $shell_form = formModShell($v);
                     if ($shell_form->validate()) {
                         $shell_form->process('formModShellProcess');
@@ -249,7 +255,7 @@ class Account extends ModuleGroup {
                     $list[2]->addData(ucfirst(txt('BOFH_INFO_SHELL')).':', $shell_form);
                     continue;
                 }
-                if(!$titl = @txt('bofh_info_'.$k)) { // @ prevents warnings, as data may change
+                if (!$titl = @txt('bofh_info_'.$k)) { // @ prevents warnings, as data may change
                     $titl = $k; // if no given translation, just output variable name
                 }
                 $list[2]->addData(ucfirst($titl).':', ($v instanceof DateTime) ? $v->format(txt('date_format')) : $v);
