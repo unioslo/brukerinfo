@@ -469,6 +469,9 @@
     <GROUPS_NEW_FORM_NAME>Group name:</GROUPS_NEW_FORM_NAME>
     <GROUPS_NEW_FORM_DESC>Description:</GROUPS_NEW_FORM_DESC>
     <GROUPS_NEW_FORM_SPREADS>Spreads:</GROUPS_NEW_FORM_SPREADS>
+    <GROUPS_LIMITATION_ADVICE>Limit the selection of spreads to the minimum of systems required. This is
+    especially relevant for filegroups (NIS_fg@uio og NIS_fg@ifi). If necessary more systems can be added 
+    later.</GROUPS_LIMITATION_ADVICE>
     <GROUPS_NEW_FORM_MODERATOR>Moderator group:</GROUPS_NEW_FORM_MODERATOR>
     <GROUPS_NEW_FORM_SUBMIT>Request new group</GROUPS_NEW_FORM_SUBMIT>
     <GROUPS_NEW_FORM_NAME_REQUIRED>Group name is required</GROUPS_NEW_FORM_NAME_REQUIRED>

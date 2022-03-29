@@ -472,6 +472,9 @@
     </GROUPS_NEW_INTRO>
     <GROUPS_NEW_FORM_NAME>Gruppenavn:</GROUPS_NEW_FORM_NAME>
     <GROUPS_NEW_FORM_DESC>Beskrivelse:</GROUPS_NEW_FORM_DESC>
+    <GROUPS_LIMITATION_ADVICE>Begrens deg til å velge de systemene du har behov for. Dette
+    gjelder spesielt filgrupper (NIS_fg@uio og NIS_fg@ifi). Gruppen kan senere utvides
+    til flere systemer.</GROUPS_LIMITATION_ADVICE>
     <GROUPS_NEW_FORM_SPREADS>System gruppen skal vere kjent i:</GROUPS_NEW_FORM_SPREADS>
     <GROUPS_NEW_FORM_MODERATOR>Moderatorgruppe:</GROUPS_NEW_FORM_MODERATOR>
     <GROUPS_NEW_FORM_SUBMIT>Søk om ny gruppe</GROUPS_NEW_FORM_SUBMIT>
