@@ -80,6 +80,14 @@ class Account extends ModuleGroup {
         }
     }
 
+    static $viable_shells = array(
+        'bash' => 'bash',
+        'csh'  => 'csh',
+        'sh'   => 'sh',
+        'tcsh' => 'tcsh',
+        'zsh'  => 'zsh',
+    );
+
     public function index() {
         /**
          * Adds a description onto spreads. Works with both a string and
@@ -196,18 +204,10 @@ class Account extends ModuleGroup {
             $list[1] = View::createElement('a', txt('general_more_details'), 'account/?more');
         }
 
-
         //extra info
 
         function formModShell($current_shell) {
-            global $viable_shells;
-            $viable_shells = array(
-                'bash' => 'bash', 
-                'csh'  => 'csh',
-                'sh'   => 'sh',
-                'tcsh' => 'tcsh',
-                'zsh'  => 'zsh',
-            );
+            $viable_shells = Account::$viable_shells;
             if (empty($viable_shells[$current_shell])) {
                 $viable_shells[$current_shell] = $current_shell;
                 ksort($viable_shells);
@@ -222,8 +222,7 @@ class Account extends ModuleGroup {
         }
 
         function formModShellProcess($input) {
-            global $viable_shells;
-            if (empty($viable_shells[$input['shell']])) {
+            if (empty(Account::$viable_shells[$input['shell']])) {
                 View::addMessage('Illegal input');
                 return;
             }
