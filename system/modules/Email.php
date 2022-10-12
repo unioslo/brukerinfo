@@ -39,11 +39,8 @@ class Email extends ModuleGroup {
         if (INST == 'uio') {
             $ret = array('', 'forward', 'spam');
             return $ret;
-        } elseif (INST == 'hine') {
+        } elseif (INST == 'hine' || INST == 'uit') {
             return array('');
-        } elseif (INST == 'uit'){
-            $ret = array('', 'forward');
-            return $ret;
         }
     }
 
