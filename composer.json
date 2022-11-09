@@ -6,21 +6,21 @@
     "prefer-stable": true,
     "require": {
         "pear/html_quickform2": "~2.0",
-        "uio-usit-uait/phplib": "dev-master",
+        "uio-usit-uait/phplib": "dev-main",
         "beberlei/metrics": "~2.1.0"
     },
     "repositories": [
         {
             "type": "git",
-            "url": "https://bitbucket.usit.uio.no/scm/crb/phplib.git"
+            "url": "git@github.uio.no:IT-CEREBRUM/phplib.git"
         },
         {
             "type": "git",
-            "url": "https://bitbucket.usit.uio.no/scm/crb/html_quickform.git"
+            "url": "git@github.uio.no:IT-CEREBRUM/html-quickform.git"
         },
         {
             "type": "git",
-            "url": "https://bitbucket.usit.uio.no/scm/crb/html_common.git"
+            "url": "git@github.uio.no:IT-CEREBRUM/html-common.git"
         }
 
     ],
