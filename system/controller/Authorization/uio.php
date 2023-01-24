@@ -1,5 +1,5 @@
 <?php
-// Copyright 2013, 2014 University of Oslo, Norway
+// Copyright 2013-2023 University of Oslo, Norway
 //
 // This file is part of Cerebrum.
 //
@@ -118,6 +118,7 @@ class Authorization_uio extends Authorization
             if (
                 (($aff['affiliation'] == 'ANSATT' || $aff['affiliation'] == 'TILKNYTTET') && $aff['source_system'] == 'DFO_SAP')
                 || ($aff['affiliation'] == 'TILKNYTTET' && $aff['source_system'] == 'Manual')
+                || ($aff['affiliation'] == 'TILKNYTTET' && $aff['source_system'] == 'GREG')
             ) {
                 return true;
             }
