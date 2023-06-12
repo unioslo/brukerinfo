@@ -943,7 +943,7 @@ class Groups extends ModuleGroup {
                 "$spread <span class=\"ekstrainfo\">- $description</span>");
         }
 
-        $newform->addElement('html', '<p class="form-text">'. txt('groups_limitation_advice')."</p>");
+	$newform->addElement('html', txt('groups_limitation_advice'), 'class="form-text"');
         $newform->addGroup($choosespreads, 'gr_spreads',
             txt('groups_new_form_spreads'), "<br />\n");
 
