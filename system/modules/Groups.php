@@ -942,8 +942,7 @@ class Groups extends ModuleGroup {
             $choosespreads[] = HTML_Quickform::createElement('checkbox', $spread, null,
                 "$spread <span class=\"ekstrainfo\">- $description</span>");
         }
-
-	$newform->addElement('html', txt('groups_limitation_advice'), 'class="form-text"');
+        $newform->addElement('p', txt('groups_limitation_advice'), 'class="form-text"');
         $newform->addGroup($choosespreads, 'gr_spreads',
             txt('groups_new_form_spreads'), "<br />\n");
 
