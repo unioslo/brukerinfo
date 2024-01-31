@@ -22,7 +22,7 @@ class Groups extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if (!($this->isUioOrUit(INST) && $this->authz->is_guest())){
+        if (!(INST == 'uio' && $this->authz->is_guest())){
             $modules->addGroup($this);
         }
     }
@@ -55,8 +55,6 @@ class Groups extends ModuleGroup {
                 array('groups/', txt('home_shortcuts_members')),
                 array('groups/new/', txt('home_shortcuts_group_request'))
             );
-        } elseif (INST == 'uit'){
-            return array();
         }
         return array(
             array('groups/', txt('home_shortcuts_members')),
@@ -796,14 +794,10 @@ class Groups extends ModuleGroup {
                     'p', txt('groups_table_other_info'), 'class="ekstrainfo"');
             }
         } else {
-            if (INST != 'uit') {
-                $View->addElement('p', txt('groups_empty_mod_list'));
-            }
+            $View->addElement('p', txt('groups_empty_mod_list'));
         }
         if ($normal_groups) {
-            if (INST != 'uit') {
-                $View->addElement('h2', txt('groups_others_title'));
-            }
+            $View->addElement('h2', txt('groups_others_title'));
             $othtable = View::createElement('table', null, 'class="app-table"');
             $othtable->setHead(
                 txt('groups_table_groupname'),
@@ -1069,9 +1063,7 @@ class Groups extends ModuleGroup {
         }
 
         if ($manual_groups) {
-            if (INST != 'uit') {
-                $View->addElement('h2', txt('groups_title_manual'));
-            }
+            $View->addElement('h2', txt('groups_title_manual'));
             $View->addElement('p', txt('groups_manual_contact'), 'class="ekstrainfo"');
             $table = View::createElement('table', null, 'class="app-table"');
             $table->setHead(
