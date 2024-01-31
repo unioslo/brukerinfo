@@ -80,6 +80,14 @@ class Account extends ModuleGroup {
         }
     }
 
+    static $viable_shells = array(
+        'bash' => 'bash',
+        'csh'  => 'csh',
+        'sh'   => 'sh',
+        'tcsh' => 'tcsh',
+        'zsh'  => 'zsh',
+    );
+
     public function index() {
         /**
          * Adds a description onto spreads. Works with both a string and
@@ -196,14 +204,57 @@ class Account extends ModuleGroup {
             $list[1] = View::createElement('a', txt('general_more_details'), 'account/?more');
         }
 
-
         //extra info
 
-        if(isset($_GET['more'])) {
+        function formModShell($current_shell) {
+            $viable_shells = Account::$viable_shells;
+            if (empty($viable_shells[$current_shell])) {
+                $viable_shells[$current_shell] = $current_shell;
+                ksort($viable_shells);
+            }
+
+            $form = new BofhFormUiO('mod_shell', null, 'account/?more');
+            $form->addElement('select', 'shell', txt('BOFH_INFO_SHELL_FORM_SELECT'), $viable_shells);
+            $form->addElement('submit', null, txt('BOFH_INFO_SHELL_FORM_SUBMIT'));
+            $form->addRule('shell', txt('FORM_REQUIRED'), 'required');
+            $form->setDefaults(array('shell' => $current_shell));
+            return $form;
+        }
+
+        function formModShellProcess($input) {
+            if (empty(Account::$viable_shells[$input['shell']])) {
+                View::addMessage('Illegal input');
+                return;
+            }
+            
+            $bofh = Init::get('Bofh');
+            $user = Init::get('User');
+            try {
+                $bofh->run_command('user_shell', $user->getUsername(), $input['shell']);
+            } catch (XML_RPC2_FaultException $e) { 
+                $bofh->viewError($e);
+                return;
+            }
+            View::addMessage(sprintf('%s %s.', txt('BOFH_INFO_SHELL_SUCCESS'), $input['shell']));
+        }
+    
+        if (isset($_GET['more'])) {
             $list[2] = View::createElement('dl', null, 'class="complicated"');
-            //ksort($userinfo);
             foreach($userinfo as $k=>$v) {
-                if(!$titl = @txt('bofh_info_'.$k)) { // @ prevents warnings, as data may change
+                if ($k == 'shell'
+                    && INST == 'uio'
+                    && $Bofh->isEmployee()
+                    && $userinfo['quarantined'] != 'active'
+                ) {
+                    $shell_form = formModShell($v);
+                    if ($shell_form->validate()) {
+                        $shell_form->process('formModShellProcess');
+                        View::forward('account/?more');
+                    }
+                    $list[2]->addData(ucfirst(txt('BOFH_INFO_SHELL')).':', $shell_form);
+                    continue;
+                }
+                if (!$titl = @txt('bofh_info_'.$k)) { // @ prevents warnings, as data may change
                     $titl = $k; // if no given translation, just output variable name
                 }
                 $list[2]->addData(ucfirst($titl).':', ($v instanceof DateTime) ? $v->format(txt('date_format')) : $v);
