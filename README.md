@@ -23,8 +23,8 @@ administration tool for Cerebrum is still the command line tool `bofhd`, or by
 using Cerebrum's webservice.
 
 Some more documentation about Brukerinfo is, for now, located in UiO's internal
-repository _cerebrum_config_, placed at
-https://utv.uio.no/stash/projects/CRB/repos/cerebrum_config/browse/doc/intern/uio/utvikling/brukerinfo.
+repository _crb-config-uio_, placed at
+https://github.uio.no/IT-CEREBRUM/crb-config-uio/tree/main/doc/utvikling/brukerinfo.
 More information could be given if you contact Cerebrum.
 
 Contact
