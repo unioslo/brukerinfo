@@ -3,7 +3,7 @@
 /* If debugging output should be shown. */
 define('DEBUG', false);
 
-/* preset (uio, tsd, hine) */
+/* preset (eg. uio) */
 define('INST', $_ENV['WOFH_INST']);
 
 /**

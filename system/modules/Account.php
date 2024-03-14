@@ -22,7 +22,7 @@ class Account extends ModuleGroup {
     public function __construct($modules) {
         $this->modules = $modules;
         $this->authz = Init::get('Authorization');
-        if (!($this->isUioOrUit(INST) && $this->authz->is_guest())) {
+        if (!(INST == 'uio' && $this->authz->is_guest())) {
             $modules->addGroup($this);
         }
     }
@@ -36,10 +36,10 @@ class Account extends ModuleGroup {
     }
 
     public function getSubgroups() {
-        if (($this->isUioOrUit(INST)) && $this->authz->can_set_primary_account()
+        if (INST == 'uio' && $this->authz->can_set_primary_account()
             || Init::get('Bofh')->isPersonal()) {
             return array('', 'primary');
-        } else if ($this->isUioOrUit(INST)) {
+        } else if (INST == 'uio') {
             return array('');
         } else {
             return array('', 'password');
@@ -53,8 +53,6 @@ class Account extends ModuleGroup {
     public function getShortcuts() {
         if (INST == 'uio') {
             return array(array('https://passord.uio.no', txt('home_shortcuts_password')));
-        } elseif (INST == 'uit') {
-            return array(array('https://passord.uit.no', txt('home_shortcuts_password')));
         } elseif (in_array('password', $this->getSubgroups())) {
             return array(array('account/password/', txt('home_shortcuts_password')));
         } else {
@@ -178,9 +176,7 @@ class Account extends ModuleGroup {
             $list[0]->addData(ucfirst(txt('bofh_info_spreads')), addHelpSpread($Bofh, explode(',', $userinfo['spread'])));
             unset($userinfo['spread']);
         } else {
-            if (INST != 'hine') {
-                $list[0]->addData(ucfirst(txt('bofh_info_spreads')), txt('account_spreads_empty'));
-            }
+            $list[0]->addData(ucfirst(txt('bofh_info_spreads')), txt('account_spreads_empty'));
         }
 
         //afiliations
