@@ -84,6 +84,7 @@ $View->addTitle(txt('LOGON_TITLE'));
 $View->setFocus('#usi'); //TODO: move setfokus to Bofhform maybe?
 $View->start();
 
+$View->addElement('raw', txt('logon_intro'));
 $View->addElement($logform);
 $View->addElement('raw', '<div id="logon-outro">' . txt('logon_outro') . '</div>');
 

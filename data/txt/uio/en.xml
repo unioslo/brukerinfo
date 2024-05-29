@@ -86,6 +86,11 @@
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Log on</LOGON_TITLE>
+    <LOGON_INTRO>
+        &lt;p&gt;This is a web based user interface you can use to view and
+        modify some of the information concerning your web identity and account at the
+        University of Oslo.&lt;/p&gt;
+    </LOGON_INTRO>
     <LOGON_OUTRO>
         &lt;p&gt;&lt;a href="https://passord.uio.no"&gt;Forgotten password or username?&lt;/a&gt;&lt;/p&gt;
     </LOGON_OUTRO>

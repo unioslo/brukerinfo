@@ -87,6 +87,10 @@
     <!-- Logon and logout -->
     <!-- TODO: not all these are implemented right now... -->
     <LOGON_TITLE>Logg inn</LOGON_TITLE>
+    <LOGON_INTRO>
+        &lt;p&gt;Denne tjenesten gir deg tilgang til å vise og endre noe av informasjonen
+        som er tilknyttet den elektroniske identiteten og brukerkontoen din ved Universitetet i Oslo.&lt;/p&gt;
+    </LOGON_INTRO>
     <LOGON_OUTRO>
         &lt;p&gt;&lt;a href="https://passord.uio.no"&gt;Glemt passord eller brukernavn?&lt;/a&gt;&lt;/p&gt;
     </LOGON_OUTRO>

@@ -20,7 +20,7 @@
 #       -p 8080:80 \
 #       -e WOFH_BOFH_URL=http://host:port/
 #       -v "$(pwd):/usr/local/src/wofh" \
-#       -v "$(pwd)/my-config.php:/usr/local/src/wofh.php" \
+#       -v "$(pwd)/docker/config.php:/usr/local/src/wofh.php" \
 #       brukerinfo
 #
 FROM php:7-apache
