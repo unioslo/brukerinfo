@@ -723,18 +723,35 @@ class Groups extends ModuleGroup {
 
                         //making pageview
                         if (count($members) > MAX_LIST_ELEMENTS_SPLIT) {
-                            $pagelist = View::createElement('ul', null, 'class="pagenav"');
+                            $pagelist = View::createElement('ul', null, 'class="app-paging"');
 
                             if ($page > 0) {
                                 $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname"));
                                 $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1)));
                             }
+                            /*
+                            * Set the buttons as inactive if on first page to
+                            * prevent the other buttons from moving around
+                            */
+                            else{
+                                $pagelist->addData(View::createElement('a', txt('navigation_first'), "groups/?group=$groupname", 'class="inactive"'));
+                                $pagelist->addData(View::createElement('a', txt('navigation_previous'), "groups/?group=$groupname&page=".($page-1), 'class=inactive'));
+                            }
                             for($i = 0; $i <= $max; $i++) {
-                                $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
+                                if($i == $page){
+                                    $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i", 'class="current_page"'));
+                                }
+                                else{
+                                    $pagelist->addData(View::createElement('a', ($i+1), "groups/?group=$groupname&page=$i"));
+                                }
                             }
                             if ($page < $max) {
                                 $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1)));
                                 $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max)));
+                            }
+                            else{
+                                $pagelist->addData(View::createElement('a', txt('navigation_next'), "groups/?group=$groupname&page=".($page+1), 'class="inactive"'));
+                                $pagelist->addData(View::createElement('a', txt('navigation_last'), "groups/?group=$groupname&page=".($max), 'class="inactive"'));
                             }
                             $View->addElement($pagelist);
                         }
