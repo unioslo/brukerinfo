@@ -688,10 +688,10 @@
     <!--G Suite consent -->
     <GSUITE_NAME>Google Workspace for Education</GSUITE_NAME>
     <GSUITE_TERMS_OF_AGREEMENT_LINK>https://www.uio.no/tjenester/it/maskin/gsuite/hjelp/vilkaar.html</GSUITE_TERMS_OF_AGREEMENT_LINK>
-    <GSUITE_TABLE_DESC>Samtykke for bruk av Google Workspace for UiO</GSUITE_TABLE_DESC>
+    <GSUITE_TABLE_DESC>Samtykke for bruk av Google Workspace ved UiO</GSUITE_TABLE_DESC>
     <GSUITE_INTRO>
         Før du kan ta i bruk Google Workspace ved UiO må du avgi samtykke til
-        &lt;a href="{{link}}"&gt;Vilkår for bruk av Google Workspace for UiO&lt;/a&gt;.&lt;br&gt;
+        &lt;a href="{{link}}"&gt;Vilkår for bruk av Google Workspace ved UiO&lt;/a&gt;.&lt;br&gt;
 
         Det innebærer at du som bruker har lest og forstått hvilke personopplysninger
         som overføres til Google, samt hvilke data du har lov til å lagre og dele med
