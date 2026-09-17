@@ -315,4 +315,27 @@ function to_array($data) {
 
 }
 
+/* Stub out get_magic_quotes functionality, as it has been removed
+ * in PHP 8 but is still used by our local PEAR vendor
+ */
+if (!function_exists('get_magic_quotes_gpc')) {
+    function get_magic_quotes_gpc() {
+        // Magic quotes for GPC (GET/POST/COOKIE) er fjernet → lat som den alltid er av
+        return 0;
+    }
+}
+
+if (!function_exists('get_magic_quotes_runtime')) {
+    function get_magic_quotes_runtime() {
+        // Magic quotes for runtime (f.eks. DB/resultater) er også fjernet → alltid av
+        return 0;
+    }
+}
+
+if (!function_exists('get_magic_quotes_gpc')) {
+    function get_magic_quotes_gpc() {
+        return 0;
+    }
+}
+
 ?>
