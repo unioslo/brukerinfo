@@ -204,7 +204,7 @@ class Consent extends ModuleGroup {
                               array('link' => txt($this->createTxtName($name, 'info_link')))));
         }
 
-        if ($consent['consent_date'] != null) {
+        if (isset($consent['consent_date']) && $consent['consent_date'] != null) {
             $view->addElement('p', txt('consent_registered_statustext', array('date' => $consent['consent_date'])));
         } else {
             $view->addElement('p', txt('consent_not_registered_statustext'));

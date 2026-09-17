@@ -100,7 +100,7 @@ class Email extends ModuleGroup {
 
             // the filters comes in a string in an array so need to split:
             if (!empty($data['filters']) && $data['filters'] != 'None') {
-                if (count($data['filters'] == 1)) {
+                if (is_array($data['filters']) && count($data['filters']) == 1) {
                     $data['filters'] = explode(', ', $data['filters'][0]);
                 } else {
                     //assumes that it has been fixed?
@@ -340,13 +340,19 @@ class Email extends ModuleGroup {
                 } catch (XML_RPC2_FaultException $e) {
                     continue;
                 }
-
-                $View->addElement('h3', $sec['account']);
-
+                // Handling empty server and server_type
+                $account = $sec['account'] ?? '';
+                $def_addr = $sec['def_addr'] ?? '';
+                $valid_addr = $sec['valid_addr'] ?? '';
+                $server = $sec['server'] ?? '';
+                $server_type = $sec['server_type'] ?? '';
+                
+                $View->addElement('h3', $account);
+                
                 $info = View::createElement('dl', null, 'class="secondary"');
-                $info->addData(txt('email_info_primary_addr'), $sec['def_addr']);
-                $info->addData(txt('email_info_valid_addr'), $sec['valid_addr']);
-                $info->addData(txt('email_info_server'), $sec['server'] . ' ('.$sec['server_type'].')');
+                $info->addData(txt('email_info_primary_addr'), $def_addr);
+                $info->addData(txt('email_info_valid_addr'), $valid_addr);
+                $info->addData(txt('email_info_server'), $server . ' ('.$server_type.')');
                 $View->addElement($info);
             }
         }
@@ -480,15 +486,17 @@ class Email extends ModuleGroup {
 
         $View->addTitle(txt('email_title'));
         $View->addTitle(txt('EMAIL_FORWARD_TITLE'));
-
+        $delInput = $_POST['del'];
         //Deleting forwards
-        if (!empty($_POST['del'])) {
-            if (count($_POST['del']) > 1) {
+        if (!empty($delInput)) {
+            $delArray = (array) $delInput;
+            if (count($delArray) > 1) {
                 trigger_error('was?', E_USER_WARNING);
                 View::forward('email/forward/', 'Buggy data, could not continue', View::MSG_ERROR);
             }
 
-            $del = (is_array($_POST['del']) ? key($_POST['del']) : $_POST['del']);
+            $firstKey = key($delArray);
+            $del = ($firstKey === 0) ? reset($delArray) : $firstKey;
 
             if(!isset($forwards[$del])) {
                 View::forward('email/forward/', txt('email_forward_delete_unknown'), View::MSG_ERROR);

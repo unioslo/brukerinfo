@@ -705,11 +705,12 @@
     </GSUITE_REMOVE_CONSENT_TEXT>
 
     <!-- Cristin Consent -->
-    <CRISTIN_NAME>Cristin</CRISTIN_NAME>
-    <CRISTIN_INFO_LINK>https://www.cristin.no/english/</CRISTIN_INFO_LINK>
-    <CRISTIN_TABLE_DESC>Consent for export to Cristin</CRISTIN_TABLE_DESC>
+    <CRISTIN_NAME>Norwegian Research Information Repository</CRISTIN_NAME>
+    <CRISTIN_INFO_LINK>https://sikt.no/en/tjenester/nasjonalt-vitenarkiv-nva/norwegian-research-information-repository-nva-privacy-policy</CRISTIN_INFO_LINK>
+    <CRISTIN_TERMS_OF_AGREEMENT_LINK>https://sikt.no/en/tjenester/nasjonalt-vitenarkiv-nva/norwegian-research-information-repository-nva-privacy-policy</CRISTIN_TERMS_OF_AGREEMENT_LINK>  
+    <CRISTIN_TABLE_DESC>Consent for export to NVA</CRISTIN_TABLE_DESC>
     <CRISTIN_INTRO>
-        In order to use Cristin, you must consent to having your personal data exported to Cristin.&lt;br&gt;
+        In order to use the Norwegian Research Information Repository (NVA), you must consent to having your personal data exported to NVA.&lt;br&gt;
         Employees in scientific positions are automatically exported and do not need to consent.&lt;br&gt;&lt;br&gt;
 
         By consenting you agree to have read and understand what personal data that will be&lt;br&gt;

@@ -242,6 +242,7 @@ class Groups extends ModuleGroup {
         function addHelpSpread($spreads_raw)
         {
             if (is_array($spreads_raw)) {
+                $spreads = array();
                 foreach ($spreads_raw as $k => $v) {
                     if ($v) $spreads[$k] = addHelpSpread($v);
                 }
@@ -623,6 +624,7 @@ class Groups extends ModuleGroup {
 
             $dl->addData(txt('group_create_date'), ($group['create_date']) ? $group['create_date']->format(txt('date_format')) : '');
             unset($group['create_date']);
+            $spreadInput = $group['spread'];
 
             $dl->addData(txt('group_spread'), addHelpSpread(explode(',', $group['spread'])));
             unset($group['spread']);
@@ -641,15 +643,17 @@ class Groups extends ModuleGroup {
             unset($group['admin_type']);
             unset($group['opset']);
 
-            if (is_array($group['mod'])) {
-                // Multiple moderators. Create an array of "moderator (moderator_type)" strings
-                $mod_strings = array_map(
-                    function ($mod, $mod_type) {
-                        return $mod . ' (' . $mod_type . ')';
-                    }, $group['mod'], $group['mod_type']);
+            if (isset($group['mod'])) {
+                if (is_array($group['mod'])) {
+                    // Multiple moderators. Create an array of "moderator (moderator_type)" strings
+                    $mod_strings = array_map(
+                        function ($mod, $mod_type) {
+                            return $mod . ' (' . $mod_type . ')';
+                        }, $group['mod'], $group['mod_type']);
                     $dl->addData(txt('group_moderator'), $mod_strings);
-            } else {
-                $dl->addData(txt('group_moderator'), ($group['mod'] . " (" . $group['mod_type'] . ")" ));
+                } else {
+                    $dl->addData(txt('group_moderator'), ($group['mod'] . " (" . $group['mod_type'] . ")" ));
+                }
             }
             unset($group['mod']);
             unset($group['mod_type']);
@@ -813,7 +817,7 @@ class Groups extends ModuleGroup {
         } else {
             $View->addElement('p', txt('groups_empty_mod_list'));
         }
-        if ($normal_groups) {
+        if (isset($normal_groups) && $normal_groups) {
             $View->addElement('h2', txt('groups_others_title'));
             $othtable = View::createElement('table', null, 'class="app-table"');
             $othtable->setHead(
@@ -950,8 +954,12 @@ class Groups extends ModuleGroup {
 
         $choosespreads = array();
         foreach($spreads as $spread => $description) {
-            $choosespreads[] = HTML_Quickform::createElement('checkbox', $spread, null,
-                "$spread <span class=\"ekstrainfo\">- $description</span>");
+            $choosespreads[] = $newform->addElement(
+                'checkbox',
+                $spread,
+                null,
+                "$spread <span class=\"ekstrainfo\">- $description</span>"
+            );
         }
         $newform->addElement('static', null, null, '<p class="form-text">' . txt('groups_limitation_advice') . '</p>');
         $newform->addGroup($choosespreads, 'gr_spreads',

@@ -136,23 +136,25 @@ class Reservations extends ModuleGroup {
 
         // Get the trait names for the relevant reservations
         global $reservations; //used in setReservations()
-        $reservations = getReservationTypes(array(
+        $reservations = getReservationTypes([
             'reserve_passw',
-        ));
+        ]);
 
         $view = Init::get('View');
         $view->addTitle(txt('reservations_title'));
 
         $flist = $view->createElement('table', null, 'class="app-table"');
-        $flist->setHead(array(
+        $flist->setHead([
             txt('reservations_tablehead_name'),
             txt('reservations_tablehead_desc'),
             txt('reservations_tablehead_action'),
-        ));
+        ]);
 
         foreach ($reservations as $id => $reservation) {
-            $status = ($reservation['value'] ? txt('reservations_action_unreserve')
-                : txt('reservations_action_reserve'));
+            $hasValue = isset($reservation['value']) && $reservation['value'];
+            $status = $hasValue
+                ? txt('reservations_action_unreserve')
+                : txt('reservations_action_reserve');
             $flist->addData(array(
                 txt('reservation_type_' . $id),
                 $reservation['description'],

@@ -717,11 +717,12 @@
 
 
     <!-- Cristin consent -->
-    <CRISTIN_NAME>Cristin</CRISTIN_NAME>
-    <CRISTIN_INFO_LINK>https://www.cristin.no/om-cristin/personvern/</CRISTIN_INFO_LINK>
-    <CRISTIN_TABLE_DESC>Samtykke for eksport til Cristin</CRISTIN_TABLE_DESC>
+    <CRISTIN_NAME>Nasjonalt vitenarkiv</CRISTIN_NAME>
+    <CRISTIN_INFO_LINK>https://sikt.no/tjenester/nasjonalt-vitenarkiv-nva/personvernerklaering-nasjonalt-vitenarkiv-nva</CRISTIN_INFO_LINK>
+    <CRISTIN_TERMS_OF_AGREEMENT_LINK>https://sikt.no/tjenester/nasjonalt-vitenarkiv-nva/personvernerklaering-nasjonalt-vitenarkiv-nva</CRISTIN_TERMS_OF_AGREEMENT_LINK> 
+    <CRISTIN_TABLE_DESC>Samtykke for eksport til NVA</CRISTIN_TABLE_DESC>
     <CRISTIN_INTRO>
-        Før du kan bli eksportert til Cristin må du avgi samtykke til at din personinformasjon&lt;br&gt;
+        Før du kan bli eksportert til Nasjonalt vitenarkiv (NVA) må du avgi samtykke til at din personinformasjon&lt;br&gt;
         kan overføres fra UiO til Cristin. Vitenskapelig ansatte blir automatisk overført til Cristin og &lt;br&gt;
         trenger ikke å samtykke.&lt;br&gt;&lt;br&gt;
 

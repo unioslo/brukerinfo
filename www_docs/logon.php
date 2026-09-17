@@ -59,8 +59,8 @@ if ($logform->validate()) {
                 $url = parse_url(BASE_URL);
                 $forward = parse_url($_SESSION['UserForward']);
                 $url['path'] = $forward['path'];
-                $url['query'] = $forward['query'];
-                $url['fragment'] = $forward['fragment'];
+                $url['query'] = $forward['query'] ?? null;
+                $url['fragment'] = $forward['fragment'] ?? null;
                 $url = build_url($url);
                 $_SESSION['UserForward'] = null;
                 View::forward($url);

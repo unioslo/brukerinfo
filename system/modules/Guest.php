@@ -231,7 +231,7 @@ class Guest extends  ModuleGroup {
             );
             $radio = array();
             foreach ($duration as $val=>$text) {
-                $radio[] = BofhFormUiO::createElement('radio', null, null, $text, $val);
+                $radio[] = $form->createElement('radio', null, null, $text, $val);
             }
             $form->addGroup($radio, 'g_days', txt('guest_new_form_duration'), '<br />');
 
