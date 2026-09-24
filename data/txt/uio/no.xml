@@ -716,24 +716,24 @@
     </GSUITE_REMOVE_CONSENT_TEXT>
 
 
-    <!-- Cristin consent -->
+    <!-- NVA consent -->
     <CRISTIN_NAME>Nasjonalt vitenarkiv</CRISTIN_NAME>
     <CRISTIN_INFO_LINK>https://sikt.no/tjenester/nasjonalt-vitenarkiv-nva/personvernerklaering-nasjonalt-vitenarkiv-nva</CRISTIN_INFO_LINK>
     <CRISTIN_TERMS_OF_AGREEMENT_LINK>https://sikt.no/tjenester/nasjonalt-vitenarkiv-nva/personvernerklaering-nasjonalt-vitenarkiv-nva</CRISTIN_TERMS_OF_AGREEMENT_LINK> 
     <CRISTIN_TABLE_DESC>Samtykke for eksport til NVA</CRISTIN_TABLE_DESC>
     <CRISTIN_INTRO>
         Før du kan bli eksportert til Nasjonalt vitenarkiv (NVA) må du avgi samtykke til at din personinformasjon&lt;br&gt;
-        kan overføres fra UiO til Cristin. Vitenskapelig ansatte blir automatisk overført til Cristin og &lt;br&gt;
+        kan overføres fra UiO til NVA. Vitenskapelig ansatte blir automatisk overført til NVA og &lt;br&gt;
         trenger ikke å samtykke.&lt;br&gt;&lt;br&gt;
 
 
         Dette innebærer at du som bruker har lest og forstått hvilke personopplysninger&lt;br&gt;
-        som overføres til Cristin. &lt;br&gt;&lt;br&gt;
+        som overføres til NVA. &lt;br&gt;&lt;br&gt;
 
-        Cristin eies av &#x1f517;&lt;a href="{{link}}"&gt;Unit - Direktoratet for IKT og fellestjenester i høyere utdanning&lt;br&gt;
-        og forskning.&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+        NVA eies av &#x1f517;&lt;a href="{{link}}"&gt;Sikt - Kunnskapssektorens
+tjenesteleverandør.&lt;/a&gt;&lt;br&gt;&lt;br&gt;
 
-        Følgende informasjon overføres til Cristin:
+        Følgende informasjon overføres til NVA:
         &lt;ul type="disc"&gt;
         &lt;li&gt;Fullt navn&lt;/li&gt;
         &lt;li&gt;Fødselsnummer&lt;/li&gt;
@@ -751,23 +751,23 @@
         &lt;/li&gt;
         &lt;/ul&gt;
 
-        Det kan ta inntil et døgn fra samtykket er registrert til du kan ta i bruk Cristin.&lt;br&gt;&lt;br&gt;
+        Det kan ta inntil et døgn fra samtykket er registrert til du kan ta i bruk NVA.&lt;br&gt;&lt;br&gt;
 
         Du kan når som helst trekke tilbake samtykket.&lt;br&gt;
-        Å trekke sammtykket innebærer at UiO slutter å overføre data til Cristin.&lt;br&gt;
+        Å trekke sammtykket innebærer at UiO slutter å overføre data til NVA.&lt;br&gt;
 
-        For spørsmål relatert til sletting av data i Cristin ta kontakt med &#x1f517;&lt;a href="{{link}}"&gt;Cristin&lt;/a&gt; direkte.
+        For spørsmål relatert til sletting av data i NVA ta kontakt med &#x1f517;&lt;a href="{{link}}"&gt;Sikt&lt;/a&gt; direkte.
 
     </CRISTIN_INTRO>
     <CRISTIN_CONSENT_REGISTERED>
         Ditt samtykke er registrert. Det kan ta opptil et døgn fra tidspunktet samtykket
-        ble avgitt til du kan ta i bruk Cristin.
+        ble avgitt til du kan ta i bruk NVA.
     </CRISTIN_CONSENT_REGISTERED>
     <CRISTIN_CONSENT_REVOKED>
         Samtykket har blitt trukket.
     </CRISTIN_CONSENT_REVOKED>
     <CRISTIN_GIVE_CONSENT_TEXT>
-        Ja, jeg samtykker til at personinformasjon overføres til Cristin.
+        Ja, jeg samtykker til at personinformasjon overføres til NVA.
     </CRISTIN_GIVE_CONSENT_TEXT>
     <CRISTIN_REMOVE_CONSENT_TEXT>
         Ja, jeg ønsker å trekke tilbake mitt samtykke.
