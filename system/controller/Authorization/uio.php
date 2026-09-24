@@ -105,7 +105,7 @@ class Authorization_uio extends Authorization
     }
 
     /**
-     * Check if the user should se the Cristin consent
+     * Check if the user should see the NVA consent
      */
     protected function has_cristin_permissions() {
         if (!$this->is_authenticated()) {

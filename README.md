@@ -45,7 +45,7 @@ Requirements
 ------------
 
 * Apache, or some other web server
-* PHP5, version 5.3 or later, with a few standard extensions.
+* PHP 8.0 or later, with a few standard extensions.
 * The Pear package `HTML_Common`
 * The Pear package `HTML_QuickForm`
 * The Pear package `XML_RPC2`
