@@ -954,7 +954,7 @@ class Groups extends ModuleGroup {
 
         $choosespreads = array();
         foreach($spreads as $spread => $description) {
-            $choosespreads[] = $newform->addElement(
+            $choosespreads[] = $newform->createElement(
                 'checkbox',
                 $spread,
                 null,
